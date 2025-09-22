@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وثيقة مواصفات المنتج الأولي (MVP) - منصة سند+</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #4A90E2; /* Sanad+ Blue */
+            --text-color: #34495e;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .document-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 50px 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border-top: 8px solid var(--primary-color);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        header .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-right: 15px;
+            border-right: 4px solid var(--secondary-color);
+        }
+
+        ul, ol {
+            padding-right: 25px;
+        }
+        
+        ul li, ol li {
+            margin-bottom: 12px;
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+
+        .toc {
+            background-color: #fdfdfe;
+            border: 1px solid var(--border-color);
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            border: none;
+            padding-bottom: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding: 0;
+            columns: 2;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--light-bg);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .scope-list {
+            padding: 0;
+            list-style-type: none;
+        }
+        .scope-list li {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .in-scope { background-color: #e8f8f5; border-right: 4px solid var(--success-color); }
+        .out-scope { background-color: #feeeee; border-right: 4px solid var(--danger-color); }
+        .in-scope::before { content: "✓ "; color: var(--success-color); font-weight: bold; }
+        .out-scope::before { content: "✗ "; color: var(--danger-color); font-weight: bold; }
+
+        footer {
+            border-top: 2px solid var(--border-color);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #95a5a6;
+        }
+        
+        @media print {
+            body { background-color: white; }
+            .document-container { box-shadow: none; margin: 0; max-width: 100%; padding: 20px; border-top: none; }
+            .toc { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        <header>
+            <div class="logo">+Sanad سند</div>
+            <h1>وثيقة مواصفات المنتج الأولي (MVP)</h1>
+            <p>مشروع تطوير النسخة الأولى من منصة سند+ الرقمية</p>
+        </header>
+
+        <nav class="toc" id="table-of-contents">
+            <h2>جدول المحتويات</h2>
+            <ul>
+                <li><a href="#section-1">1. نظرة عامة</a></li>
+                <li><a href="#section-2">2. أهداف المنتج الأولي</a></li>
+                <li><a href="#section-3">3. المستخدمون المستهدفون</a></li>
+                <li><a href="#section-4">4. نطاق العمل (Scope)</a></li>
+                <li><a href="#section-5">5. المتطلبات الوظيفية</a></li>
+                <li><a href="#section-6">6. المتطلبات غير الوظيفية</a></li>
+                <li><a href="#section-7">7. الحزمة التقنية (Tech Stack)</a></li>
+                <li><a href="#section-8">8. المخرجات والتسليمات</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="section-1">
+                <h2>1. نظرة عامة على المشروع</h2>
+                <p>تهدف هذه الوثيقة إلى تحديد المواصفات الكاملة لتطوير <strong>المنتج الأولي القابل للتطبيق (MVP)</strong> لمنصة "سند+". يتجاوز هذا المشروع كونه مجرد صفحة تعريفية، ليشمل بناء الوظائف الأساسية التي تسمح للمستخدمين بالتسجيل، البحث عن الأخصائيين، وطلب الجلسات، بالإضافة إلى لوحة تحكم إدارية لإدارة المنصة.</p>
+                <p>الهدف من الـ MVP هو إطلاق نسخة فعّالة من المنصة بأقل مجموعة من الميزات الأساسية لاختبار الفكرة في السوق وجمع ملاحظات المستخدمين الحقيقية، والتي ستكون أساسًا للتطويرات المستقبلية.</p>
+            </section>
+
+            <section id="section-2">
+                <h2>2. أهداف المنتج الأولي (MVP Goals)</h2>
+                <ul>
+                    <li><strong>التحقق من الفكرة (Idea Validation):</strong> التأكد من وجود حاجة حقيقية للمنصة وقابلية نموذج العمل للتطبيق.</li>
+                    <li><strong>توفير الوظائف الأساسية (Core Functionality):</strong> تمكين المستخدمين من إتمام الرحلة الأساسية: التسجيل ← البحث ← طلب جلسة.</li>
+                    <li><strong>بناء قاعدة مستخدمين أولية:</strong> جذب الدفعة الأولى من المراهقين والأخصائيين للمنصة.</li>
+                    <li><strong>أساس تقني متين (Scalable Foundation):</strong> بناء بنية تحتية برمجية قوية وقابلة للتطوير والتوسع في المستقبل.</li>
+                    <li><strong>جمع البيانات والملاحظات:</strong> فهم سلوك المستخدمين وتحدياتهم لتوجيه مراحل التطوير القادمة.</li>
+                </ul>
+            </section>
+
+            <section id="section-3">
+                <h2>3. المستخدمون المستهدفون</h2>
+                <ol>
+                    <li><strong>المراهقون والشباب (المستفيدون):</strong> المستخدمون الأساسيون الذين يبحثون عن الدعم النفسي والمهني.</li>
+                    <li><strong>الأخصائيون (مقدمو الخدمة):</strong> الأخصائيون النفسيون والاجتماعيون الذين سيقدمون الجلسات عبر المنصة <strong>(يتم إضافتهم وإدارتهم من قبل مدير المنصة فقط)</strong>.</li>
+                    <li><strong>مدير المنصة (Admin):</strong> الشخص المسؤول عن إدارة المحتوى، المستخدمين، والأخصائيين.</li>
+                </ol>
+            </section>
+
+            <section id="section-4">
+                <h2>4. نطاق العمل (Scope of Work)</h2>
+                <h3>4.1. الميزات ضمن نطاق الـ MVP</h3>
+                <ul class="scope-list">
+                    <li class="in-scope">صفحة هبوط تعريفية متكاملة.</li>
+                    <li class="in-scope">نظام تسجيل وإنشاء حسابات للمستفيدين.</li>
+                    <li class="in-scope">إمكانية إضافة وإدارة الأخصائيين من خلال لوحة تحكم المدير.</li>
+                    <li class="in-scope">صفحات شخصية بسيطة للمستفيدين والأخصائيين.</li>
+                    <li class="in-scope">قائمة بالأخصائيين مع إمكانية الفلترة الأساسية (حسب التخصص).</li>
+                    <li class="in-scope">نظام مبسط لطلب حجز جلسة (يرسل إشعارًا للمدير والأخصائي).</li>
+                    <li class="in-scope">لوحة تحكم إدارية (Admin Panel) لإدارة المستخدمين والأخصائيين.</li>
+                </ul>
+                <h3>4.2. الميزات خارج نطاق الـ MVP (سيتم تأجيلها)</h3>
+                <ul class="scope-list">
+                    <li class="out-scope">نظام دفع إلكتروني متكامل (Payment Gateway).</li>
+                    <li class="out-scope">نظام عقد الجلسات عبر الفيديو مباشرة داخل المنصة.</li>
+                    <li class="out-scope">نظام تقويم متقدم ومزامنة للمواعيد.</li>
+                    <li class="out-scope">نظام رسائل ومحادثات فورية بين المستخدم والأخصائي.</li>
+                    <li class="out-scope">تطبيقات خاصة بالهواتف المحمولة (iOS/Android).</li>
+                </ul>
+            </section>
+            
+             <section id="section-5">
+                <h2>5. المتطلبات الوظيفية المفصلة</h2>
+                <h3>5.1. الوحدة العامة والصفحة الرئيسية</h3>
+                <ul>
+                    <li>صفحة هبوط تحتوي على الأقسام التعريفية الأساسية.</li>
+                    <li>صفحات تسجيل الدخول، إنشاء حساب جديد للمستفيدين، واستعادة كلمة المرور.</li>
+                </ul>
+
+                <h3>5.2. وحدة المستخدم (المستفيد)</h3>
+                <ul>
+                    <li>إنشاء حساب جديد يتطلب معلومات أساسية.</li>
+                    <li>لوحة تحكم بسيطة تعرض معلوماته الشخصية وقائمة الجلسات المطلوبة.</li>
+                    <li>القدرة على تصفح قائمة الأخصائيين المعتمدين.</li>
+                    <li>القدرة على عرض الملف الشخصي الكامل للأخصائي.</li>
+                    <li>القدرة على إرسال "طلب حجز جلسة".</li>
+                </ul>
+
+                <h3>5.3. وحدة الأخصائي</h3>
+                <ul>
+                    <li>تسجيل الدخول الآمن ببيانات الحساب التي تم إنشاؤها من قبل مدير المنصة.</li>
+                    <li>لوحة تحكم بسيطة لعرض طلبات الجلسات الجديدة الموجهة إليه.</li>
+                    <li>القدرة على قبول أو رفض طلبات الجلسات.</li>
+                    <li>عرض قائمة بالجلسات المؤكدة.</li>
+                    <li>عرض صفحته الشخصية (مع إمكانية تعديل محدودة لبعض البيانات مثل النبذة الشخصية).</li>
+                </ul>
+                
+                <h3>5.4. لوحة التحكم الإدارية (Admin Panel)</h3>
+                <ul>
+                    <li>تسجيل دخول آمن للمدير.</li>
+                    <li><strong>إدارة الأخصائيين:</strong> إضافة أخصائيين جدد، تعديل بياناتهم (الاسم، التخصص، الصورة، النبذة)، تحديد بيانات تسجيل الدخول الخاصة بهم، وتفعيل أو تعطيل حساباتهم.</li>
+                    <li><strong>إدارة المستخدمين:</strong> عرض قائمة بالمستفيدين، مع إمكانية تفعيل أو حظر الحسابات.</li>
+                    <li><strong>إدارة طلبات الحجز:</strong> الاطلاع على جميع طلبات الجلسات وتوجيهها للأخصائي المناسب إذا لزم الأمر.</li>
+                </ul>
+            </section>
+
+            <section id="section-6">
+                <h2>6. المتطلبات غير الوظيفية</h2>
+                <table>
+                    <thead><tr><th>المتطلب</th><th>الوصف</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>الأداء</strong></td><td>تحسين سرعة تحميل الصفحات وفقًا لأفضل الممارسات لضمان تجربة مستخدم سلسة.</td></tr>
+                        <tr><td><strong>التوافقية</strong></td><td>دعم آخر إصدارين من المتصفحات الرئيسية (Chrome, Firefox, Safari, Edge).</td></tr>
+                        <tr><td><strong>الاستجابة</strong></td><td>تصميم متجاوب بالكامل لجميع أجزاء المنصة (الصفحة الرئيسية ولوحات التحكم).</td></tr>
+                        <tr><td><strong>الأمان</strong></td><td>حماية بيانات المستخدمين، تشفير كلمات المرور، تأمين لوحة التحكم الإدارية، واستخدام HTTPS.</td></tr>
+                        <tr><td><strong>قابلية التوسع</strong></td><td>كتابة كود نظيف ومنظم يسمح بإضافة ميزات جديدة في المستقبل بسهولة.</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="section-7">
+                <h2>7. الحزمة التقنية (Tech Stack)</h2>
+                <table>
+                     <thead><tr><th>الجانب</th><th>التقنية</th><th>الوصف</th></tr></thead>
+                     <tbody>
+                        <tr>
+                            <td><strong>الواجهة الأمامية (Frontend)</strong></td>
+                            <td>HTML5, CSS3, JavaScript, Bootstrap 5</td>
+                            <td>لتوفير واجهات عصرية ومتجاوبة وتجربة مستخدم تفاعلية.</td>
+                        </tr>
+                         <tr>
+                            <td><strong>الواجهة الخلفية (Backend)</strong></td>
+                            <td>PHP / Laravel Framework</td>
+                            <td>إطار عمل قوي، آمن، ومتكامل يسرّع عملية التطوير ويضمن بنية برمجية قابلة للتوسع.</td>
+                        </tr>
+                         <tr>
+                            <td><strong>قاعدة البيانات (Database)</strong></td>
+                            <td>MySQL</td>
+                            <td>قاعدة بيانات علائقية موثوقة ومناسبة لإدارة بيانات المستخدمين والجلسات ومتوافقة مع Laravel.</td>
+                        </tr>
+                         <tr>
+                            <td><strong>الاستضافة (Hosting)</strong></td>
+                            <td>خياران متاحان</td>
+                            <td>سيتم نشر المشروع بناءً على اختيار العميل:<br>
+                                <strong>أ)</strong> استضافة مشتركة (مثل Octenium) تتم إدارتها من قبلي.<br>
+                                <strong>ب)</strong> تسليم الشيفرة المصدرية للعميل لنشرها على خادمه الخاص.
+                            </td>
+                        </tr>
+                     </tbody>
+                </table>
+            </section>
+            
+            <section id="section-8">
+                <h2>8. المخرجات والتسليمات</h2>
+                <ol>
+                    <li>الشيفرة المصدرية الكاملة للمشروع (Frontend & Backend).</li>
+                    <li>نشر المنصة على خادم تجريبي وإنتاجي <strong>(في حال اختيار العميل لخدمة الاستضافة)</strong>.</li>
+                    <li>جلسة تدريبية قصيرة على كيفية استخدام لوحة التحكم الإدارية.</li>
+                </ol>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>وثيقة مواصفات المنتج الأولي (MVP) لمنصة سند+</p>
+        </footer>
+    </div>
+</body>
+</html>
