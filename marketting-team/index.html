@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عرض مشروع موقع مجموعة تسويق - تصميم محدّث</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" integrity="sha384-dpuaG1suU0eT09aS4tAT磐jPEjWOEM6DL30gBUGn" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* New Color Palette: Teal & Charcoal */
+    :root {
+      --bs-primary: #20c997; /* Teal */
+      --bs-primary-rgb: 32, 201, 151;
+      --bs-dark-charcoal: #2F4F4F; /* Dark Slate Gray / Charcoal */
+      --bs-light-gray: #f8f9fa;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.8;
+      scroll-padding-top: 70px; /* Offset for fixed navbar */
+    }
+    
+    /* --- Navigation --- */
+    .navbar {
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .navbar-brand {
+        font-weight: 700;
+        color: var(--bs-dark-charcoal) !important;
+    }
+    .nav-link {
+        font-weight: 600;
+        color: #555 !important;
+        transition: color 0.2s;
+    }
+    .nav-link.active, .nav-link:hover {
+        color: var(--bs-primary) !important;
+    }
+
+    /* --- Header --- */
+    .hero-header {
+      background-image: linear-gradient(rgba(47, 79, 79, 0.8), rgba(47, 79, 79, 0.8)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 120px 0;
+      text-align: center;
+    }
+
+    .hero-header h1 {
+      font-weight: 800;
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .hero-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 20px auto 30px;
+    }
+    
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        padding: 12px 30px;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #1baa80; /* A slightly darker teal for hover */
+        border-color: #1baa80;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(var(--bs-primary-rgb), 0.3);
+    }
+
+    /* --- Section Styling --- */
+    section {
+        padding: 80px 0;
+    }
+    .section-bg {
+        background-color: var(--bs-light-gray);
+    }
+    .section-title {
+      font-weight: 800;
+      color: var(--bs-dark-charcoal);
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 4px;
+      background: var(--bs-primary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* --- Custom Cards --- */
+    .feature-card {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        height: 100%;
+        text-align: center;
+    }
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .feature-card h5 {
+        color: var(--bs-dark-charcoal);
+        font-weight: 700;
+    }
+    .page-feature-list li {
+        display: flex;
+        align-items: flex-start;
+        text-align: right;
+        margin-bottom: 10px;
+    }
+    .page-feature-list .icon {
+        font-size: 1.2rem;
+        margin-left: 10px;
+        margin-top: 5px;
+        color: var(--bs-primary); /* Apply primary color to icons */
+    }
+    
+    /* --- Admin Section --- */
+    .admin-feature-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+    .admin-feature-list .icon {
+        color: var(--bs-primary); /* Using primary color for consistency */
+        font-size: 1.5rem;
+        margin-left: 15px;
+    }
+
+    /* --- Tech Section --- */
+    .tech-icon {
+        font-size: 4rem;
+        color: var(--bs-primary);
+        transition: transform 0.3s;
+    }
+    .tech-icon:hover {
+        transform: scale(1.1);
+    }
+
+    /* --- Payment Section --- */
+    .payment-card {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 30px 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    .payment-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .payment-percentage {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--bs-primary);
+        margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">مجموعة تسويق</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#overview">نظرة عامة</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pages">صفحات الموقع</a></li>
+          <li class="nav-item"><a class="nav-link" href="#admin-panel">لوحة التحكم</a></li>
+          <li class="nav-item"><a class="nav-link" href="#payment-plan">خطة الدفع</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero-header animate__animated animate__fadeIn">
+    <div class="container">
+      <h1>عرض مشروع موقع مجموعة تسويق</h1>
+      <p>نقدم لكم مقترحاً لموقع إلكتروني ديناميكي، احترافي ومتجاوب بالكامل، مبني بأحدث التقنيات ليعكس هوية علامتكم التجارية.</p>
+      <a href="#payment-plan" class="btn btn-primary btn-lg">عرض خطة الدفع</a>
+    </div>
+  </header>
+
+  <!-- Overview Section -->
+  <section id="overview">
+    <div class="container">
+      <h2 class="section-title">نظرة عامة عن المشروع</h2>
+      <p class="text-center lead mx-auto" style="max-width: 800px;">
+        يهدف المشروع إلى إنشاء بوابة إلكترونية احترافية تعرض خدمات ومشاريع مجموعة تسويق بطريقة حديثة ومرنة. سيعتمد الموقع على لوحة تحكم ديناميكية تتيح لفريق الإدارة التحكم الكامل بالمحتوى (الخدمات, المشاريع, بيانات التواصل...) عبر واجهة بسيطة مبنية باستخدام إطار العمل <strong>Laravel</strong>، مما يضمن الأمان, السرعة, وقابلية التوسع.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pages Section -->
+  <section id="pages" class="section-bg">
+    <div class="container">
+      <h2 class="section-title">تفاصيل صفحات الموقع</h2>
+      <div class="row g-4 justify-content-center">
+        <!-- Card 1: Home Page -->
+        <div class="col-md-6 animate__animated animate__fadeInUp">
+          <div class="feature-card">
+            <h5 class="mb-4"><i class="bi bi-house-door-fill me-2"></i>الصفحة الرئيسية</h5>
+            <ul class="list-unstyled page-feature-list">
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>قسم رئيسي (Hero Section):</strong> عرض جذاب مع رسالة ترحيبية قوية ودعوة واضحة لاتخاذ إجراء (Call to Action).</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>نبذة تعريفية:</strong> قسم "من نحن" يروي قصة المجموعة ورؤيتها بطريقة مختصرة ومؤثرة.</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>عرض أبرز الخدمات:</strong> تسليط الضوء على أهم الخدمات التي تقدمونها لجذب انتباه الزوار.</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>معرض أعمال مصغر:</strong> عرض لأحدث وأنجح المشاريع لإثبات الخبرة وبناء الثقة.</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>آراء العملاء:</strong> قسم لعرض شهادات العملاء الراضين لزيادة المصداقية.</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: Services Page -->
+        <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+          <div class="feature-card">
+            <h5 class="mb-4"><i class="bi bi-briefcase-fill me-2"></i>صفحة الخدمات</h5>
+            <ul class="list-unstyled page-feature-list">
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>عرض شامل للخدمات:</strong> صفحة رئيسية تعرض جميع الخدمات بشكل منظم مع أيقونات ووصف موجز لكل خدمة.</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>صفحات تفصيلية لكل خدمة:</strong> عند النقر على خدمة، ينتقل الزائر لصفحة خاصة تشرحها بعمق.</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>محتوى غني:</strong> كل صفحة خدمة ستحتوي على (شرح مفصل، الفوائد، آلية العمل، والنتائج المتوقعة).</div></li>
+              <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>ربط بالمشاريع:</strong> عرض المشاريع المتعلقة بكل خدمة لإظهار التطبيق العملي والنتائج.</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3: Projects Page -->
+        <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="feature-card">
+            <h5 class="mb-4"><i class="bi bi-layers-fill me-2"></i>صفحة المشاريع (معرض الأعمال)</h5>
+            <ul class="list-unstyled page-feature-list">
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>معرض مرئي جذاب:</strong> تصميم شبكي (Grid) لعرض صور المشاريع بشكل احترافي.</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>نظام فلترة وتصنيف:</strong> إمكانية فرز المشاريع حسب نوع الخدمة (مثل: تسويق رقمي, تصميم مواقع) لتسهيل التصفح.</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>صفحة لكل مشروع (دراسة حالة):</strong> شرح تفصيلي للمشروع يشمل (أهداف العميل، التحديات، الحلول المقدمة، والنتائج بالأرقام).</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>معرض صور وفيديو:</strong> إمكانية إضافة معرض صور أو فيديو داخل صفحة كل مشروع.</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4: Contact Page -->
+        <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+          <div class="feature-card">
+            <h5 class="mb-4"><i class="bi bi-envelope-fill me-2"></i>صفحة التواصل</h5>
+            <ul class="list-unstyled page-feature-list">
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>نموذج تواصل ديناميكي:</strong> حقول واضحة (الاسم, البريد, الرسالة) مع إرسال البيانات إلى لوحة التحكم والبريد الإلكتروني.</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>معلومات الاتصال المباشرة:</strong> عرض أرقام الهواتف، البريد الإلكتروني، والعنوان بشكل واضح.</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>خريطة تفاعلية:</strong> دمج خرائط جوجل لتحديد موقع الشركة بسهولة.</div></li>
+                <li><i class="bi bi-check-circle-fill icon"></i> <div><strong>روابط الشبكات الاجتماعية:</strong> أيقونات وروابط مباشرة لحساباتكم على منصات التواصل الاجتماعي.</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Panel Section -->
+  <section id="admin-panel">
+    <div class="container">
+      <h2 class="section-title">لوحة تحكم إدارية قوية</h2>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 animate__animated animate__fadeInRight">
+          <p class="lead">
+            سنقوم ببناء لوحة تحكم بسيطة وآمنة تتيح للمسؤول تعديل كل جزء من محتوى الموقع بكل سهولة ودون الحاجة لأي خبرة برمجية.
+          </p>
+          <ul class="list-unstyled admin-feature-list mt-4">
+            <li><i class="bi bi-check-circle-fill icon"></i> تسجيل دخول آمن للمسؤولين</li>
+            <li><i class="bi bi-check-circle-fill icon"></i> إدارة كاملة للخدمات (إضافة / تعديل / حذف)</li>
+            <li><i class="bi bi-check-circle-fill icon"></i> إدارة المشاريع ومعرض الأعمال</li>
+            <li><i class="bi bi-check-circle-fill icon"></i> استعراض الرسائل الواردة من صفحة التواصل</li>
+            <li><i class="bi bi-check-circle-fill icon"></i> تحديث بيانات الاتصال والروابط الاجتماعية</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 animate__animated animate__fadeInLeft">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=815" class="img-fluid rounded shadow" alt="لوحة التحكم">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Tech Stack -->
+  <section id="tech-stack" class="section-bg">
+    <div class="container text-center">
+      <h2 class="section-title">التقنيات المستخدمة</h2>
+      <div class="row g-5 mt-4">
+        <div class="col-md-4">
+          <div class="tech-icon mb-3"><i class="bi bi-braces"></i></div>
+          <h5 class="fw-bold">Laravel 11</h5>
+          <p>إطار عمل PHP قوي وآمن لبناء الواجهة الخلفية ولوحة التحكم.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="tech-icon mb-3"><i class="bi bi-bootstrap-fill"></i></div>
+          <h5 class="fw-bold">Bootstrap 5.3</h5>
+          <p>لضمان تصميم عصري ومتجاوب مع جميع الشاشات والأجهزة.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="tech-icon mb-3"><i class="bi bi-database-fill-gear"></i></div>
+          <h5 class="fw-bold">MySQL</h5>
+          <p>قاعدة بيانات موثوقة لتخزين جميع بيانات الموقع بشكل آمن ومنظم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Plan Section -->
+  <section id="payment-plan">
+    <div class="container">
+      <h2 class="section-title">خطة الدفع</h2>
+      <div class="row g-4 text-center mt-5">
+        <!-- Stage 1 -->
+        <div class="col-md-4 animate__animated animate__fadeInUp">
+          <div class="payment-card">
+            <div class="payment-percentage">30%</div>
+            <h5 class="fw-bold">دفعة أولى</h5>
+            <p class="mb-0">عند الموافقة على بدء المشروع.</p>
+          </div>
+        </div>
+        <!-- Stage 2 -->
+        <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="payment-card">
+            <div class="payment-percentage">30%</div>
+            <h5 class="fw-bold">دفعة ثانية</h5>
+            <p class="mb-0">بعد الانتهاء من التصميم والبرمجة وتقديم نسخة أولية للمراجعة.</p>
+          </div>
+        </div>
+        <!-- Stage 3 -->
+        <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <div class="payment-card">
+            <div class="payment-percentage">40%</div>
+            <h5 class="fw-bold">دفعة أخيرة</h5>
+            <p class="mb-0">عند التسليم النهائي للمشروع والموافقة الكاملة من طرفكم.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
