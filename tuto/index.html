@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cahier des Charges — Plateforme Tutoriels (Tuto Aménagement Territoire)</title>
+  <style>
+    /* ---------- Reset & Base ---------- */
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#4f46e5; --muted:#9aa4b2; --glass:rgba(255,255,255,0.03);
+      --radius:14px; --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071025 0%,#071b2f 60%);color:#e6eef8}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:28px auto;padding:20px}
+
+    /* ---------- Header ---------- */
+    header{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+    .logo{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(79,70,229,0.18)}
+    .logo svg{width:40px;height:40px;filter:drop-shadow(0 6px 18px rgba(5,6,20,0.4))}
+    header h1{font-size:20px;margin:0}
+    header p{margin:0;color:var(--muted);font-size:13px}
+
+    /* ---------- Card ---------- */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);backdrop-filter:blur(8px);box-shadow:0 6px 30px rgba(3,7,18,0.6);border:1px solid rgba(255,255,255,0.03)}
+
+    /* ---------- Grid ---------- */
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .section{margin-bottom:18px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* ---------- Pills ---------- */
+    .pills{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{background:var(--glass);padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;color:#dbeafe;border:1px solid rgba(255,255,255,0.03)}
+
+    /* ---------- Features list ---------- */
+    ul.features{list-style:none;padding:0;margin:8px 0 0 0;display:grid;gap:10px}
+    ul.features li{background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:12px;border-radius:10px;display:flex;gap:12px;align-items:flex-start}
+    .icon{min-width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.03);display:grid;place-items:center}
+    .li-title{font-weight:700}
+    .li-desc{color:var(--muted);font-size:13px;margin-top:4px}
+
+    /* ---------- Right column ---------- */
+    aside.card{position:sticky;top:22px;height:max-content}
+    .kpi{display:flex;gap:12px;align-items:center}
+    .kpi strong{font-size:20px}
+
+    /* ---------- Accordion / Pages ---------- */
+    .accordion{border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.05)}
+    .acc-item{border-bottom:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.01)}
+    .acc-item:last-child{border-bottom:none}
+    .acc-head{display:flex;justify-content:space-between;align-items:center;padding:14px;cursor:pointer;transition:background .2s}
+    .acc-head:hover{background:rgba(255,255,255,0.03)}
+    .acc-body{padding:0 14px 14px 14px;color:var(--muted);font-size:14px;display:none;line-height:1.6}
+    .acc-body ul{padding-left:20px;margin:5px 0}
+    .acc-body li{margin-bottom:6px}
+
+    /* ---------- Footer actions (Added for script compatibility) ---------- */
+    .actions{display:flex;gap:10px;margin-top:16px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;box-shadow:0 10px 30px rgba(79,70,229,0.2)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#cfe8ff}
+
+    /* ---------- Responsiveness ---------- */
+    @media (max-width:980px){.grid{grid-template-columns:1fr}.logo{width:56px;height:56px}.container{padding:14px}}
+    @media (max-width:480px){header h1{font-size:16px}.pills{gap:6px}.li-desc{font-size:12px}}
+
+    /* ---------- Animations ---------- */
+    .fade-in{animation:fadeIn .9s ease both}
+    .stagger > *{opacity:0;transform:translateY(10px);animation:staggerIn .6s ease forwards}
+    .stagger > *:nth-child(1){animation-delay:.06s}
+    .stagger > *:nth-child(2){animation-delay:.12s}
+    .stagger > *:nth-child(3){animation-delay:.18s}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    @keyframes staggerIn{to{opacity:1;transform:none}}
+
+    /* ---------- Nice code block ---------- */
+    pre{background:#071427;padding:12px;border-radius:10px;color:#9ad0ff;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="fade-in">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="white" opacity="0.06"/><path d="M6 15L10 9L14 13L18 7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <h1>Cahier des Charges — Plateforme de vente de tutoriels (Aménagement du Territoire)</h1>
+        <p class="muted">Projet Laravel • Lecteur vidéo sécurisé (Bunny Stream) • Paiement : CCP / SATIM • Login Google</p>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section>
+        <div class="card fade-in">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+            <div>
+              <h2 style="margin:0">Résumé du projet</h2>
+              <p class="muted" style="margin-top:6px">Plateforme permettant la vente et la consultation en streaming de tutoriels vidéos spécialisés. Accès après achat — téléchargement non autorisé.</p>
+            </div>
+            <div class="pills" aria-hidden="true">
+              <span class="pill">Laravel</span>
+              <span class="pill">Bunny Stream</span>
+              <span class="pill">CCP / SATIM</span>
+              <span class="pill">Google Login</span>
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:18px 0">
+
+          <div class="section">
+            <h3>Technologies & Stack</h3>
+            <ul class="features stagger" style="margin-top:10px">
+              <li>
+                <div class="icon">💻</div>
+                <div>
+                  <div class="li-title">Backend – Laravel 12+</div>
+                  <div class="li-desc">API interne, gestion utilisateurs, commandes, sécurité et intégration Bunny Stream.</div>
+                </div>
+              </li>
+
+              <li>
+                <div class="icon">🎨</div>
+                <div>
+                  <div class="li-title">Frontend – HTML / Custom design</div>
+                  <div class="li-desc">Design sur mesure, responsive, animations CSS.</div>
+                </div>
+              </li>
+
+              <li>
+                <div class="icon">🎥</div>
+                <div>
+                  <div class="li-title">Streaming – Bunny Stream</div>
+                  <div class="li-desc">Vidéos hébergées chez Bunny. URLs signées. Player sans option de téléchargement.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Fonctionnalités clés</h3>
+            <ul class="features" style="margin-top:10px">
+              <li>
+                <div class="icon">🧾</div>
+                <div>
+                  <div class="li-title">Catalogue simplifié</div>
+                  <div class="li-desc">Liste des tutoriels (sans catégories). Fiche détaillée avec teaser vidéo et bouton d'achat.</div>
+                </div>
+              </li>
+              <li>
+                <div class="icon">🔒</div>
+                <div>
+                  <div class="li-title">Authentification</div>
+                  <div class="li-desc">Inscription par email + connexion. Intégration Login avec Google (OAuth).</div>
+                </div>
+              </li>
+              <li>
+                <div class="icon">💳</div>
+                <div>
+                  <div class="li-title">Paiements</div>
+                  <div class="li-desc">Paiement CCP (Baridi) avec envoi de reçu et validation manuelle. Intégration SATIM pour paiement en ligne.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- NEW SECTION: ROLES & ACCESS -->
+          <div class="section">
+            <h3>👥 Arborescence & Accès par Rôle</h3>
+            <p class="muted">Détail des pages visibles selon le type d'utilisateur (Cliquer pour dérouler).</p>
+            
+            <div class="accordion" style="margin-top:10px">
+              
+              <!-- VISITEUR / CLIENT -->
+              <div class="acc-item">
+                <div class="acc-head">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span class="icon" style="width:32px;height:32px;min-width:32px;font-size:16px">👤</span>
+                    <div>
+                      <strong style="color:#fff">Espace CLIENT / VISITEUR</strong>
+                      <div class="muted" style="font-size:12px">Consultation, Achat & Visionnage</div>
+                    </div>
+                  </div>
+                  <span style="color:var(--muted)">▼</span>
+                </div>
+                <div class="acc-body">
+                  <strong style="color:#dbeafe">Pages Publiques :</strong>
+                  <ul>
+                    <li><strong>Accueil :</strong> Présentation, Liste des derniers tutos.</li>
+                    <li><strong>Liste des Tutos :</strong> Grille de tous les cours disponibles.</li>
+                    <li><strong>Fiche Tuto :</strong> Titre, Description, Prix, Vidéo Teaser (gratuite), Bouton "Acheter".</li>
+                    <li><strong>Auth :</strong> Pages Login, Register, Mot de passe oublié.</li>
+                  </ul>
+                  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.05);margin:10px 0">
+                  <strong style="color:#dbeafe">Pages Connectées (Après Auth) :</strong>
+                  <ul>
+                    <li><strong>Mes Achats (Dashboard) :</strong> Liste des cours achetés par l'utilisateur.</li>
+                    <li><strong>Page de Paiement :</strong> Formulaire SATIM ou Upload de preuve CCP.</li>
+                    <li><strong>Lecteur Vidéo :</strong> Page sécurisée pour regarder le cours complet (streaming uniquement, sans téléchargement).</li>
+                    <li><strong>Profil :</strong> Modifier email / mot de passe.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- ADMINISTRATEUR -->
+              <div class="acc-item">
+                <div class="acc-head">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span class="icon" style="width:32px;height:32px;min-width:32px;font-size:16px">🛡️</span>
+                    <div>
+                      <strong style="color:#fff">Espace ADMINISTRATEUR</strong>
+                      <div class="muted" style="font-size:12px">Gestion du contenu & des ventes</div>
+                    </div>
+                  </div>
+                  <span style="color:var(--muted)">▼</span>
+                </div>
+                <div class="acc-body">
+                  <strong style="color:#dbeafe">Gestion Contenu :</strong>
+                  <ul>
+                    <li><strong>Créer un Tuto :</strong> Formulaire (Titre, Desc, Prix) + Upload Vidéo (vers Bunny Stream).</li>
+                    <li><strong>Liste des Tutos :</strong> Modifier / Supprimer / Masquer un cours.</li>
+                  </ul>
+                  <hr style="border:0;border-top:1px solid rgba(255,255,255,0.05);margin:10px 0">
+                  <strong style="color:#dbeafe">Gestion Ventes & Users :</strong>
+                  <ul>
+                    <li><strong>Commandes CCP :</strong> Voir les preuves de paiement uploadées par les clients et valider (ou refuser) l'accès.</li>
+                    <li><strong>Historique Ventes :</strong> Liste de toutes les transactions (SATIM & CCP).</li>
+                    <li><strong>Utilisateurs :</strong> Voir la liste des inscrits, bloquer un accès si nécessaire.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- END NEW SECTION -->
+
+          <div class="section">
+            <h3>Contraintes techniques & Sécurité</h3>
+            <ul class="features" style="margin-top:10px">
+              <li>
+                <div class="icon">🔐</div>
+                <div>
+                  <div class="li-title">Sécurité</div>
+                  <div class="li-desc">HTTPS, CSRF, XSS protection, et URLs Bunny signées (Tokenized).</div>
+                </div>
+              </li>
+              <li>
+                <div class="icon">⚡</div>
+                <div>
+                  <div class="li-title">Performance</div>
+                  <div class="li-desc">Caching Laravel, minification des assets, lazy-loading et player asynchrone.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Livrables & Maintenance</h3>
+            <p class="muted">Code source complet (Laravel + frontend), documentation d'installation, guide admin, intégrations fonctionnelles (Bunny, SATIM, Google OAuth).</p>
+          </div>
+          
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin-top:4px">Notes rapides</h3>
+          <p class="muted">- Les vidéos ne sont pas stockées sur le serveur de production ; Bunny Stream gère l'hébergement.
+- Les paiements CCP sont validés manuellement par l'admin via upload de reçu.
+</p>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="card fade-in">
+          <h3>Résumé</h3>
+          <p class="muted">Une plateforme sécurisée, responsive et professionnelle pour commercialiser des tutoriels vidéo sans possibilité de téléchargement. Conçue pour une intégration rapide avec Bunny Stream et des méthodes de paiement locales.</p>
+
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+
+          <div class="kpi" style="margin-bottom:12px">
+            <div>
+              <div class="muted">Livrables</div>
+              <strong>Code + Docs</strong>
+            </div>
+          </div>
+
+          <div class="kpi" style="margin-bottom:12px">
+            <div>
+              <div class="muted">Intégrations</div>
+              <strong>Bunny • SATIM • Google</strong>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <div>
+              <div class="muted">Design</div>
+              <strong>Custom, responsive</strong>
+            </div>
+          </div>
+
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div style="flex:1">
+              <strong>Prochaine étape</strong>
+              <p class="muted" style="margin:6px 0">Valider le cahier des charges et fournir : logo, identité visuelle.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h4 style="margin:0">Contact technique</h4>
+          <p class="muted" style="margin-top:8px">Fournir les accès suivants pour intégration finale :</p>
+          <ul class="muted" style="padding-left:18px;margin:8px 0">
+            <li>Clé API SATIM</li>
+            <li>Identité visuelle (logo, couleurs)</li>
+          </ul>
+        </div>
+
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    // Accordion (updated to be robust)
+    document.querySelectorAll('.acc-head').forEach(h => h.addEventListener('click', ()=>{
+      const body = h.nextElementSibling;
+      if(!body) return;
+      
+      const isOpen = body.style.display === 'block';
+      
+      // Close all others (optional, remove this loop if you want multiple open)
+      document.querySelectorAll('.acc-body').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.acc-head span:last-child').forEach(s => s.style.transform = 'rotate(0deg)');
+
+      if(!isOpen) {
+        body.style.display = 'block';
+        const arrow = h.querySelector('span:last-child');
+        if(arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    }));
+
+    // Stagger reveal when ready
+    window.addEventListener('load', ()=>{
+      document.querySelectorAll('.stagger').forEach(n=>{
+        Array.from(n.children).forEach((c,i)=>c.style.animationDelay = (i*0.06)+'s');
+      });
+    });
+  </script>
+</body>
+</html>
