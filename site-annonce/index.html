@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Cahier des Charges | Plateforme d’Annonces</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Animate CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+
+body{
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background:#0f172a;
+  color:white;
+}
+
+header{
+  background: linear-gradient(135deg,#1e293b,#0f172a);
+  padding:60px 10%;
+  text-align:center;
+}
+
+header h1{
+  font-size:36px;
+  margin:0;
+}
+
+header p{
+  margin-top:10px;
+  opacity:.9;
+}
+
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  padding:20px;
+}
+
+.section{
+  background:#111c31;
+  border-radius:18px;
+  margin-bottom:25px;
+  padding:25px;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+  transition:all .4s ease;
+}
+
+.section:hover{
+  transform: translateY(-5px);
+  border-color:#38bdf8;
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+
+.section h2{
+  color:#38bdf8;
+  margin-bottom:10px;
+}
+
+ul{
+  margin-top:10px;
+  line-height:1.9;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:.8;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 14px;
+  border-radius:20px;
+  font-size:12px;
+  background:#0ea5e9;
+  color:white;
+}
+
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,#38bdf8,transparent);
+  margin:20px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="animate__animated animate__fadeInDown">
+  
+  <h1>Cahier des Charges</h1>
+  <p>Plateforme Web d’Annonces Multilingue avec Géolocalisation & Abonnements</p>
+</header>
+
+
+<div class="container">
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>1. Objet du Projet</h2>
+    <p>Développer une plateforme web permettant aux utilisateurs de publier, consulter et gérer des annonces, classées par proximité géographique, avec interface multilingue, abonnements, messagerie interne, sécurité via reCAPTCHA et connexion Google.</p>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>2. Périmètre du Projet</h2>
+    <div class="divider"></div>
+
+    <b>Inclus</b>
+    <ul>
+      <li>Site web responsive</li>
+      <li>Connexion Google + reCAPTCHA</li>
+      <li>Gestion des annonces</li>
+      <li>Géolocalisation + tri par distance</li>
+      <li>Interface multilingue (Arabe, Français, Anglais, Espagnol)</li>
+      <li>Système d’abonnement</li>
+      <li>Messagerie interne</li>
+      <li>Formulaire Contact (consultation admin)</li>
+      <li>Back-Office complet</li>
+    </ul>
+
+    <b>Non Inclus</b>
+    <ul>
+      <li>Application mobile</li>
+      <li>API mobile</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>3. Public Cible</h2>
+    <ul>
+      <li>Annonceurs</li>
+      <li>Utilisateurs recherchant des annonces</li>
+      <li>Administrateurs</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>4. Technologies</h2>
+    <ul>
+      <li>Site Web Responsive</li>
+      <li>Laravel</li>
+      <li>Base de données SQL</li>
+      <li>Hébergement Octenium (1 an inclus)</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>5. Fonctionnalités Clés</h2>
+
+    <b>Utilisateurs</b>
+    <ul>
+      <li>Inscription / Connexion / Google OAuth</li>
+      <li>reCAPTCHA Login / Register / Contact</li>
+      <li>Profil + Historique + Abonnements</li>
+    </ul>
+
+    <b>Annonces</b>
+    <ul>
+      <li>Création avec titre, description, images, localisation</li>
+      <li>Publication selon abonnements</li>
+      <li>Tri par distance</li>
+    </ul>
+
+    <b>Géolocalisation</b>
+    <ul>
+      <li>Position saisie manuellement</li>
+      <li>Rayon de recherche</li>
+    </ul>
+
+    <b>Multilingue</b>
+    <ul>
+      <li>Interface: Arabe / Français / Anglais / Espagnol</li>
+    </ul>
+
+    <b>Abonnements</b>
+    <ul>
+      <li>Packages – prix – limites – mise en avant</li>
+    </ul>
+
+    <b>Messagerie</b>
+    <ul>
+      <li>Chat interne + Historique + Notifications</li>
+      <li>Suppression automatique des numéros avant envoi</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>6. Back Office</h2>
+    <ul>
+      <li>Gestion utilisateurs</li>
+      <li>Validation annonces</li>
+      <li>Gestion abonnements</li>
+      <li>Paramètres généraux (Réseaux sociaux – Téléphone – Adresse – Textes légaux)</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>7. Sécurité & Performance</h2>
+    <ul>
+      <li>Sessions sécurisées</li>
+      <li>reCAPTCHA</li>
+      <li>Anti-spam</li>
+      <li>SEO Friendly</li>
+      <li>Optimisation performance</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>8. Livraison & Formation</h2>
+    <ul>
+      <li>Plateforme opérationnelle</li>
+      <li>Formation via Google Meet</li>
+      <li>Pas de documentation écrite</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>9. Modalités Financières</h2>
+    <ul>
+      <li>30% au démarrage</li>
+      <li>30% après développement principal</li>
+      <li>40% à la livraison</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>10. Maintenance</h2>
+    <ul>
+      <li>1 mois gratuit – bugs & petites modifications</li>
+      <li>Toute nouvelle fonctionnalité sera facturée</li>
+    </ul>
+  </div>
+
+  <div class="section animate__animated animate__fadeInUp">
+    <h2>11. Hébergement</h2>
+    <ul>
+      <li>1 an d’hébergement chez Octenium inclus</li>
+      <li>Renouvellement à charge du client</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  Crée par 
+  <a href="https://smainyounes.github.io/portfolio" target="_blanc" style="color: white; text-decoration: none;">SMAIN YOUNES</a>
+</footer>
+
+</body>
+</html>
