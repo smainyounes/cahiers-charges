@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>أثاث الفنان - Meuble Elfanane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Google Font: Cairo -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --accent: #b8860b; /* Gold/Wood */
+      --ramadan-gold: #ffd700;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --text: #333333;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      color: var(--text);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* --- Parallax Effect Class --- */
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 15px 0;
+    }
+    .navbar-brand {
+      font-weight: 800;
+      color: var(--primary) !important;
+      font-size: 1.5rem;
+    }
+    .nav-link {
+      color: var(--primary);
+      font-weight: 700;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1932');
+      display: flex;
+      align-items: center;
+      color: var(--white);
+    }
+    .hero-content {
+      background: rgba(0, 0, 0, 0.3); /* Subtle backing for text */
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .btn-main {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 35px;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s;
+      border: none;
+      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+    }
+    .btn-main:hover {
+      background-color: #986b09;
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    /* Ramadan Section */
+    .ramadan-section {
+      background-image: linear-gradient(rgba(26, 37, 47, 0.85), rgba(26, 37, 47, 0.9)), url('https://images.unsplash.com/photo-1579970928033-659779df30dc?auto=format&fit=crop&q=80&w=2070');
+      padding: 100px 0;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    .ramadan-icon {
+      color: var(--ramadan-gold);
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Categories */
+    .cat-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      height: 300px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .cat-card:hover img {
+      transform: scale(1.15);
+    }
+    .cat-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 30px 20px;
+      color: white;
+    }
+
+    /* Products */
+    .product-card {
+      border: none;
+      border-radius: 12px;
+      transition: all 0.3s;
+      background: var(--white);
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .badge-cod {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    /* Testimonials */
+    .testimonials-section {
+      background-color: #f8f9fa;
+      padding: 80px 0;
+    }
+    .testimonial-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+      margin: 10px;
+      position: relative;
+    }
+    .quote-icon {
+      color: var(--accent);
+      opacity: 0.2;
+      font-size: 3rem;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .user-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: #b2bec3;
+      padding: 60px 0 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fa-solid fa-couch ms-2" style="color: var(--accent);"></i>أثاث الفنان
+    </a>
+    
+    <div class="d-flex d-lg-none">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categories">الفئات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ramadan">عروض رمضان</a></li>
+        <li class="nav-item"><a class="nav-link" href="#products">المنتجات</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+      </ul>
+      <div class="d-none d-lg-flex align-items-center">
+        <div class="d-flex align-items-center fw-bold" style="color: var(--primary);">
+            <i class="fa-solid fa-phone ms-2 text-warning"></i> 0555-00-00-00
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section (Parallax) -->
+<section class="hero parallax-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="hero-content" data-aos="fade-up">
+          <span class="badge bg-warning text-dark px-3 py-2 mb-3 rounded-pill">
+            <i class="fa-solid fa-wallet ms-2"></i> الدفع عند الاستلام 100%
+          </span>
+          <h1 class="display-2 fw-bold mb-3">جدد منزلك<br>بلمسة فنية</h1>
+          <p class="lead mb-4">
+            تسوق أفخم قطع الأثاث بضغطة زر. اختر الاستلام من المحل أو التوصيل لباب منزلك. بدون تسجيل، وبدون تعقيدات.
+          </p>
+          <div class="d-flex gap-3">
+            <a href="#products" class="btn btn-main btn-lg"><i class="fa-solid fa-cart-shopping ms-2"></i> اطلب الآن</a>
+            <a href="#ramadan" class="btn btn-outline-light btn-lg rounded-pill fw-bold">عروض خاصة</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ramadan Special Section (Parallax) -->
+<section class="ramadan-section parallax-bg" id="ramadan">
+  <div class="container">
+    <div data-aos="zoom-in">
+      <i class="fa-solid fa-mosque fa-4x ramadan-icon"></i>
+      <i class="fa-solid fa-moon fa-2x ramadan-icon ms-3"></i>
+      <h2 class="display-3 fw-bold mb-3" style="font-family: 'Cairo', serif; color: var(--ramadan-gold);">رمضان يجمعنا</h2>
+      <p class="lead fs-4 mb-4">جهز منزلك لاستقبال الضيوف في الشهر الفضيل بخصومات تصل إلى 30% على الصالونات وطاولات الطعام.</p>
+      
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-3 mb-3">
+            <div class="border border-warning p-3 rounded-3 bg-dark bg-opacity-50">
+                <h3 class="fw-bold text-warning">صالونات</h3>
+                <p class="mb-0 text-white">تخفيضات كبرى</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="border border-warning p-3 rounded-3 bg-dark bg-opacity-50">
+                <h3 class="fw-bold text-warning">طاولات</h3>
+                <p class="mb-0 text-white">تصاميم رمضانية</p>
+            </div>
+        </div>
+      </div>
+
+      <button class="btn btn-light btn-lg mt-4 px-5 rounded-pill fw-bold text-dark shadow">تصفح عروض رمضان</button>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="py-5 bg-white" id="categories">
+  <div class="container py-4">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h5 class="text-warning fw-bold text-uppercase">تصفح حسب الفئة</h5>
+      <h2 class="fw-bold display-6 text-dark">ماذا يحتاج منزلك اليوم؟</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="cat-card">
+          <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1000" alt="Living Room">
+          <div class="cat-overlay">
+            <h3 class="fw-bold mb-1">غرف المعيشة</h3>
+            <p class="mb-0 text-white-50">الراحة والأناقة معاً</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="cat-card">
+          <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1000" alt="Bedroom">
+          <div class="cat-overlay">
+            <h3 class="fw-bold mb-1">غرف النوم</h3>
+            <p class="mb-0 text-white-50">نوم هادئ ومريح</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="cat-card">
+          <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1000" alt="Dining">
+          <div class="cat-overlay">
+            <h3 class="fw-bold mb-1">طاولات الطعام</h3>
+            <p class="mb-0 text-white-50">لمّة العائلة أحلى</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="py-5" style="background-color: #f1f2f6;" id="products">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+      <h2 class="fw-bold text-dark m-0 border-start border-5 border-warning ps-3">الأكثر مبيعاً</h2>
+      <a href="#" class="btn btn-outline-dark rounded-pill">مشاهدة الكل</a>
+    </div>
+
+    <div class="row g-4">
+      <!-- Product 1 -->
+      <div class="col-md-3 col-sm-6" data-aos="fade-up">
+        <div class="card product-card h-100">
+          <div class="position-relative overflow-hidden">
+             <span class="badge-cod">الدفع عند الاستلام</span>
+             <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800" class="card-img-top" alt="Sofa" style="height: 250px; object-fit: cover;">
+          </div>
+          <div class="card-body text-center">
+            <h5 class="fw-bold">كنبة زاوية مودرن</h5>
+            <div class="text-warning mb-2">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+            </div>
+            <h5 class="text-primary fw-bold mb-3">75,000 د.ج</h5>
+            <button class="btn btn-dark w-100 rounded-pill">طلب مباشر</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card product-card h-100">
+          <div class="position-relative overflow-hidden">
+             <span class="badge-cod">توصيل مجاني</span>
+             <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&q=80&w=800" class="card-img-top" alt="Chair" style="height: 250px; object-fit: cover;">
+          </div>
+          <div class="card-body text-center">
+            <h5 class="fw-bold">كرسي خشب زان</h5>
+            <div class="text-warning mb-2">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="text-primary fw-bold mb-3">12,000 د.ج</h5>
+            <button class="btn btn-dark w-100 rounded-pill">طلب مباشر</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card product-card h-100">
+          <div class="position-relative overflow-hidden">
+             <span class="badge-cod">الدفع عند الاستلام</span>
+             <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&q=80&w=800" class="card-img-top" alt="Table" style="height: 250px; object-fit: cover;">
+          </div>
+          <div class="card-body text-center">
+            <h5 class="fw-bold">طاولة تلفاز عصرية</h5>
+            <div class="text-warning mb-2">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+            </div>
+            <h5 class="text-primary fw-bold mb-3">28,000 د.ج</h5>
+            <button class="btn btn-dark w-100 rounded-pill">طلب مباشر</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="card product-card h-100">
+          <div class="position-relative overflow-hidden">
+             <span class="badge-cod bg-danger">عرض خاص</span>
+             <img src="https://images.unsplash.com/photo-1505693442920-8f1f13ae36f3?auto=format&fit=crop&q=80&w=800" class="card-img-top" alt="Bed" style="height: 250px; object-fit: cover;">
+          </div>
+          <div class="card-body text-center">
+            <h5 class="fw-bold">غرفة نوم كاملة</h5>
+            <div class="text-warning mb-2">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <h5 class="text-primary fw-bold mb-3">145,000 د.ج</h5>
+            <button class="btn btn-dark w-100 rounded-pill">طلب مباشر</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section (New) -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="fw-bold text-primary">ماذا يقول عملاؤنا؟</h2>
+      <p class="text-muted">نفتخر بثقة أكثر من 5000 زبون في جميع أنحاء الوطن</p>
+    </div>
+
+    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="zoom-in">
+      <div class="carousel-inner">
+        <!-- Item 1 -->
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="user-img" alt="User">
+                <h5 class="fw-bold">أحمد بن محمد</h5>
+                <p class="text-muted small">من الجزائر العاصمة</p>
+                <div class="text-warning mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="fst-italic text-dark">"تجربة رائعة جداً! طلبت صالون ووصلني في 3 أيام. الجودة ممتازة تماماً مثل الصور، والدفع كان عند الاستلام مما جعلني مطمئناً."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="carousel-item">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="user-img" alt="User">
+                <h5 class="fw-bold">سارة قسنطيني</h5>
+                <p class="text-muted small">من وهران</p>
+                <div class="text-warning mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="fst-italic text-dark">"تعامل راقي وخدمة عملاء ممتازة. الأثاث وصل مغلف بإحكام وبدون أي خدش. شكراً أثاث الفنان!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <h3 class="fw-bold text-white mb-3"><i class="fa-solid fa-couch text-warning ms-2"></i>أثاث الفنان</h3>
+        <p>نحن نقدم لك أجود أنواع الأثاث بتصاميم عصرية. تسوق بسهولة تامة، اختر التوصيل أو الاستلام، وادفع عند استلام طلبك.</p>
+        <div class="d-flex gap-3 mt-3">
+            <a href="#" class="text-white fs-4"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-white fs-4"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-white fs-4"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <h5 class="text-white fw-bold mb-3">الموقع</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-decoration-none text-white">الرئيسية</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-white">المنتجات</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-white">عروض رمضان</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-white">اتصل بنا</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5 class="text-white fw-bold mb-3">تواصل معنا</h5>
+        <ul class="list-unstyled text-white">
+          <li class="mb-2"><i class="fa-solid fa-location-dot ms-2 text-warning"></i> الجزائر العاصمة، حي الأعمال</li>
+          <li class="mb-2"><i class="fa-solid fa-phone ms-2 text-warning"></i> 0555-00-00-00</li>
+          <li class="mb-2"><i class="fa-brands fa-whatsapp ms-2 text-warning"></i> 0666-00-00-00</li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5 class="text-white fw-bold mb-3">نقبل الدفع</h5>
+        <div class="p-3 bg-white rounded text-center">
+            <h6 class="text-dark fw-bold m-0"><i class="fa-solid fa-money-bill-1-wave text-success me-1"></i> الدفع نقداً عند الاستلام</h6>
+        </div>
+      </div>
+    </div>
+    <div class="border-top border-secondary mt-5 pt-4 text-center small">
+      © 2024 أثاث الفنان. جميع الحقوق محفوظة.
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="#" class="btn btn-success rounded-circle shadow-lg position-fixed d-flex align-items-center justify-content-center" style="bottom: 30px; left: 30px; width: 60px; height: 60px; z-index: 1000; font-size: 2rem;">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 50
+  });
+</script>
+
+</body>
+</html>

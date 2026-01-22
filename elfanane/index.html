@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>كراس الشروط – موقع بيع الأثاث</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Google Font Arabic -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #1e293b; /* Slate 800 */
+      --secondary-color: #334155; /* Slate 700 */
+      --accent-color: #d97706; /* Amber 600 - Wood tone */
+      --bg-color: #f1f5f9;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--secondary-color);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #0f172a 100%);
+      color: #fff;
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--accent-color);
+    }
+    
+    .hero-badge {
+      background-color: var(--accent-color);
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+      position: relative;
+      padding-right: 20px;
+    }
+    
+    .section-header::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 5px;
+      height: 80%;
+      width: 5px;
+      background-color: var(--accent-color);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0;
+      font-size: 1.75rem;
+    }
+
+    /* Cards */
+    .custom-card {
+      background: var(--card-bg);
+      border: none;
+      border-radius: 12px;
+      padding: 25px;
+      height: 100%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .custom-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+
+    .custom-card h5 {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    /* Lists */
+    .check-list ul {
+      list-style: none;
+      padding: 0;
+    }
+    .check-list ul li {
+      position: relative;
+      padding-right: 30px;
+      margin-bottom: 10px;
+    }
+    .check-list ul li::before {
+      content: '\f00c';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 0;
+      color: var(--accent-color);
+    }
+
+    /* Icons */
+    .icon-box {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      opacity: 0.2;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    }
+
+    footer {
+      background: var(--primary-color);
+      color: #94a3b8;
+      padding: 40px 0;
+      font-size: 0.9rem;
+      border-top: 5px solid var(--accent-color);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hero Section -->
+<header class="hero-section text-center">
+  <div class="container">
+    <div data-aos="zoom-in">
+      <i class="fa-solid fa-couch fa-3x mb-3 text-white-50"></i>
+      <h1 class="display-4 fw-bold mb-3">كراس الشروط</h1>
+      <p class="lead text-white-50 mb-4">
+        المواصفات الفنية والوظيفية لمشروع متجر إلكتروني لبيع الأثاث
+      </p>
+      <span class="hero-badge">
+        <i class="fa-solid fa-money-bill-wave ms-2"></i> الدفع عند الاستلام
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- 1. مقدمة -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-left">
+      <h2 class="section-title">1. مقدمة المشروع</h2>
+    </div>
+    <div class="custom-card" data-aos="fade-up">
+      <i class="fa-solid fa-file-contract icon-box"></i>
+      <p class="lead mb-0 fs-6">
+        يهدف هذا المشروع إلى إنشاء موقع إلكتروني لبيع الأثاث، يسمح للزبائن بتصفح المنتجات
+        وطلبها بسهولة دون إنشاء حساب، مع اعتماد الدفع عند الاستلام فقط، وإتاحة خيار
+        الاستلام من المحل أو التوصيل إلى المنزل.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. الأهداف -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header" data-aos="fade-left">
+      <h2 class="section-title">2. أهداف الموقع</h2>
+    </div>
+    <div class="row g-4 check-list">
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="custom-card h-100">
+          <h5 class="fw-bold"><i class="fa-solid fa-bullseye ms-2 text-warning"></i>أهداف تجارية</h5>
+          <ul>
+            <li>تسهيل عملية طلب الأثاث عبر الإنترنت</li>
+            <li>تحسين صورة العلامة التجارية</li>
+            <li>زيادة المبيعات والوصول لزبائن جدد</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="custom-card h-100">
+          <h5 class="fw-bold"><i class="fa-solid fa-chart-line ms-2 text-warning"></i>أهداف تشغيلية</h5>
+          <ul>
+            <li>إدارة المنتجات والطلبات من لوحة واحدة</li>
+            <li>مشاركة المنتجات عبر وسائل التواصل</li>
+            <li>تتبع أداء الإعلانات والحملات</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. الصفحات -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-left">
+      <h2 class="section-title">3. صفحات الموقع (واجهة الزبون)</h2>
+    </div>
+
+    <div class="row g-4">
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="custom-card">
+          <h5 class="fw-bold">الصفحة الرئيسية</h5>
+          <p class="small text-muted mb-0">سلايدر صور – منتجات ومجموعات مميزة – فئات – إبراز الدفع عند الاستلام وخيارات التوصيل.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="custom-card">
+          <h5 class="fw-bold">صفحة المنتجات</h5>
+          <p class="small text-muted mb-0">عرض جميع المنتجات مع التصفية حسب الفئات والفئات الفرعية، دون فلترة حسب السعر.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="custom-card">
+          <h5 class="fw-bold">صفحات الفئات</h5>
+          <p class="small text-muted mb-0">فئات رئيسية وفرعية غير محدودة، مع إمكانية انتماء المنتج لأكثر من فئة.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="custom-card">
+          <h5 class="fw-bold">صفحة المنتج (سلة)</h5>
+          <p class="small text-muted mb-0">صور، وصف، مواصفات، سعر، إضافة للسلة، اختيار الاستلام أو التوصيل.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="custom-card border-warning border-2">
+            <span class="badge bg-warning text-dark float-end ms-2">هام</span>
+          <h5 class="fw-bold">الطلب المباشر</h5>
+          <p class="small text-muted mb-0">نموذج طلب مباشر بالاسم ورقم الهاتف، اختيار طريقة الاستلام، بدون تسجيل حساب.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="custom-card">
+          <h5 class="fw-bold">سلة الشراء والتأكيد</h5>
+          <p class="small text-muted mb-0">تعديل الكميات، اختيار طريقة الاستلام، احتساب سعر التوصيل، تأكيد الدفع عند الاستلام.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-6" data-aos="fade-up">
+        <div class="custom-card">
+          <h5 class="fw-bold">مجموعات المنتجات</h5>
+          <p class="small text-muted mb-0">إنشاء مجموعات مخصصة بروابط قابلة للمشاركة على وسائل التواصل الاجتماعي.</p>
+        </div>
+      </div>
+      <!-- Item -->
+      <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="custom-card">
+          <h5 class="fw-bold">من نحن – اتصل بنا</h5>
+          <p class="small text-muted mb-0">معلومات عن النشاط، نموذج تواصل، واتساب، وخريطة الموقع.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. لوحة التحكم -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header" data-aos="fade-left">
+      <h2 class="section-title">4. لوحة التحكم (الإدارة)</h2>
+    </div>
+
+    <div class="custom-card" data-aos="fade-up">
+      <i class="fa-solid fa-cogs icon-box"></i>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h6 class="fw-bold text-dark">الخصائص العامة:</h6>
+          <p class="text-muted">إدارة المنتجات، الفئات، المجموعات، الطلبات، سلايدر الصفحة الرئيسية، وأسعار التوصيل.</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h6 class="fw-bold text-dark">إدارة حالات الطلب:</h6>
+          <div>
+            <span class="badge bg-primary">جديد</span>
+            <span class="badge bg-info text-dark">مؤكد</span>
+            <span class="badge bg-warning text-dark">قيد التوصيل</span>
+            <span class="badge bg-secondary">جاهز للاستلام</span>
+            <span class="badge bg-success">تم التسليم</span>
+            <span class="badge bg-danger">ملغى</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 & 6 & 7 مدمجة لتحسين التنسيق -->
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- التحليلات -->
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="custom-card h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fa-brands fa-google fa-2x text-primary ms-3"></i>
+            <h5 class="fw-bold m-0 border-0">5. التحليلات</h5>
+          </div>
+          <p>ربط الموقع بـ Google Analytics و Facebook Pixel لتتبع الزوار، مشاهدة المنتجات والطلبات.</p>
+        </div>
+      </div>
+
+      <!-- نظام الدفع -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="custom-card h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fa-solid fa-wallet fa-2x text-success ms-3"></i>
+            <h5 class="fw-bold m-0 border-0">6. نظام الدفع</h5>
+          </div>
+          <p class="fw-bold text-danger">الدفع عند الاستلام فقط</p>
+          <p class="small">لا يوجد دفع إلكتروني – لا يوجد تسجيل حساب للزبائن.</p>
+        </div>
+      </div>
+
+      <!-- التصميم -->
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="custom-card h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="fa-solid fa-paintbrush fa-2x text-info ms-3"></i>
+            <h5 class="fw-bold m-0 border-0">7. التصميم UX/UI</h5>
+          </div>
+          <p>تصميم عصري، متجاوب مع جميع الأجهزة (Mobile Friendly)، واجهة سهلة، حركات وانتقالات ناعمة، وتركيز على جودة الصور.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 8. المستقبل -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header" data-aos="fade-left">
+      <h2 class="section-title">8. التحسينات المستقبلية (Phase 2)</h2>
+    </div>
+    <div class="custom-card border-0 bg-light" data-aos="fade-up">
+      <div class="row text-center">
+        <div class="col-md-2 col-6 mb-3">
+          <i class="fa-solid fa-globe fa-2x mb-2 text-muted"></i>
+          <p class="small fw-bold">تعدد اللغات</p>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+          <i class="fa-solid fa-users fa-2x mb-2 text-muted"></i>
+          <p class="small fw-bold">حسابات الزبائن</p>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+          <i class="fa-solid fa-heart fa-2x mb-2 text-muted"></i>
+          <p class="small fw-bold">المفضلة والتقييم</p>
+        </div>
+        <div class="col-md-2 col-6 mb-3">
+          <i class="fa-regular fa-credit-card fa-2x mb-2 text-muted"></i>
+          <p class="small fw-bold">الدفع الإلكتروني</p>
+        </div>
+        <div class="col-md-2 col-12 mb-3">
+          <i class="fa-brands fa-instagram fa-2x mb-2 text-muted"></i>
+          <p class="small fw-bold">ربط إنستغرام</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container text-center">
+    <p class="mb-2 fs-5 fw-bold">كراس شروط موقع بيع الأثاث</p>
+    <p class="small text-white-50">جميع الحقوق محفوظة © 2024</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 50
+  });
+</script>
+
+</body>
+</html>
