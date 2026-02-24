@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cartonnerie Moderne — Solutions d'emballage carton sur mesure en Algérie.">
+<title>Cartonnerie Moderne</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo"><img id="navLogo" src="" alt="Cartonnerie Moderne"/></a>
+  <ul class="nav-links">
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#news">Actualités</a></li>
+    <li><a href="#testi">Témoignages</a></li>
+    <li><a href="#contact" class="nav-pill">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="#about" onclick="cm()">À Propos</a>
+  <a href="#services" onclick="cm()">Services</a>
+  <a href="#gallery" onclick="cm()">Galerie</a>
+  <a href="#news" onclick="cm()">Actualités</a>
+  <a href="#testi" onclick="cm()">Témoignages</a>
+  <a href="#contact" onclick="cm()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-ghost">CARTON</div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Blida, Algérie · Depuis 20 ans</div>
+    <h1 class="hero-h1">
+      Solutions<br>
+      <span class="italic-word">d'emballage</span><br>
+      <span class="gold-word">Sur Mesure</span>
+    </h1>
+    <p class="hero-desc">Expertise industrielle, technologie de pointe et savoir-faire artisanal au service de vos projets d'emballage carton.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-main">Nos services <span>→</span></a>
+      <a href="#contact" class="btn-line">Demander un devis</a>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="hero-strip-logo"><img id="heroLogo" src="" alt="CM"/></div>
+    <div class="strip-divider"></div>
+    <div class="strip-stat"><div class="strip-stat-n">+20</div><div class="strip-stat-l">Ans d'expérience</div></div>
+    <div class="strip-divider"></div>
+    <div class="strip-stat"><div class="strip-stat-n">+500</div><div class="strip-stat-l">Clients actifs</div></div>
+    <div class="strip-divider"></div>
+    <div class="strip-stat"><div class="strip-stat-n">+1000</div><div class="strip-stat-l">Projets réalisés</div></div>
+  </div>
+  <div class="hero-scroll-cue">
+    <div class="scroll-cue-track"></div>
+    <div class="scroll-cue-text">Défiler</div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div class="about-left rvl">
+      <div class="about-big-num">20+</div>
+      <div class="about-eyebrow">À propos de nous</div>
+      <h2 class="about-title">L'industrie carton,<br><em>réinventée</em></h2>
+      <p class="about-body">Fondée il y a plus de <strong>vingt ans</strong>, <strong>Cartonnerie Moderne</strong> est une entreprise algérienne de référence dans la fabrication d'emballages en carton ondulé. Basée à la zone industrielle de Ben Boulaid, Blida, nous allions savoir-faire technique et équipements de pointe.</p>
+      <p class="about-body">Notre force ? Une maîtrise totale de la chaîne de production — de la conception au produit fini — avec un engagement constant envers la qualité et la satisfaction client.</p>
+      <a href="#contact" class="about-cta-link">Travailler ensemble <span>→</span></a>
+    </div>
+    <div class="about-right rvr">
+      <img class="about-photo" src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=800&q=80" alt="Usine" loading="lazy"/>
+      <div class="about-stats-row">
+        <div class="about-stat"><span class="about-stat-n" data-t="20">0</span><div class="about-stat-l">Ans d'expertise</div></div>
+        <div class="about-stat"><span class="about-stat-n" data-t="500">0</span><div class="about-stat-l">Clients actifs</div></div>
+        <div class="about-stat"><span class="about-stat-n" data-t="1000">0</span><div class="about-stat-l">Projets réalisés</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div id="manifesto">
+  <div class="manifesto-ticker">
+    <span>Carton Ondulé</span><span class="gold">✦</span>
+    <span>Impression Offset</span><span class="gold">✦</span>
+    <span>Découpe CNC</span><span class="gold">✦</span>
+    <span>Packaging Sur Mesure</span><span class="gold">✦</span>
+    <span>Contre-Collage</span><span class="gold">✦</span>
+    <span>Conception & Design</span><span class="gold">✦</span>
+    <span>Carton Ondulé</span><span class="gold">✦</span>
+    <span>Impression Offset</span><span class="gold">✦</span>
+    <span>Découpe CNC</span><span class="gold">✦</span>
+    <span>Packaging Sur Mesure</span><span class="gold">✦</span>
+    <span>Contre-Collage</span><span class="gold">✦</span>
+    <span>Conception & Design</span><span class="gold">✦</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-layout">
+    <div class="svc-header">
+      <div class="rv">
+        <div class="svc-eyebrow">Nos Services</div>
+        <h2 class="svc-title">Ce que nous<br><em>fabriquons</em></h2>
+      </div>
+      <p class="svc-desc rv" style="transition-delay:.15s">De la conception au produit fini — six expertises au service de votre image et de vos contraintes logistiques.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv" data-num="01" style="transition-delay:.05s"><span class="svc-icon">📦</span><h3>Carton Ondulé</h3><p>Fabrication de caisses haute résistance adaptées à tous secteurs, tous gabarits, toutes cadences.</p><span class="svc-arrow">Explorer →</span></div>
+      <div class="svc-card rv" data-num="02" style="transition-delay:.10s"><span class="svc-icon">🖨️</span><h3>Impression Offset</h3><p>Impression haute définition sur carton — rendu couleur exceptionnel, finitions distinctives et professionnelles.</p><span class="svc-arrow">Explorer →</span></div>
+      <div class="svc-card rv" data-num="03" style="transition-delay:.15s"><span class="svc-icon">🔗</span><h3>Contre-Collage</h3><p>Assemblage multicouche pour emballages à rigidité et résistance accrues, idéal charges lourdes.</p><span class="svc-arrow">Explorer →</span></div>
+      <div class="svc-card rv" data-num="04" style="transition-delay:.20s"><span class="svc-icon">✂️</span><h3>Découpe CNC</h3><p>Découpe numérique de précision — formes complexes, tolérance minimale, cadence élevée.</p><span class="svc-arrow">Explorer →</span></div>
+      <div class="svc-card rv" data-num="05" style="transition-delay:.25s"><span class="svc-icon">🎁</span><h3>Packaging Sur Mesure</h3><p>Conception et réalisation de packaging personnalisé selon votre image de marque et vos contraintes.</p><span class="svc-arrow">Explorer →</span></div>
+      <div class="svc-card rv" data-num="06" style="transition-delay:.30s"><span class="svc-icon">🎨</span><h3>Conception & Design</h3><p>Bureau de design intégré — maquettes, BAT, prototypes — pour un rendu final conforme à votre vision.</p><span class="svc-arrow">Explorer →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gal-layout">
+    <div class="gal-header">
+      <div class="rv">
+        <div class="gal-eyebrow">Galerie</div>
+        <h2 class="gal-title">Nos<br><em>Réalisations</em></h2>
+      </div>
+    </div>
+    <div class="gal-mosaic">
+      <div class="gal-item rv" data-src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80" data-cap="Ligne de production automatisée"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=80" alt="Production" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Production</div><div class="gal-cap">Ligne automatisée</div></div><div class="gal-plus">+</div></div>
+      <div class="gal-item rv" style="transition-delay:.08s" data-src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" data-cap="Cartons haute résistance"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Cartons" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Produits</div><div class="gal-cap">Cartons haute résistance</div></div><div class="gal-plus">+</div></div>
+      <div class="gal-item rv" style="transition-delay:.12s" data-src="https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=800&q=80" data-cap="Impression offset couleur"><img src="https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=600&q=80" alt="Impression" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Impression</div><div class="gal-cap">Offset couleur</div></div><div class="gal-plus">+</div></div>
+      <div class="gal-item rv" style="transition-delay:.16s" data-src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1400&q=80" data-cap="Entrepôt & logistique"><img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&q=80" alt="Entrepôt" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Logistique</div><div class="gal-cap">Entrepôt & stockage</div></div><div class="gal-plus">+</div></div>
+      <div class="gal-item rv" style="transition-delay:.20s" data-src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80" data-cap="Packaging sur mesure premium"><img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=80" alt="Packaging" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Packaging</div><div class="gal-cap">Sur mesure premium</div></div><div class="gal-plus">+</div></div>
+      <div class="gal-item rv" style="transition-delay:.24s" data-src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80" data-cap="Contrôle qualité en atelier"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&q=80" alt="Qualité" loading="lazy"/><div class="gal-item-ov"><div class="gal-tag">Qualité</div><div class="gal-cap">Contrôle rigoureux</div></div><div class="gal-plus">+</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb"><button class="lb-close" id="lbX">✕ Fermer</button><img id="lbImg" src="" alt=""/></div>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="news-layout">
+    <div class="news-header">
+      <div class="rv">
+        <div class="news-eyebrow">Actualités</div>
+        <h2 class="news-title">Dernières<br><em>nouvelles</em></h2>
+      </div>
+      <p class="news-sub rv" style="transition-delay:.15s">Suivez l'évolution de Cartonnerie Moderne — investissements, certifications et partenariats.</p>
+    </div>
+    <div class="news-grid">
+      <div class="news-card featured rv">
+        <div class="news-img" style="height:300px"><img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&q=80" alt="CNC" loading="lazy"/></div>
+        <div class="news-content">
+          <div class="news-date">15 Janvier 2025</div>
+          <h3>Nouvelle ligne de découpe CNC installée</h3>
+          <p>Cartonnerie Moderne renforce ses capacités de production avec l'installation d'une machine de découpe numérique dernière génération, permettant des réalisations encore plus précises et rapides pour nos clients.</p>
+          <a href="#" class="news-read">Lire la suite →</a>
+        </div>
+      </div>
+      <div class="news-small-col">
+        <div class="news-card small rv" style="transition-delay:.1s">
+          <div class="news-img"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Certification" loading="lazy"/></div>
+          <div class="news-content">
+            <div class="news-date">3 Novembre 2024</div>
+            <h3>Renouvellement certification qualité</h3>
+            <p>Audit réussi — nos standards de production reconfirmés.</p>
+            <a href="#" class="news-read">Lire →</a>
+          </div>
+        </div>
+        <div class="news-card small rv" style="transition-delay:.2s">
+          <div class="news-img"><img src="https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?w=600&q=80" alt="Partenariat" loading="lazy"/></div>
+          <div class="news-content">
+            <div class="news-date">22 Septembre 2024</div>
+            <h3>Partenariats stratégiques nationaux</h3>
+            <p>Nouveau réseau de distribution à travers l'Algérie.</p>
+            <a href="#" class="news-read">Lire →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi">
+  <div class="testi-layout">
+    <div class="testi-top rv">
+      <div class="testi-eyebrow">Témoignages</div>
+      <h2 class="testi-ttl">Ils nous font <em>confiance</em></h2>
+    </div>
+    <div class="t-slider rv" style="transition-delay:.15s">
+      <div class="t-track" id="tTrack">
+        <div class="t-slide"><div class="t-card" data-num="01"><div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="t-quote">Nous travaillons avec Cartonnerie Moderne depuis plus de huit ans. La qualité de leurs cartons ondulés est irréprochable, et leur réactivité face aux commandes urgentes est tout simplement remarquable. Un partenaire de confiance absolue.</p><div class="t-author"><div class="t-av">KA</div><div><div class="t-name">Karim Amrani</div><div class="t-role">Directeur Logistique — Agroalimentaire Ouest</div></div></div></div></div>
+        <div class="t-slide"><div class="t-card" data-num="02"><div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="t-quote">La qualité d'impression offset dépasse nos attentes à chaque commande. Nos packagings sont devenus de véritables ambassadeurs de notre marque. Je recommande sans la moindre hésitation.</p><div class="t-author"><div class="t-av">SB</div><div><div class="t-name">Samira Benali</div><div class="t-role">Responsable Marketing — PharmaDz SARL</div></div></div></div></div>
+        <div class="t-slide"><div class="t-card" data-num="03"><div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="t-quote">Grâce à leur bureau de conception, nous avons développé un packaging sur mesure parfaitement adapté à nos produits fragiles. Professionnalisme, précision et respect des délais — exemplaire à tous les niveaux.</p><div class="t-author"><div class="t-av">MO</div><div><div class="t-name">Mohamed Ouled</div><div class="t-role">Gérant — Tech Import Algérie</div></div></div></div></div>
+      </div>
+      <div class="t-controls">
+        <div class="t-progress"><div class="t-pip on" data-i="0"></div><div class="t-pip" data-i="1"></div><div class="t-pip" data-i="2"></div></div>
+        <div class="t-nav"><button class="t-btn" id="tPrev">←</button><button class="t-btn" id="tNext">→</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="contact-l rvl">
+      <div class="contact-eyebrow">Contact</div>
+      <h2 class="contact-title">Parlons de<br>votre <em>projet</em></h2>
+      <p class="contact-subtitle">Notre équipe est à votre disposition pour étudier vos besoins et vous proposer la solution idéale.</p>
+      <div class="c-blocks">
+        <div class="c-block"><div class="c-ico">📍</div><div><div class="c-lbl">Adresse</div><div class="c-val">Zone industriel, Ben Boulaid 09000 Blida, Algérie</div></div></div>
+        <div class="c-block"><div class="c-ico">📞</div><div><div class="c-lbl">Téléphone</div><div class="c-val"><a href="tel:+213253250017">+213 25 32 50 17</a> · <a href="tel:+213253273774">+213 25 32 73 74</a><br><small style="opacity:.6">Fax: +213 25 32 50 72</small></div></div></div>
+        <div class="c-block"><div class="c-ico">📱</div><div><div class="c-lbl">Mobile</div><div class="c-val"><a href="tel:+213550497617">+213 550 497 617</a> · <a href="tel:+213554505575">+213 554 505 575</a></div></div></div>
+        <div class="c-block"><div class="c-ico">✉️</div><div><div class="c-lbl">Email</div><div class="c-val"><a href="mailto:commercial@cartonnerie-moderne.com">commercial@cartonnerie-moderne.com</a><br><a href="mailto:appro@cartonnerie-moderne.com">appro@cartonnerie-moderne.com</a></div></div></div>
+      </div>
+    </div>
+    <div class="contact-r rvr">
+      <div class="f-ok" id="fOk"><div class="f-ok-mark">✓</div><h3>Message envoyé</h3><p>Notre équipe vous répondra dans les plus brefs délais.</p></div>
+      <div id="fBody">
+        <div class="form-hed">Envoyez-nous<br>un message</div>
+        <form id="cForm" novalidate>
+          <div class="fl-row">
+            <div class="fl"><label for="fN">Nom *</label><input type="text" id="fN" placeholder="Votre nom"><div class="fl-err" id="eN">Nom requis</div></div>
+            <div class="fl"><label for="fE">Email *</label><input type="email" id="fE" placeholder="votre@email.com"><div class="fl-err" id="eE">Email invalide</div></div>
+          </div>
+          <div class="fl"><label for="fT">Téléphone</label><input type="tel" id="fT" placeholder="+213 ..."></div>
+          <div class="fl"><label for="fM">Message *</label><textarea id="fM" placeholder="Décrivez votre besoin..."></textarea><div class="fl-err" id="eM">Message requis</div></div>
+          <button type="submit" class="f-submit">Envoyer le message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo"><img id="ftLogo" src="" alt="Cartonnerie Moderne"/></div>
+      <p class="ft-about">Leader algérien en fabrication d'emballages carton sur mesure depuis plus de 20 ans. Qualité, innovation et excellence à chaque commande.</p>
+      <div class="ft-socs">
+        <a href="#" class="ft-soc">Fb</a><a href="#" class="ft-soc">Li</a><a href="#" class="ft-soc">Ig</a>
+      </div>
+    </div>
+    <div class="ft-col"><div class="ft-col-ttl">Services</div><ul><li><a href="#services">Carton Ondulé</a></li><li><a href="#services">Impression Offset</a></li><li><a href="#services">Contre-Collage</a></li><li><a href="#services">Découpe CNC</a></li><li><a href="#services">Packaging sur mesure</a></li><li><a href="#services">Conception & Design</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-ttl">Entreprise</div><ul><li><a href="#about">À propos</a></li><li><a href="#gallery">Galerie</a></li><li><a href="#news">Actualités</a></li><li><a href="#testi">Témoignages</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><div class="ft-col-ttl">Contact</div><ul><li><a href="tel:+213253250017">+213 25 32 50 17</a></li><li><a href="tel:+213253273774">+213 25 32 73 74</a></li><li><a href="tel:+213550497617">+213 550 497 617</a></li><li><a href="mailto:commercial@cartonnerie-moderne.com">commercial@cartonnerie-moderne.com</a></li><li><a href="mailto:appro@cartonnerie-moderne.com">appro@cartonnerie-moderne.com</a></li></ul></div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2026 <span>Cartonnerie Moderne</span> — Tous droits réservés</p>
+    <p>Zone industriel, Ben Boulaid 09000 <span>Blida</span>, Algérie</p>
+    <p>Proposition conçu par <a href="https://smainyounes.github.io/portfolio" style="text-decoration: none; color: var(--gold2);" target="_blank">Smain Younes</a></p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
