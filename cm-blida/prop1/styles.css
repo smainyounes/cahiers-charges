@@ -216,7 +216,7 @@ nav.scrolled {
     inset: 0;
     background:
         linear-gradient(125deg, rgba(13, 27, 62, 0.93) 0%, rgba(22, 37, 84, 0.82) 45%, rgba(13, 27, 62, 0.95) 100%),
-        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1800&q=80') center/cover;
+        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1800&q=80') center/cover;
     transform: scale(1.08);
     transition: transform 0.1s linear;
 }
