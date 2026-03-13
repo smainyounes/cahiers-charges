@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MAISON CLIO — Wholesale Fashion</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ==================== TOKENS ==================== */
+:root {
+  --navy:    #0B1120;
+  --navy2:   #111827;
+  --navy3:   #1a2540;
+  --cream:   #F5F0E8;
+  --cream2:  #EDE8DC;
+  --gold:    #C9A84C;
+  --gold2:   #E2C67A;
+  --gold3:   #967538;
+  --dust:    #8B8070;
+  --white:   #FFFFFF;
+  --mid:     #4A5568;
+  --border-light: rgba(201,168,76,.2);
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Jost', sans-serif;
+  --ease:    cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ==================== RESET ==================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--sans); background: var(--navy); color: var(--cream); overflow-x: hidden; }
+img { max-width: 100%; }
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, var(--gold3), var(--gold)); }
+
+/* ==================== UTILITIES ==================== */
+.serif { font-family: var(--serif); }
+.gold-text { color: var(--gold); }
+.cream-text { color: var(--cream); }
+.dust-text { color: var(--dust); }
+.overline {
+  font-family: var(--sans); font-weight: 300;
+  font-size: 11px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold);
+}
+.section-label {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+}
+.section-label::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+}
+
+/* ==================== NAVBAR ==================== */
+#mainNav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 28px 0;
+  transition: padding .4s var(--ease), background .4s, border-bottom .4s;
+}
+#mainNav.solid {
+  padding: 16px 0;
+  background: rgba(11,17,32,.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,.12);
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.4rem; letter-spacing: .12em;
+  color: var(--cream); text-decoration: none; font-weight: 700;
+}
+.nav-logo span { color: var(--gold); font-weight: 400; font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 300;
+  color: rgba(245,240,232,.65); text-decoration: none; padding: 8px 14px;
+  position: relative; transition: color .2s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transition: transform .3s var(--ease);
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.btn-partner {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 400;
+  padding: 10px 22px; border: 1px solid var(--gold);
+  color: var(--gold); background: transparent; text-decoration: none;
+  transition: background .25s, color .25s;
+}
+.btn-partner:hover { background: var(--gold); color: var(--navy); }
+
+/* ==================== HERO ==================== */
+#hero {
+  height: 100vh; min-height: 720px;
+  position: relative; display: flex; align-items: center; overflow: hidden;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1800&q=80') center/cover no-repeat;
+  transform: scale(1.06);
+  animation: heroZoom 16s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(11,17,32,.92) 0%, rgba(11,17,32,.6) 55%, rgba(11,17,32,.4) 100%);
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 24px;
+  opacity: 0; animation: riseIn .8s .4s var(--ease) forwards;
+}
+.kicker-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900; line-height: 1.0;
+  max-width: 780px;
+  opacity: 0; animation: riseIn .9s .6s var(--ease) forwards;
+}
+.hero-h1 em { color: var(--gold); font-style: italic; font-weight: 400; display: block; }
+.hero-sub {
+  font-size: 15px; font-weight: 300; line-height: 1.75;
+  color: rgba(245,240,232,.65); max-width: 480px;
+  margin: 24px 0 40px;
+  opacity: 0; animation: riseIn .8s .8s var(--ease) forwards;
+}
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  opacity: 0; animation: riseIn .8s 1s var(--ease) forwards;
+}
+.btn-primary-hero {
+  padding: 14px 38px; background: var(--gold); color: var(--navy);
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500;
+  border: none; text-decoration: none;
+  transition: background .25s, transform .2s;
+  display: inline-block;
+}
+.btn-primary-hero:hover { background: var(--gold2); color: var(--navy); transform: translateY(-2px); }
+.btn-ghost-hero {
+  padding: 13px 38px; background: transparent; color: var(--cream);
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 300;
+  border: 1px solid rgba(245,240,232,.35); text-decoration: none;
+  transition: border-color .25s, color .25s;
+  display: inline-block;
+}
+.btn-ghost-hero:hover { border-color: var(--cream); color: var(--cream); }
+.scroll-indicator {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  text-align: center; z-index: 2;
+  opacity: 0; animation: riseIn .8s 1.4s var(--ease) forwards;
+}
+.scroll-indicator span { font-size: 9px; letter-spacing: .25em; text-transform: uppercase; color: var(--dust); display: block; margin-bottom: 10px; }
+.scroll-chevron {
+  font-size: 12px; color: var(--gold);
+  animation: bounceDown 1.5s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%,100% { transform: translateY(0); opacity: .5; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}
+/* Hero side text */
+.hero-side {
+  position: absolute; right: 40px; top: 50%; transform: translateY(-50%) rotate(90deg);
+  font-size: 10px; letter-spacing: .25em; text-transform: uppercase; color: var(--dust);
+  z-index: 2; white-space: nowrap;
+}
+@keyframes riseIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== STATS ==================== */
+#stats {
+  background: var(--cream); padding: 0;
+  overflow: hidden;
+}
+.stats-inner {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border-left: 1px solid #D6D0C4;
+}
+@media(max-width:767px) { .stats-inner { grid-template-columns: repeat(2,1fr); } }
+.stat-block {
+  padding: 56px 36px;
+  border-right: 1px solid #D6D0C4;
+  border-bottom: 1px solid #D6D0C4;
+  text-align: center; position: relative; overflow: hidden;
+  background: var(--cream);
+  transition: background .35s;
+}
+.stat-block:hover { background: var(--cream2); }
+.stat-block::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transition: transform .4s var(--ease);
+}
+.stat-block:hover::before { transform: scaleX(1); }
+.stat-num {
+  font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 900; color: var(--navy); line-height: 1;
+}
+.stat-suffix { color: var(--gold3); }
+.stat-label { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--dust); margin-top: 8px; font-weight: 300; }
+
+/* ==================== COLLECTIONS ==================== */
+#collections { padding: 120px 0; background: var(--navy); }
+.coll-masonry {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-template-rows: auto;
+  gap: 3px;
+}
+.coll-a { grid-column: 1/5; grid-row: 1/3; }
+.coll-b { grid-column: 5/9; }
+.coll-c { grid-column: 9/13; }
+.coll-d { grid-column: 5/8; }
+.coll-e { grid-column: 8/10; }
+.coll-f { grid-column: 10/13; }
+@media(max-width:991px) {
+  .coll-masonry { grid-template-columns: repeat(2,1fr); }
+  .coll-a,.coll-b,.coll-c,.coll-d,.coll-e,.coll-f { grid-column: auto; grid-row: auto; }
+}
+@media(max-width:575px) {
+  .coll-masonry { grid-template-columns: 1fr; }
+}
+.coll-cell {
+  position: relative; overflow: hidden; cursor: pointer;
+  aspect-ratio: 4/5;
+}
+.coll-a.coll-cell { aspect-ratio: auto; min-height: 600px; }
+.coll-img {
+  width: 100%; height: 100%; object-fit: cover;
+  background-size: cover; background-position: center;
+  transition: transform .8s var(--ease);
+}
+.coll-cell:hover .coll-img { transform: scale(1.08); }
+.coll-over {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(11,17,32,.88) 0%, transparent 55%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 28px;
+}
+.coll-over h3 {
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 700;
+  transform: translateY(6px); transition: transform .35s var(--ease);
+}
+.coll-over .coll-action {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+  margin-top: 6px; opacity: 0; transform: translateY(8px);
+  transition: opacity .3s .05s, transform .3s .05s;
+}
+.coll-cell:hover .coll-over h3 { transform: translateY(0); }
+.coll-cell:hover .coll-over .coll-action { opacity: 1; transform: translateY(0); }
+
+/* ==================== PRODUCTS ==================== */
+#products { padding: 120px 0; background: var(--navy2); }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: rgba(201,168,76,.08);
+  border: 1px solid rgba(201,168,76,.08);
+}
+@media(max-width:991px) { .product-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px) { .product-grid { grid-template-columns: 1fr; } }
+.prod-card {
+  position: relative; overflow: hidden;
+  background: var(--navy2);
+  cursor: pointer;
+  transition: transform .3s var(--ease);
+}
+.prod-card:hover { z-index: 2; }
+.prod-img {
+  aspect-ratio: 2/3;
+  background-size: cover; background-position: center;
+  transition: transform .7s var(--ease);
+}
+.prod-card:hover .prod-img { transform: scale(1.06); }
+.prod-badge {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--gold); color: var(--navy);
+  font-size: 8px; letter-spacing: .15em; text-transform: uppercase; font-weight: 500;
+  padding: 4px 9px;
+}
+.prod-body { padding: 16px 18px; border-top: 1px solid rgba(201,168,76,.1); }
+.prod-cat { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.prod-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.prod-overlay {
+  position: absolute; inset: 0;
+  background: rgba(11,17,32,.78);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+}
+.prod-card:hover .prod-overlay { opacity: 1; }
+.prod-qv {
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  padding: 10px 26px; border: 1px solid var(--gold); color: var(--gold);
+  background: transparent; cursor: pointer;
+  transform: translateY(10px); transition: transform .3s, background .2s, color .2s;
+  font-family: var(--sans);
+}
+.prod-card:hover .prod-qv { transform: translateY(0); }
+.prod-qv:hover { background: var(--gold); color: var(--navy); }
+
+/* ==================== WHY US ==================== */
+#why { padding: 120px 0; background: var(--cream); }
+#why .section-label::before { background: var(--navy); }
+#why .overline { color: var(--gold3); }
+.why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; margin-top: 64px; background: #D6D0C4; border: 1px solid #D6D0C4; }
+@media(max-width:991px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px) { .why-grid { grid-template-columns: 1fr; } }
+.why-card {
+  background: var(--cream);
+  padding: 44px 36px; position: relative; overflow: hidden;
+  transition: background .3s, transform .3s var(--ease);
+}
+.why-card:hover { background: var(--navy); transform: none; }
+.why-icon-wrap {
+  width: 54px; height: 54px;
+  border: 1px solid rgba(154,115,56,.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 26px; color: var(--gold3); font-size: 20px;
+  transition: border-color .3s, color .3s;
+}
+.why-card:hover .why-icon-wrap { border-color: var(--gold); color: var(--gold); }
+.why-card h4 {
+  font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 10px;
+  transition: color .3s;
+}
+.why-card p { font-size: 13px; line-height: 1.75; color: var(--mid); transition: color .3s; }
+.why-card:hover h4 { color: var(--cream); }
+.why-card:hover p { color: rgba(245,240,232,.55); }
+.why-bg-num {
+  position: absolute; bottom: -10px; right: 16px;
+  font-family: var(--serif); font-size: 5rem; font-weight: 900;
+  color: rgba(0,0,0,.04); line-height: 1;
+  transition: color .3s;
+}
+.why-card:hover .why-bg-num { color: rgba(255,255,255,.04); }
+
+/* ==================== PROCESS ==================== */
+#process { padding: 120px 0; background: var(--navy); }
+.process-line {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  position: relative;
+  gap: 0;
+}
+.process-line::before {
+  content: '';
+  position: absolute; top: 36px; left: 12.5%; right: 12.5%;
+  height: 1px; background: linear-gradient(to right, transparent, var(--gold3), transparent);
+}
+@media(max-width:767px) {
+  .process-line { grid-template-columns: 1fr 1fr; }
+  .process-line::before { display: none; }
+}
+@media(max-width:480px) {
+  .process-line { grid-template-columns: 1fr; }
+}
+.proc-step { text-align: center; padding: 0 16px; }
+.proc-num-wrap {
+  width: 72px; height: 72px; margin: 0 auto 24px;
+  border: 1px solid rgba(201,168,76,.25);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; background: var(--navy);
+  transition: border-color .3s, background .3s;
+}
+.proc-step:hover .proc-num-wrap {
+  border-color: var(--gold); background: rgba(201,168,76,.06);
+}
+.proc-icon { font-size: 24px; color: var(--gold); }
+.proc-step h4 {
+  font-family: var(--serif); font-size: 1rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 8px;
+}
+.proc-step p { font-size: 12px; color: var(--dust); line-height: 1.7; }
+.proc-ordinal {
+  position: absolute; top: -10px; right: -10px;
+  width: 22px; height: 22px; background: var(--gold); border-radius: 50%;
+  font-size: 10px; font-weight: 500; color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans);
+}
+
+/* ==================== TESTIMONIALS ==================== */
+#testimonials { padding: 120px 0; background: var(--navy2); overflow: hidden; }
+.testi-track-wrap { overflow: hidden; }
+.testi-track {
+  display: flex; gap: 24px;
+  transition: transform .6s var(--ease);
+}
+.testi-card {
+  flex: 0 0 calc(33.333% - 16px);
+  background: var(--navy3); padding: 44px 40px;
+  border: 1px solid rgba(201,168,76,.1);
+  position: relative;
+  transition: border-color .3s;
+}
+@media(max-width:991px) { .testi-card { flex: 0 0 calc(50% - 12px); } }
+@media(max-width:575px) { .testi-card { flex: 0 0 100%; } }
+.testi-card:hover { border-color: rgba(201,168,76,.3); }
+.testi-stars { color: var(--gold); font-size: 12px; letter-spacing: 3px; margin-bottom: 20px; }
+.testi-quote-icon {
+  position: absolute; top: 28px; right: 32px;
+  font-size: 4rem; font-family: var(--serif); color: rgba(201,168,76,.1); line-height: 1;
+}
+.testi-card blockquote {
+  font-family: var(--serif); font-size: 1.05rem; font-style: italic; font-weight: 400;
+  line-height: 1.7; color: rgba(245,240,232,.8);
+  margin-bottom: 28px;
+}
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-av {
+  width: 46px; height: 46px; border-radius: 50%;
+  background-size: cover; background-position: center;
+  border: 1px solid rgba(201,168,76,.25); flex-shrink: 0;
+}
+.testi-name { font-weight: 500; font-size: 14px; color: var(--cream); }
+.testi-role { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dust); margin-top: 2px; }
+.testi-controls { display: flex; gap: 10px; margin-top: 48px; }
+.testi-btn {
+  width: 44px; height: 44px; border: 1px solid rgba(201,168,76,.3);
+  background: transparent; color: var(--gold); font-size: 14px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.testi-btn:hover { background: rgba(201,168,76,.1); border-color: var(--gold); }
+
+/* ==================== CTA ==================== */
+#cta {
+  padding: 140px 0; text-align: center; position: relative; overflow: hidden;
+  background: var(--navy3);
+}
+#cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 90% at 50% 50%, rgba(201,168,76,.07) 0%, transparent 65%);
+}
+#cta::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold3), transparent);
+}
+.cta-pretitle { margin-bottom: 20px; }
+.cta-h2 {
+  font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900; line-height: 1.1; max-width: 620px; margin: 0 auto 16px;
+  position: relative;
+}
+.cta-h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.cta-sub { font-size: 15px; color: var(--dust); max-width: 400px; margin: 0 auto 48px; line-height: 1.7; position: relative; }
+.cta-buttons { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; position: relative; }
+
+/* ==================== CONTACT ==================== */
+#contact { padding: 120px 0; background: var(--navy); }
+.contact-left h2 {
+  font-family: var(--serif); font-size: clamp(2rem,4vw,3rem);
+  font-weight: 900; line-height: 1.15; margin-bottom: 16px;
+}
+.contact-left p { font-size: 14px; color: var(--dust); line-height: 1.8; margin-bottom: 40px; max-width: 360px; }
+.cinfo-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+.cinfo-icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 14px;
+}
+.cinfo-label { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--dust); margin-bottom: 2px; }
+.cinfo-val { font-size: 14px; color: var(--cream); }
+/* Form */
+.f-group { margin-bottom: 18px; }
+.f-label { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--dust); display: block; margin-bottom: 7px; }
+.f-input {
+  width: 100%; background: rgba(255,255,255,.03);
+  border: 1px solid rgba(201,168,76,.12);
+  color: var(--cream); padding: 12px 16px;
+  font-family: var(--sans); font-size: 14px; font-weight: 300;
+  outline: none; transition: border-color .2s, background .2s; border-radius: 0;
+}
+.f-input:focus { border-color: rgba(201,168,76,.45); background: rgba(201,168,76,.03); }
+.f-input::placeholder { color: rgba(245,240,232,.18); }
+textarea.f-input { min-height: 110px; resize: vertical; }
+.btn-submit {
+  width: 100%; padding: 14px; background: var(--gold); border: none;
+  color: var(--navy); font-family: var(--sans); font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; font-weight: 500;
+  cursor: pointer; transition: background .25s, transform .2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+.form-success {
+  display: none; text-align: center; padding: 40px 20px;
+  border: 1px solid rgba(201,168,76,.25);
+}
+.form-success i { font-size: 32px; color: var(--gold); margin-bottom: 16px; display: block; }
+
+/* ==================== FOOTER ==================== */
+#footer {
+  background: #07090F; border-top: 1px solid rgba(201,168,76,.1);
+  padding: 80px 0 36px;
+}
+.footer-brand { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; letter-spacing: .1em; color: var(--cream); margin-bottom: 14px; }
+.footer-brand span { color: var(--gold); font-style: italic; font-weight: 400; }
+.footer-tagline { font-size: 12px; color: var(--dust); line-height: 1.7; max-width: 240px; margin-bottom: 26px; font-weight: 300; }
+.footer-socials { display: flex; gap: 8px; }
+.fsoc {
+  width: 34px; height: 34px; border: 1px solid rgba(201,168,76,.15);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--dust); font-size: 13px; text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.fsoc:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col-head { font-size: 9px; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block; font-weight: 400; }
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 9px; }
+.footer-list a { font-size: 13px; color: var(--dust); text-decoration: none; font-weight: 300; transition: color .2s; }
+.footer-list a:hover { color: var(--cream); }
+.newsletter-label { font-size: 12px; color: var(--dust); line-height: 1.7; margin-bottom: 16px; font-weight: 300; }
+.nl-form { display: flex; }
+.nl-input {
+  flex: 1; background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.15);
+  border-right: none; padding: 10px 14px; color: var(--cream);
+  font-family: var(--sans); font-size: 13px; outline: none;
+}
+.nl-input::placeholder { color: rgba(245,240,232,.18); }
+.nl-input:focus { border-color: rgba(201,168,76,.35); }
+.nl-btn { padding: 10px 16px; background: var(--gold); border: none; color: var(--navy); cursor: pointer; font-size: 13px; transition: background .2s; }
+.nl-btn:hover { background: var(--gold2); }
+.footer-bottom {
+  margin-top: 64px; padding-top: 24px;
+  border-top: 1px solid rgba(201,168,76,.08);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 12px; color: var(--dust); font-weight: 300; }
+.footer-legal { display: flex; gap: 18px; }
+.footer-legal a { font-size: 12px; color: var(--dust); text-decoration: none; }
+.footer-legal a:hover { color: var(--gold); }
+
+/* ==================== SCROLL REVEAL ==================== */
+.sr {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.sr.in { opacity: 1; transform: translateY(0); }
+.sr-d1 { transition-delay: .1s; }
+.sr-d2 { transition-delay: .2s; }
+.sr-d3 { transition-delay: .3s; }
+.sr-d4 { transition-delay: .4s; }
+.sr-left { transform: translateX(-40px); }
+.sr-left.in { transform: translateX(0); }
+.sr-right { transform: translateX(40px); }
+.sr-right.in { transform: translateX(0); }
+
+/* ==================== BACK TOP ==================== */
+#btt {
+  position: fixed; bottom: 32px; right: 32px; z-index: 900;
+  width: 42px; height: 42px; border: 1px solid rgba(201,168,76,.3);
+  background: rgba(11,17,32,.85); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 14px; text-decoration: none;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .3s, transform .3s, border-color .2s;
+}
+#btt.show { opacity: 1; transform: translateY(0); }
+#btt:hover { border-color: var(--gold); }
+</style>
+</head>
+<body>
+
+<a href="#hero" id="btt"><i class="fas fa-chevron-up"></i></a>
+
+<!-- NAVBAR -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <a href="#" class="nav-logo">MAISON <span>Clio</span></a>
+
+      <button class="d-lg-none" data-bs-toggle="collapse" data-bs-target="#mobileMenu"
+        style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--cream);padding:6px 11px;font-size:14px;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <div class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#collections">Collections</a>
+          <a href="#process">Wholesale</a>
+          <a href="#why">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="btn-partner ms-3">Become a Partner</a>
+      </div>
+    </div>
+    <div class="collapse d-lg-none" id="mobileMenu">
+      <div style="padding:18px 0;border-top:1px solid rgba(201,168,76,.1);margin-top:12px;">
+        <a href="#hero" style="display:block;padding:9px 0;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.7);text-decoration:none;">Home</a>
+        <a href="#collections" style="display:block;padding:9px 0;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.7);text-decoration:none;">Collections</a>
+        <a href="#process" style="display:block;padding:9px 0;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.7);text-decoration:none;">Wholesale</a>
+        <a href="#why" style="display:block;padding:9px 0;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.7);text-decoration:none;">About</a>
+        <a href="#contact" style="display:block;padding:9px 0;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,.7);text-decoration:none;">Contact</a>
+        <a href="#contact" class="btn-partner d-inline-block mt-3">Become a Partner</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-kicker">
+      <div class="kicker-dot"></div>
+      <span class="overline">Wholesale — Est. 2009</span>
+    </div>
+    <h1 class="hero-h1">
+      Wholesale Fashion<br><em>for Modern Retailers</em>
+    </h1>
+    <p class="hero-sub">Premium clothing collections designed for boutiques, retailers and fashion distributors worldwide.</p>
+    <div class="hero-actions">
+      <a href="#collections" class="btn-primary-hero">View Collections</a>
+      <a href="#contact" class="btn-ghost-hero">Request Wholesale Access</a>
+    </div>
+  </div>
+  <div class="hero-side d-none d-xl-block">Luxury Wholesale — Paris · Milano · Dubai</div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-chevron"><i class="fas fa-chevron-down"></i></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stat-block sr sr-d1">
+      <div class="stat-num"><span class="counter" data-target="500">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Retail Partners</div>
+    </div>
+    <div class="stat-block sr sr-d2">
+      <div class="stat-num"><span class="counter" data-target="50">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Countries Supplied</div>
+    </div>
+    <div class="stat-block sr sr-d3">
+      <div class="stat-num"><span class="counter" data-target="10">0</span><span class="stat-suffix">K+</span></div>
+      <div class="stat-label">Products Delivered</div>
+    </div>
+    <div class="stat-block sr sr-d4">
+      <div class="stat-num"><span class="counter" data-target="15">0</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="container mb-5">
+    <div class="row align-items-end">
+      <div class="col-lg-6 sr">
+        <div class="section-label"><span class="overline">Our Range</span></div>
+        <h2 class="serif" style="font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:900;line-height:1.1;">
+          Curated for <em style="color:var(--gold);font-style:italic;font-weight:400;">Every Market</em>
+        </h2>
+      </div>
+      <div class="col-lg-5 offset-lg-1 sr sr-d2">
+        <p style="font-size:14px;color:var(--dust);line-height:1.8;">From elevated womenswear to urban streetwear, our collections are seasonally refreshed to keep your customers coming back.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-3">
+    <div class="coll-masonry sr">
+      <div class="coll-cell coll-a">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Women's Fashion</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+      <div class="coll-cell coll-b">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Men's Fashion</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+      <div class="coll-cell coll-c">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Streetwear</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+      <div class="coll-cell coll-d">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Sportswear</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+      <div class="coll-cell coll-e">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Essentials</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+      <div class="coll-cell coll-f">
+        <div class="coll-img" style="background-image:url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80');height:100%;"></div>
+        <div class="coll-over">
+          <div class="overline">Explore</div>
+          <h3>Seasonal</h3>
+          <div class="coll-action">Browse Range <i class="fas fa-arrow-right ms-1" style="font-size:9px;"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="container mb-5">
+    <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 sr">
+      <div>
+        <div class="section-label"><span class="overline">Product Showcase</span></div>
+        <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;">
+          Wholesale <em style="color:var(--gold);font-style:italic;font-weight:400;">Essentials</em>
+        </h2>
+      </div>
+      <a href="#contact" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:2px;">
+        Request Full Catalog <i class="fas fa-arrow-right ms-1" style="font-size:10px;"></i>
+      </a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="product-grid sr">
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Men's Basics</div><div class="prod-name">Classic Cotton Tee</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Denim</div><div class="prod-name">Slim Fit Jeans</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Women's</div><div class="prod-name">Floral Midi Dress</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Formalwear</div><div class="prod-name">Linen Blazer</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Knitwear</div><div class="prod-name">Cashmere Pullover</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Outerwear</div><div class="prod-name">Structured Coat</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Streetwear</div><div class="prod-name">Cargo Trousers</div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img" style="background-image:url('https://images.unsplash.com/photo-1560243563-062bfc001d68?w=400&q=80')"></div>
+        <div class="prod-badge">Wholesale Only</div>
+        <div class="prod-overlay"><button class="prod-qv">Quick View</button></div>
+        <div class="prod-body"><div class="prod-cat">Sportswear</div><div class="prod-name">Athletic Set</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="text-center mb-5 sr">
+      <div class="section-label justify-content-center"><span class="overline" style="color:var(--gold3);">Why Choose Us</span></div>
+      <h2 class="serif" style="font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:900;color:var(--navy);line-height:1.1;">
+        Built for <em style="color:var(--gold3);font-style:italic;font-weight:400;">Serious</em> Partners
+      </h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card sr sr-d1">
+        <div class="why-bg-num">01</div>
+        <div class="why-icon-wrap"><i class="fas fa-gem"></i></div>
+        <h4>Premium Quality</h4>
+        <p>Garments rigorously tested for durability, finish and comfort — standards that protect your brand reputation.</p>
+      </div>
+      <div class="why-card sr sr-d2">
+        <div class="why-bg-num">02</div>
+        <div class="why-icon-wrap"><i class="fas fa-palette"></i></div>
+        <h4>Trend-Driven Collections</h4>
+        <p>Our in-house design studio tracks runway and street trends to deliver collections your customers want now.</p>
+      </div>
+      <div class="why-card sr sr-d3">
+        <div class="why-bg-num">03</div>
+        <div class="why-icon-wrap"><i class="fas fa-tags"></i></div>
+        <h4>Competitive Bulk Pricing</h4>
+        <p>Aggressive wholesale margins with tiered volume discounts — the higher your order, the stronger your profit.</p>
+      </div>
+      <div class="why-card sr sr-d4">
+        <div class="why-bg-num">04</div>
+        <div class="why-icon-wrap"><i class="fas fa-earth-americas"></i></div>
+        <h4>Global Shipping Network</h4>
+        <p>Reliable delivery to 50+ countries with real-time tracking, customs support, and DDP options.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="text-center mb-5 sr">
+      <div class="section-label justify-content-center"><span class="overline">How It Works</span></div>
+      <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;">
+        The <em style="color:var(--gold);font-style:italic;font-weight:400;">Wholesale</em> Process
+      </h2>
+    </div>
+    <div class="process-line sr">
+      <div class="proc-step">
+        <div class="proc-num-wrap">
+          <div class="proc-ordinal">1</div>
+          <i class="fas fa-user-plus proc-icon"></i>
+        </div>
+        <h4>Apply as a Partner</h4>
+        <p>Submit your business info. We review and approve qualified partners within 24–48 hours.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num-wrap">
+          <div class="proc-ordinal">2</div>
+          <i class="fas fa-book-open proc-icon"></i>
+        </div>
+        <h4>Access our Catalog</h4>
+        <p>Browse our full wholesale catalog with exclusive partner pricing and seasonal drops.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num-wrap">
+          <div class="proc-ordinal">3</div>
+          <i class="fas fa-box-open proc-icon"></i>
+        </div>
+        <h4>Place Bulk Orders</h4>
+        <p>Select your products, confirm quantities and receive a tailored bulk price quote.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num-wrap">
+          <div class="proc-ordinal">4</div>
+          <i class="fas fa-truck proc-icon"></i>
+        </div>
+        <h4>Receive Delivery</h4>
+        <p>Fully tracked international shipping with quality inspection before every dispatch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-5 sr">
+      <div>
+        <div class="section-label"><span class="overline">Client Voices</span></div>
+        <h2 class="serif" style="font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;">
+          What Our Partners <em style="color:var(--gold);font-style:italic;font-weight:400;">Say</em>
+        </h2>
+      </div>
+      <div class="testi-controls">
+        <button class="testi-btn" id="tPrev"><i class="fas fa-arrow-left"></i></button>
+        <button class="testi-btn" id="tNext"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="testi-track-wrap sr">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"Maison Clio transformed how we source. The quality is exceptional, pricing is fair, and the team actually understands retail."</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background-image:url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80')"></div>
+            <div>
+              <div class="testi-name">Isabelle Marchand</div>
+              <div class="testi-role">Boutique Owner — Lyon</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"We've grown our online store by 40% since switching to Maison Clio as our main supplier. Delivery is fast and consistent."</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80')"></div>
+            <div>
+              <div class="testi-name">Jordan Phillips</div>
+              <div class="testi-role">Online Reseller — UK</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"As a multi-brand distributor, reliability is everything. Maison Clio delivers on time, every time — and the collections always sell."</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80')"></div>
+            <div>
+              <div class="testi-name">Nadia El-Rashid</div>
+              <div class="testi-role">Fashion Distributor — Dubai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <div class="testi-stars">★★★★★</div>
+          <blockquote>"The private label support has been a game changer. Our customers have no idea we're working with a wholesaler — and that's the point."</blockquote>
+          <div class="testi-author">
+            <div class="testi-av" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80')"></div>
+            <div>
+              <div class="testi-name">Karim Benali</div>
+              <div class="testi-role">Retail Chain Owner — Morocco</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container" style="position:relative;">
+    <div class="sr cta-pretitle">
+      <span class="overline"><i class="fas fa-circle" style="font-size:6px;margin-right:10px;"></i>Partner Program</span>
+    </div>
+    <h2 class="cta-h2 sr sr-d1">
+      Partner With Us and<br>Grow Your <em>Fashion Business</em>
+    </h2>
+    <p class="cta-sub sr sr-d2">Join 500+ wholesale partners across 50 countries who trust Maison Clio to power their collections.</p>
+    <div class="cta-buttons sr sr-d3">
+      <a href="#contact" class="btn-primary-hero">Request Wholesale Catalog</a>
+      <a href="#contact" class="btn-ghost-hero">Contact Our Sales Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 sr sr-left">
+        <div class="contact-left">
+          <div class="section-label"><span class="overline">Get In Touch</span></div>
+          <h2>Let's Start a <em style="color:var(--gold);font-style:italic;font-weight:400;">Partnership</em></h2>
+          <p>Our wholesale team is ready to help you build the right collection for your business. Reach out and we'll respond within one business day.</p>
+          <div class="cinfo-row">
+            <div class="cinfo-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="cinfo-label">Phone</div>
+              <div class="cinfo-val">+33 1 42 60 18 00</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="cinfo-label">Email</div>
+              <div class="cinfo-val">wholesale@maisonclio.com</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <div class="cinfo-label">Address</div>
+              <div class="cinfo-val">22 Avenue Montaigne, 75008 Paris, France</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="cinfo-label">Hours</div>
+              <div class="cinfo-val">Monday – Friday: 09:00 – 18:00 CET</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 sr sr-right">
+        <form id="contactForm">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="f-group">
+                <label class="f-label">Full Name</label>
+                <input type="text" class="f-input" placeholder="Your full name" required/>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="f-group">
+                <label class="f-label">Business Name</label>
+                <input type="text" class="f-input" placeholder="Your store or company" required/>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="f-group">
+                <label class="f-label">Email Address</label>
+                <input type="email" class="f-input" placeholder="you@company.com" required/>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="f-group">
+                <label class="f-label">Phone Number</label>
+                <input type="tel" class="f-input" placeholder="+1 000 000 0000"/>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="f-group">
+                <label class="f-label">Message</label>
+                <textarea class="f-input" placeholder="Tell us about your business, volume requirements, and what you're looking for…"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-submit">
+                Send Your Inquiry <i class="fas fa-arrow-right" style="font-size:11px;"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="form-success" id="formOk">
+          <i class="fas fa-check-circle" style="color:var(--gold);font-size:32px;margin-bottom:14px;display:block;"></i>
+          <p class="serif" style="font-size:1.2rem;margin-bottom:6px;">Message Received</p>
+          <p style="font-size:13px;color:var(--dust);">Our wholesale team will contact you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-12">
+        <div class="footer-brand">MAISON <span>Clio</span></div>
+        <p class="footer-tagline">Premium wholesale clothing for boutiques, retailers and distributors worldwide. Quality. Trust. Partnership.</p>
+        <div class="footer-socials">
+          <a href="#" class="fsoc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="fsoc"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="fsoc"><i class="fab fa-pinterest-p"></i></a>
+          <a href="#" class="fsoc"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="fsoc"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <span class="footer-col-head">Company</span>
+        <ul class="footer-list">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <span class="footer-col-head">Collections</span>
+        <ul class="footer-list">
+          <li><a href="#">Men's</a></li>
+          <li><a href="#">Women's</a></li>
+          <li><a href="#">Streetwear</a></li>
+          <li><a href="#">Sportswear</a></li>
+          <li><a href="#">Seasonal</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <span class="footer-col-head">Wholesale</span>
+        <ul class="footer-list">
+          <li><a href="#">Partner Program</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <span class="footer-col-head">Newsletter</span>
+        <p class="newsletter-label">New drops, pricing updates, and trade news — delivered monthly.</p>
+        <div class="nl-form">
+          <input type="email" class="nl-input" placeholder="Your email"/>
+          <button class="nl-btn"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Maison Clio Wholesale. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ---- Navbar scroll ----
+const nav = document.getElementById('mainNav');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  nav.classList.toggle('solid', s > 60);
+  btt.classList.toggle('show', s > 400);
+});
+
+// ---- Scroll reveal ----
+const srEls = document.querySelectorAll('.sr');
+const srObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); srObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+srEls.forEach(el => srObs.observe(el));
+
+// ---- Animated counters ----
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const tick = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current;
+      if (current >= target) clearInterval(tick);
+    }, 24);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+// ---- Testimonials carousel ----
+const track = document.getElementById('testiTrack');
+const cards = track.querySelectorAll('.testi-card');
+let tIdx = 0;
+function getVisible() {
+  const w = track.parentElement.offsetWidth;
+  if (w < 576) return 1;
+  if (w < 992) return 2;
+  return 3;
+}
+function slideTo(idx) {
+  const vis = getVisible();
+  const max = cards.length - vis;
+  tIdx = Math.max(0, Math.min(idx, max));
+  const cardW = track.querySelector('.testi-card').offsetWidth + 24;
+  track.style.transform = `translateX(-${tIdx * cardW}px)`;
+}
+document.getElementById('tPrev').addEventListener('click', () => slideTo(tIdx - 1));
+document.getElementById('tNext').addEventListener('click', () => slideTo(tIdx + 1));
+window.addEventListener('resize', () => slideTo(tIdx));
+
+// ---- Contact form ----
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formOk').style.display = 'block';
+});
+
+// ---- Smooth scroll ----
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
