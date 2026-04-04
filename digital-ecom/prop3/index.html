@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexPay — Recharges & Services Digitaux</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0c10;
+      --bg2:      #0e1117;
+      --panel:    #13161e;
+      --panel2:   #181c26;
+      --border:   rgba(255,255,255,0.06);
+      --border2:  rgba(255,255,255,0.10);
+      --green:    #22c55e;
+      --green-dim:rgba(34,197,94,0.12);
+      --green-mid:rgba(34,197,94,0.22);
+      --blue:     #3b82f6;
+      --blue-dim: rgba(59,130,246,0.10);
+      --text:     #f1f5f9;
+      --text2:    #94a3b8;
+      --text3:    #475569;
+      --radius:   12px;
+      --radius-lg:20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4 {
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.18;
+      letter-spacing: -0.4px;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(10,12,16,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .navbar-brand {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--text) !important;
+      letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .brand-mark {
+      width: 28px; height: 28px;
+      background: var(--green);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-mark svg { width: 14px; height: 14px; fill: #000; }
+    .nav-link { color: var(--text2) !important; font-size: 0.875rem; font-weight: 500; transition: color .18s; padding: 0.4rem 0.75rem !important; }
+    .nav-link:hover { color: var(--text) !important; }
+    .btn-navbar {
+      background: var(--green);
+      color: #000;
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 0.48rem 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity .18s;
+      white-space: nowrap;
+    }
+    .btn-navbar:hover { opacity: 0.85; color: #000; }
+    .btn-navbar-ghost {
+      background: transparent;
+      color: var(--text2);
+      font-weight: 500;
+      font-size: 0.82rem;
+      padding: 0.48rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border2);
+      text-decoration: none;
+      transition: all .18s;
+      white-space: nowrap;
+    }
+    .btn-navbar-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 7rem 0 5rem;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(34,197,94,0.07) 0%, transparent 70%);
+      top: -80px; left: -100px;
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.05) 0%, transparent 70%);
+      bottom: 0; right: 10%;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green-dim);
+      border: 1px solid var(--green-mid);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.32rem 0.85rem;
+      border-radius: 6px;
+      margin-bottom: 1.6rem;
+    }
+    .pulse-dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pdot 2.2s ease-in-out infinite;
+    }
+    @keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title em { font-style: normal; color: var(--green); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text2);
+      max-width: 480px;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 3rem; }
+    .btn-cta-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green);
+      color: #000;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.78rem 1.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all .22s;
+      box-shadow: 0 4px 24px rgba(34,197,94,0.22);
+    }
+    .btn-cta-primary:hover { opacity: 0.88; color: #000; transform: translateY(-1px); box-shadow: 0 6px 32px rgba(34,197,94,0.32); }
+    .btn-cta-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--panel);
+      color: var(--text2);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.78rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      transition: all .22s;
+    }
+    .btn-cta-secondary:hover { color: var(--text); border-color: rgba(255,255,255,.18); background: var(--panel2); }
+
+    .trust-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .trust-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text3);
+      font-size: 0.76rem;
+      font-weight: 500;
+      padding: 0.28rem 0.75rem;
+      border-radius: 6px;
+    }
+    .trust-chip i { color: var(--green); font-size: 0.7rem; }
+
+    /* HERO RIGHT — DASHBOARD MOCKUP */
+    .dashboard-wrap {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .dash-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.4rem;
+    }
+    .dash-title { font-family: 'Manrope',sans-serif; font-weight: 700; font-size: 0.88rem; }
+    .dash-status {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 500; color: var(--green);
+    }
+    .dash-status-dot { width:6px;height:6px;background:var(--green);border-radius:50%; }
+
+    .dash-balance-label { font-size: 0.7rem; color: var(--text2); font-weight: 500; margin-bottom: 0.2rem; }
+    .dash-balance { font-family: 'Manrope',sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--text); margin-bottom: 1.2rem; }
+    .dash-balance span { font-size: 0.9rem; color: var(--text2); font-weight: 400; }
+
+    .dash-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-bottom: 1.2rem; }
+    .dash-stat {
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem;
+    }
+    .ds-label { font-size: 0.67rem; color: var(--text3); font-weight: 500; margin-bottom: 0.2rem; }
+    .ds-val { font-family: 'Manrope',sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .ds-val.green { color: var(--green); }
+
+    .dash-orders { display: flex; flex-direction: column; gap: 0.5rem; }
+    .dash-order {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0.65rem 0.9rem;
+    }
+    .order-icon { font-size: 1rem; width: 28px; text-align: center; }
+    .order-name { font-size: 0.8rem; font-weight: 500; }
+    .order-meta { font-size: 0.68rem; color: var(--text3); }
+    .order-badge {
+      margin-left: auto;
+      background: var(--green-dim);
+      color: var(--green);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5.5rem 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.8rem;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 16px; height: 1.5px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+    .sec-title { font-size: clamp(1.7rem,3vw,2.5rem); font-weight: 800; margin-bottom: 0.8rem; color: var(--text); }
+    .sec-sub { font-size: 0.92rem; color: var(--text2); max-width: 500px; line-height: 1.7; }
+
+    /* divider line */
+    .sec-divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── PRODUCTS ── */
+    .products-sec { background: var(--bg2); }
+    .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    @media(max-width:768px){ .prod-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .prod-grid { grid-template-columns: 1fr; } }
+
+    .prod-cell {
+      background: var(--panel);
+      padding: 1.6rem;
+      transition: background .2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .prod-cell:hover { background: var(--panel2); }
+    .prod-cell:hover .prod-arrow { opacity: 1; transform: translateX(0); }
+
+    .prod-icon-wrap {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+    }
+    .prod-name { font-family:'Manrope',sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .prod-cat { font-size: 0.73rem; color: var(--text3); margin-bottom: 0.9rem; }
+    .prod-price { font-size: 0.82rem; font-weight: 600; color: var(--green); }
+    .prod-avail { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: var(--text3); margin-top: 0.35rem; }
+    .prod-avail-dot { width:5px;height:5px;background:var(--green);border-radius:50%; }
+    .prod-arrow {
+      position: absolute; top: 1.4rem; right: 1.4rem;
+      color: var(--text3); font-size: 0.85rem;
+      opacity: 0; transform: translateX(-4px);
+      transition: all .2s;
+    }
+
+    /* ── SERVICES LOCAUX ── */
+    .local-sec { background: var(--bg); }
+    .service-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 100%;
+      transition: border-color .2s;
+    }
+    .service-card:hover { border-color: var(--border2); }
+    .service-card-head {
+      padding: 1.6rem 1.6rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-icon {
+      width: 40px; height: 40px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .si-green { background: var(--green-dim); border: 1px solid var(--green-mid); }
+    .si-blue  { background: var(--blue-dim);  border: 1px solid rgba(59,130,246,0.22); }
+    .service-title { font-family:'Manrope',sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+    .service-sub { font-size: 0.8rem; color: var(--text2); }
+
+    .service-items { padding: 0.6rem 0; }
+    .service-row {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.75rem 1.6rem;
+      border-bottom: 1px solid var(--border);
+      transition: background .18s;
+    }
+    .service-row:last-child { border-bottom: none; }
+    .service-row:hover { background: var(--panel2); }
+    .sr-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .sr-name { font-size: 0.85rem; font-weight: 500; }
+    .sr-meta { margin-left: auto; font-size: 0.72rem; color: var(--text3); }
+    .sr-badge {
+      background: var(--green-dim);
+      color: var(--green);
+      font-size: 0.64rem; font-weight: 600;
+      padding: 0.12rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* ── HOW ── */
+    .how-sec { background: var(--bg2); }
+    .how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    @media(max-width:768px){ .how-grid { grid-template-columns: 1fr; } }
+
+    .how-cell {
+      background: var(--panel);
+      padding: 2.2rem;
+      position: relative;
+    }
+    .how-num {
+      font-family: 'Manrope',sans-serif;
+      font-weight: 800; font-size: 3.5rem;
+      color: rgba(255,255,255,0.04);
+      position: absolute; bottom: 1.2rem; right: 1.6rem;
+      line-height: 1;
+      user-select: none;
+    }
+    .how-step-icon {
+      width: 40px; height: 40px;
+      border-radius: 9px;
+      background: var(--green-dim);
+      border: 1px solid var(--green-mid);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .how-step-title { font-family:'Manrope',sans-serif; font-weight: 700; font-size: 0.98rem; margin-bottom: 0.5rem; }
+    .how-step-desc { font-size: 0.83rem; color: var(--text2); line-height: 1.65; }
+
+    /* ── RESELLER ── */
+    .reseller-sec { background: var(--bg); }
+    .reseller-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media(max-width:900px){ .reseller-layout { grid-template-columns: 1fr; } }
+
+    .reseller-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      color: var(--blue);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 6px;
+      margin-bottom: 1.4rem;
+    }
+    .reseller-title { font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 800; margin-bottom: 0.9rem; }
+    .reseller-sub { font-size: 0.9rem; color: var(--text2); margin-bottom: 2rem; line-height: 1.7; max-width: 420px; }
+
+    .feat-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+    .feat-row {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 1rem 1.1rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .18s;
+    }
+    .feat-row:hover { border-color: var(--border2); }
+    .feat-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border-radius: 7px;
+      background: var(--green-dim);
+      border: 1px solid var(--green-mid);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 0.85rem;
+    }
+    .feat-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 0.1rem; }
+    .feat-desc { font-size: 0.78rem; color: var(--text2); }
+
+    /* reseller card */
+    .reseller-card {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .rc-head {
+      background: var(--panel2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 1.4rem;
+      font-size: 0.75rem; color: var(--text3);
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .rc-body { padding: 1.4rem; }
+    .rc-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    .rc-stat {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 0.9rem;
+    }
+    .rc-val { font-family:'Manrope',sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text); }
+    .rc-val.green { color: var(--green); }
+    .rc-lbl { font-size: 0.7rem; color: var(--text3); margin-top: 0.15rem; }
+
+    .rc-example { background: var(--bg); border: 1px solid var(--border); border-radius: 9px; padding: 1rem; margin-bottom: 1rem; }
+    .rc-ex-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; padding: 0.3rem 0; }
+    .rc-ex-row:not(:last-child) { border-bottom: 1px solid var(--border); margin-bottom: 0.3rem; padding-bottom: 0.6rem; }
+    .rc-ex-label { color: var(--text2); }
+    .rc-ex-val { font-weight: 600; }
+    .rc-ex-val.green { color: var(--green); }
+
+    .btn-reseller {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600; font-size: 0.88rem;
+      padding: 0.78rem;
+      border-radius: 9px;
+      text-decoration: none;
+      transition: opacity .18s;
+      width: 100%;
+    }
+    .btn-reseller:hover { opacity: 0.85; color: #fff; }
+
+    /* ── AVANTAGES ── */
+    .avantages-sec { background: var(--bg2); }
+    .av-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    @media(max-width:900px){ .av-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:500px){ .av-grid { grid-template-columns: 1fr; } }
+    .av-cell {
+      background: var(--panel);
+      padding: 2rem;
+      transition: background .18s;
+    }
+    .av-cell:hover { background: var(--panel2); }
+    .av-cell-icon { font-size: 1.4rem; margin-bottom: 1rem; display: block; }
+    .av-cell-title { font-family:'Manrope',sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .av-cell-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-sec { background: var(--bg); padding: 5rem 0; }
+    .cta-inner {
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-lg);
+      padding: 4rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+    @media(max-width:700px){ .cta-inner { grid-template-columns: 1fr; text-align: center; } .cta-actions { justify-content: center; } }
+    .cta-title { font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-sub { font-size: 0.88rem; color: var(--text2); }
+    .cta-actions { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end; }
+    .cta-note { font-size: 0.72rem; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+    .cta-note i { color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 3rem 0 2rem;
+    }
+    .footer-brand-row { display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem; }
+    .footer-brand-name { font-family:'Manrope',sans-serif; font-weight: 800; font-size: 1.15rem; }
+    .footer-desc { font-size: 0.8rem; color: var(--text3); max-width: 220px; line-height: 1.6; }
+    .footer-heading { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 0.9rem; }
+    .footer-link { display: block; font-size: 0.83rem; color: var(--text2); text-decoration: none; margin-bottom: 0.45rem; transition: color .16s; }
+    .footer-link:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.75rem; color: var(--text3); }
+    .socials { display: flex; gap: 0.5rem; }
+    .social-btn {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text3); font-size: 0.82rem;
+      text-decoration: none;
+      transition: all .16s;
+    }
+    .social-btn:hover { color: var(--text); border-color: var(--border2); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+    .d4 { transition-delay: .32s; }
+
+    @media(max-width:768px){
+      .hero { padding: 4.5rem 0 3rem; }
+      .cta-inner { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24"><path d="M13 2L4.09 12.26a1 1 0 0 0 .91 1.74H12l-1 8 8.91-10.26a1 1 0 0 0-.91-1.74H12l1-8z"/></svg>
+      </div>
+      NexPay
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" style="color:var(--text2)">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto me-3 gap-1 align-items-lg-center">
+        <li><a class="nav-link" href="#produits">Produits</a></li>
+        <li><a class="nav-link" href="#recharges">Recharges</a></li>
+        <li><a class="nav-link" href="#comment">Comment ça marche</a></li>
+        <li><a class="nav-link" href="#revendeurs">Revendeurs</a></li>
+      </ul>
+      <div class="d-flex gap-2 mt-2 mt-lg-0">
+        <a href="#" class="btn-navbar-ghost">Se connecter</a>
+        <a href="#" class="btn-navbar">Créer un compte</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-eyebrow"><span class="pulse-dot"></span>Plateforme — Algérie</div>
+        <h1 class="hero-title">
+          Recharges &amp; produits<br>
+          digitaux, <em>livrés<br>
+          instantanément</em>
+        </h1>
+        <p class="hero-sub">
+          Gaming, mobile, internet — une seule plateforme pour tous vos besoins digitaux. Conçue pour les particuliers et les revendeurs professionnels.
+        </p>
+        <div class="cta-row">
+          <a href="#" class="btn-cta-primary">Créer un compte <i class="bi bi-arrow-right"></i></a>
+          <a href="#produits" class="btn-cta-secondary">Voir les produits</a>
+        </div>
+        <div class="trust-chips">
+          <span class="trust-chip"><i class="bi bi-check-circle-fill"></i>Livraison &lt; 5 secondes</span>
+          <span class="trust-chip"><i class="bi bi-check-circle-fill"></i>Disponible 24/7</span>
+          <span class="trust-chip"><i class="bi bi-check-circle-fill"></i>Tarifs revendeurs</span>
+          <span class="trust-chip"><i class="bi bi-check-circle-fill"></i>Tous opérateurs</span>
+        </div>
+      </div>
+
+      <div class="col-lg-6 reveal">
+        <div class="dashboard-wrap">
+          <div class="dash-header">
+            <div class="dash-title">Mon espace</div>
+            <div class="dash-status"><span class="dash-status-dot"></span>En ligne</div>
+          </div>
+          <div class="dash-balance-label">Solde disponible</div>
+          <div class="dash-balance">12 450 <span>DZD</span></div>
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <div class="ds-label">Commandes</div>
+              <div class="ds-val">248</div>
+            </div>
+            <div class="dash-stat">
+              <div class="ds-label">Ce mois</div>
+              <div class="ds-val">61</div>
+            </div>
+            <div class="dash-stat">
+              <div class="ds-label">Économisé</div>
+              <div class="ds-val green">1 840 DZ</div>
+            </div>
+          </div>
+          <div style="font-size:.7rem;color:var(--text3);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.6rem">Dernières transactions</div>
+          <div class="dash-orders">
+            <div class="dash-order">
+              <span class="order-icon">🎮</span>
+              <div>
+                <div class="order-name">Steam Gift Card 10€</div>
+                <div class="order-meta">Il y a 3 minutes</div>
+              </div>
+              <span class="order-badge">Livré</span>
+            </div>
+            <div class="dash-order">
+              <span class="order-icon">📱</span>
+              <div>
+                <div class="order-name">Djezzy — 500 DA</div>
+                <div class="order-meta">Il y a 18 minutes</div>
+              </div>
+              <span class="order-badge">Livré</span>
+            </div>
+            <div class="dash-order">
+              <span class="order-icon">🌐</span>
+              <div>
+                <div class="order-name">Idoom Fibre — Recharge</div>
+                <div class="order-meta">Il y a 1 heure</div>
+              </div>
+              <span class="order-badge">Livré</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ PRODUITS ═══ -->
+<section class="products-sec" id="produits">
+  <div class="container">
+    <div class="row align-items-end mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="eyebrow">Gaming &amp; Divertissement</div>
+        <h2 class="sec-title">Produits populaires</h2>
+        <p class="sec-sub">Cartes cadeaux et abonnements pour toutes les plateformes. Code livré immédiatement après achat.</p>
+      </div>
+      <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+        <a href="#" class="btn-cta-secondary" style="display:inline-flex">Voir tout le catalogue <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+
+    <div class="prod-grid reveal">
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">🎮</div>
+        <div class="prod-name">Steam Gift Card</div>
+        <div class="prod-cat">PC Gaming · Valve</div>
+        <div class="prod-price">Dès 900 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">🕹️</div>
+        <div class="prod-name">PlayStation Store</div>
+        <div class="prod-cat">PS4 · PS5 · PSN</div>
+        <div class="prod-price">Dès 1 200 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">▶️</div>
+        <div class="prod-name">Google Play</div>
+        <div class="prod-cat">Android · Apps · Jeux</div>
+        <div class="prod-price">Dès 500 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">🍎</div>
+        <div class="prod-name">Apple Gift Card</div>
+        <div class="prod-cat">App Store · iTunes · iCloud</div>
+        <div class="prod-price">Dès 950 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">🎯</div>
+        <div class="prod-name">Xbox Gift Card</div>
+        <div class="prod-cat">Xbox · PC · Game Pass</div>
+        <div class="prod-price">Dès 1 100 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+      <div class="prod-cell">
+        <span class="prod-arrow"><i class="bi bi-arrow-up-right"></i></span>
+        <div class="prod-icon-wrap">🎬</div>
+        <div class="prod-name">Netflix Gift Card</div>
+        <div class="prod-cat">Streaming · Abonnement</div>
+        <div class="prod-price">Dès 800 DZD</div>
+        <div class="prod-avail"><span class="prod-avail-dot"></span>Disponible immédiatement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ SERVICES LOCAUX ═══ -->
+<section class="local-sec" id="recharges">
+  <div class="container">
+    <div class="row mb-5 reveal">
+      <div class="col-lg-7">
+        <div class="eyebrow">Services Locaux</div>
+        <h2 class="sec-title">Recharges Mobile &amp; Internet</h2>
+        <p class="sec-sub">Rechargez votre mobile ou payez votre connexion internet en quelques secondes. Tous opérateurs algériens couverts.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal d1">
+        <div class="service-card">
+          <div class="service-card-head">
+            <div class="service-icon si-green"><i class="bi bi-phone-fill" style="color:var(--green)"></i></div>
+            <div class="service-title">Recharge Mobile</div>
+            <div class="service-sub">Tous opérateurs · Montants flexibles · Crédit instantané</div>
+          </div>
+          <div class="service-items">
+            <div class="service-row">
+              <span class="sr-dot" style="background:#e63946"></span>
+              <span class="sr-name">Djezzy</span>
+              <span class="sr-meta">50 DA → 5 000 DA</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+            <div class="service-row">
+              <span class="sr-dot" style="background:#2196f3"></span>
+              <span class="sr-name">Mobilis</span>
+              <span class="sr-meta">50 DA → 5 000 DA</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+            <div class="service-row">
+              <span class="sr-dot" style="background:#f01e2c"></span>
+              <span class="sr-name">Ooredoo</span>
+              <span class="sr-meta">50 DA → 5 000 DA</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal d2">
+        <div class="service-card">
+          <div class="service-card-head">
+            <div class="service-icon si-blue"><i class="bi bi-wifi" style="color:var(--blue)"></i></div>
+            <div class="service-title">Paiement Internet</div>
+            <div class="service-sub">Idoom ADSL, Fibre &amp; 4G LTE — sans déplacement</div>
+          </div>
+          <div class="service-items">
+            <div class="service-row">
+              <span class="sr-dot" style="background:var(--green)"></span>
+              <span class="sr-name">Idoom ADSL</span>
+              <span class="sr-meta">Algérie Télécom</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+            <div class="service-row">
+              <span class="sr-dot" style="background:var(--blue)"></span>
+              <span class="sr-name">Idoom Fibre</span>
+              <span class="sr-meta">Très haut débit</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+            <div class="service-row">
+              <span class="sr-dot" style="background:#f59e0b"></span>
+              <span class="sr-name">4G LTE</span>
+              <span class="sr-meta">Idoom 4G</span>
+              <span class="sr-badge">Instantané</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ COMMENT ÇA MARCHE ═══ -->
+<section class="how-sec" id="comment">
+  <div class="container">
+    <div class="row mb-5 reveal">
+      <div class="col-lg-6">
+        <div class="eyebrow">Guide</div>
+        <h2 class="sec-title">Comment ça marche ?</h2>
+        <p class="sec-sub">Trois étapes simples pour accéder à tous vos produits et services en quelques secondes.</p>
+      </div>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-cell">
+        <span class="how-num">01</span>
+        <div class="how-step-icon"><i class="bi bi-person-plus-fill"></i></div>
+        <div class="how-step-title">Créer un compte</div>
+        <p class="how-step-desc">Inscription gratuite en moins d'une minute. Aucun document requis pour commencer vos achats.</p>
+      </div>
+      <div class="how-cell" style="border-left:1px solid var(--border);border-right:1px solid var(--border)">
+        <span class="how-num">02</span>
+        <div class="how-step-icon"><i class="bi bi-wallet2"></i></div>
+        <div class="how-step-title">Alimenter le solde</div>
+        <p class="how-step-desc">Rechargez votre compte via les méthodes de paiement disponibles en Algérie.</p>
+      </div>
+      <div class="how-cell">
+        <span class="how-num">03</span>
+        <div class="how-step-icon"><i class="bi bi-bag-check-fill"></i></div>
+        <div class="how-step-title">Acheter instantanément</div>
+        <p class="how-step-desc">Sélectionnez votre produit, confirmez — votre code ou recharge arrive en quelques secondes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ REVENDEURS ═══ -->
+<section class="reseller-sec" id="revendeurs">
+  <div class="container">
+    <div class="reseller-layout reveal">
+      <!-- Left -->
+      <div>
+        <div class="reseller-badge"><i class="bi bi-briefcase-fill"></i>Espace Revendeur</div>
+        <h2 class="reseller-title">Vous êtes un revendeur ?</h2>
+        <p class="reseller-sub">NexPay est conçu pour les boutiques gaming, les revendeurs de flexy et les professionnels du digital. Achetez depuis votre compte, revendez à vos propres clients.</p>
+        <div class="feat-list">
+          <div class="feat-row">
+            <div class="feat-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+            <div>
+              <div class="feat-title">Achat rapide depuis votre compte</div>
+              <div class="feat-desc">Interface dédiée, historique complet, gestion simplifiée de vos commandes en temps réel.</div>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon"><i class="bi bi-tag-fill"></i></div>
+            <div>
+              <div class="feat-title">Tarifs avantageux définis par la plateforme</div>
+              <div class="feat-desc">Prix réduits automatiques dès l'activation de votre compte revendeur. Aucune négociation.</div>
+            </div>
+          </div>
+          <div class="feat-row">
+            <div class="feat-icon"><i class="bi bi-shop-window"></i></div>
+            <div>
+              <div class="feat-title">Idéal pour boutiques gaming &amp; flexy</div>
+              <div class="feat-desc">Gérez votre stock digital sans déplacement. Vos clients obtiennent leurs codes en secondes.</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn-cta-primary" style="width:fit-content">
+          <i class="bi bi-briefcase-fill"></i>Ouvrir un compte revendeur
+        </a>
+      </div>
+
+      <!-- Right card -->
+      <div>
+        <div class="reseller-card">
+          <div class="rc-head">Aperçu compte revendeur</div>
+          <div class="rc-body">
+            <div class="rc-stat-grid">
+              <div class="rc-stat">
+                <div class="rc-val green">−15%</div>
+                <div class="rc-lbl">Sur les prix standards</div>
+              </div>
+              <div class="rc-stat">
+                <div class="rc-val">24/7</div>
+                <div class="rc-lbl">Disponibilité plateforme</div>
+              </div>
+              <div class="rc-stat">
+                <div class="rc-val">&lt;5s</div>
+                <div class="rc-lbl">Délai de livraison</div>
+              </div>
+              <div class="rc-stat">
+                <div class="rc-val">100+</div>
+                <div class="rc-lbl">Produits disponibles</div>
+              </div>
+            </div>
+
+            <div style="font-size:.7rem;color:var(--text3);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.6rem">Exemple de marge</div>
+            <div class="rc-example">
+              <div class="rc-ex-row">
+                <span class="rc-ex-label">Steam 10€ — prix revendeur</span>
+                <span class="rc-ex-val">850 DZD</span>
+              </div>
+              <div class="rc-ex-row">
+                <span class="rc-ex-label">Prix de revente client</span>
+                <span class="rc-ex-val">1 000 DZD</span>
+              </div>
+              <div class="rc-ex-row" style="border:none;margin:0;padding-top:.5rem">
+                <span class="rc-ex-label" style="font-weight:600;color:var(--text)">Votre marge</span>
+                <span class="rc-ex-val green">+ 150 DZD</span>
+              </div>
+            </div>
+
+            <a href="#" class="btn-reseller">
+              <i class="bi bi-briefcase-fill"></i>Créer un compte revendeur
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- ═══ AVANTAGES ═══ -->
+<section class="avantages-sec">
+  <div class="container">
+    <div class="row mb-5 reveal">
+      <div class="col-lg-6">
+        <div class="eyebrow">Pourquoi NexPay</div>
+        <h2 class="sec-title">Nos avantages</h2>
+      </div>
+    </div>
+    <div class="av-grid reveal">
+      <div class="av-cell">
+        <span class="av-cell-icon">⚡</span>
+        <div class="av-cell-title">Livraison instantanée</div>
+        <p class="av-cell-desc">Codes et recharges livrés en quelques secondes après confirmation.</p>
+      </div>
+      <div class="av-cell" style="border-left:1px solid var(--border)">
+        <span class="av-cell-icon">🔒</span>
+        <div class="av-cell-title">Plateforme sécurisée</div>
+        <p class="av-cell-desc">Transactions chiffrées et codes 100% authentiques garantis.</p>
+      </div>
+      <div class="av-cell" style="border-left:1px solid var(--border)">
+        <span class="av-cell-icon">🖥️</span>
+        <div class="av-cell-title">Interface simple</div>
+        <p class="av-cell-desc">Conçue pour être rapide, que vous soyez particulier ou revendeur professionnel.</p>
+      </div>
+      <div class="av-cell" style="border-left:1px solid var(--border)">
+        <span class="av-cell-icon">🕐</span>
+        <div class="av-cell-title">Disponible 24/7</div>
+        <p class="av-cell-desc">La boutique ne ferme jamais. Achetez à toute heure, tous les jours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-sec">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div>
+        <h2 class="cta-title">Créez votre compte<br>et commencez dès maintenant</h2>
+        <p class="cta-sub">Inscription gratuite · Accès immédiat · Tarifs revendeurs disponibles</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#" class="btn-cta-primary">Créer un compte <i class="bi bi-arrow-right"></i></a>
+        <div class="cta-note"><i class="bi bi-shield-check-fill"></i>Plateforme sécurisée · Livraison garantie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand-row">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#000"><path d="M13 2L4.09 12.26a1 1 0 0 0 .91 1.74H12l-1 8 8.91-10.26a1 1 0 0 0-.91-1.74H12l1-8z"/></svg>
+          </div>
+          <span class="footer-brand-name">NexPay</span>
+        </div>
+        <p class="footer-desc">Plateforme de référence pour les produits digitaux en Algérie. Gaming, mobile, internet — tout en un.</p>
+        <div class="socials mt-3">
+          <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-telegram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-1">
+        <div class="footer-heading">Produits</div>
+        <a href="#" class="footer-link">Gaming</a>
+        <a href="#" class="footer-link">Recharges Mobile</a>
+        <a href="#" class="footer-link">Internet</a>
+        <a href="#" class="footer-link">Abonnements</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Compte</div>
+        <a href="#" class="footer-link">Créer un compte</a>
+        <a href="#" class="footer-link">Se connecter</a>
+        <a href="#" class="footer-link">Espace Revendeur</a>
+        <a href="#" class="footer-link">Recharger mon solde</a>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Support</div>
+        <a href="#" class="footer-link">Nous contacter</a>
+        <a href="#" class="footer-link">FAQ</a>
+        <a href="#" class="footer-link">Conditions d'utilisation</a>
+        <a href="#" class="footer-link">Confidentialité</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 NexPay. Tous droits réservés.</span>
+      <span>Conçu pour l'Algérie 🇩🇿</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
