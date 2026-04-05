@@ -3,8 +3,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigiPass | Recharges & Services Digitaux Premium</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Playware Dz | Recharges & Services Digitaux Premium</title>
     
     <!-- Google Fonts: Outfit for a modern, techy look -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,15 +20,23 @@
 
     <style>
         :root {
+            /* Thème sombre global */
             --bg-main: #050505;
             --bg-surface: #111111;
             --bg-surface-light: #1a1a1a;
-            --accent-primary: #00f2fe;
-            --accent-secondary: #4facfe;
+            --bs-secondary-color: rgb(165 165 165 / 75%);
+            
+            /* Couleurs Orange */
+            --accent-primary: #ff7300;   
+            --accent-secondary: #ffb75e; 
+            --gradient-orange: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            
             --text-main: #ffffff;
             --text-muted: #8892b0;
             --border-color: rgba(255, 255, 255, 0.08);
-            --bs-secondary-color: #8892b0;
+            
+            --radius-sm: 12px;
+            --radius-md: 16px;
         }
 
         body {
@@ -36,143 +44,65 @@
             background-color: var(--bg-main);
             color: var(--text-main);
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Utilities */
         .text-gradient {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            background: var(--gradient-orange);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .section-padding {
-            padding: 120px 0;
-        }
+        .section-padding { padding: 80px 0; }
 
         /* Buttons */
         .btn-neon {
-            background: transparent;
-            color: var(--text-main);
+            background: transparent; color: var(--text-main);
             border: 1px solid var(--accent-primary);
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
+            padding: 10px 25px; border-radius: 8px; font-weight: 600;
+            position: relative; overflow: hidden; transition: all 0.3s ease; z-index: 1;
         }
-
         .btn-neon::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 0%; height: 100%;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            transition: all 0.4s ease;
-            z-index: -1;
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--gradient-orange); transition: all 0.4s ease; z-index: -1;
         }
-
         .btn-neon:hover::before { width: 100%; }
-        .btn-neon:hover { color: var(--bg-main); border-color: transparent; box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); }
+        .btn-neon:hover { color: var(--bg-main); border-color: transparent; box-shadow: 0 0 20px rgba(255, 115, 0, 0.4); }
 
         .btn-solid {
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            color: var(--bg-main);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 700;
+            background: var(--gradient-orange); color: var(--bg-main);
+            border: none; padding: 10px 25px; border-radius: 8px; font-weight: 700;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .btn-solid:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
-            color: var(--bg-main);
+            transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 115, 0, 0.3); color: var(--bg-main);
         }
 
-        /* Navbar Desktop */
+        /* Navbar & Wallet */
         .navbar {
-            padding: 20px 0;
-            transition: all 0.3s ease;
-            background: transparent;
-            z-index: 1000;
+            padding: 15px 0; transition: all 0.3s ease;
+            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color); z-index: 1000;
         }
-        .navbar.scrolled {
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-        }
-        .navbar-brand { font-size: 1.8rem; font-weight: 800; color: var(--text-main) !important; letter-spacing: -1px; }
+        .navbar-brand { font-size: 1.6rem; font-weight: 800; color: var(--text-main) !important; letter-spacing: -0.5px; }
         
-        .desktop-nav .nav-link {
-            color: var(--text-main);
-            font-weight: 500;
-            margin: 0 15px;
-            position: relative;
-        }
-        .desktop-nav .nav-link::after {
-            content: '';
-            position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--accent-primary); transition: width 0.3s ease;
-        }
-        .desktop-nav .nav-link:hover::after { width: 100%; }
+        .desktop-nav .nav-link { color: var(--text-main); font-weight: 500; margin: 0 10px; position: relative; transition: color 0.2s;}
+        .desktop-nav .nav-link:hover { color: var(--accent-primary); }
 
-        /* Mobile Sidebar Custom */
-        .hamburger-btn {
-            background: transparent; border: none; color: var(--text-main);
-            font-size: 1.5rem; cursor: pointer; display: none; z-index: 2001;
-        }
-        @media (max-width: 991px) {
-            .desktop-nav { display: none !important; }
-            .hamburger-btn { display: block; }
-        }
-
-        .mobile-sidebar {
-            position: fixed; top: 0; right: -350px; width: 300px; height: 100vh;
-            background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(15px);
-            border-left: 1px solid var(--border-color);
-            z-index: 2000; padding: 100px 30px 30px;
-            transition: right 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
-            display: flex; flex-direction: column; gap: 20px;
-        }
-        .mobile-sidebar.active { right: 0; }
-        
-        .mobile-sidebar a {
-            color: var(--text-main); text-decoration: none; font-size: 1.2rem;
-            font-weight: 500; padding: 10px 0; border-bottom: 1px solid var(--border-color);
-        }
-        .mobile-sidebar a:hover { color: var(--accent-primary); }
-
-        .sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
-            z-index: 1999; opacity: 0; visibility: hidden; transition: 0.4s ease;
-        }
-        .sidebar-overlay.active { opacity: 1; visibility: visible; }
-
-        /* Close btn inside sidebar */
-        .close-sidebar {
-            position: absolute; top: 25px; right: 25px; background: transparent;
-            border: none; color: var(--text-main); font-size: 1.8rem; cursor: pointer;
+        .wallet-pill {
+            background: rgba(255, 115, 0, 0.1); border: 1px solid rgba(255, 115, 0, 0.2);
+            color: var(--accent-secondary); padding: 6px 15px; border-radius: 20px;
+            font-size: 0.95rem; font-weight: 700; display: flex; align-items: center; gap: 8px;
         }
 
         /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 80px;
-        }
-        .hero-title { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; font-weight: 300; }
+        .hero { min-height: 90vh; display: flex; align-items: center; position: relative; padding-top: 80px; }
+        .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; font-weight: 300; }
         
         /* Floating visual block */
-        .hero-visual {
-            position: relative; height: 400px;
-            background: radial-gradient(circle, rgba(0,242,254,0.1) 0%, rgba(0,0,0,0) 70%);
-        }
+        .hero-visual { position: relative; height: 400px; background: radial-gradient(circle, rgba(255,115,0,0.1) 0%, rgba(0,0,0,0) 70%); }
         .floating-card {
             background: var(--bg-surface-light); border: 1px solid var(--border-color);
             padding: 20px; border-radius: 16px; position: absolute;
@@ -180,279 +110,283 @@
         }
         .fc-1 { top: 10%; left: 10%; animation: float 6s ease-in-out infinite; border-left: 2px solid var(--accent-primary); }
         .fc-2 { top: 40%; right: 10%; animation: float 8s ease-in-out infinite reverse; border-left: 2px solid var(--accent-secondary); }
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0); } }
         
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-
-        /* Gaming Products */
-        .product-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        .product-card:hover {
-            background: var(--bg-surface-light);
-            border-color: var(--accent-primary);
-            transform: translateY(-5px);
-        }
-        .product-icon {
-            font-size: 3rem; margin-bottom: 20px;
-            color: var(--text-main);
-        }
         .badge-cyber {
-            background: rgba(0, 242, 254, 0.1);
-            color: var(--accent-primary);
-            font-size: 0.75rem; padding: 5px 12px;
-            border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);
-            display: inline-block;
+            background: rgba(255, 115, 0, 0.1); color: var(--accent-primary);
+            font-size: 0.8rem; padding: 6px 15px; border-radius: 20px; border: 1px solid rgba(255, 115, 0, 0.2);
+            display: inline-block; font-weight: 600;
         }
 
-        /* Services Section (Zig Zag) */
-        .service-row { margin-bottom: 60px; }
-        .service-box {
+        /* --- Sections & Horizontal Scroll (App Style) --- */
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
+        .btn-view-all { font-size: 0.9rem; font-weight: 600; color: var(--accent-primary); text-decoration: none; }
+
+        .scroll-horizontal {
+            display: flex; overflow-x: auto; padding-bottom: 25px; gap: 20px; scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .scroll-horizontal::-webkit-scrollbar { display: none; }
+
+        /* Product Cards Dark Mode */
+        .product-card {
             background: var(--bg-surface); border: 1px solid var(--border-color);
-            padding: 40px; border-radius: 16px; display: flex; align-items: center;
-            gap: 20px; transition: 0.3s;
+            border-radius: var(--radius-md); min-width: 170px; max-width: 190px;
+            scroll-snap-align: start; padding: 15px; display: flex; flex-direction: column;
+            cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: inherit; position: relative;
         }
-        .service-box:hover { border-color: var(--text-muted); }
-        .service-icon-lg {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: var(--bg-surface-light); display: flex;
-            align-items: center; justify-content: center; font-size: 2rem;
-            color: var(--accent-primary); flex-shrink: 0;
+        .product-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: 0 10px 25px rgba(255, 115, 0, 0.15); }
+        
+        .product-img-box {
+            background: var(--bg-surface-light); border-radius: var(--radius-sm); height: 120px;
+            display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 15px;
         }
+        
+        .bg-telecom { background: linear-gradient(135deg, #1e293b, #0f172a); color: var(--accent-primary); }
+        .bg-games { background: linear-gradient(135deg, #312e81, #1e1b4b); color: #fbbf24; }
+        .bg-steam { background: linear-gradient(135deg, #171a21, #2a475e); color: white; }
 
-        /* Timeline (How it works) */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 40px; }
-        .timeline::before {
-            content: ''; position: absolute; left: 15px; top: 0;
-            width: 2px; height: 100%; background: var(--border-color);
+        .product-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .price-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+        .product-price { font-weight: 800; color: var(--accent-primary); font-size: 1rem; }
+        
+        .btn-quick-add {
+            background: var(--bg-surface-light); color: var(--text-main); border: 1px solid var(--border-color);
+            width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
+        .product-card:hover .btn-quick-add { background: var(--gradient-orange); color: var(--bg-main); border-color: transparent; }
+
+        /* --- Timeline / Comment ça marche --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding-left: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 15px; top: 0; width: 2px; height: 100%; background: var(--border-color); }
         .timeline-item { position: relative; margin-bottom: 50px; }
         .timeline-item:last-child { margin-bottom: 0; }
         .timeline-dot {
-            position: absolute; left: -46px; top: 0; width: 32px; height: 32px;
-            background: var(--bg-main); border: 2px solid var(--accent-primary);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: var(--accent-primary); font-weight: bold; font-size: 14px;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+            position: absolute; left: -46px; top: 0; width: 32px; height: 32px; background: var(--bg-main);
+            border: 2px solid var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--accent-primary); font-weight: bold; font-size: 14px; box-shadow: 0 0 15px rgba(255, 115, 0, 0.4);
         }
-        .timeline-content {
-            background: var(--bg-surface); padding: 30px; border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
+        .timeline-content { background: var(--bg-surface); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); }
 
-        /* Reseller Section */
+        /* --- Reseller Section --- */
         .reseller-banner {
             background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CiAgPGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz4KPC9zdmc+') var(--bg-surface);
-            border: 1px solid var(--border-color); border-radius: 24px;
-            padding: 80px 40px; position: relative; overflow: hidden;
-            text-align: center;
+            border: 1px solid var(--border-color); border-radius: 24px; padding: 60px 30px; position: relative; overflow: hidden; text-align: center;
         }
         .reseller-banner::before {
-            content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
-            width: 800px; height: 800px; background: radial-gradient(circle, rgba(79,172,254,0.1) 0%, rgba(0,0,0,0) 60%);
-            z-index: 0; pointer-events: none;
+            content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(255,115,0,0.15) 0%, rgba(0,0,0,0) 60%); z-index: 0; pointer-events: none;
         }
         .reseller-content { position: relative; z-index: 1; }
-        .reseller-features { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-        .r-feature { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; color: var(--text-muted); }
+        .r-feature { display: flex; align-items: center; gap: 10px; font-size: 1rem; color: var(--text-muted); margin-bottom: 10px; justify-content: center;}
         .r-feature i { color: var(--accent-primary); }
 
-        /* Footer */
+        /* --- Footer --- */
         footer { border-top: 1px solid var(--border-color); padding: 60px 0 30px; background: var(--bg-main); }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; }
-        .footer-link:hover { color: var(--text-main); padding-left: 5px; }
+        .footer-link:hover { color: var(--accent-primary); padding-left: 5px; }
 
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            .hero { padding-top: 120px; text-align: center; }
+        /* --- Dark Mode Modal --- */
+        .modal-content { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-main); }
+        .modal-header-custom { border-bottom: 1px solid var(--border-color); padding: 20px; }
+        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); }
+        .wallet-alert { background: rgba(255, 115, 0, 0.05); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+        .wallet-alert .amount { font-weight: 800; color: var(--accent-secondary); }
+        .variant-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--border-color); }
+        .variant-item:hover { background: var(--bg-surface-light); }
+        .variant-price { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; margin-top: 5px; }
+
+        /* --- Bottom Navigation (Mobile App Style) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(15px);
+            display: flex; justify-content: space-around; align-items: center;
+            border-top: 1px solid var(--border-color); z-index: 2000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-muted); font-size: 0.75rem; font-weight: 500; transition: color 0.2s; }
+        .nav-item i { font-size: 1.4rem; margin-bottom: 4px; }
+        .nav-item.active { color: var(--accent-primary); }
+
+        /* Responsive Adjustments */
+        @media (min-width: 992px) {
+            .bottom-nav { display: none; } /* Cache la navbar du bas sur PC */
+        }
+        @media (max-width: 991px) {
+            body { padding-bottom: 70px; } /* Espace pour la bottom nav pour ne pas cacher le footer */
+            .desktop-nav { display: none !important; }
             .hero-visual { display: none; }
-            .service-box { flex-direction: column; text-align: center; }
+            .hero-title { font-size: 2.5rem; }
+            .hero { padding-top: 40px; text-align: center; min-height: auto; margin-bottom: 40px;}
         }
     </style>
 </head>
 <body>
 
-    <!-- Overlay for Sidebar -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- Desktop & Trigger Navbar -->
+    <!-- Navbar Fixe Haut -->
     <nav class="navbar fixed-top w-100" id="navbar">
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#">
-                <i class="fa-solid fa-layer-group text-gradient me-2"></i>DigiPass
+                <img class="img-fluid" width="80px" src="logo.png" alt="">
+                <span class="text-white d-none d-md-inline">Playware</span><span class="text-gradient d-none d-md-inline">Dz</span>
             </a>
             
-            <!-- Desktop Nav -->
+            <!-- Desktop Links -->
             <div class="desktop-nav d-flex align-items-center">
-                <a class="nav-link" href="#gaming">Gaming</a>
-                <a class="nav-link" href="#services">Recharges locales</a>
+                <a class="nav-link" href="#">Accueil</a>
+                <a class="nav-link" href="#gaming">Boutique</a>
                 <a class="nav-link" href="#how-it-works">Fonctionnement</a>
-                <a class="nav-link" href="#reseller">Espace PRO</a>
-                <div class="ms-4">
-                    <a href="#" class="btn-solid text-decoration-none">Commencer</a>
-                </div>
+                <a class="nav-link" href="#reseller">Espace Pro</a>
             </div>
 
-            <!-- Mobile Hamburger -->
-            <button class="hamburger-btn" id="openSidebar">
-                <i class="fa-solid fa-bars-staggered"></i>
-            </button>
+            <!-- Wallet (Always Visible) & Profile -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="wallet-pill">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>4 500 DZD</span>
+                </div>
+                <!-- User Profile icon (Desktop) -->
+                <a href="#" class="text-white fs-4 d-none d-lg-block"><i class="fa-regular fa-user-circle"></i></a>
+            </div>
         </div>
     </nav>
 
-    <!-- Mobile Custom Sidebar -->
-    <div class="mobile-sidebar" id="sidebarNav">
-        <button class="close-sidebar" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
-        <a href="#gaming" class="mobile-link">Jeux & Cartes</a>
-        <a href="#services" class="mobile-link">Recharges Mobile/Net</a>
-        <a href="#how-it-works" class="mobile-link">Comment ça marche</a>
-        <a href="#reseller" class="mobile-link">Compte Revendeur</a>
-        <div class="mt-4">
-            <a href="#" class="btn-solid w-100 text-center text-decoration-none d-block">Créer un compte</a>
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="row align-items-center w-100">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="badge-cyber mb-4">⚡ Plateforme N°1 en Algérie</div>
+                <h1 class="hero-title">Vos recharges digitales, <br><span class="text-gradient">livrées à la seconde.</span></h1>
+                <p class="hero-subtitle">Jeux vidéos, abonnements internet, cartes cadeaux et recharges mobiles (Flexy). Payez avec votre solde en un clic.</p>
+                <div class="d-flex gap-3 flex-wrap justify-content-lg-start justify-content-center">
+                    <a href="#gaming" class="btn-solid text-decoration-none"><i class="fa-solid fa-store me-2"></i>Boutique</a>
+                    <a href="#" class="btn-neon text-decoration-none">Recharger mon solde</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
+                <div class="hero-visual">
+                    <div class="floating-card fc-1">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-brands fa-playstation fs-2" style="color: #0070d1;"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Carte PSN 20$</h6>
+                                <small class="text-muted">Acheté à l'instant</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-card fc-2">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-wifi fs-2 text-gradient"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Paiement Idoom</h6>
+                                <small class="text-muted">Facture réglée ✓</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue des Produits (Scroll Horizontal) -->
+    <div class="container mt-4">
+        <!-- Section 1 : Téléphone & Internet -->
+        <div id="telecom" class="section-header" data-aos="fade-up">
+            <h3 class="section-title">Téléphone & Internet</h3>
+        </div>
+        <div class="scroll-horizontal" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fa-solid fa-wifi"></i></div>
+                <div class="product-title">Idoom ADSL / Fibre (Algérie)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 500 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fa-solid fa-sim-card text-danger"></i></div>
+                <div class="product-title">Recharge 4G LTE</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1000 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fa-solid fa-mobile-screen text-success"></i></div>
+                <div class="product-title">Flexy (Mobilis, Djezzy, Ooredoo)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 100 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 : Magasin de Jeux -->
+        <div id="gaming" class="section-header mt-5" data-aos="fade-up">
+            <h3 class="section-title">Recharges Jeux Vidéos</h3>
+            <a href="#" class="btn-view-all">Voir tout</a>
+        </div>
+        <div class="scroll-horizontal" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-games"><i class="fa-solid fa-parachute-box"></i></div>
+                <div class="product-title">PUBG Mobile UC (Global)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 350 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-games" style="color:var(--accent-primary);"><i class="fa-solid fa-fire"></i></div>
+                <div class="product-title">Free Fire Diamonds</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 250 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-games" style="color:#ff4655;"><i class="fa-solid fa-crosshairs"></i></div>
+                <div class="product-title">Valorant Points</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1200 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 : Giftcards -->
+        <div class="section-header mt-5" data-aos="fade-up">
+            <h3 class="section-title">Cartes Cadeaux</h3>
+        </div>
+        <div class="scroll-horizontal" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-steam"><i class="fa-brands fa-steam"></i></div>
+                <div class="product-title">Steam Wallet (Global / EU)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1100 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box" style="background:#003087; color:white;"><i class="fa-brands fa-playstation"></i></div>
+                <div class="product-title">Carte PSN (US/FR)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 2200 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box" style="background:#111; color:white;"><i class="fa-brands fa-apple"></i></div>
+                <div class="product-title">Carte Apple / iTunes</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 600 DZD</span>
+                    <button class="btn-quick-add"><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="badge-cyber mb-4">⚡ Simplicité, Rapidité, Disponibilité</div>
-                    <h1 class="hero-title">Vos services digitaux, <br><span class="text-gradient">livrés à la seconde.</span></h1>
-                    <p class="hero-subtitle">Cartes cadeaux, abonnements internet et recharges mobiles (Flexy). Une plateforme unifiée conçue pour les gamers et les professionnels.</p>
-                    <div class="d-flex gap-3 flex-wrap justify-content-lg-start justify-content-center">
-                        <a href="#" class="btn-solid text-decoration-none">Créer un compte</a>
-                        <a href="#gaming" class="btn-neon text-decoration-none">Explorer le catalogue</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="hero-visual">
-                        <div class="floating-card fc-1">
-                            <div class="d-flex align-items-center gap-3">
-                                <i class="fa-brands fa-playstation fs-2" style="color: #0070d1;"></i>
-                                <div>
-                                    <h6 class="mb-0 fw-bold">PlayStation Store</h6>
-                                    <small class="text-muted">Code Pin généré</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="floating-card fc-2">
-                            <div class="d-flex align-items-center gap-3">
-                                <i class="fa-solid fa-wifi fs-2 text-gradient"></i>
-                                <div>
-                                    <h6 class="mb-0 fw-bold">Recharge Idoom</h6>
-                                    <small class="text-muted">Paiement validé ✓</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gaming Section -->
-    <section id="gaming" class="section-padding" style="background-color: var(--bg-surface-light);">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="fw-bold fs-1">Produits <span class="text-gradient">Gaming</span> Populaires</h2>
-                <p class="text-muted">Achetez vos codes officiels et recevez-les instantanément sur votre écran.</p>
-            </div>
-            
-            <div class="row g-4">
-                <!-- Steam -->
-                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-card">
-                        <i class="fa-brands fa-steam product-icon"></i>
-                        <h5 class="fw-bold">Steam</h5>
-                        <p class="text-muted small">Cartes Global/Euro</p>
-                        <p class="fw-bold mb-3">À partir de 5€</p>
-                        <span class="badge-cyber"><i class="fa-solid fa-bolt me-1"></i>Immédiat</span>
-                    </div>
-                </div>
-                <!-- PSN -->
-                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <i class="fa-brands fa-playstation product-icon"></i>
-                        <h5 class="fw-bold">PlayStation</h5>
-                        <p class="text-muted small">PSN & Abonnements</p>
-                        <p class="fw-bold mb-3">À partir de 10€</p>
-                        <span class="badge-cyber"><i class="fa-solid fa-bolt me-1"></i>Immédiat</span>
-                    </div>
-                </div>
-                <!-- Google Play -->
-                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="product-card">
-                        <i class="fa-brands fa-google-play product-icon"></i>
-                        <h5 class="fw-bold">Google Play</h5>
-                        <p class="text-muted small">Store Android</p>
-                        <p class="fw-bold mb-3">À partir de 5$</p>
-                        <span class="badge-cyber"><i class="fa-solid fa-bolt me-1"></i>Immédiat</span>
-                    </div>
-                </div>
-                <!-- Apple -->
-                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                    <div class="product-card">
-                        <i class="fa-brands fa-apple product-icon"></i>
-                        <h5 class="fw-bold">Apple Gift</h5>
-                        <p class="text-muted small">App Store & iTunes</p>
-                        <p class="fw-bold mb-3">À partir de 5$</p>
-                        <span class="badge-cyber"><i class="fa-solid fa-bolt me-1"></i>Immédiat</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services (Mobile & Internet) -->
-    <section id="services" class="section-padding">
-        <div class="container">
-            <h2 class="fw-bold fs-1 mb-5" data-aos="fade-right">Recharges <span class="text-gradient">Locales</span></h2>
-            
-            <div class="row g-4">
-                <div class="col-lg-6" data-aos="fade-up">
-                    <div class="service-box h-100">
-                        <div class="service-icon-lg"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <div>
-                            <h4 class="fw-bold">Recharge Mobile (Flexy)</h4>
-                            <p class="text-muted mb-0">Rechargez directement n'importe quel numéro mobile local (Tous les opérateurs). Service automatisé et traité en quelques secondes.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-                    <div class="d-flex flex-column gap-4 h-100">
-                        <div class="service-box py-3 px-4" data-aos="fade-up" data-aos-delay="100">
-                            <div class="service-icon-lg" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fa-solid fa-globe"></i></div>
-                            <div>
-                                <h5 class="fw-bold mb-1">Idoom ADSL / Fibre</h5>
-                                <p class="text-muted small mb-0">Paiement de factures internet fixes sans déplacement.</p>
-                            </div>
-                        </div>
-                        <div class="service-box py-3 px-4" data-aos="fade-up" data-aos-delay="200">
-                            <div class="service-icon-lg" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fa-solid fa-sim-card"></i></div>
-                            <div>
-                                <h5 class="fw-bold mb-1">Recharge 4G LTE</h5>
-                                <p class="text-muted small mb-0">Renouvellement instantané de votre modem 4G.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Timeline / Comment ça marche -->
-    <section id="how-it-works" class="section-padding" style="background-color: var(--bg-surface-light);">
+    <section id="how-it-works" class="section-padding" style="background-color: var(--bg-surface-light); margin-top: 50px;">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="fw-bold fs-1">Comment <span class="text-gradient">ça marche ?</span></h2>
@@ -464,21 +398,21 @@
                     <div class="timeline-dot">1</div>
                     <div class="timeline-content">
                         <h4 class="fw-bold mb-2">Créer un compte gratuit</h4>
-                        <p class="text-muted mb-0">Inscrivez-vous en moins de 30 secondes pour accéder au tableau de bord complet.</p>
+                        <p class="text-muted mb-0">Inscrivez-vous en moins de 30 secondes pour accéder à votre tableau de bord et à votre solde.</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="timeline-dot">2</div>
                     <div class="timeline-content">
                         <h4 class="fw-bold mb-2">Alimenter votre solde</h4>
-                        <p class="text-muted mb-0">Déposez des fonds en toute sécurité via nos différents moyens de paiement approuvés.</p>
+                        <p class="text-muted mb-0">Déposez des fonds en toute sécurité via BaridiMob, CCP ou nos autres moyens de paiement approuvés.</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
                     <div class="timeline-dot">3</div>
                     <div class="timeline-content">
-                        <h4 class="fw-bold mb-2">Acheter instantanément</h4>
-                        <p class="text-muted mb-0">Validez votre achat et obtenez vos codes ou votre recharge directement sur la plateforme (24h/24 et 7j/7).</p>
+                        <h4 class="fw-bold mb-2">Acheter en 1 clic</h4>
+                        <p class="text-muted mb-0">Validez votre achat et le montant est déduit de votre solde. Obtenez vos codes instantanément (24h/24 et 7j/7).</p>
                     </div>
                 </div>
             </div>
@@ -490,54 +424,121 @@
         <div class="container">
             <div class="reseller-banner" data-aos="zoom-in" data-aos-duration="800">
                 <div class="reseller-content">
-                    <div class="badge-cyber mb-3 px-3 py-2 fs-6">Espace Professionnel</div>
-                    <h2 class="fw-bold display-5 mb-4">Vous êtes un <span class="text-gradient">Revendeur ?</span></h2>
-                    <p class="text-muted fs-5 mx-auto mb-4" style="max-width: 700px;">
-                        Que vous gériez une boutique de téléphonie (flexy), un cybercafé ou un magasin gaming, notre plateforme devient votre fournisseur principal. Achetez depuis votre compte et revendez à vos clients (hors plateforme) pour maximiser vos bénéfices.
+                    <div class="badge-cyber mb-3 px-3 py-2 fs-6">Espace PRO</div>
+                    <h2 class="fw-bold fs-1 mb-3">Vous êtes un <span class="text-gradient">Revendeur ?</span></h2>
+                    <p class="text-muted mb-4 mx-auto" style="max-width: 600px;">
+                        Cybercafé, boutique de téléphonie ou revendeur en ligne ? Obtenez des tarifs de gros automatiques sur tous nos produits en créant un compte professionnel.
                     </p>
-                    
-                    <a href="#" class="btn-solid btn-lg px-5 mt-2 text-decoration-none">Ouvrir un compte Pro</a>
-
-                    <div class="reseller-features">
-                        <div class="r-feature"><i class="fa-solid fa-check-circle"></i> Tarifs avantageux réduits</div>
-                        <div class="r-feature"><i class="fa-solid fa-check-circle"></i> Historique détaillé</div>
-                        <div class="r-feature"><i class="fa-solid fa-check-circle"></i> Interface de gestion rapide</div>
+                    <div class="d-flex flex-column align-items-center mb-4">
+                        <div class="r-feature"><i class="fa-solid fa-check-circle"></i> Tarifs réduits automatiques</div>
+                        <div class="r-feature"><i class="fa-solid fa-check-circle"></i> Service API disponible</div>
                     </div>
+                    <a href="#" class="btn-solid btn-lg text-decoration-none">Devenir Partenaire</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Maintenu -->
     <footer>
         <div class="container">
             <div class="row g-4 mb-4">
                 <div class="col-lg-4">
                     <a class="navbar-brand d-inline-block mb-3" href="#">
-                        <i class="fa-solid fa-layer-group text-gradient me-2"></i>DigiPass
+                        <span class="text-white">Playware</span><span class="text-gradient">Dz</span>
                     </a>
-                    <p class="text-muted pe-lg-4">La solution la plus fiable pour centraliser vos achats digitaux et vos recharges locales, de manière instantanée et sécurisée.</p>
+                    <p class="text-muted pe-lg-4">La plateforme n°1 en Algérie pour centraliser vos achats digitaux et vos recharges locales, de manière instantanée et sécurisée via votre solde.</p>
                 </div>
                 <div class="col-6 col-lg-3 offset-lg-1">
                     <h5 class="fw-bold mb-4">Navigation</h5>
-                    <a href="#gaming" class="footer-link">Cartes Gaming</a>
-                    <a href="#services" class="footer-link">Recharges Mobiles</a>
-                    <a href="#how-it-works" class="footer-link">Guide d'utilisation</a>
-                    <a href="#reseller" class="footer-link">Devenir Revendeur</a>
+                    <a href="#gaming" class="footer-link">Boutique Gaming</a>
+                    <a href="#telecom" class="footer-link">Recharges Télécom</a>
+                    <a href="#how-it-works" class="footer-link">Comment ça marche</a>
+                    <a href="#reseller" class="footer-link">Espace Revendeur</a>
                 </div>
                 <div class="col-6 col-lg-4">
                     <h5 class="fw-bold mb-4">Contact & Légal</h5>
-                    <a href="#" class="footer-link"><i class="fa-regular fa-envelope me-2"></i> contact@digipass.com</a>
+                    <a href="#" class="footer-link"><i class="fa-regular fa-envelope me-2"></i> contact@playwaredz.com</a>
                     <a href="#" class="footer-link"><i class="fa-solid fa-headset me-2"></i> Support Client 24/7</a>
                     <a href="#" class="footer-link mt-4">Conditions d'utilisation</a>
                     <a href="#" class="footer-link">Politique de confidentialité</a>
                 </div>
             </div>
             <div class="border-top pt-4 text-center" style="border-color: var(--border-color) !important;">
-                <p class="text-muted small mb-0">&copy; 2024 DigiPass. Tous droits réservés.</p>
+                <p class="text-muted small mb-0">&copy; 2024 Playware Dz. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Bottom Navigation (Mobile App Style) -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#gaming" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Boutique</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Historique</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Compte</span>
+        </a>
+    </nav>
+
+    <!-- Modal "Achat via Solde" Dark Mode -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom d-flex justify-content-between align-items-center">
+                    <h5 class="modal-title fw-bold mb-0">Choisir une option</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <!-- Indicateur de solde dans la modale -->
+                <div class="wallet-alert">
+                    <span><i class="fa-solid fa-wallet text-muted me-1"></i> Solde disponible :</span>
+                    <span class="amount">4 500 DZD</span>
+                </div>
+
+                <div class="modal-body p-0">
+                    <div class="variant-item">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Recharge 5$</h6>
+                            <div class="variant-price">1 100 DZD</div>
+                        </div>
+                        <button class="btn-solid py-1 px-3" style="font-size: 0.85rem;">Acheter</button>
+                    </div>
+                    <div class="variant-item">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Recharge 10$ <span class="badge bg-danger ms-1" style="font-size: 0.65rem;">Populaire</span></h6>
+                            <div class="variant-price">2 150 DZD</div>
+                        </div>
+                        <button class="btn-solid py-1 px-3" style="font-size: 0.85rem;">Acheter</button>
+                    </div>
+                    <div class="variant-item">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Recharge 20$</h6>
+                            <div class="variant-price">4 250 DZD</div>
+                        </div>
+                        <button class="btn-solid py-1 px-3" style="font-size: 0.85rem;">Acheter</button>
+                    </div>
+                    <div class="variant-item" style="opacity: 0.5;">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Recharge 50$</h6>
+                            <div class="variant-price">10 500 DZD</div>
+                            <small class="text-danger">Solde insuffisant</small>
+                        </div>
+                        <button class="btn-neon py-1 px-3" style="font-size: 0.85rem;">Recharger</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -547,44 +548,18 @@
     
     <script>
         // Init AOS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic'
-        });
+        AOS.init({ once: true, offset: 30, duration: 800, easing: 'ease-out-cubic' });
 
-        // Navbar Scroll Effect
+        // Navbar Blur Effect on Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if(window.scrollY > 50) {
-                nav.classList.add('scrolled');
+            if(window.scrollY > 20) {
+                nav.style.background = 'rgba(5, 5, 5, 0.95)';
+                nav.style.boxShadow = '0 5px 20px rgba(0,0,0,0.5)';
             } else {
-                nav.classList.remove('scrolled');
+                nav.style.background = 'rgba(5, 5, 5, 0.9)';
+                nav.style.boxShadow = 'none';
             }
-        });
-
-        // Custom Sidebar Logic
-        const openBtn = document.getElementById('openSidebar');
-        const closeBtn = document.getElementById('closeSidebar');
-        const sidebar = document.getElementById('sidebarNav');
-        const overlay = document.getElementById('sidebarOverlay');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            // Prevent body scroll when open
-            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : 'auto';
-        }
-
-        openBtn.addEventListener('click', toggleSidebar);
-        closeBtn.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-        
-        // Close sidebar when clicking a link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', toggleSidebar);
         });
     </script>
 </body>
