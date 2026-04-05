@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Playware Dz - Plateforme Numérique</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Couleurs (Inspirées du logo) --- */
+        :root {
+            --color-blue-light: #00d2ff;
+            --color-blue-dark: #0052d4;
+            --gradient-blue: linear-gradient(135deg, var(--color-blue-light), var(--color-blue-dark));
+            
+            --color-orange-light: #ffb75e;
+            --color-orange-dark: #ff7300;
+            --gradient-orange: linear-gradient(135deg, var(--color-orange-light), var(--color-orange-dark));
+            
+            --bg-app: #f4f7fa;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 35px rgba(0, 82, 212, 0.15);
+        }
+
+        /* --- Base --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #app-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 80px; 
+            padding-bottom: 90px;
+            overflow-x: hidden;
+        }
+
+        /* --- Header & Wallet --- */
+        .app-header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 4%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        }
+
+        .brand-logo {
+            font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; text-decoration: none;
+        }
+        .brand-logo .playware { color: var(--text-main); }
+        .brand-logo .dz { color: var(--color-orange-dark); }
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+
+        /* Wallet Pill Design */
+        .wallet-pill {
+            background: rgba(0, 82, 212, 0.08);
+            border: 1px solid rgba(0, 82, 212, 0.1);
+            color: var(--color-blue-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .wallet-pill:hover { transform: scale(1.05); color: var(--color-blue-dark); }
+        .wallet-pill i { color: var(--color-orange-dark); font-size: 1rem; }
+
+        .profile-btn {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: var(--bg-app);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        /* --- Slider (Carousel) --- */
+        .hero-section { padding: 10px 20px; position: relative; }
+        .hero-card {
+            border-radius: var(--radius-lg);
+            padding: 30px 25px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            min-height: 180px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        /* Slider backgrounds */
+        .slide-bg-1 { background: var(--gradient-blue); }
+        .slide-bg-2 { background: var(--gradient-orange); }
+        .slide-bg-3 { background: linear-gradient(135deg, #0f172a, #1e293b); }
+        
+        .hero-card::after {
+            font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; right: -20px; bottom: -30px; font-size: 140px;
+            opacity: 0.1; transform: rotate(-15deg);
+        }
+        .slide-bg-1::after { content: '\f11b'; } /* Gamepad */
+        .slide-bg-2::after { content: '\f555'; } /* Wallet/Money */
+        .slide-bg-3::after { content: '\f21b'; } /* Mobile */
+
+        /* Custom Carousel Dots */
+        .carousel-indicators { margin-bottom: -15px; }
+        .carousel-indicators [data-bs-target] {
+            width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-blue-light); opacity: 0.4; margin: 0 4px;
+        }
+        .carousel-indicators .active { opacity: 1; background-color: var(--color-blue-dark); width: 16px; border-radius: 10px; }
+
+        /* --- Sections & Horizontal Scroll --- */
+        .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin: 35px 20px 15px; }
+        .section-title { font-size: 1.15rem; font-weight: 800; margin: 0; }
+        .btn-view-all { font-size: 0.8rem; font-weight: 600; color: var(--color-blue-dark); text-decoration: none; }
+
+        .scroll-horizontal {
+            display: flex; overflow-x: auto; padding: 5px 20px 25px 20px; gap: 15px; scroll-snap-type: x mandatory;
+        }
+        .scroll-horizontal::-webkit-scrollbar { display: none; }
+
+        /* --- Product Cards --- */
+        .product-card {
+            background: var(--bg-card); border-radius: var(--radius-md);
+            min-width: 150px; max-width: 170px; scroll-snap-align: start;
+            box-shadow: var(--shadow-soft); padding: 12px;
+            display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit;
+        }
+        .product-img-box {
+            background: var(--bg-app); border-radius: var(--radius-sm); height: 110px;
+            display: flex; align-items: center; justify-content: center; font-size: 2.8rem; margin-bottom: 12px;
+        }
+        
+        .bg-telecom { background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: var(--color-blue-dark); }
+        .bg-media { background: linear-gradient(135deg, #0f172a, #334155); color: #e11d48; }
+        .bg-games { background: linear-gradient(135deg, #1e1b4b, #4338ca); color: #fbbf24; }
+        .bg-steam { background: linear-gradient(135deg, #171a21, #2a475e); color: white; }
+        .bg-psn { background: linear-gradient(135deg, #003087, #0070d1); color: white; }
+        .bg-apple { background: linear-gradient(135deg, #f1f5f9, #cbd5e1); color: #000; }
+
+        .product-title { font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .price-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+        .product-price { font-weight: 800; color: var(--color-blue-dark); font-size: 0.9rem; }
+        
+        .btn-quick-add {
+            background: var(--bg-app); color: var(--color-blue-dark); border: none;
+            width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+        }
+
+        /* --- Reseller Banner --- */
+        .reseller-banner {
+            margin: 20px 20px 40px; background: var(--gradient-orange); border-radius: var(--radius-lg);
+            padding: 25px; color: white; display: flex; align-items: center; justify-content: space-between;
+            position: relative; overflow: hidden;
+        }
+        .reseller-banner::before { content: ''; position: absolute; top: -50%; right: -20%; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .reseller-content { position: relative; z-index: 1; max-width: 75%; }
+        .reseller-content h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
+        .reseller-content p { font-size: 0.8rem; margin-bottom: 12px; opacity: 0.9; }
+        .btn-reseller { background: white; color: var(--color-orange-dark); border: none; padding: 6px 18px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; }
+        .reseller-icon { font-size: 4rem; opacity: 0.2; position: absolute; right: 20px; bottom: -10px; }
+
+        /* --- Wallet Modal Styles --- */
+        .modal-content { border-radius: var(--radius-lg); border: none; }
+        .modal-header-custom { background: var(--bg-card); border-bottom: 1px solid #f1f5f9; padding: 20px 20px 15px; }
+        .modal-title-custom { font-weight: 800; font-size: 1.1rem; }
+        
+        .wallet-alert {
+            background: rgba(0, 82, 212, 0.05); padding: 12px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #e2e8f0; font-size: 0.85rem;
+        }
+        .wallet-alert .amount { font-weight: 800; color: var(--color-blue-dark); font-size: 1rem;}
+
+        .variant-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #f1f5f9; }
+        .variant-name { font-weight: 700; font-size: 0.9rem; }
+        .variant-price { font-size: 0.85rem; color: var(--color-orange-dark); font-weight: 700;}
+        .btn-buy {
+            background: var(--gradient-blue); color: white; border: none; border-radius: 20px;
+            padding: 8px 18px; font-size: 0.85rem; font-weight: 600;
+        }
+
+        /* --- Bottom Navigation --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 70px;
+            background: var(--bg-card); display: flex; justify-content: space-around; align-items: center;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05); border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-muted); font-size: 0.75rem; font-weight: 600; }
+        .nav-item i { font-size: 1.3rem; margin-bottom: 4px; }
+        .nav-item.active { color: var(--color-blue-dark); }
+        .nav-item.active i { background: var(--gradient-blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        @media (min-width: 768px) {
+            .bottom-nav { display: none; }
+            #app-wrapper { padding-bottom: 30px; }
+            .scroll-horizontal { flex-wrap: wrap; overflow-x: visible; }
+        }
+
+        /* --- Footer --- */
+        .app-footer {
+            background: var(--bg-card);
+            margin-top: 40px;
+            padding: 40px 20px 20px;
+            border-top-left-radius: var(--radius-lg);
+            border-top-right-radius: var(--radius-lg);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .footer-brand .playware { font-weight: 800; }
+        .footer-brand .dz { color: var(--color-orange-dark); font-weight: 800; }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            max-width: 280px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-links h6 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-blue-dark);
+        }
+
+        .footer-social h6 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            width: 35px;
+            height: 35px;
+            background: var(--bg-app);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            transition: 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Desktop */
+        @media (min-width: 768px) {
+            .footer-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                gap: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="app-header">
+        <a href="#" class="brand-logo">
+            <img class="img-fluid" width="100px" src="logo.png" alt="">
+            <span class="playware d-none d-md-block">Playware</span><span class="dz d-none d-md-block">Dz</span>
+        </a>
+        
+        <div class="header-actions">
+            <!-- Wallet Display (Topup Balance) -->
+            <a href="#" class="wallet-pill">
+                <i class="fas fa-wallet"></i>
+                <span>4 500 DZD</span>
+            </a>
+            <!-- User Profile / Menu -->
+            <a href="#" class="profile-btn">
+                <i class="fas fa-user-circle"></i>
+            </a>
+        </div>
+    </header>
+
+    <div id="app-wrapper">
+        
+        <!-- Hero Slider (Carousel) -->
+        <div id="topSlider" class="carousel slide hero-section" data-bs-ride="carousel" data-bs-interval="4000">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#topSlider" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#topSlider" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#topSlider" data-bs-slide-to="2"></button>
+            </div>
+            
+            <!-- Slides -->
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="hero-card slide-bg-1" data-bs-toggle="modal" data-bs-target="#productModal">
+                        <span class="badge bg-light text-dark mb-2" style="border-radius: 20px; padding: 5px 10px; width: fit-content;">🔥 Tendance</span>
+                        <h2 class="h4 fw-bold mb-1">Free Fire Diamonds</h2>
+                        <p class="text-white-50 mb-3" style="font-size:0.85rem;">Recharge via ID - Rapide & Sécurisé</p>
+                        <button class="btn btn-light fw-bold px-4" style="color: var(--color-blue-dark); border-radius: 20px; width: fit-content; font-size:0.85rem;">Acheter</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="hero-card slide-bg-2">
+                        <span class="badge bg-white text-danger mb-2" style="border-radius: 20px; padding: 5px 10px; width: fit-content;"><i class="fas fa-info-circle"></i> Info</span>
+                        <h2 class="h4 fw-bold mb-1">Rechargez votre Solde</h2>
+                        <p class="text-white-50 mb-3" style="font-size:0.85rem;">Achetez plus vite via BaridiMob ou CCP</p>
+                        <button class="btn btn-light fw-bold px-4" style="color: var(--color-orange-dark); border-radius: 20px; width: fit-content; font-size:0.85rem;">Recharger</button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item">
+                    <div class="hero-card slide-bg-3" data-bs-toggle="modal" data-bs-target="#productModal">
+                        <span class="badge bg-primary text-white mb-2" style="border-radius: 20px; padding: 5px 10px; width: fit-content;">Nouveau</span>
+                        <h2 class="h4 fw-bold mb-1">Flexy / Idoom ADSL</h2>
+                        <p class="text-white-50 mb-3" style="font-size:0.85rem;">Payez vos factures sans vous déplacer</p>
+                        <button class="btn btn-primary fw-bold px-4" style="border-radius: 20px; width: fit-content; font-size:0.85rem;">Payer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. Catégorie : Téléphone & Internet -->
+        <div class="section-header">
+            <h3 class="section-title">Téléphone & Internet</h3>
+        </div>
+        <div class="scroll-horizontal">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fas fa-wifi text-primary"></i></div>
+                <div class="product-title">Idoom ADSL / Fibre (Algérie)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 500 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fas fa-sim-card text-danger"></i></div>
+                <div class="product-title">Recharge 4G LTE</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1000 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-telecom"><i class="fas fa-mobile-alt text-success"></i></div>
+                <div class="product-title">Flexy (Mobilis, Djezzy...)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 100 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espace Revendeur (Banner Pro) -->
+        <div class="reseller-banner">
+            <div class="reseller-content">
+                <h3>Espace Revendeur</h3>
+                <p>Comptes VIP : Achetez en gros et profitez de réductions automatiques.</p>
+                <button class="btn-reseller">Devenir Partenaire</button>
+            </div>
+            <i class="fas fa-handshake reseller-icon"></i>
+        </div>
+
+        <!-- 2. Catégorie : Magasin de Jeux -->
+        <div class="section-header">
+            <h3 class="section-title">Magasin de Jeux</h3>
+            <a href="#" class="btn-view-all">Voir tout</a>
+        </div>
+        <div class="scroll-horizontal">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-games"><i class="fas fa-parachute-box"></i></div>
+                <div class="product-title">PUBG Mobile UC</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 350 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-games" style="color:#ff8c00;"><i class="fas fa-fire"></i></div>
+                <div class="product-title">Free Fire Diamonds</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 250 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Catégorie : Giftcards -->
+        <div class="section-header">
+            <h3 class="section-title">Cartes Cadeaux</h3>
+        </div>
+        <div class="scroll-horizontal">
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box bg-steam"><i class="fab fa-steam"></i></div>
+                <div class="product-title">Steam Wallet (Global)</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1100 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="product-card" data-bs-toggle="modal" data-bs-target="#productModal">
+                <div class="product-img-box" style="background:#222; color:#ff9900;"><i class="fab fa-amazon"></i></div>
+                <div class="product-title">Amazon Gift Card</div>
+                <div class="price-row">
+                    <span class="product-price">Dès 1150 DZD</span>
+                    <button class="btn-quick-add"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ... Les autres catégories restent identiques ... -->
+
+    </div> <!-- End Wrapper -->
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i><span>Accueil</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-th-large"></i><span>Catégories</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-history"></i><span>Historique</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i><span>Paramètres</span>
+        </a>
+    </nav>
+
+    <!-- Modal "Achat via Solde" -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title modal-title-custom">Sélectionnez un montant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <!-- Indicateur de solde dans la modale -->
+                <div class="wallet-alert">
+                    <span><i class="fas fa-wallet text-muted me-1"></i> Votre solde actuel :</span>
+                    <span class="amount">4 500 DZD</span>
+                </div>
+
+                <div class="modal-body p-0">
+                    <div class="variant-item">
+                        <div>
+                            <div class="variant-name">Carte 5$</div>
+                            <div class="variant-price">1 100 DZD</div>
+                        </div>
+                        <!-- Bouton "Acheter" au lieu de "Ajouter au panier" -->
+                        <button class="btn btn-buy">Acheter</button>
+                    </div>
+                    <div class="variant-item">
+                        <div>
+                            <div class="variant-name">Carte 10$</div>
+                            <div class="variant-price">2 150 DZD <span class="badge bg-danger ms-1">Populaire</span></div>
+                        </div>
+                        <button class="btn btn-buy">Acheter</button>
+                    </div>
+                    <div class="variant-item">
+                        <div>
+                            <div class="variant-name">Carte 20$</div>
+                            <div class="variant-price">4 250 DZD</div>
+                        </div>
+                        <button class="btn btn-buy">Acheter</button>
+                    </div>
+                    <div class="variant-item" style="opacity: 0.6;">
+                        <div>
+                            <div class="variant-name">Carte 50$</div>
+                            <div class="variant-price">10 500 DZD</div>
+                            <div class="text-danger" style="font-size:0.7rem; margin-top:2px;">Solde insuffisant</div>
+                        </div>
+                        <!-- Bouton de recharge si le solde ne suffit pas -->
+                        <button class="btn btn-buy" style="background: var(--text-muted);">Recharger</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            
+            <!-- Brand -->
+            <div class="footer-brand">
+                <!-- <span class="playware">Playware</span><span class="dz">Dz</span> -->
+                <img class="img-fluid" width="100px" src="logo.png" alt="">
+
+                <p>Votre plateforme digitale pour recharges, jeux et services en ligne.</p>
+            </div>
+
+            <!-- Links -->
+            <div class="footer-links">
+                <div>
+                    <h6>Navigation</h6>
+                    <a href="#">Accueil</a>
+                    <a href="#">Catégories</a>
+                    <a href="#">Historique</a>
+                    <a href="#">Paramètres</a>
+                </div>
+                <div>
+                    <h6>Support</h6>
+                    <a href="#">Aide</a>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+
+            <!-- Social -->
+            <div class="footer-social">
+                <h6>Suivez-nous</h6>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 PlaywareDz. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
