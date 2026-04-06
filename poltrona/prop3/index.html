@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLTRONA CASA | Mobilier Contemporain de Luxe</title>
+
+    <!-- Google Fonts: Cinzel (Serif) & Jost (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS (Grille uniquement, sans les composants UI par défaut pour le menu) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================
+           Variables & Design System
+        ============================ */
+        :root {
+            --color-bg: #050505; /* Noir profond */
+            --color-surface: #0f0f0f; /* Gris très sombre */
+            --color-border: rgba(255, 255, 255, 0.08);
+            --color-gold: #D4AF37;
+            --color-text: #F0F0F0;
+            --color-muted: #888888;
+            --font-display: 'Cinzel', serif;
+            --font-sans: 'Jost', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-text {
+            font-family: var(--font-display);
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--color-muted);
+            font-size: 1.05rem;
+        }
+
+        .text-gold { color: var(--color-gold) !important; }
+
+        /* ============================
+           Navigation & Side Drawer (Mobile)
+        ============================ */
+        .custom-navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 25px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+        .custom-navbar.scrolled {
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+        
+        /* Desktop Menu */
+        .desktop-menu {
+            list-style: none;
+            margin: 0; padding: 0;
+            display: flex;
+            gap: 40px;
+        }
+        .desktop-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .desktop-menu a:hover { color: var(--color-gold); }
+
+        /* Custom Hamburger Icon */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 35px;
+            height: 12px;
+            cursor: pointer;
+            z-index: 1050;
+        }
+        .menu-toggle span {
+            display: block;
+            height: 1px;
+            width: 100%;
+            background-color: var(--color-gold);
+            transition: all 0.3s ease;
+        }
+        
+        /* Sidebar (Drawer) */
+        .side-drawer {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 400px; max-width: 100vw;
+            height: 100vh;
+            background-color: #0a0a0a;
+            border-left: 1px solid var(--color-border);
+            z-index: 1040;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .side-drawer.active {
+            right: 0;
+        }
+        .drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1030;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .side-drawer ul {
+            list-style: none;
+            padding: 0; margin: 0;
+        }
+        .side-drawer ul li {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.4s ease;
+        }
+        .side-drawer.active ul li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .side-drawer.active ul li:nth-child(1) { transition-delay: 0.3s; }
+        .side-drawer.active ul li:nth-child(2) { transition-delay: 0.4s; }
+        .side-drawer.active ul li:nth-child(3) { transition-delay: 0.5s; }
+        .side-drawer.active ul li:nth-child(4) { transition-delay: 0.6s; }
+        .side-drawer.active ul li:nth-child(5) { transition-delay: 0.7s; }
+
+        .side-drawer a {
+            font-family: var(--font-display);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 2rem;
+            transition: color 0.3s;
+        }
+        .side-drawer a:hover { color: var(--color-gold); }
+        .close-drawer {
+            position: absolute;
+            top: 30px; right: 30px;
+            background: none; border: none;
+            color: var(--color-text);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* ============================
+           Boutons
+        ============================ */
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.4s;
+        }
+        .btn-outline:hover {
+            background: var(--color-gold);
+            color: var(--color-bg);
+        }
+
+        /* ============================
+           Hero Section
+        ============================ */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 110%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.5;
+        }
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(5,5,5,0.2) 0%, rgba(5,5,5,1) 100%);
+            z-index: -1;
+        }
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--color-muted);
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            overflow: hidden;
+        }
+        .scroll-down::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 50%;
+            background: var(--color-gold);
+            animation: scrollLine 2s infinite;
+        }
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(200%); }
+        }
+
+        /* ============================
+           Sections Communes
+        ============================ */
+        section { padding: 120px 0; }
+        .section-header {
+            margin-bottom: 80px;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--color-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .section-label::after {
+            content: '';
+            width: 50px; height: 1px;
+            background: var(--color-gold);
+        }
+        .section-title {
+            font-size: 3rem;
+            color: var(--color-text);
+        }
+
+        /* ============================
+           À Propos
+        ============================ */
+        .about-img-wrapper {
+            position: relative;
+            padding: 30px 0 0 30px;
+        }
+        .about-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 80%; height: 80%;
+            border: 1px solid var(--color-gold);
+            z-index: -1;
+        }
+        .about-img-wrapper img {
+            width: 100%;
+            height: auto;
+            filter: grayscale(30%);
+            transition: filter 0.5s;
+        }
+        .about-img-wrapper:hover img { filter: grayscale(0%); }
+
+        /* ============================
+           Catalogue (E-Commerce - DA)
+        ============================ */
+        .product-card {
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            transition: all 0.4s;
+            background: var(--color-surface);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-10px);
+        }
+        .product-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            font-weight: 500;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+        .add-cart-line {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-text);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .add-cart-line::before {
+            content: '';
+            width: 20px; height: 1px;
+            background: var(--color-text);
+            transition: width 0.3s, background 0.3s;
+        }
+        .product-card:hover .add-cart-line { color: var(--color-gold); }
+        .product-card:hover .add-cart-line::before {
+            width: 40px;
+            background: var(--color-gold);
+        }
+
+        /* ============================
+           Showroom & Map
+        ============================ */
+        .showroom-section { border-top: 1px solid var(--color-border); }
+        .map-wrapper {
+            height: 500px;
+            width: 100%;
+            border: 1px solid var(--color-border);
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            /* Filtre sombre/doré élégant */
+            filter: grayscale(100%) invert(90%) contrast(120%) sepia(30%) hue-rotate(10deg);
+        }
+
+        /* ============================
+           Footer
+        ============================ */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 80px 0 40px;
+            background: var(--color-bg);
+        }
+        .footer-form input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--color-border);
+            padding: 10px 0;
+            color: var(--color-text);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .footer-form input:focus { outline: none; border-color: var(--color-gold); }
+        
+        /* Reponsive */
+        @media (max-width: 991px) {
+            .hero-title { font-size: 3.5rem; letter-spacing: 5px; }
+            section { padding: 80px 0; }
+            .side-drawer { width: 300px; padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navbar (Custom) -->
+    <header class="custom-navbar" id="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#hero" class="nav-brand">POLTRONA CASA</a>
+            
+            <!-- Desktop Menu -->
+            <ul class="desktop-menu d-none d-lg-flex">
+                <li><a href="#apropos">La Maison</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#catalogue">Catalogue</a></li>
+                <li><a href="#showroom">Showroom</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle (Hamburger) -->
+            <div class="menu-toggle d-lg-none" id="menuToggle">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay & Side Drawer (Mobile) -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <nav class="side-drawer" id="sideDrawer">
+        <button class="close-drawer" id="closeDrawer">&times;</button>
+        <ul>
+            <li><a href="#apropos" class="drawer-link">La Maison</a></li>
+            <li><a href="#collections" class="drawer-link">Collections</a></li>
+            <li><a href="#catalogue" class="drawer-link">Catalogue</a></li>
+            <li><a href="#showroom" class="drawer-link">Showroom</a></li>
+            <li><a href="#contact" class="drawer-link">Contact</a></li>
+        </ul>
+        <div class="mt-5 pt-4 border-top border-secondary">
+            <p class="small text-muted mb-1">Nous appeler :</p>
+            <p class="text-gold">+213 550 00 00 00</p>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80" alt="Interior Architecture" class="hero-bg">
+        <div class="hero-gradient"></div>
+        
+        <div class="container hero-content">
+            <h1 class="hero-title gsap-hero text-gold">L'ESSENCE<br>DU DESIGN</h1>
+            <p class="hero-subtitle gsap-hero mt-3">Mobilier sur mesure — Conçu pour l'éternité</p>
+            <div class="mt-5 gsap-hero">
+                <a href="#catalogue" class="btn-outline">Voir le catalogue</a>
+            </div>
+        </div>
+        
+        <div class="scroll-down"></div>
+    </section>
+
+    <!-- À Propos -->
+    <section id="apropos">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0 gsap-fade-up">
+                    <div class="section-header">
+                        <span class="section-label">Philosophie</span>
+                        <h2 class="section-title">L'artisanat redéfini.</h2>
+                    </div>
+                    <p>Poltrona Casa est née d'une vision minimaliste : épurer les formes pour révéler l'essence même des matériaux. Nos créations fusionnent les lignes architecturales contemporaines avec un savoir-faire artisanal traditionnel.</p>
+                    <p class="mb-4">Chaque pièce est assemblée à la main, utilisant des matériaux nobles sélectionnés pour leur caractère et leur durabilité.</p>
+                    <a href="#collections" class="add-cart-line">Explorer nos univers</a>
+                </div>
+                <div class="col-lg-6 offset-lg-1 gsap-fade-left">
+                    <div class="about-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Détail mobilier">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Produits (Prix en DA) -->
+    <section id="catalogue" class="bg-surface">
+        <div class="container">
+            <div class="section-header d-flex flex-column flex-md-row justify-content-between align-items-md-end gsap-fade-up">
+                <div>
+                    <span class="section-label">Sélection Exclusives</span>
+                    <h2 class="section-title mb-0">Notre Catalogue</h2>
+                </div>
+                <a href="#" class="btn-outline mt-4 mt-md-0 d-none d-md-inline-block">Tout voir</a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Produit 1 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=600&q=80" alt="Canapé Milano" class="product-img">
+                        <h3 class="product-name">Canapé Milano</h3>
+                        <p class="small">Velours côtelé noir, design asymétrique. Confort absolu pour salons modernes.</p>
+                        <!-- Prix en Dinars Algériens -->
+                        <div class="product-price">420 000 DA</div>
+                        <a href="#" class="add-cart-line">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=600&q=80" alt="Fauteuil Roma" class="product-img">
+                        <h3 class="product-name">Fauteuil Roma</h3>
+                        <p class="small">Cuir pleine fleur et structure tubulaire en laiton massif vieilli.</p>
+                        <!-- Prix en Dinars Algériens -->
+                        <div class="product-price">185 000 DA</div>
+                        <a href="#" class="add-cart-line">Commander</a>
+                    </div>
+                </div>
+
+                <!-- Produit 3 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=600&q=80" alt="Table Venezia" class="product-img">
+                        <h3 class="product-name">Table Venezia</h3>
+                        <p class="small">Plateau en marbre de Carrare, piétement minimaliste en acier noir mat.</p>
+                        <!-- Prix en Dinars Algériens -->
+                        <div class="product-price">560 000 DA</div>
+                        <a href="#" class="add-cart-line">Commander</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 d-md-none">
+                <a href="#" class="btn-outline">Tout voir</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showroom & Google Maps -->
+    <section id="showroom" class="showroom-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Info Showroom à gauche -->
+                <div class="col-lg-5 mb-5 mb-lg-0 gsap-fade-right">
+                    <div class="section-header">
+                        <span class="section-label">Flagship Store</span>
+                        <h2 class="section-title text-gold">Notre Galerie</h2>
+                    </div>
+                    <p class="mb-5">Un espace pensé comme une galerie d'art, où la lumière sculpte nos créations. Venez expérimenter le confort et la qualité de nos matériaux en personne.</p>
+                    
+                    <div class="mb-4">
+                        <h5 class="text-white fs-5">Adresse</h5>
+                        <p class="m-0">Quartier des affaires, Bab Ezzouar<br>16000 Alger, Algérie</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="text-white fs-5">Horaires</h5>
+                        <p class="m-0">Dimanche au Jeudi : 10h00 - 18h00<br>Samedi : Sur rendez-vous uniquement</p>
+                    </div>
+                </div>
+                
+                <!-- Google Maps à droite -->
+                <div class="col-lg-7 gsap-fade-left">
+                    <div class="map-wrapper">
+                        <!-- Exemple de carte centrée sur Bab Ezzouar, Alger -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25585.908233481615!2d3.1678252277413626!3d36.717641215442875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e51e5e01c905b%3A0xc3f5d52033c467a5!2sBab%20Ezzouar%2C%20Alg%C3%A9rie!5e0!3m2!1sfr!2sfr!4v1698330000000!5m2!1sfr!2sfr" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container border-bottom border-secondary pb-5 mb-4">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="brand-text text-gold mb-4">POLTRONA CASA</h3>
+                    <p class="small w-75">Mobilier haut de gamme alliant minimalisme contemporain et matériaux précieux. Conçu pour inspirer vos espaces.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="brand-text text-white fs-5 mb-4">Contact direct</h5>
+                    <p class="small mb-1">T: +213 550 00 00 00</p>
+                    <p class="small mb-4">E: contact@poltronacasa.dz</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white text-decoration-none"><i class="fa-brands fa-instagram fs-5"></i></a>
+                        <a href="#" class="text-white text-decoration-none"><i class="fa-brands fa-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="brand-text text-white fs-5 mb-4">Newsletter</h5>
+                    <form class="footer-form">
+                        <input type="email" placeholder="Votre adresse email..." required>
+                        <button type="submit" class="add-cart-line bg-transparent border-0 p-0 cursor-pointer">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+            <p class="small text-muted m-0">&copy; <span id="year"></span> POLTRONA CASA. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set Year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ==========================================
+            // Custom Mobile Side-Drawer Logic (No Bootstrap JS required for nav)
+            // ==========================================
+            const menuToggle = document.getElementById('menuToggle');
+            const sideDrawer = document.getElementById('sideDrawer');
+            const closeDrawer = document.getElementById('closeDrawer');
+            const drawerOverlay = document.getElementById('drawerOverlay');
+            const drawerLinks = document.querySelectorAll('.drawer-link');
+
+            function openMenu() {
+                sideDrawer.classList.add('active');
+                drawerOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+
+            function closeMenu() {
+                sideDrawer.classList.remove('active');
+                drawerOverlay.classList.remove('active');
+                document.body.style.overflow = ''; 
+            }
+
+            menuToggle.addEventListener('click', openMenu);
+            closeDrawer.addEventListener('click', closeMenu);
+            drawerOverlay.addEventListener('click', closeMenu);
+            
+            // Close menu when clicking a link inside it
+            drawerLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // ==========================================
+            // Navbar Solid on Scroll
+            // ==========================================
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ==========================================
+            // GSAP Animations
+            // ==========================================
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Load Anim
+            gsap.from(".gsap-hero", {
+                y: 40,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power3.out",
+                delay: 0.2
+            });
+
+            // Parallax Hero Background
+            gsap.to('.hero-bg', {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Generic Fade Ups
+            gsap.utils.toArray('.gsap-fade-up').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: { trigger: elem, start: "top 80%" },
+                    y: 40, opacity: 0, duration: 1, ease: "power2.out"
+                });
+            });
+
+            // Fade Left / Right
+            gsap.from('.gsap-fade-left', {
+                scrollTrigger: { trigger: '.gsap-fade-left', start: "top 80%" },
+                x: 40, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            gsap.from('.gsap-fade-right', {
+                scrollTrigger: { trigger: '.gsap-fade-right', start: "top 80%" },
+                x: -40, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            // Product Cards Stagger
+            gsap.from('.gsap-product', {
+                scrollTrigger: { trigger: '#catalogue', start: "top 75%" },
+                y: 40, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>

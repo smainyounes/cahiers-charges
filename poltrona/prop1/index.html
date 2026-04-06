@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLTRONA CASA | L’excellence du mobilier sur mesure</title>
+
+    <!-- Google Fonts: Playfair Display (Serif) & Montserrat (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================
+           Variables & Base Styles
+        ============================ */
+        :root {
+            --gold: #C5A059;
+            --gold-hover: #D4AF37;
+            --black: #080808;
+            --dark-gray: #151515;
+            --light-text: #F8F9FA;
+            --muted-text: #ADB5BD;
+            --bs-secondary-color: var(--muted-text);
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--light-text);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: var(--font-serif);
+            font-weight: 500;
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--muted-text);
+        }
+
+        .text-gold { color: var(--gold) !important; }
+        .bg-dark-gray { background-color: var(--dark-gray) !important; }
+
+        /* ============================
+           Preloader
+        ============================ */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .loader-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; text-shadow: 0 0 15px rgba(197, 160, 89, 0.5); }
+        }
+
+        /* ============================
+           Navbar
+        ============================ */
+        .navbar {
+            transition: all 0.4s ease;
+            padding: 1.5rem 0;
+            background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .navbar-brand {
+            font-family: var(--font-serif);
+            letter-spacing: 3px;
+            color: var(--gold) !important;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: var(--light-text) !important;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 10px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold) !important;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            background: var(--gold);
+            bottom: -5px; left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ============================
+           Buttons
+        ============================ */
+        .btn-gold {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 12px 30px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--gold);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        .btn-gold:hover {
+            color: var(--black);
+        }
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline-light-custom {
+            background: transparent;
+            color: var(--light-text);
+            border: 1px solid var(--muted-text);
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border-radius: 0;
+        }
+        .btn-outline-light-custom:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ============================
+           Hero Section
+        ============================ */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 130%; /* Extra height for parallax */
+            object-fit: cover;
+            z-index: -2;
+            transform-origin: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(8,8,8,1) 100%);
+            z-index: -1;
+        }
+        .hero-title {
+            font-size: 4rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light-text);
+            animation: bounce 2s infinite;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-15px) translateX(-50%); }
+            60% { transform: translateY(-7px) translateX(-50%); }
+        }
+
+        /* ============================
+           Sections Base
+        ============================ */
+        section {
+            padding: 120px 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+        .section-subtitle {
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* ============================
+           Collections Grid
+        ============================ */
+        .collection-card {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
+        .collection-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .collection-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.4s ease;
+        }
+        .collection-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+        .collection-card:hover img {
+            transform: scale(1.1);
+        }
+        .collection-card:hover .collection-overlay {
+            background: rgba(0,0,0,0.7);
+        }
+        .collection-card:hover .collection-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================
+           Catalogue (E-commerce Ready)
+        ============================ */
+        .product-card {
+            background: var(--dark-gray);
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .product-img-wrap {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 25px;
+        }
+        .product-price {
+            color: var(--gold);
+            font-weight: 500;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* ============================
+           Showroom Parallax
+        ============================ */
+        #showroom {
+            position: relative;
+            padding: 150px 0;
+            overflow: hidden;
+        }
+        .showroom-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 150%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        .showroom-box {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid #333;
+            padding: 50px;
+        }
+
+        /* ============================
+           Features & Contact
+        ============================ */
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .form-control {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            border-radius: 0;
+            color: #fff;
+            padding: 15px 0;
+        }
+        .form-control:focus {
+            background: transparent;
+            color: #fff;
+            box-shadow: none;
+            border-color: var(--gold);
+        }
+        .form-control::placeholder {
+            color: var(--muted-text);
+        }
+
+        /* ============================
+           Footer
+        ============================ */
+        footer {
+            background: var(--dark-gray);
+            padding: 60px 0 30px;
+            border-top: 1px solid #222;
+        }
+        .social-links a {
+            color: var(--light-text);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Responsive typography */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">POLTRONA CASA</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">POLTRONA CASA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars text-gold fs-3"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À Propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#collections">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#catalogue">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#showroom">Showroom</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80" alt="Luxury Living Room" class="hero-img">
+        <div class="hero-overlay"></div>
+        <div class="container text-center z-1">
+            <h1 class="hero-title text-gold gsap-hero">POLTRONA CASA</h1>
+            <p class="lead mt-3 mb-5 text-light gsap-hero" style="font-size: 1.2rem; letter-spacing: 2px;">L’excellence du mobilier sur mesure</p>
+            <a href="#collections" class="btn btn-gold gsap-hero">Découvrir la collection</a>
+        </div>
+        <a href="#apropos" class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- À Propos Section -->
+    <section id="apropos" class="bg-dark-gray">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 gsap-fade-right">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Artisan Furniture" class="img-fluid w-100 shadow-lg">
+                        <div class="position-absolute border border-gold" style="top: -20px; left: -20px; right: 20px; bottom: 20px; z-index: -1;"></div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 gsap-fade-left">
+                    <span class="section-subtitle">Notre Histoire</span>
+                    <h2 class="section-title">L'artisanat italien à l'état pur</h2>
+                    <p class="mt-4">Depuis sa création, Poltrona Casa incarne le summum de l'élégance et du raffinement. Inspirés par le design italien classique et contemporain, nous concevons des pièces uniques qui subliment votre intérieur.</p>
+                    <p>Chaque meuble est pensé avec passion et fabriqué à la main par nos maîtres artisans, garantissant une qualité premium et une attention absolue aux détails.</p>
+                    <div class="mt-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-check text-gold me-3"></i> Fabrication artisanale
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-check text-gold me-3"></i> Qualité premium garantie
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-check text-gold me-3"></i> Design élégant et sur mesure
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Collections -->
+    <section id="collections">
+        <div class="container">
+            <div class="text-center mb-5 gsap-fade-up">
+                <span class="section-subtitle">Nos Univers</span>
+                <h2 class="section-title">Découvrez nos Collections</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 gsap-stagger">
+                    <div class="collection-card">
+                        <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=800&q=80" alt="Salons">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Salons</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 gsap-stagger">
+                    <div class="collection-card">
+                        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80" alt="Chambres">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Chambres</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 gsap-stagger">
+                    <div class="collection-card">
+                        <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=800&q=80" alt="Tables">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Tables</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 gsap-stagger">
+                    <div class="collection-card">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Décoration">
+                        <div class="collection-overlay">
+                            <h3 class="collection-title">Décoration</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Produits (E-commerce Structure) -->
+    <section id="catalogue" class="bg-dark-gray">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 gsap-fade-up">
+                <div>
+                    <span class="section-subtitle">Pièces Maîtresses</span>
+                    <h2 class="section-title mb-0">Catalogue Produits</h2>
+                </div>
+                <div class="d-none d-md-block">
+                    <a href="#" class="btn btn-outline-light-custom">Voir tout le catalogue</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Produit 1 -->
+                <div class="col-lg-4 col-md-6 mb-4 gsap-card">
+                    <div class="product-card h-100 d-flex flex-column" data-product-id="1">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=600&q=80" alt="Canapé Milano">
+                        </div>
+                        <div class="product-info flex-grow-1 d-flex flex-column">
+                            <h4 class="brand-font">Canapé Milano</h4>
+                            <p class="small mb-3">Velours côtelé italien, design épuré et confort absolu.</p>
+                            <div class="mt-auto">
+                                <!-- Structure pour futur e-commerce -->
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-light-custom w-50">Voir détails</button>
+                                    <button class="btn btn-gold w-50" disabled title="Bientôt disponible en ligne">Commander</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="col-lg-4 col-md-6 mb-4 gsap-card">
+                    <div class="product-card h-100 d-flex flex-column" data-product-id="2">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=600&q=80" alt="Fauteuil Roma">
+                        </div>
+                        <div class="product-info flex-grow-1 d-flex flex-column">
+                            <h4 class="brand-font">Fauteuil Roma</h4>
+                            <p class="small mb-3">Cuir pleine fleur et structure en noyer massif.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-light-custom w-50">Voir détails</button>
+                                    <button class="btn btn-gold w-50" disabled title="Bientôt disponible en ligne">Commander</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 3 -->
+                <div class="col-lg-4 col-md-6 mb-4 gsap-card">
+                    <div class="product-card h-100 d-flex flex-column" data-product-id="3">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=600&q=80" alt="Table Venezia">
+                        </div>
+                        <div class="product-info flex-grow-1 d-flex flex-column">
+                            <h4 class="brand-font">Table Venezia</h4>
+                            <p class="small mb-3">Marbre blanc de Carrare et pieds en laiton brossé.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-light-custom w-50">Voir détails</button>
+                                    <button class="btn btn-gold w-50" disabled title="Bientôt disponible en ligne">Commander</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-block d-md-none text-center mt-4 gsap-fade-up">
+                <a href="#" class="btn btn-outline-light-custom">Voir tout le catalogue</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi Choisir POLTRONA CASA -->
+    <section id="features">
+        <div class="container text-center">
+            <h2 class="section-title mb-5 gsap-fade-up">L'Expérience Poltrona Casa</h2>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 gsap-feature">
+                    <i class="fa-solid fa-hammer feature-icon"></i>
+                    <h5 class="brand-font text-light">Fabrication<br>Artisanale</h5>
+                    <p class="small mt-2">Savoir-faire traditionnel</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 gsap-feature">
+                    <i class="fa-solid fa-gem feature-icon"></i>
+                    <h5 class="brand-font text-light">Matériaux<br>Haut de Gamme</h5>
+                    <p class="small mt-2">Sélection rigoureuse</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 gsap-feature">
+                    <i class="fa-solid fa-pen-ruler feature-icon"></i>
+                    <h5 class="brand-font text-light">Design<br>Sur Mesure</h5>
+                    <p class="small mt-2">Adapté à vos espaces</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 gsap-feature">
+                    <i class="fa-solid fa-truck-fast feature-icon"></i>
+                    <h5 class="brand-font text-light">Livraison<br>Disponible</h5>
+                    <p class="small mt-2">Gant blanc & installation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showroom Parallax -->
+    <section id="showroom">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=80" alt="Showroom" class="showroom-bg">
+        <div class="hero-overlay" style="background: rgba(0,0,0,0.4)"></div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-5 col-md-7">
+                    <div class="showroom-box gsap-fade-up">
+                        <span class="section-subtitle">Venez nous rendre visite</span>
+                        <h2 class="section-title">Notre Showroom</h2>
+                        <p>Plongez dans l'univers Poltrona Casa et découvrez l'excellence de nos créations en personne. Nos conseillers en design sont à votre disposition pour donner vie à vos projets.</p>
+                        
+                        <div class="mt-4">
+                            <h5 class="brand-font text-gold">Adresse</h5>
+                            <!-- an algerian address -->
+                             
+                            <p class="mb-3">45 Alger<br>75008 Bab ezouar, Alger</p>
+                            
+                            <h5 class="brand-font text-gold">Horaires</h5>
+                            <p class="mb-0">Samedi - Jeudi : 10h00 - 19h00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-dark-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-5 mb-lg-0 gsap-fade-right">
+                    <span class="section-subtitle">Contact</span>
+                    <h2 class="section-title">Parlons de votre projet</h2>
+                    <p class="mb-5">Besoin d'un conseil en décoration, d'un devis sur mesure ou d'informations sur nos produits ? Notre équipe est à votre écoute.</p>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-4 text-gold fs-3"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h6 class="brand-font mb-1">Téléphone</h6>
+                            <p class="mb-0 text-light">+213 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="me-4 text-gold fs-3"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h6 class="brand-font mb-1">Email</h6>
+                            <p class="mb-0 text-light">contact@poltronacasa.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 offset-lg-1 gsap-fade-left">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <input type="text" class="form-control" placeholder="Nom complet" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <input type="email" class="form-control" placeholder="Adresse Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Sujet (ex: Demande de devis)">
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="Votre message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gold w-100">Envoyer la demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+                    <h3 class="brand-font text-gold m-0 fs-4 tracking-wider">POLTRONA CASA</h3>
+                </div>
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <div class="social-links d-flex justify-content-center">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="small m-0 text-muted">&copy; <span id="year"></span> POLTRONA CASA. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            // Set dynamic year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Preloader animation
+            window.addEventListener('load', () => {
+                const preloader = document.getElementById('preloader');
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 1,
+                    onComplete: () => {
+                        preloader.style.display = 'none';
+                        // Trigger Hero animations after load
+                        gsap.from('.gsap-hero', {
+                            y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+                        });
+                    }
+                });
+            });
+
+            // Navbar transparent to solid on scroll
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Active Navbar Highlight via Scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // GSAP ScrollTrigger Setup
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Parallax Hero Background
+            gsap.to('.hero-img', {
+                yPercent: 30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Parallax Showroom Background
+            gsap.to('.showroom-bg', {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#showroom",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Standard Fade Up Elements
+            gsap.utils.toArray('.gsap-fade-up').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: { trigger: elem, start: "top 85%" },
+                    y: 50, opacity: 0, duration: 1, ease: "power2.out"
+                });
+            });
+
+            // Directional Fades for 'A propos' and 'Contact'
+            gsap.from('.gsap-fade-right', {
+                scrollTrigger: { trigger: '.gsap-fade-right', start: "top 80%" },
+                x: -50, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            gsap.from('.gsap-fade-left', {
+                scrollTrigger: { trigger: '.gsap-fade-left', start: "top 80%" },
+                x: 50, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            // Stagger Animations for Collections
+            gsap.from('.gsap-stagger', {
+                scrollTrigger: { trigger: '#collections', start: "top 70%" },
+                y: 50, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out"
+            });
+
+            // Stagger Animations for Catalogue Cards
+            gsap.from('.gsap-card', {
+                scrollTrigger: { trigger: '#catalogue', start: "top 70%" },
+                y: 50, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power2.out"
+            });
+
+            // Stagger Animations for Features
+            gsap.from('.gsap-feature', {
+                scrollTrigger: { trigger: '#features', start: "top 80%" },
+                y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)"
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLTRONA CASA | Éditorial</title>
+
+    <!-- Google Fonts: Cormorant Garamond (Ultra-chic Serif) & Montserrat (Minimalist Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS (Uniquement pour la grille) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           1. CORE DESIGN SYSTEM
+        ========================================== */
+        :root {
+            --bg-color: #F4F2ED; /* Beige/Off-white très élégant */
+            --text-color: #121212; /* Noir presque pur */
+            --gold: #B89768; /* Or subtil, pas trop jaune */
+            --dark-section: #11100F;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        /* Hide scrollbar for aesthetics */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        html, body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, .editorial-text {
+            font-family: var(--font-serif);
+            font-weight: 300;
+            line-height: 1.1;
+        }
+
+        p { font-weight: 300; line-height: 1.6; font-size: 1rem; }
+
+        /* ==========================================
+           2. ENHANCEMENTS (Noise, Cursor, Progress)
+        ========================================== */
+        /* Texture grain argentique */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border: 1px solid var(--text-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .custom-cursor.hover {
+            width: 60px; height: 60px;
+            background-color: rgba(255,255,255,1);
+            border-color: transparent;
+            mix-blend-mode: difference;
+        }
+        @media (max-width: 768px) { .custom-cursor { display: none; } body { cursor: auto; } }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background-color: transparent;
+            z-index: 1000;
+        }
+        .scroll-progress-bar {
+            height: 100%; width: 0%;
+            background-color: var(--gold);
+        }
+
+        /* Header Minimaliste */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 30px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 900;
+            mix-blend-mode: difference;
+            color: #fff;
+        }
+        .brand-logo { font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: 4px; text-transform: uppercase; }
+        .nav-link-custom { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* ==========================================
+           3. SECTIONS
+        ========================================== */
+        
+        /* Intro Cinematic */
+        #hero {
+            height: 100vh;
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-img-wrap {
+            position: absolute; inset: 0; z-index: -1;
+            clip-path: inset(10% 10% 10% 10%); /* Cadre éditorial */
+            transition: clip-path 2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .hero-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.1); /* Pour animation GSAP */
+        }
+        .hero-text-container { text-align: center; color: #fff; mix-blend-mode: difference; }
+        .hero-title { font-size: clamp(4rem, 10vw, 9rem); letter-spacing: -2px; margin: 0; }
+        .hero-subtitle { font-size: 1rem; letter-spacing: 6px; text-transform: uppercase; margin-top: 20px; font-weight: 300; }
+
+        /* Storytelling Pinned Section */
+        #story { height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+        .story-content { width: 100%; z-index: 2; position: relative; }
+        .story-text-wrap { font-size: clamp(2rem, 5vw, 4rem); font-family: var(--font-serif); line-height: 1.2; }
+        .story-line { overflow: hidden; display: block; }
+        .story-word { display: inline-block; transform: translateY(100%); opacity: 0; }
+        
+        .story-bg-images { position: absolute; right: 10%; top: 50%; transform: translateY(-50%); width: 40vw; height: 70vh; z-index: 1; }
+        .story-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+
+        /* Horizontal Scroll Collections */
+        #horizontal-wrapper { height: 100vh; overflow: hidden; position: relative; background: var(--bg-color); }
+        .horizontal-scroll { display: flex; width: 400vw; height: 100%; } /* 4 panels = 400vw */
+        .panel { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 10vw; }
+        .panel-img-wrap { width: 60%; height: 70%; position: relative; overflow: hidden; }
+        .panel-img { width: 100%; height: 100%; object-fit: cover; }
+        .panel-title { position: absolute; bottom: 5%; left: -10%; font-size: 8vw; font-family: var(--font-serif); color: var(--text-color); z-index: 2; mix-blend-mode: exclusion; color: white;}
+        .panel-num { position: absolute; top: 10%; left: 0; font-family: var(--font-sans); font-size: 1rem; letter-spacing: 4px; color: var(--gold); }
+
+        /* Featured Pieces (Asymétrique) */
+        #gallery { padding: 15vh 0; }
+        .gallery-title { font-size: 5rem; margin-bottom: 10vh; text-align: center; }
+        .product-item { margin-bottom: 15vh; position: relative; }
+        .product-item img { width: 100%; height: auto; transition: transform 0.8s ease; }
+        .product-info { margin-top: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; }
+        .product-name { font-family: var(--font-serif); font-size: 1.8rem; margin: 0; }
+        .product-hover-line { position: absolute; bottom: 0; left: 0; width: 0%; height: 1px; background: var(--gold); transition: width 0.4s ease; }
+        .product-item:hover img { transform: scale(1.03); }
+        .product-item:hover .product-hover-line { width: 100%; }
+
+        /* Craftsmanship (Split) */
+        #craft { padding: 15vh 0; }
+        .craft-text { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 30px; }
+        .craft-img-wrap { width: 100%; height: 80vh; overflow: hidden; clip-path: inset(100% 0 0 0); } /* Reveals upward */
+        .craft-img-wrap img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); }
+
+        /* Showroom (Dark Break) */
+        #showroom { background-color: var(--dark-section); color: var(--bg-color); position: relative; overflow: hidden; padding: 20vh 0; }
+        .showroom-bg { position: absolute; top: -20%; left: 0; width: 100%; height: 140%; object-fit: cover; opacity: 0.3; z-index: 1; }
+        .showroom-content { position: relative; z-index: 2; text-align: center; }
+        .showroom-title { font-size: 6rem; color: var(--gold); margin-bottom: 40px; }
+        .showroom-details { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-sans); }
+
+        /* Teaser & Contact */
+        #teaser { padding: 20vh 0 10vh; text-align: center; }
+        .teaser-text { font-size: 3rem; margin-bottom: 40px; }
+        .btn-editorial { display: inline-block; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--text-color); text-decoration: none; border-bottom: 1px solid var(--text-color); padding-bottom: 5px; transition: color 0.3s, border-color 0.3s; }
+        .btn-editorial:hover { color: var(--gold); border-color: var(--gold); }
+
+        #contact { padding: 5vh 0 15vh; text-align: center; }
+        .contact-info { font-family: var(--font-serif); font-size: 2.5rem; margin: 10px 0; color: var(--text-color); text-decoration: none; display: inline-block; position: relative; }
+        .contact-info::after { content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0; background-color: var(--gold); transition: width 0.4s ease; }
+        .contact-info:hover::after { width: 100%; }
+
+        /* Footer */
+        footer { padding: 5vh 5vw; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .footer-logo { font-family: var(--font-serif); font-size: 1.2rem; letter-spacing: 2px; }
+        .footer-text { font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: #666; }
+
+        @media (max-width: 992px) {
+            .horizontal-scroll { width: 100vw; flex-direction: column; height: auto; }
+            .panel { width: 100vw; height: auto; padding: 10vh 5vw; }
+            .panel-img-wrap { width: 100%; height: 50vh; }
+            .panel-title { font-size: 12vw; left: 5%; bottom: -5%; }
+            #horizontal-wrapper { height: auto; overflow: visible; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Grain / Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Header Minimal -->
+    <header>
+        <div class="brand-logo hover-target">POLTRONA CASA</div>
+        <div class="nav-link-custom hover-target">Menu</div>
+    </header>
+
+    <!-- 1. Hero Cinematic -->
+    <section id="hero">
+        <div class="hero-img-wrap" id="heroMask">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80" alt="Intérieur Minimaliste" class="hero-img" id="heroImg">
+        </div>
+        <div class="hero-text-container">
+            <h1 class="hero-title" id="heroTitle">POLTRONA CASA</h1>
+            <p class="hero-subtitle" id="heroSubtitle">L'art du mobilier contemporain</p>
+        </div>
+    </section>
+
+    <!-- 2. Storytelling (Pinned Section) -->
+    <section id="story">
+        <div class="container story-content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="story-text-wrap">
+                        <span class="story-line"><span class="story-word">Chaque</span></span>
+                        <span class="story-line"><span class="story-word">pièce</span></span>
+                        <span class="story-line"><span class="story-word text-gold">raconte</span></span>
+                        <span class="story-line"><span class="story-word">une</span></span>
+                        <span class="story-line"><span class="story-word">histoire.</span></span>
+                    </div>
+                    <p class="mt-5 w-75 opacity-0" id="storySubtext">Une ode à la matière, façonnée par le temps et sublimée par la main de l'homme. Nous ne créons pas de simples meubles, nous sculptons votre espace de vie.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Images superposées pour le crossfade -->
+        <div class="story-bg-images">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" class="story-img img-1" alt="Détail 1">
+            <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=800&q=80" class="story-img img-2" alt="Détail 2">
+        </div>
+    </section>
+
+    <!-- 3. Horizontal Scroll Collections (Desktop only, stacks on mobile via CSS) -->
+    <section id="horizontal-wrapper" class="d-none d-lg-block">
+        <div class="horizontal-scroll">
+            <!-- Salon -->
+            <div class="panel">
+                <div class="panel-num">01 — SALON</div>
+                <div class="panel-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=1200&q=80" alt="Salon" class="panel-img">
+                    <h2 class="panel-title">Salons</h2>
+                </div>
+            </div>
+            <!-- Chambre -->
+            <div class="panel">
+                <div class="panel-num">02 — CHAMBRE</div>
+                <div class="panel-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Chambre" class="panel-img">
+                    <h2 class="panel-title">Chambres</h2>
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="panel">
+                <div class="panel-num">03 — DINER</div>
+                <div class="panel-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=1200&q=80" alt="Diner" class="panel-img">
+                    <h2 class="panel-title">Tables</h2>
+                </div>
+            </div>
+            <!-- Deco -->
+            <div class="panel">
+                <div class="panel-num">04 — OBJET</div>
+                <div class="panel-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" alt="Décoration" class="panel-img">
+                    <h2 class="panel-title">Objets</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Featured Pieces (Galerie Asymétrique) -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="gallery-title gsap-fade-up">Œuvres Remarquables</h2>
+            <div class="row">
+                <!-- Image 1 poussée vers le bas -->
+                <div class="col-md-5 mt-md-5 pt-md-5">
+                    <div class="product-item hover-target gsap-img-reveal">
+                        <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80" alt="Fauteuil Roma">
+                        <div class="product-info">
+                            <h3 class="product-name">Fauteuil Roma</h3>
+                            <span class="text-muted">Découvrir</span>
+                        </div>
+                        <div class="product-hover-line"></div>
+                    </div>
+                </div>
+                <!-- Image 2 plus haute -->
+                <div class="col-md-6 offset-md-1 mb-md-5 pb-md-5">
+                    <div class="product-item hover-target gsap-img-reveal">
+                        <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=800&q=80" alt="Table Venezia">
+                        <div class="product-info">
+                            <h3 class="product-name">Table Venezia</h3>
+                            <span class="text-muted">Découvrir</span>
+                        </div>
+                        <div class="product-hover-line"></div>
+                    </div>
+                </div>
+                <!-- Image 3 large -->
+                <div class="col-md-8 offset-md-2 mt-5">
+                    <div class="product-item hover-target gsap-img-reveal">
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b46a011?auto=format&fit=crop&w=1200&q=80" alt="Canapé Milano">
+                        <div class="product-info">
+                            <h3 class="product-name">Canapé Milano</h3>
+                            <span class="text-muted">Découvrir</span>
+                        </div>
+                        <div class="product-hover-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Craftsmanship (Split Screen Reveal) -->
+    <section id="craft">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-5 mb-md-0 pe-md-5">
+                    <h2 class="craft-text" id="craftText">Fabriqué avec précision.<br><span class="text-gold">Pensé pour durer.</span></h2>
+                    <p class="gsap-fade-up">Le secret de Poltrona Casa réside dans l'alliance intemporelle du geste artisanal et de la rigueur architecturale. Aucun compromis sur la matière.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="craft-img-wrap" id="craftMask">
+                        <img src="https://images.unsplash.com/photo-1622372736546-6e26278c4304?auto=format&fit=crop&w=800&q=80" alt="Artisanat" id="craftImg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Showroom Experience (Dark Parallax) -->
+    <section id="showroom">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=80" alt="Showroom" class="showroom-bg" id="showroomBg">
+        <div class="container showroom-content">
+            <h2 class="showroom-title gsap-fade-up">La Galerie</h2>
+            <div class="showroom-details gsap-fade-up">
+                <p class="mb-1">45 Avenue Montaigne, Paris</p>
+                <p>Sur rendez-vous uniquement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 & 8. Future Ordering Tease & Contact -->
+    <section id="teaser">
+        <div class="container">
+            <h2 class="teaser-text editorial-text gsap-fade-up">Bientôt disponible en ligne.</h2>
+            <a href="#" class="btn-editorial hover-target gsap-fade-up">Explorer le catalogue complet</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <p class="text-muted text-uppercase letter-spacing-2 mb-2 gsap-fade-up" style="font-size: 0.8rem;">Conciergerie Privée</p>
+            <div class="d-flex flex-column align-items-center">
+                <a href="mailto:contact@poltronacasa.com" class="contact-info hover-target gsap-fade-up">contact@poltronacasa.com</a>
+                <a href="tel:+33100000000" class="contact-info hover-target gsap-fade-up" style="font-size: 1.5rem; font-family: var(--font-sans); font-weight: 300;">+33 1 00 00 00 00</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer>
+        <div class="footer-logo">POLTRONA CASA</div>
+        <div class="footer-text">&copy; <span id="year"></span> — L'excellence sur mesure.</div>
+        <div class="footer-text hover-target">Instagram / Pinterest</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ==========================================
+            // Custom Cursor Logic
+            // ==========================================
+            const cursor = document.getElementById('cursor');
+            const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            hoverTargets.forEach(target => {
+                target.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                target.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+
+            // ==========================================
+            // GSAP & ScrollTrigger Setup
+            // ==========================================
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 0. Scroll Progress Bar
+            gsap.to("#progressBar", {
+                width: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.3
+                }
+            });
+
+            // 1. Hero Cinematic Anim
+            // Intro load
+            gsap.from("#heroTitle", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 0.2 });
+            gsap.from("#heroSubtitle", { opacity: 0, duration: 2, delay: 0.8 });
+            // Fullscreen mask opening on load
+            gsap.to("#heroMask", { clipPath: "inset(0% 0% 0% 0%)", duration: 2, ease: "power3.inOut" });
+            
+            // Scroll Parallax for Hero
+            gsap.to("#heroImg", {
+                scale: 1.2,
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
+            });
+            gsap.to(".hero-text-container", {
+                y: -150, opacity: 0,
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
+            });
+
+            // 2. Storytelling (Pinned Scroll)
+            const storyTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#story",
+                    start: "top top",
+                    end: "+=200%", // Pins for 200% of viewport height
+                    pin: true,
+                    scrub: 1
+                }
+            });
+
+            // Animate words appearing line by line
+            storyTl.to(".story-word", {
+                y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power2.out"
+            })
+            // Fade in subtext
+            .to("#storySubtext", { opacity: 1, duration: 1 }, "-=0.5")
+            // Fade in first image
+            .to(".img-1", { opacity: 1, duration: 1 }, "-=1.5")
+            // Crossfade to second image
+            .to(".img-1", { opacity: 0, duration: 1 }, "+=0.5")
+            .to(".img-2", { opacity: 1, duration: 1 }, "-=1");
+
+            // 3. Horizontal Scroll (Only on desktop)
+            if (window.innerWidth > 992) {
+                const horizontalScroll = document.querySelector('.horizontal-scroll');
+                
+                // Calculate distance to move left
+                function getScrollAmount() {
+                    let horizontalWidth = horizontalScroll.scrollWidth;
+                    return -(horizontalWidth - window.innerWidth);
+                }
+
+                gsap.to(horizontalScroll, {
+                    x: getScrollAmount,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#horizontal-wrapper",
+                        start: "top top",
+                        end: () => `+=${getScrollAmount() * -1}`,
+                        pin: true,
+                        scrub: 1,
+                        invalidateOnRefresh: true
+                    }
+                });
+            }
+
+            // 4. Featured Gallery Reveal
+            gsap.utils.toArray('.gsap-img-reveal').forEach(item => {
+                gsap.from(item, {
+                    y: 100, opacity: 0, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: item, start: "top 85%" }
+                });
+            });
+
+            // Generic Text Fade Ups
+            gsap.utils.toArray('.gsap-fade-up').forEach(text => {
+                gsap.from(text, {
+                    y: 30, opacity: 0, duration: 1, ease: "power2.out",
+                    scrollTrigger: { trigger: text, start: "top 90%" }
+                });
+            });
+
+            // 5. Craftsmanship Mask Reveal
+            gsap.to("#craftMask", {
+                clipPath: "inset(0% 0 0 0)",
+                ease: "power3.inOut",
+                scrollTrigger: { trigger: "#craft", start: "top 70%", end: "center center", scrub: 1 }
+            });
+            gsap.to("#craftImg", {
+                scale: 1, // scales down to normal as it reveals
+                ease: "power3.inOut",
+                scrollTrigger: { trigger: "#craft", start: "top 70%", end: "center center", scrub: 1 }
+            });
+
+            // 6. Showroom Dark Parallax
+            gsap.to("#showroomBg", {
+                yPercent: 30,
+                ease: "none",
+                scrollTrigger: { trigger: "#showroom", start: "top bottom", end: "bottom top", scrub: true }
+            });
+
+        });
+    </script>
+</body>
+</html>

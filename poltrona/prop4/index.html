@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLTRONA CASA | L'Art de Vivre Méditerranéen</title>
+
+    <!-- Google Fonts: Playfair Display (Classique/Luxe) & Montserrat (Moderne/Épuré) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS (Grille) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================
+           Design System: Luxe Méditerranéen
+        ============================ */
+        :root {
+            --bg-sand: #F7F5F0; /* Sable / Écru très doux */
+            --bg-white: #FFFFFF;
+            --text-dark: #2A2A28; /* Noir olive chaud */
+            --text-muted: #7A7873;
+            --accent-terracotta: #B96B52; /* Terre cuite élégante */
+            --accent-gold: #C5A059;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-sand);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, .font-serif {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        p {
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .text-terracotta { color: var(--accent-terracotta) !important; }
+        .bg-white { background-color: var(--bg-white) !important; }
+
+        /* ============================
+           Navbar
+        ============================ */
+        .navbar {
+            padding: 20px 0;
+            transition: all 0.4s ease;
+            background: transparent;
+            z-index: 1000;
+        }
+        .navbar.scrolled {
+            background: rgba(247, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--text-dark) !important;
+            text-transform: uppercase;
+        }
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 15px;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0%; height: 1px;
+            background: var(--accent-terracotta);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ============================
+           Boutons
+        ============================ */
+        .btn-terracotta {
+            background-color: var(--accent-terracotta);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 0; /* Angles droits pour un look design */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-terracotta:hover {
+            background-color: #9A5640;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(185, 107, 82, 0.2);
+        }
+        
+        .btn-outline-dark {
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+            padding: 12px 25px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 0;
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .btn-outline-dark:hover {
+            background: var(--text-dark);
+            color: var(--bg-sand);
+        }
+
+        /* ============================
+           Hero Section
+        ============================ */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        .hero-img {
+            position: absolute;
+            top: 0; right: 0;
+            width: 60%; height: 100%;
+            object-fit: cover;
+            border-radius: 500px 0 0 500px; /* Grande arche asymétrique */
+            z-index: -1;
+        }
+        .hero-content {
+            z-index: 2;
+            padding-right: 50px;
+        }
+        .hero-title {
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-terracotta);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* ============================
+           Sections Communes
+        ============================ */
+        section { padding: 120px 0; }
+        .section-title { font-size: 3rem; margin-bottom: 1.5rem; }
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-terracotta);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        /* ============================
+           À Propos (Arche Design)
+        ============================ */
+        .arch-img-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            aspect-ratio: 2/3;
+            overflow: hidden;
+            border-radius: 250px 250px 0 0; /* Forme d'arche */
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+        .arch-img-wrap img {
+            width: 100%; height: 120%; /* Plus grand pour le parallax */
+            object-fit: cover;
+        }
+        .arch-decoration {
+            position: absolute;
+            bottom: -20px; left: -20px;
+            width: 200px; height: 200px;
+            border: 2px solid var(--accent-terracotta);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* ============================
+           Catalogue (Prix en DA)
+        ============================ */
+        .product-card {
+            background: var(--bg-white);
+            padding: 20px;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .product-img-wrap {
+            width: 100%; height: 350px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .product-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+        
+        .product-name { font-size: 1.4rem; margin-bottom: 10px; }
+        .product-price {
+            font-family: var(--font-sans);
+            font-size: 1.3rem;
+            color: var(--accent-terracotta);
+            font-weight: 600;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        /* ============================
+           Showroom & Map
+        ============================ */
+        .showroom-box {
+            background: var(--bg-white);
+            padding: 60px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+            margin-right: -50px; /* Chevauchement sur la carte */
+            border-top: 5px solid var(--accent-terracotta);
+        }
+        .map-container {
+            width: 100%; height: 600px;
+        }
+        .map-container iframe {
+            width: 100%; height: 100%;
+            /* Filtre chaleureux pour la carte */
+            filter: grayscale(80%) sepia(20%) hue-rotate(340deg) contrast(110%);
+        }
+
+        /* ============================
+           Footer
+        ============================ */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--bg-sand);
+            padding: 80px 0 30px;
+        }
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--bg-sand);
+            margin-bottom: 20px;
+        }
+        .footer-text { color: #A09E98; }
+        .footer-links a {
+            color: #A09E98;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--accent-terracotta); }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-img { width: 100%; border-radius: 0; opacity: 0.2; }
+            .hero-content { padding-right: 0; text-align: center; }
+            .showroom-box { margin-right: 0; margin-bottom: -30px; padding: 30px; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">POLTRONA CASA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars" style="color: var(--text-dark); font-size: 1.5rem;"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#heritage">Héritage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#catalogue">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#showroom">Showroom</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="tel:+213550000000" class="btn-terracotta px-4 py-2" style="font-size: 0.7rem;"><i class="fa-solid fa-phone me-2"></i> +213 550 00 00 00</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-xl-6 hero-content">
+                    <span class="hero-subtitle gsap-hero">Poltrona Casa Alger</span>
+                    <h1 class="hero-title gsap-hero">L'Art de Vivre<br>Méditerranéen.</h1>
+                    <p class="mb-5 gsap-hero" style="font-size: 1.1rem; max-width: 500px;">Découvrez une collection exclusive de mobilier sur mesure, où l'élégance du design italien rencontre l'art de recevoir algérien.</p>
+                    <div class="gsap-hero">
+                        <a href="#catalogue" class="btn-terracotta">Découvrir la collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Image avec masque arrondi -->
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80" alt="Villa Moderne" class="hero-img" id="heroImg">
+    </section>
+
+    <!-- À Propos / Héritage -->
+    <section id="heritage" class="bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0 position-relative gsap-fade-right">
+                    <div class="arch-decoration"></div>
+                    <div class="arch-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Savoir-faire" id="archImg">
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1 gsap-fade-left">
+                    <span class="section-subtitle">Notre Philosophie</span>
+                    <h2 class="section-title">Entre tradition et modernité absolue.</h2>
+                    <p class="mt-4">Installée au cœur d'Alger, la maison Poltrona Casa redéfinit les codes du luxe d'intérieur. Nous sélectionnons les matériaux les plus nobles — marbres italiens, bois massifs, cuirs pleine fleur — pour concevoir des pièces intemporelles.</p>
+                    <p>Chaque meuble est une œuvre d'art, pensée pour s'intégrer parfaitement dans les espaces de vie contemporains de nos clients les plus exigeants, tout en respectant une qualité de fabrication irréprochable.</p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-sm-6 mb-3">
+                            <h4 class="font-serif fs-5"><i class="fa-solid fa-check text-terracotta me-2"></i> Design Exclusif</h4>
+                            <p class="small m-0">Créations uniques et personnalisables.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="font-serif fs-5"><i class="fa-solid fa-star text-terracotta me-2"></i> Qualité Premium</h4>
+                            <p class="small m-0">Matériaux importés de premier choix.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue (E-commerce / Prix en DA) -->
+    <section id="catalogue">
+        <div class="container">
+            <div class="text-center mb-5 gsap-fade-up">
+                <span class="section-subtitle">Nouvelle Collection</span>
+                <h2 class="section-title">Pièces Phares</h2>
+            </div>
+
+            <div class="row g-4">
+                <!-- Produit 1 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=600&q=80" alt="Canapé Milano">
+                        </div>
+                        <h3 class="product-name font-serif">Canapé Milano</h3>
+                        <p class="small">Tissu bouclette écru, design organique. Parfait pour un salon lumineux et chaleureux.</p>
+                        <div class="product-price">480 000 DA</div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark">Détails</button>
+                            <button class="btn btn-terracotta"><i class="fa-solid fa-cart-shopping me-2"></i>Commander</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 2 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=600&q=80" alt="Fauteuil Numidia">
+                        </div>
+                        <h3 class="product-name font-serif">Fauteuil Numidia</h3>
+                        <p class="small">Cuir cognac véritable et boiserie en noyer sculpté. L'alliance de la force et du confort.</p>
+                        <div class="product-price">185 000 DA</div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark">Détails</button>
+                            <button class="btn btn-terracotta"><i class="fa-solid fa-cart-shopping me-2"></i>Commander</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 3 -->
+                <div class="col-lg-4 col-md-6 gsap-product">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1604578762246-41134e37f9cc?auto=format&fit=crop&w=600&q=80" alt="Table Florence">
+                        </div>
+                        <h3 class="product-name font-serif">Table Florence</h3>
+                        <p class="small">Plateau en marbre blanc veiné et piétement sculptural en métal doré mat.</p>
+                        <div class="product-price">550 000 DA</div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark">Détails</button>
+                            <button class="btn btn-terracotta"><i class="fa-solid fa-cart-shopping me-2"></i>Commander</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 gsap-fade-up">
+                <a href="#" class="btn btn-outline-dark" style="border-width: 2px;">Voir tout le catalogue (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showroom & Contact (Sidi Yahia, Alger) -->
+    <section id="showroom" class="p-0 bg-white">
+        <div class="container-fluid p-0">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-4 offset-lg-1 order-2 order-lg-1">
+                    <div class="showroom-box gsap-fade-up">
+                        <span class="section-subtitle">Flagship Store</span>
+                        <h2 class="section-title fs-1">Visitez notre galerie</h2>
+                        <p class="mb-4">Venez découvrir nos collections et échanger avec nos architectes d'intérieur autour d'un café.</p>
+                        
+                        <div class="mb-4">
+                            <h5 class="font-serif fs-5 text-terracotta mb-1"><i class="fa-solid fa-location-dot me-2"></i>Adresse</h5>
+                            <p class="m-0 fw-medium">Résidence Les Pins, Sidi Yahia<br>16000 Hydra, Alger</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="font-serif fs-5 text-terracotta mb-1"><i class="fa-regular fa-clock me-2"></i>Horaires</h5>
+                            <p class="m-0">Samedi au Jeudi : 10h00 - 19h00<br>Vendredi : Sur rendez-vous</p>
+                        </div>
+                        <div>
+                            <h5 class="font-serif fs-5 text-terracotta mb-1"><i class="fa-solid fa-phone me-2"></i>Contact</h5>
+                            <p class="m-0 fw-medium">+213 (0) 550 00 00 00<br>contact@poltronacasa.dz</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 order-1 order-lg-2">
+                    <div class="map-container">
+                        <!-- Google Maps Iframe centré sur Sidi Yahia, Alger -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.809181180807!2d3.0336214152945763!3d36.72719267996362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fad6795639515%3A0x40eb71221b20250!2sSidi%20Yahia%2C%20Hydra%2C%20Alg%C3%A9rie!5e0!3m2!1sfr!2sfr!4v1698400000000!5m2!1sfr!2sfr" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo">POLTRONA CASA</div>
+                    <p class="footer-text w-75">Le summum de l'ameublement contemporain en Algérie. Un savoir-faire d'exception au service de votre intérieur.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 footer-links">
+                    <h5 class="font-serif text-white mb-4">La Maison</h5>
+                    <a href="#heritage">Notre Histoire</a>
+                    <a href="#catalogue">Collections</a>
+                    <a href="#">Savoir-faire</a>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 footer-links">
+                    <h5 class="font-serif text-white mb-4">Services</h5>
+                    <a href="#showroom">Showroom Sidi Yahia</a>
+                    <a href="#">Sur-mesure</a>
+                    <a href="#">Livraison (58 Wilayas)</a>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="font-serif text-white mb-4">Newsletter</h5>
+                    <p class="footer-text">Inscrivez-vous pour recevoir nos nouveautés exclusives.</p>
+                    <form class="d-flex mt-3">
+                        <input type="email" class="form-control rounded-0 border-0 bg-light" placeholder="Votre email..." required>
+                        <button class="btn btn-terracotta ms-2" type="submit">OK</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center border-top border-secondary pt-4">
+                <p class="small footer-text m-0">&copy; <span id="year"></span> POLTRONA CASA ALGER. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Update Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Navbar solid on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+
+            // GSAP Setup
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Animation
+            gsap.from(".gsap-hero", {
+                y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.2
+            });
+
+            // Hero Image Parallax
+            gsap.to("#heroImg", {
+                yPercent: 10,
+                ease: "none",
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
+            });
+
+            // Generic Fade Ups
+            gsap.utils.toArray('.gsap-fade-up').forEach(elem => {
+                gsap.from(elem, {
+                    scrollTrigger: { trigger: elem, start: "top 85%" },
+                    y: 40, opacity: 0, duration: 1, ease: "power2.out"
+                });
+            });
+
+            // Directional Fades
+            gsap.from('.gsap-fade-left', {
+                scrollTrigger: { trigger: '.gsap-fade-left', start: "top 80%" },
+                x: 40, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            gsap.from('.gsap-fade-right', {
+                scrollTrigger: { trigger: '.gsap-fade-right', start: "top 80%" },
+                x: -40, opacity: 0, duration: 1, ease: "power2.out"
+            });
+
+            // Products Stagger
+            gsap.from('.gsap-product', {
+                scrollTrigger: { trigger: '#catalogue', start: "top 75%" },
+                y: 50, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out"
+            });
+
+            // Arch Image Internal Parallax
+            gsap.to("#archImg", {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: { trigger: "#heritage", start: "top bottom", end: "bottom top", scrub: true }
+            });
+        });
+    </script>
+</body>
+</html>
