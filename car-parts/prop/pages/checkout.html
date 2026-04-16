@@ -1,0 +1,188 @@
+<!-- pages/checkout.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب | Motors Parts DZ</title>
+    
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- التنسيقات -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/buyer.css">
+</head>
+<body>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="products.html">
+                <!-- <i class="fa-solid fa-gear me-2"></i> Motors Parts -->
+                <img class="img-fluid" style="width: 80px;" src="../images/logo.webp" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">طلباتي</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-4">
+                    <a href="cart.html" class="position-relative text-light fs-5" style="text-decoration: none;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-0 translate-middle p-1 bg-danger border border-light rounded-circle" style="width: 10px; height: 10px;"></span>
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-gold dropdown-toggle border-0" type="button" data-bs-toggle="dropdown">
+                            <i class="fa-regular fa-circle-user me-1"></i> محلات بن علي
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5" style="margin-top: 100px;">
+        
+        <!-- مسار التقدم (Breadcrumb) -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="cart.html" class="text-secondary text-decoration-none">السلة</a></li>
+                <li class="breadcrumb-item active text-gold" aria-current="page">إتمام الطلب</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4">
+            
+            <!-- تفاصيل الشحن والملاحظات (الجانب الأيمن) -->
+            <div class="col-lg-8">
+                
+                <!-- عنوان التوصيل -->
+                <div class="premium-card mb-4">
+                    <h5 class="mb-4 border-bottom border-secondary pb-2"><i class="fa-solid fa-location-dot text-gold me-2"></i> عنوان التوصيل / المحل</h5>
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="text-primary mb-2">محلات بن علي لقطع الغيار</h6>
+                            <p class="text-secondary mb-1">شارع الاستقلال، وسط المدينة</p>
+                            <p class="text-secondary mb-1">الجزائر العاصمة، 16000</p>
+                            <p class="text-secondary mb-0" dir="ltr"><i class="fa-solid fa-phone me-1"></i> 0555 12 34 56</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-gold">تغيير العنوان</button>
+                    </div>
+                </div>
+
+                <!-- طريقة التوصيل -->
+                <div class="premium-card mb-4">
+                    <h5 class="mb-4 border-bottom border-secondary pb-2"><i class="fa-solid fa-truck text-gold me-2"></i> طريقة التوصيل</h5>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="delivery-option">
+                                <input type="radio" name="deliveryMethod" checked>
+                                <div class="delivery-card">
+                                    <div class="delivery-icon"><i class="fa-solid fa-van-shuttle"></i></div>
+                                    <div class="delivery-info">
+                                        <h6>توصيل للمحل</h6>
+                                        <p>توصيل عبر شركات النقل السريع</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="delivery-option">
+                                <input type="radio" name="deliveryMethod">
+                                <div class="delivery-card">
+                                    <div class="delivery-icon"><i class="fa-solid fa-warehouse"></i></div>
+                                    <div class="delivery-info">
+                                        <h6>استلام من المستودع</h6>
+                                        <p>الذهاب شخصياً لمستودع المورد</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ملاحظات إضافية -->
+                <div class="premium-card">
+                    <h5 class="mb-3"><i class="fa-regular fa-comment-dots text-gold me-2"></i> ملاحظات للموردين</h5>
+                    <textarea class="form-control" rows="3" placeholder="أضف أي ملاحظات خاصة بالطلب، مثلاً: يرجى التغليف الجيد لفلتر الزيت..."></textarea>
+                </div>
+
+            </div>
+
+            <!-- ملخص الطلب النهائي (الجانب الأيسر) -->
+            <div class="col-lg-4">
+                <div class="summary-card">
+                    <h4 class="mb-4 border-bottom border-secondary pb-3">تأكيد الطلب</h4>
+                    
+                    <!-- المنتجات باختصار -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem;">
+                            <span class="text-primary">4x طقم تيل فرامل</span>
+                            <span class="text-secondary">12,800 د.ج</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem;">
+                            <span class="text-primary">10x فلتر زيت</span>
+                            <span class="text-secondary">4,500 د.ج</span>
+                        </div>
+                    </div>
+                    
+                    <hr style="border-color: var(--border-color);">
+                    
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-secondary">مجموع القطع:</span>
+                        <span class="fw-bold">17,300 د.ج</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="text-secondary">طريقة الدفع:</span>
+                        <span class="fw-bold text-primary">الدفع عند الاستلام</span>
+                    </div>
+                    
+                    <!-- زر التأكيد الذي يفتح الـ Modal -->
+                    <button class="btn btn-gold w-100 py-3 fs-5" data-bs-toggle="modal" data-bs-target="#successModal">
+                        تأكيد الطلب نهائياً <i class="fa-solid fa-check ms-2"></i>
+                    </button>
+                    
+                    <p class="text-center text-secondary mt-3 mb-0" style="font-size: 0.8rem;">
+                        بالضغط على تأكيد، سيتم تقسيم وإرسال طلبك للموردين المعنيين.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- نافذة النجاح المنبثقة (Success Modal) -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content dark-modal">
+                <div class="modal-body">
+                    <div class="success-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="mb-3 text-light">تم إرسال طلبك بنجاح!</h3>
+                    <p class="text-secondary mb-4">
+                        لقد تم استلام طلبك برقم <strong>#ORD-2026</strong> وتم توجيهه للموردين لتجهيزه. يمكنك متابعة حالة الطلب من خلال لوحة التحكم الخاصة بك.
+                    </p>
+                    <a href="orders.html" class="btn btn-gold w-100 py-2">
+                        الانتقال إلى طلباتي
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

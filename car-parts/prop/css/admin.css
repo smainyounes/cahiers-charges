@@ -1,0 +1,212 @@
+/* css/admin.css */
+
+/* الهيكل العام للوحة التحكم */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+}
+
+/* الشريط الجانبي (Sidebar) - ثابت على اليمين */
+.admin-sidebar {
+    width: 260px;
+    background-color: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 20px 0;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-speed);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.sidebar-link i {
+    margin-left: 15px;
+    /* مسافة لليسار في RTL */
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+    background-color: rgba(212, 168, 67, 0.1);
+    color: var(--accent-gold);
+    border-right: 4px solid var(--accent-gold);
+}
+
+/* المحتوى الرئيسي (Main Content) */
+.admin-main {
+    flex: 1;
+    margin-right: 260px;
+    /* ترك مساحة للشريط الجانبي */
+    padding: 20px 40px;
+}
+
+/* الشريط العلوي في الإدارة */
+.admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* جداول البيانات (Data Tables) */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    /* مسافة بين الصفوف */
+}
+
+.admin-table th {
+    padding: 0 15px 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    text-align: right;
+}
+
+.admin-table td {
+    background-color: var(--bg-card);
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* حواف دائرية لأول وآخر خلية في الصف */
+.admin-table td:first-child {
+    border-right: 1px solid var(--border-color);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.admin-table td:last-child {
+    border-left: 1px solid var(--border-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* أزرار الإجراءات في الجدول */
+.btn-action-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: var(--transition-speed);
+    padding: 5px;
+}
+
+.btn-action-icon:hover {
+    color: var(--accent-gold);
+    transform: scale(1.1);
+}
+
+.btn-action-icon.delete:hover {
+    color: var(--state-red);
+}
+
+/* حالة التوفر في الجدول */
+.badge-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-status.available {
+    background-color: rgba(47, 163, 107, 0.15);
+    color: var(--state-green);
+    border: 1px solid var(--state-green);
+}
+
+.badge-status.unavailable {
+    background-color: rgba(229, 83, 83, 0.15);
+    color: var(--state-red);
+    border: 1px solid var(--state-red);
+}
+
+/* تنسيقات رفع ملف Excel في لوحة الإدارة */
+.upload-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    background-color: #121613;
+    transition: var(--transition-speed);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.upload-zone i {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    transition: var(--transition-speed);
+}
+
+/* حالة التعطيل (قبل اختيار المورد) */
+.upload-zone.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.upload-zone.disabled input {
+    pointer-events: none;
+}
+
+/* حالة التفعيل والتمرير (Hover) */
+.upload-zone:not(.disabled):hover {
+    border-color: var(--state-green);
+    background-color: rgba(47, 163, 107, 0.05);
+}
+
+.upload-zone:not(.disabled):hover i {
+    color: var(--state-green);
+    transform: translateY(-5px);
+}
+
+.upload-zone input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-name-display {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--accent-gold);
+    font-size: 0.9rem;
+}

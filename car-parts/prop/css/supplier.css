@@ -1,0 +1,163 @@
+/* css/supplier.css - نسخة الرابط المؤقت */
+
+body {
+    background-color: var(--bg-main);
+}
+
+/* حاوية الرابط المؤقت */
+.magic-link-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+/* شريط التنبيه العلوي (صلاحية الرابط) */
+.expiry-alert {
+    background-color: rgba(232, 106, 26, 0.1);
+    border: 1px solid rgba(232, 106, 26, 0.3);
+    color: var(--accent-orange);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* بطاقة تفاصيل التاجر (المشتري) */
+.buyer-info-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* بطاقة المنتج داخل الطلب */
+.supplier-item-card {
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: var(--transition-speed);
+}
+
+/* حالة نفاد الكمية */
+.supplier-item-card.out-of-stock-state {
+    opacity: 0.6;
+    border-color: var(--state-red);
+    background-color: rgba(229, 83, 83, 0.05);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* أدوات التحكم بالكمية للمورد */
+.supplier-qty-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.qty-editor {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-gold);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.qty-editor button {
+    background-color: transparent;
+    color: var(--accent-gold);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.qty-editor button:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-main);
+}
+
+.qty-editor input {
+    width: 60px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.qty-editor input:focus {
+    outline: none;
+}
+
+/* إخفاء أسهم الأرقام */
+.qty-editor input::-webkit-outer-spin-button,
+.qty-editor input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* الأزرار السفلية (تأكيد / رفض) */
+.bottom-actions {
+    position: sticky;
+    bottom: 20px;
+    background-color: rgba(23, 28, 24, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.btn-supplier-confirm {
+    flex: 2;
+    background-color: var(--state-green);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: var(--transition-speed);
+}
+
+.btn-supplier-confirm:hover {
+    background-color: #268a59;
+}
+
+.btn-supplier-reject {
+    flex: 1;
+    background-color: transparent;
+    color: var(--state-red);
+    border: 1px solid var(--state-red);
+    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition-speed);
+}
+
+.btn-supplier-reject:hover {
+    background-color: var(--state-red);
+    color: #fff;
+}

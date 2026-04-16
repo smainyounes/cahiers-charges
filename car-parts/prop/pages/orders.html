@@ -1,0 +1,228 @@
+<!-- pages/orders.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلباتي | Motors Parts DZ</title>
+    
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- التنسيقات -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/buyer.css">
+</head>
+<body>
+
+    <!-- شريط التنقل -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="products.html">
+                <!-- <i class="fa-solid fa-gear me-2"></i> Motors Parts -->
+
+                <img class="img-fluid" style="width: 80px;" src="../images/logo.webp" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gold" href="orders.html">طلباتي</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-4">
+                    <a href="cart.html" class="position-relative text-light fs-5" style="text-decoration: none;">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="position-absolute top-0 start-0 translate-middle p-1 bg-danger border border-light rounded-circle" style="width: 10px; height: 10px;"></span>
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-gold dropdown-toggle border-0" type="button" data-bs-toggle="dropdown">
+                            <i class="fa-regular fa-circle-user me-1"></i> محلات بن علي
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" style="background-color: var(--bg-card); border-color: var(--border-color);">
+                            <li><a class="dropdown-item text-end" href="#"><i class="fa-solid fa-sliders ms-2 text-secondary"></i> الإعدادات</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item text-end text-danger" href="index.html"><i class="fa-solid fa-arrow-right-from-bracket ms-2"></i> تسجيل الخروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5" style="margin-top: 100px;">
+        
+        <!-- عنوان الصفحة وفلاتر التصفية -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+            <h2 class="mb-0"><i class="fa-solid fa-box-open me-2 text-gold"></i> سجل الطلبات</h2>
+            
+            <div class="d-flex gap-2">
+                <select class="form-select bg-dark text-light border-secondary" style="width: 150px;">
+                    <option value="all">كل الحالات</option>
+                    <option value="pending">قيد الانتظار</option>
+                    <option value="confirmed">مؤكد</option>
+                    <option value="completed">منتهي</option>
+                </select>
+                <select class="form-select bg-dark text-light border-secondary" style="width: 150px;">
+                    <option value="this_month">هذا الشهر</option>
+                    <option value="last_month">الشهر الماضي</option>
+                    <option value="all_time">كل الوقت</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- قائمة الطلبات -->
+        <div class="row">
+            
+            <!-- طلب رقم 1: قيد الانتظار -->
+            <div class="col-12">
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">#ORD-2026-104</span>
+                            <span class="order-date ms-3"><i class="fa-regular fa-calendar me-1"></i> 16 أفريل 2026</span>
+                        </div>
+                        <span class="status-badge status-pending">
+                            <i class="fa-solid fa-clock"></i> قيد الانتظار
+                        </span>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-5 mb-3 mb-md-0">
+                            <div class="order-supplier-info">
+                                <div class="supplier-avatar"><i class="fa-solid fa-store"></i></div>
+                                <div>
+                                    <h6 class="mb-1 text-primary">مورد A (الجزائر العاصمة)</h6>
+                                    <span class="text-secondary" style="font-size: 0.85rem;">2 منتجات (14 قطعة إجمالاً)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0 text-md-center">
+                            <span class="text-secondary d-block" style="font-size: 0.85rem;">الإجمالي</span>
+                            <span class="order-total-price">17,300 د.ج</span>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <button class="btn btn-outline-gold btn-sm"><i class="fa-solid fa-eye me-1"></i> التفاصيل</button>
+                            <button class="btn btn-outline-secondary btn-sm ms-2"><i class="fa-solid fa-xmark me-1"></i> إلغاء الطلب</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- طلب رقم 2: مؤكد -->
+            <div class="col-12">
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">#ORD-2026-098</span>
+                            <span class="order-date ms-3"><i class="fa-regular fa-calendar me-1"></i> 14 أفريل 2026</span>
+                        </div>
+                        <span class="status-badge status-confirmed">
+                            <i class="fa-solid fa-check-double"></i> مؤكد (قيد الشحن)
+                        </span>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-5 mb-3 mb-md-0">
+                            <div class="order-supplier-info">
+                                <div class="supplier-avatar"><i class="fa-solid fa-store"></i></div>
+                                <div>
+                                    <h6 class="mb-1 text-primary">مورد B (البليدة)</h6>
+                                    <span class="text-secondary" style="font-size: 0.85rem;">1 منتج (مضخة ماء)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0 text-md-center">
+                            <span class="text-secondary d-block" style="font-size: 0.85rem;">الإجمالي</span>
+                            <span class="order-total-price">4,500 د.ج</span>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <button class="btn btn-outline-gold btn-sm"><i class="fa-solid fa-eye me-1"></i> التفاصيل</button>
+                            <button class="btn btn-outline-secondary btn-sm ms-2"><i class="fa-solid fa-phone me-1"></i> اتصال بالمورد</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- طلب رقم 3: منتهي -->
+            <div class="col-12">
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">#ORD-2026-085</span>
+                            <span class="order-date ms-3"><i class="fa-regular fa-calendar me-1"></i> 10 أفريل 2026</span>
+                        </div>
+                        <span class="status-badge status-completed">
+                            <i class="fa-solid fa-check"></i> منتهي (تم الاستلام)
+                        </span>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-5 mb-3 mb-md-0">
+                            <div class="order-supplier-info">
+                                <div class="supplier-avatar"><i class="fa-solid fa-store"></i></div>
+                                <div>
+                                    <h6 class="mb-1 text-primary">مورد C (وهران)</h6>
+                                    <span class="text-secondary" style="font-size: 0.85rem;">3 منتجات مختلفة</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0 text-md-center">
+                            <span class="text-secondary d-block" style="font-size: 0.85rem;">الإجمالي</span>
+                            <span class="order-total-price text-secondary">24,000 د.ج</span>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <button class="btn btn-outline-gold btn-sm"><i class="fa-solid fa-eye me-1"></i> التفاصيل</button>
+                            <button class="btn btn-outline-success btn-sm ms-2 border-0" style="background-color: rgba(47, 163, 107, 0.2); color: var(--state-green);"><i class="fa-solid fa-file-invoice me-1"></i> الفاتورة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- طلب رقم 4: مرفوض -->
+            <div class="col-12">
+                <div class="order-card" style="border-color: rgba(229, 83, 83, 0.3);">
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">#ORD-2026-072</span>
+                            <span class="order-date ms-3"><i class="fa-regular fa-calendar me-1"></i> 05 أفريل 2026</span>
+                        </div>
+                        <span class="status-badge status-rejected">
+                            <i class="fa-solid fa-triangle-exclamation"></i> مرفوض
+                        </span>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-5 mb-3 mb-md-0">
+                            <div class="order-supplier-info">
+                                <div class="supplier-avatar"><i class="fa-solid fa-store"></i></div>
+                                <div>
+                                    <h6 class="mb-1 text-primary">مورد A (الجزائر العاصمة)</h6>
+                                    <span class="text-secondary" style="font-size: 0.85rem;">1 منتج (بواجي إشعال)</span>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-danger" style="font-size: 0.85rem;">
+                                <i class="fa-solid fa-circle-info me-1"></i> سبب الرفض: القطعة غير متوفرة في المخزن حالياً.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3 mb-md-0 text-md-center">
+                            <span class="text-secondary d-block" style="font-size: 0.85rem;">الإجمالي</span>
+                            <span class="order-total-price text-secondary" style="text-decoration: line-through;">6,200 د.ج</span>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <button class="btn btn-outline-gold btn-sm"><i class="fa-solid fa-magnifying-glass me-1"></i> البحث عن مورد آخر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!-- pages/supplier.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الطلب | Motors Parts DZ</title>
+    
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- التنسيقات -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/supplier.css">
+</head>
+<body>
+
+    <div class="magic-link-container">
+        
+        <!-- شعار المنصة -->
+        <div class="text-center mb-4 mt-3">
+            <a href="#" style="text-decoration: none; color: var(--accent-gold); font-size: 1.8rem; font-weight: 800;">
+                <!-- <i class="fa-solid fa-gear me-2"></i> Motors Parts DZ -->
+                <img class="img-fluid" style="width: 120px;" src="../images/logo.webp" alt="">
+
+            </a>
+            <p class="text-secondary mt-2">بوابة الموردين السريعة</p>
+        </div>
+
+        <!-- شريط التنبيه (صلاحية الرابط) -->
+        <div class="expiry-alert">
+            <span><i class="fa-solid fa-link me-2"></i> رابط مؤقت وآمن لتأكيد الطلبية</span>
+            <span dir="ltr"><i class="fa-regular fa-clock me-1"></i> ينتهي في: 23:45:10</span>
+        </div>
+
+        <!-- معلومات التاجر (المشتري) -->
+        <div class="buyer-info-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="m-0 text-light"><i class="fa-solid fa-store text-gold me-2"></i> طلب جديد من: محلات بن علي</h4>
+                <span class="badge bg-dark border border-secondary text-light fs-6 py-2 px-3" dir="ltr">#ORD-2026-104</span>
+            </div>
+            <div class="row text-secondary">
+                <div class="col-md-4 mb-2"><i class="fa-solid fa-location-dot me-2"></i> الجزائر العاصمة، رويبة</div>
+                <div class="col-md-4 mb-2"><i class="fa-solid fa-phone me-2" dir="ltr"></i> 0555 12 34 56</div>
+                <div class="col-md-4 mb-2"><i class="fa-solid fa-truck me-2"></i> طريقة الاستلام: <strong>توصيل للمحل</strong></div>
+            </div>
+            <!-- ملاحظة من التاجر إن وجدت -->
+            <div class="mt-3 p-3 rounded" style="background-color: rgba(212, 168, 67, 0.05); border-right: 3px solid var(--accent-gold);">
+                <strong class="text-gold"><i class="fa-regular fa-comment-dots me-1"></i> ملاحظة المشتري:</strong> 
+                <span class="text-light">يرجى التأكد من أن القطع أصلية والتغليف محكم، أحتاجها في أسرع وقت.</span>
+            </div>
+        </div>
+
+        <h5 class="mb-3 text-light">المنتجات المطلوبة (قم بتعديل الكمية المتوفرة لديك)</h5>
+
+        <!-- قائمة المنتجات -->
+        <div class="order-items-list mb-5">
+            
+            <!-- المنتج الأول -->
+            <div class="supplier-item-card" id="item-1">
+                <div class="item-header">
+                    <div>
+                        <h5 class="text-light mb-1">طقم تيل فرامل (Plaquettes de frein)</h5>
+                        <span class="text-secondary" style="font-family: monospace; font-size: 1rem;">Ref: 58101-1RA00</span>
+                    </div>
+                    <div class="text-end">
+                        <span class="d-block text-secondary" style="font-size: 0.9rem;">الكمية المطلوبة</span>
+                        <strong class="fs-4 text-orange">4 قطع</strong>
+                    </div>
+                </div>
+                
+                <div class="supplier-qty-controls">
+                    <div>
+                        <label class="text-secondary mb-2 d-block">الكمية التي يمكنك توفيرها:</label>
+                        <div class="qty-editor">
+                            <button type="button" onclick="updateSupplierQty('item-1', 1)"><i class="fa-solid fa-plus"></i></button>
+                            <!-- حقل الكمية يبدأ افتراضياً بالكمية المطلوبة -->
+                            <input type="number" class="qty-input" value="4" min="0" max="4" onchange="checkQtyState('item-1')">
+                            <button type="button" onclick="updateSupplierQty('item-1', -1)"><i class="fa-solid fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-danger" onclick="setOutOfStock('item-1')">
+                            <i class="fa-solid fa-xmark me-1"></i> غير متوفر نهائياً
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المنتج الثاني -->
+            <div class="supplier-item-card" id="item-2">
+                <div class="item-header">
+                    <div>
+                        <h5 class="text-light mb-1">فلتر زيت (Filtre à Huile)</h5>
+                        <span class="text-secondary" style="font-family: monospace; font-size: 1rem;">Ref: 26300-35505</span>
+                    </div>
+                    <div class="text-end">
+                        <span class="d-block text-secondary" style="font-size: 0.9rem;">الكمية المطلوبة</span>
+                        <strong class="fs-4 text-orange">10 قطع</strong>
+                    </div>
+                </div>
+                
+                <div class="supplier-qty-controls">
+                    <div>
+                        <label class="text-secondary mb-2 d-block">الكمية التي يمكنك توفيرها:</label>
+                        <div class="qty-editor">
+                            <button type="button" onclick="updateSupplierQty('item-2', 1)"><i class="fa-solid fa-plus"></i></button>
+                            <input type="number" class="qty-input" value="10" min="0" max="10" onchange="checkQtyState('item-2')">
+                            <button type="button" onclick="updateSupplierQty('item-2', -1)"><i class="fa-solid fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-outline-danger" onclick="setOutOfStock('item-2')">
+                            <i class="fa-solid fa-xmark me-1"></i> غير متوفر نهائياً
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- الإجراءات السفلية (Sticky Actions) -->
+        <div class="bottom-actions">
+            <button class="btn-supplier-reject" onclick="alert('تم رفض الطلب وإبلاغ التاجر.')">
+                <i class="fa-solid fa-ban me-1"></i> رفض الطلب كاملاً
+            </button>
+            <button class="btn-supplier-confirm" onclick="alert('تم تأكيد الطلب بالكميات المحددة بنجاح!')">
+                <i class="fa-solid fa-check-double me-1"></i> تأكيد توفير البضاعة
+            </button>
+        </div>
+
+    </div>
+
+    <!-- سكربت تفاعلي بسيط مخصص لصفحة المورد -->
+    <script>
+        // تغيير الكمية بالأسهم
+        function updateSupplierQty(itemId, change) {
+            const card = document.getElementById(itemId);
+            const input = card.querySelector('.qty-input');
+            let maxQty = parseInt(input.getAttribute('max'));
+            let currentVal = parseInt(input.value);
+            
+            let newVal = currentVal + change;
+            if(newVal < 0) newVal = 0;
+            if(newVal > maxQty) newVal = maxQty; // لا يمكن للمورد توفير أكثر مما طلبه التاجر
+            
+            input.value = newVal;
+            checkQtyState(itemId);
+        }
+
+        // جعل المنتج غير متوفر مباشرة (تصفير الكمية)
+        function setOutOfStock(itemId) {
+            const card = document.getElementById(itemId);
+            const input = card.querySelector('.qty-input');
+            input.value = 0;
+            checkQtyState(itemId);
+        }
+
+        // التحقق من حالة الكمية لتغيير لون البطاقة بلسريعة
+        function checkQtyState(itemId) {
+            const card = document.getElementById(itemId);
+            const input = card.querySelector('.qty-input');
+            
+            if (parseInt(input.value) === 0) {
+                card.classList.add('out-of-stock-state');
+            } else {
+                card.classList.remove('out-of-stock-state');
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

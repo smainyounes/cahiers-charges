@@ -1,0 +1,408 @@
+/* css/buyer.css */
+
+/* شريط البحث الرئيسي */
+.search-container {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 80px;
+    /* للنزول تحت شريط التنقل */
+    margin-bottom: 40px;
+}
+
+.search-input-group {
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+}
+
+.search-input-group input {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 15px 20px;
+    box-shadow: none !important;
+}
+
+.search-input-group input::placeholder {
+    color: #4a5a44;
+}
+
+.search-input-group .btn {
+    border-radius: 0;
+    padding: 0 30px;
+    font-size: 1.1rem;
+}
+
+/* بطاقة المنتج */
+.product-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition-speed);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    border-color: rgba(212, 168, 67, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.product-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.product-title {
+    font-size: 1.25rem;
+    color: var(--accent-gold);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.product-ref {
+    color: var(--text-secondary);
+    font-family: monospace;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+    background-color: #121613;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.product-cars {
+    font-size: 0.9rem;
+    color: #a3b89b;
+}
+
+/* علامة (Badge) جديد */
+.badge-new {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    /* لليسار لأن الاتجاه RTL */
+    background-color: var(--accent-orange);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* قائمة الموردين داخل المنتج */
+.suppliers-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    flex-grow: 1;
+    background-color: #0c100e;
+}
+
+.supplier-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed);
+}
+
+.supplier-item:last-child {
+    border-bottom: none;
+}
+
+.supplier-item:hover {
+    background-color: rgba(47, 163, 107, 0.05);
+}
+
+.supplier-info h6 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.supplier-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.supplier-meta i {
+    color: var(--accent-gold);
+}
+
+.supplier-price {
+    text-align: left;
+}
+
+.price-value {
+    font-weight: 800;
+    color: var(--state-green);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.btn-add-cart {
+    background-color: transparent;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 0.9rem;
+    transition: var(--transition-speed);
+}
+
+.btn-add-cart:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-main);
+}
+
+/* تحديثات السلة - تضاف في نهاية buyer.css */
+
+/* بطاقة عنصر السلة */
+.cart-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: var(--transition-speed);
+}
+
+.cart-item:hover {
+    border-color: rgba(212, 168, 67, 0.3);
+}
+
+/* أزرار التحكم بالكمية */
+.qty-control {
+    display: flex;
+    align-items: center;
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.qty-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.qty-btn:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-main);
+}
+
+.qty-input {
+    background-color: transparent;
+    border: none;
+    color: var(--text-primary);
+    text-align: center;
+    width: 50px;
+    font-weight: bold;
+}
+
+.qty-input:focus {
+    outline: none;
+}
+
+/* إخفاء أسهم الأرقام في المتصفح */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* بطاقة ملخص الطلب */
+.summary-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--accent-gold);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+}
+
+/* تحديثات إتمام الطلب (Checkout) - تضاف في نهاية buyer.css */
+
+/* خيارات التوصيل (Radio Cards) */
+.delivery-option {
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.delivery-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.delivery-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    background-color: #121613;
+    transition: var(--transition-speed);
+    display: flex;
+    align-items: center;
+}
+
+.delivery-option input[type="radio"]:checked+.delivery-card {
+    border-color: var(--accent-gold);
+    background-color: rgba(212, 168, 67, 0.05);
+}
+
+.delivery-icon {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    margin-left: 15px;
+    /* RTL */
+    transition: var(--transition-speed);
+}
+
+.delivery-option input[type="radio"]:checked+.delivery-card .delivery-icon {
+    color: var(--accent-gold);
+}
+
+.delivery-info h6 {
+    margin: 0 0 5px 0;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.delivery-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* نافذة النجاح المنبثقة (Success Modal) */
+.modal-content.dark-modal {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--state-green);
+    margin-bottom: 20px;
+}
+
+/* تحديثات صفحة الطلبات (Orders) - تضاف في نهاية buyer.css */
+
+/* بطاقة الطلب */
+.order-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: var(--transition-speed);
+}
+
+.order-card:hover {
+    border-color: rgba(212, 168, 67, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.order-id {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: monospace;
+}
+
+.order-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* حالات الطلب (Status Badges) */
+.status-badge {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-pending {
+    background-color: rgba(232, 106, 26, 0.1);
+    color: var(--accent-orange);
+    border: 1px solid rgba(232, 106, 26, 0.2);
+}
+
+.status-confirmed {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.status-completed {
+    background-color: rgba(47, 163, 107, 0.1);
+    color: var(--state-green);
+    border: 1px solid rgba(47, 163, 107, 0.2);
+}
+
+.status-rejected {
+    background-color: rgba(229, 83, 83, 0.1);
+    color: var(--state-red);
+    border: 1px solid rgba(229, 83, 83, 0.2);
+}
+
+/* تفاصيل المورد والسعر في الطلب */
+.order-supplier-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.supplier-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+}
+
+.order-total-price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--state-green);
+}

@@ -1,0 +1,130 @@
+/* css/auth.css */
+
+/* خلفية الصفحة لصفحات الدخول */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-main);
+    background-image: radial-gradient(circle at top right, rgba(212, 168, 67, 0.05), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(47, 163, 107, 0.05), transparent 40%);
+    padding: 20px;
+}
+
+/* بطاقة المصادقة */
+.auth-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.auth-logo {
+    color: var(--accent-gold);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+/* تخصيص حقول الإدخال (Inputs) للوضع الداكن */
+.form-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.form-control,
+.form-select {
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: var(--transition-speed);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #121613;
+    border-color: var(--accent-gold);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.25rem rgba(212, 168, 67, 0.15);
+}
+
+.form-control::placeholder {
+    color: #4a5a44;
+}
+
+/* تخصيص الـ Checkbox */
+.form-check-input {
+    background-color: #121613;
+    border-color: var(--border-color);
+}
+
+.form-check-input:checked {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+/* اختيار نوع الحساب في التسجيل */
+.role-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.role-option {
+    flex: 1;
+}
+
+.role-option input[type="radio"] {
+    display: none;
+}
+
+.role-label {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background-color: #121613;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition-speed);
+    font-weight: 700;
+}
+
+.role-option input[type="radio"]:checked+.role-label {
+    background-color: rgba(212, 168, 67, 0.1);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+/* روابط أسفل الفورم */
+.auth-links {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.95rem;
+}
+
+.auth-links a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
