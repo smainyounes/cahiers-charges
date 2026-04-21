@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل النماذج - Motors Parts DZ</title>
+    
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #0c0f0a;
+            --bg-card: #191d25;
+            --border-color: #2d3444;
+            --text-light: #dde3f0;
+            --text-muted: #6b7694;
+            --primary: #e8650a;
+            --gold: #d4a843;
+            --green: #2ec87a;
+            --blue: #38c9c9;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 168, 67, 0.05) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .hero-header {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        .hero-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Section Titles */
+        .category-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Cards */
+        .page-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .page-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .page-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        .page-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .page-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Badges */
+        .role-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .badge-public { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .badge-buyer { background: rgba(232,101,10,0.1); color: var(--primary); border: 1px solid rgba(232,101,10,0.3); }
+        .badge-supplier { background: rgba(46,200,122,0.1); color: var(--green); border: 1px solid rgba(46,200,122,0.3); }
+        .badge-admin { background: rgba(212,168,67,0.1); color: var(--gold); border: 1px solid rgba(212,168,67,0.3); }
+
+        /* Buttons */
+        .btn-view {
+            background: #20252f;
+            color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
+            display: block;
+        }
+        .page-card:hover .btn-view {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+        .btn-view-code {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 8px;
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-header">
+        <div class="container">
+            <div class="badge badge-admin mb-3 px-3 py-2" style="position: static;">🚀 Presentation Hub</div>
+            <h1 class="hero-title">Motors Parts DZ - Prototype</h1>
+            <p class="hero-subtitle">هذا الدليل يجمع كافة الصفحات والواجهات التي تم تصميمها للمشروع. انقر على أي بطاقة لمعاينة الصفحة بشكل تفاعلي بالكامل.</p>
+        </div>
+    </header>
+
+    <main class="container pb-5">
+
+        <!-- القسم 1: البوابة العامة -->
+        <h3 class="category-title text-white mb-4"><span>🌐</span> البوابة العامة والمصادقة</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="page-card">
+                    <span class="role-badge badge-public">عام</span>
+                    <div class="page-icon">🏠</div>
+                    <div class="page-title">صفحة الهبوط (Landing)</div>
+                    <div class="page-desc">واجهة العرض الرئيسية للمنصة لجذب التجار والموردين للتسجيل (تحتوي على مميزات النظام).</div>
+                    <a href="index.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="page-card">
+                    <span class="role-badge badge-public">عام</span>
+                    <div class="page-icon">🔐</div>
+                    <div class="page-title">تسجيل الدخول</div>
+                    <div class="page-desc">صفحة دخول المستخدمين المسجلين مسبقاً (تجار أو موردين).</div>
+                    <a href="login.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="page-card">
+                    <span class="role-badge badge-public">عام</span>
+                    <div class="page-icon">📝</div>
+                    <div class="page-title">إنشاء حساب</div>
+                    <div class="page-desc">نموذج تسجيل بيانات المحل التجاري للانضمام إلى شبكة المنصة.</div>
+                    <a href="register.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- القسم 2: تطبيق التاجر -->
+        <h3 class="category-title text-white mb-4"><span>🏪</span> واجهة التاجر (Buyer App)</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="page-card">
+                    <span class="role-badge badge-buyer">التاجر</span>
+                    <div class="page-icon">🔍</div>
+                    <div class="page-title">الصفحة الرئيسية للبحث</div>
+                    <div class="page-desc">محرك البحث الذكي للتاجر للبحث عن القطع ورؤية عروض الموردين.</div>
+                    <a href="index.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="page-card">
+                    <span class="role-badge badge-buyer">التاجر</span>
+                    <div class="page-icon">🛒</div>
+                    <div class="page-title">سلة المشتريات</div>
+                    <div class="page-desc">عرض القطع المختارة مقسمة حسب الموردين استعداداً لإرسالها.</div>
+                    <a href="cart.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="page-card">
+                    <span class="role-badge badge-buyer">التاجر</span>
+                    <div class="page-icon">✅</div>
+                    <div class="page-title">تأكيد الإرسال</div>
+                    <div class="page-desc">صفحة تفيد بنجاح إرسال الطلبات إلى الموردين في الخلفية.</div>
+                    <a href="checkout.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="page-card">
+                    <span class="role-badge badge-buyer">التاجر</span>
+                    <div class="page-icon">📦</div>
+                    <div class="page-title">سجل الطلبات</div>
+                    <div class="page-desc">متابعة حالة الطلبات السابقة (مؤكدة، قيد الانتظار، أو مرفوضة).</div>
+                    <a href="orders.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- القسم 3: الإدارة والموردين -->
+        <h3 class="category-title text-white mb-4"><span>⚙️</span> لوحات الإدارة والموردين</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-6">
+                <div class="page-card">
+                    <span class="role-badge badge-admin">الأدمن</span>
+                    <div class="page-icon">📊</div>
+                    <div class="page-title">لوحة تحكم الإدارة (Dashboard)</div>
+                    <div class="page-desc">شاشة كاملة تحتوي على إحصائيات حية، تتبع للطلبات، أداء الموردين، وشريط تنقل جانبي (Sidebar).</div>
+                    <a href="admin.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="page-card">
+                    <span class="role-badge badge-supplier">المورد</span>
+                    <div class="page-icon">🏭</div>
+                    <div class="page-title">واجهة استلام الطلب للمورد</div>
+                    <div class="page-desc">رابط (Token) يفتح للمورد للرد على الطلب السريع (تأكيد، تعديل، أو رفض) بدون تسجيل دخول.</div>
+                    <a href="buyer.html" target="_blank" class="btn-view">استعراض الصفحة</a>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+</body>
+</html>

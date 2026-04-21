@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السلة - Motors Parts DZ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .supplier-group { background: white; border: 1.5px solid var(--border-color); border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+        .sg-header { background: #f0ebe3; padding: 12px 20px; border-bottom: 1.5px solid var(--border-color); display: flex; align-items: center; gap: 10px; font-weight: 800; }
+        .sg-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #e8e0d4; }
+        .sg-item:last-child { border-bottom: none; }
+        .qty-input { width: 60px; text-align: center; border: 1.5px solid var(--border-color); border-radius: 6px; padding: 4px; font-weight: 700; }
+        .cart-summary { background: #1a1208; color: white; border-radius: 16px; padding: 24px; position: sticky; top: 90px; }
+    </style>
+</head>
+<body>
+
+    <nav class="custom-navbar sticky-top d-flex justify-content-between align-items-center">
+        <a href="index.html" class="brand-logo">MotorsParts <span>DZ</span></a>
+        <div class="d-none d-md-flex align-items-center gap-4">
+            <a href="index.html" class="nav-link-custom">البحث</a>
+            <a href="orders.html" class="nav-link-custom">طلباتي السابقة</a>
+        </div>
+        <a href="index.html" class="text-white text-decoration-none" style="font-size: 14px;">← متابعة التسوق</a>
+    </nav>
+
+    <main class="container py-5">
+        <h3 class="fw-bold mb-4">🛒 سلة الطلبات</h3>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                
+                <!-- مجموعة المورد A -->
+                <div class="supplier-group">
+                    <div class="sg-header">
+                        <div style="background:var(--primary); color:white; width:24px; height:24px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px;">A</div>
+                        مورد A (2 منتجات)
+                    </div>
+                    
+                    <div class="sg-item">
+                        <div>
+                            <div style="font-size: 12px; color: #1a5fa8; font-family: monospace; font-weight: 800;">25100-2G500</div>
+                            <div class="fw-bold fs-5">طرمبة ماء Hyundai</div>
+                            <div style="font-size: 13px; color: var(--text-muted);">السعر التقريبي: 2,800 دج</div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <input type="number" class="qty-input" value="1" min="1">
+                            <button class="btn btn-sm btn-outline-danger border-0">🗑️</button>
+                        </div>
+                    </div>
+
+                    <div class="sg-item">
+                        <div>
+                            <div style="font-size: 12px; color: #1a5fa8; font-family: monospace; font-weight: 800;">58101-3SA30</div>
+                            <div class="fw-bold fs-5">تيل فرامل أمامي Kia</div>
+                            <div style="font-size: 13px; color: var(--text-muted);">السعر التقريبي: 1,100 دج</div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <input type="number" class="qty-input" value="2" min="1">
+                            <button class="btn btn-sm btn-outline-danger border-0">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ملاحظة النظام -->
+                <div class="alert alert-warning" style="background: #fff4ed; border: 1.5px solid #f5c4a0; color: #e8650a; font-size: 14px;">
+                    <strong>ملاحظة ذكية:</strong> النظام سيقوم تلقائياً بفصل هذه السلة وإرسال طلب مستقل لكل مورد في الخلفية.
+                </div>
+
+            </div>
+
+            <!-- ملخص السلة -->
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary">
+                    <h5 class="fw-bold mb-4" style="color: #f0c860;">ملخص الطلب المبدئي</h5>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span style="color: #a0aec0;">إجمالي القطع</span>
+                        <span class="fw-bold">3 قطع</span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom border-secondary pb-3 mb-3">
+                        <span style="color: #a0aec0;">عدد الموردين</span>
+                        <span class="fw-bold">1 مورد</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span style="font-size: 18px;">المجموع التقريبي</span>
+                        <span class="fw-bold" style="font-size: 24px; color: var(--primary);">5,000 دج</span>
+                    </div>
+                    <a href="checkout.html" class="btn-primary-custom text-center d-block text-decoration-none fs-5">تأكيد وإرسال الطلبات</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

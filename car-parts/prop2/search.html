@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البحث عن القطع - Motors Parts DZ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- إضافة CSS الخاص بالبحث من الكود السابق -->
+    <style>
+        .search-container { background: #f0ebe3; border: 1.5px solid var(--border-color); border-radius: 12px; padding: 4px 12px; display: flex; align-items: center; gap: 10px; transition: 0.2s; }
+        .search-container:focus-within { border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(232,101,10,0.1); }
+        .search-input { flex: 1; background: none; border: none; outline: none; padding: 12px 0; font-size: 16px; font-family: inherit; }
+        .search-btn { background: var(--primary); border: none; border-radius: 8px; padding: 8px 20px; color: white; font-weight: 700; transition: 0.2s; }
+        .quick-tag { background: white; border: 1.5px solid var(--border-color); border-radius: 20px; padding: 6px 16px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+        .quick-tag:hover { border-color: var(--primary); color: var(--primary); background: #fff4ed; }
+        
+        /* Product Card Styles */
+        .ms-result { background: white; border: 1.5px solid var(--border-color); border-radius: 16px; overflow: hidden; transition: 0.2s; height: 100%; display: flex; flex-direction: column; }
+        .ms-result:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); transform: translateY(-3px); }
+        .ms-result-head { background: var(--bg-color); padding: 16px; border-bottom: 1px solid #e8e0d4; }
+        .ms-ref { font-size: 12px; font-weight: 800; color: #1a5fa8; font-family: monospace; background: #e8f0fb; border: 1px solid #c5d8f5; border-radius: 6px; padding: 2px 8px; display: inline-block; margin-bottom: 8px; }
+        .ms-sup-row { display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid rgba(221,214,204,0.5); gap: 12px; }
+        .ms-sup-row:last-child { border-bottom: none; }
+        .ms-add { width: 36px; height: 36px; border-radius: 8px; background: var(--primary); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .ms-add:hover { background: var(--primary-hover); transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="custom-navbar sticky-top d-flex justify-content-between align-items-center">
+        <a href="index.html" class="brand-logo">MotorsParts <span>DZ</span></a>
+        
+        <div class="d-none d-md-flex align-items-center gap-4">
+            <a href="index.html" class="nav-link-custom" style="color: var(--primary);">البحث</a>
+            <a href="orders.html" class="nav-link-custom">طلباتي السابقة</a>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <a href="login.html" class="nav-link-custom d-none d-sm-block text-muted" style="font-size: 13px;">تسجيل خروج</a>
+            <a href="cart.html" class="btn btn-primary-custom" style="width: auto; padding: 8px 16px; display: flex; gap: 8px; align-items: center;">
+                🛒 السلة <span id="cartBadge" style="background: white; color: var(--primary); border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900;">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-lg-8">
+                <!-- Search -->
+                <div class="search-container">
+                    <span style="font-size: 20px;">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="ابحث بالمرجع (25100) أو اسم القطعة أو نوع السيارة...">
+                    <button class="search-btn" onclick="performSearch()">بحث</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intro -->
+        <div id="introState" class="text-center py-5">
+            <div style="font-size:50px; margin-bottom:15px">🔧</div>
+            <h4 class="fw-bold">ابحث عن أي قطعة غيار بسهولة</h4>
+            <p class="text-muted">اكتب المرجع أو اسم القطعة للبدء</p>
+            <div class="d-flex gap-2 flex-wrap justify-content-center mt-4">
+                <span class="quick-tag" onclick="document.getElementById('searchInput').value='طرمبة'; performSearch()">طرمبة ماء</span>
+                <span class="quick-tag" onclick="document.getElementById('searchInput').value='25100'; performSearch()">25100-2G500</span>
+            </div>
+        </div>
+
+        <!-- Results (تظهر بعد البحث) -->
+        <div class="row g-4 d-none" id="resultsState">
+            <!-- Sample Result Card -->
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="ms-result">
+                    <div class="ms-result-head">
+                        <div class="ms-ref">25100-2G500</div>
+                        <div class="fs-5 fw-bold mb-1">طرمبة ماء</div>
+                        <div style="font-size: 13px; color: var(--text-muted);">🚗 Hyundai Tucson 2018-2022</div>
+                    </div>
+                    <div class="ms-sup-row">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: #f0ebe3; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--primary);">A</div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold" style="font-size: 14px;">مورد A</div>
+                            <div style="font-size: 11px; color: var(--success); font-weight: 600;">✓ توصيل خلال 24 ساعة</div>
+                        </div>
+                        <div class="fw-bold" style="font-size: 16px;">2,800 <span style="font-size: 11px; color: var(--text-muted);">دج</span></div>
+                        <button class="ms-add ms-3" onclick="addToCart(this)">+</button>
+                    </div>
+                    <div style="padding: 8px 16px; background: #fff4ed; border-top: 1px solid #f5d4bb; font-size: 11px; color: var(--text-muted); margin-top: auto;">⚠️ الأسعار تقريبية – تُحدَّد بدقة عند تأكيد المورد للطلب</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+        function performSearch() {
+            document.getElementById('introState').classList.add('d-none');
+            document.getElementById('resultsState').classList.remove('d-none');
+        }
+        function addToCart(btn) {
+            btn.innerHTML = '<span style="font-size:14px">✓</span>';
+            btn.style.background = 'var(--success)';
+            cartCount++;
+            updateCartUI();
+        }
+    </script>
+</body>
+</html>
