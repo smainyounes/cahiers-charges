@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Administration - MedCollab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           DESIGN SYSTEM (MedCollab Colors)
+           ========================================================= */
+        :root {
+            --bg-body: #F4F7F9;
+            --bg-surface: #FFFFFF;
+            --bg-surface-hover: #Eef2f5;
+            --text-main: #122238; 
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            
+            --primary-color: #189BA3; 
+            --primary-light: rgba(24, 155, 163, 0.1);
+            
+            --success-color: #10B981;
+            --success-light: rgba(16, 185, 129, 0.1);
+            
+            --warning-color: #F59E0B;
+            --warning-light: rgba(245, 158, 11, 0.1);
+            
+            --danger-color: #EF4444;
+            --danger-light: rgba(239, 68, 68, 0.1);
+            
+            --radius-md: 12px; --radius-lg: 16px; --radius-pill: 50px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+            
+            --font-ui: 'Plus Jakarta Sans', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F1A2A; 
+            --bg-surface: #16263B;
+            --bg-surface-hover: #1C304A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #273A54;
+            --primary-color: #20C2C9;
+            --primary-light: rgba(32, 194, 201, 0.15);
+        }
+
+        html[dir="rtl"] { --font-ui: 'Cairo', sans-serif; }
+
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-ui); transition: all var(--transition-speed); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+        .card, .admin-sidebar, .admin-card, input, button, table, th, td { transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed); }
+
+        /* =========================================================
+           ADMIN LAYOUT
+           ========================================================= */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 992px) {
+            .admin-layout { grid-template-columns: 1fr; }
+            .admin-sidebar { display: none; }
+        }
+
+        /* =========================================================
+           ADMIN SIDEBAR
+           ========================================================= */
+        .admin-sidebar {
+            background-color: var(--bg-surface); border-right: 1px solid var(--border-color);
+            padding: 1.5rem; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;
+        }
+        html[dir="rtl"] .admin-sidebar { border-right: none; border-left: 1px solid var(--border-color); }
+
+        .brand-logo-container { margin-bottom: 2.5rem; }
+
+        .nav-menu { list-style: none; padding: 0; margin: 0; }
+        .nav-link {
+            display: flex; align-items: center; gap: 16px; padding: 0.8rem 1rem; border-radius: var(--radius-md);
+            color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; cursor: pointer; position: relative;
+        }
+        .nav-link i { font-size: 1.2rem; width: 24px; text-align: center; }
+        .nav-link:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
+        .nav-link.active { background-color: var(--primary-light); color: var(--primary-color); }
+        
+        .badge-count { background-color: var(--warning-color); color: white; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); margin-inline-start: auto; }
+        .badge-count.danger { background-color: var(--danger-color); }
+
+        .admin-user { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+        .system-toggles { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .btn-icon { background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main); width: 36px; height: 36px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; }
+        .btn-icon:hover { background: var(--bg-surface-hover); }
+
+        /* =========================================================
+           MAIN CONTENT
+           ========================================================= */
+        .admin-content { padding: 2rem 3rem; width: 100%; max-width: 1400px; margin: 0 auto; }
+        @media (max-width: 768px) { .admin-content { padding: 1.5rem 1rem; } }
+
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+        .page-header h1 { font-weight: 800; font-size: 1.8rem; color: var(--text-main); margin: 0; }
+        .page-header p { color: var(--text-muted); font-size: 0.95rem; margin: 5px 0 0 0; }
+
+        /* STATS CARDS */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .stat-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1rem; }
+        .stat-icon { width: 50px; height: 50px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .stat-info h3 { margin: 0; font-weight: 800; font-size: 1.6rem; color: var(--text-main); }
+        .stat-info p { margin: 0; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Color Modifiers */
+        .c-primary { background: var(--primary-light); color: var(--primary-color); }
+        .c-warning { background: var(--warning-light); color: var(--warning-color); }
+        .c-danger { background: var(--danger-light); color: var(--danger-color); }
+        .c-success { background: var(--success-light); color: var(--success-color); }
+
+        /* TABLES */
+        .admin-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 2rem; }
+        .admin-card-header { padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .admin-card-header h2 { font-weight: 700; font-size: 1.2rem; color: var(--text-main); margin: 0; display: flex; align-items: center; gap: 10px; }
+        
+        .table-responsive { overflow-x: auto; }
+        .table-custom { width: 100%; border-collapse: collapse; text-align: left; }
+        html[dir="rtl"] .table-custom { text-align: right; }
+        .table-custom th { padding: 1rem 1.5rem; background: var(--bg-body); color: var(--text-muted); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); }
+        .table-custom td { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-color); color: var(--text-main); font-size: 0.95rem; vertical-align: middle; }
+        .table-custom tr:last-child td { border-bottom: none; }
+        .table-custom tbody tr:hover { background: var(--bg-surface-hover); }
+
+        /* Badges */
+        .status-pill { padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        .status-pill.pending { background: var(--warning-light); color: var(--warning-color); }
+        .status-pill.reported { background: var(--danger-light); color: var(--danger-color); }
+
+        /* Table Actions */
+        .action-btns { display: flex; gap: 8px; }
+        .btn-action { width: 32px; height: 32px; border-radius: 8px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; font-size: 0.9rem; }
+        .btn-action:hover { transform: scale(1.1); }
+        .btn-approve { background: var(--success-light); color: var(--success-color); }
+        .btn-reject { background: var(--danger-light); color: var(--danger-color); }
+        .btn-view { background: var(--bg-body); color: var(--text-muted); border: 1px solid var(--border-color); }
+
+        .doctor-cell { display: flex; align-items: center; gap: 12px; }
+        .doctor-cell img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .doctor-cell div { display: flex; flex-direction: column; }
+        .doc-name { font-weight: 700; color: var(--text-main); }
+        .doc-email { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* Row Exit Animation */
+        .row-exit { opacity: 0; transform: translateX(-20px); transition: all 0.4s ease; }
+    </style>
+</head>
+<body>
+
+<div class="admin-layout">
+    
+    <!-- ================= LEFT SIDEBAR ================= -->
+    <aside class="admin-sidebar">
+        <div class="brand-logo-container">
+            <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 38px; object-fit: contain;">
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-link active"><i class="fa-solid fa-chart-pie"></i> Vue Globale</li>
+            <li class="nav-link">
+                <i class="fa-solid fa-user-check"></i> Validations
+                <span class="badge-count" id="pendingCount">3</span>
+            </li>
+            <li class="nav-link"><i class="fa-solid fa-users"></i> Médecins</li>
+            <li class="nav-link">
+                <i class="fa-solid fa-shield-halved"></i> Modération
+                <span class="badge-count danger">1</span>
+            </li>
+            <li class="nav-link"><i class="fa-solid fa-layer-group"></i> Spécialités</li>
+            <li class="nav-link"><i class="fa-solid fa-gear"></i> Paramètres</li>
+        </ul>
+
+        <div class="admin-user">
+            <div class="system-toggles">
+                <button class="btn-icon" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+                <button class="btn-icon" id="langToggle">AR</button>
+            </div>
+            <button class="btn btn-outline-secondary w-100 fw-bold rounded-pill" style="border-color: var(--border-color); color: var(--text-muted); font-size: 0.9rem;">
+                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="admin-content">
+        
+        <!-- Mobile Header -->
+        <div class="d-lg-none mb-4 d-flex justify-content-between align-items-center">
+            <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 30px; object-fit: contain;">
+            <button class="btn-icon" style="background:transparent; border:none; font-size:1.5rem;"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div class="page-header">
+            <div>
+                <h1>Tableau de Bord</h1>
+                <p>Bienvenue Admin. Voici un résumé de l'activité sur la plateforme.</p>
+            </div>
+        </div>
+
+        <!-- KPI STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon c-primary"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="stat-info">
+                    <h3>12,450</h3>
+                    <p>Médecins Actifs</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon c-warning"><i class="fa-solid fa-hourglass-half"></i></div>
+                <div class="stat-info">
+                    <h3 id="statPending">3</h3>
+                    <p>En Attente</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon c-danger"><i class="fa-solid fa-flag"></i></div>
+                <div class="stat-info">
+                    <h3>1</h3>
+                    <p>Signalements</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon c-success"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="stat-info">
+                    <h3>42</h3>
+                    <p>Spécialités</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLE 1: VALIDATIONS -->
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h2><i class="fa-solid fa-user-check" style="color: var(--warning-color);"></i> Inscriptions à valider</h2>
+                <a href="#" style="font-size: 0.9rem; font-weight: 600; color: var(--primary-color);">Voir tout</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Médecin</th>
+                            <th>Spécialité & Wilaya</th>
+                            <th>N° Ordre</th>
+                            <th>Date d'inscription</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="validationTableBody">
+                        <!-- Row 1 -->
+                        <tr id="row-1">
+                            <td>
+                                <div class="doctor-cell">
+                                    <div class="avatar" style="background: var(--bg-body); border: 1px solid var(--border-color); display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user text-muted"></i></div>
+                                    <div>
+                                        <span class="doc-name">Dr. Lamine Cherif</span>
+                                        <span class="doc-email">l.cherif@gmail.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Cardiologie<br><span style="font-size: 0.8rem; color: var(--text-muted);">16 - Alger</span></td>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-2023-4581</td>
+                            <td>Aujourd'hui, 09:30</td>
+                            <td><span class="status-pill pending"><i class="fa-solid fa-clock"></i> En vérification</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="btn-action btn-approve" title="Valider" onclick="processRow('row-1')"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn-action btn-reject" title="Refuser" onclick="processRow('row-1')"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr id="row-2">
+                            <td>
+                                <div class="doctor-cell">
+                                    <div class="avatar" style="background: var(--bg-body); border: 1px solid var(--border-color); display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user text-muted"></i></div>
+                                    <div>
+                                        <span class="doc-name">Dr. Sarah Ibrahimi</span>
+                                        <span class="doc-email">sarah.ibrahimi@yahoo.fr</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Dermatologie<br><span style="font-size: 0.8rem; color: var(--text-muted);">31 - Oran</span></td>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-2021-9920</td>
+                            <td>Hier, 14:15</td>
+                            <td><span class="status-pill pending"><i class="fa-solid fa-clock"></i> En vérification</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="btn-action btn-approve" title="Valider" onclick="processRow('row-2')"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn-action btn-reject" title="Refuser" onclick="processRow('row-2')"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr id="row-3">
+                            <td>
+                                <div class="doctor-cell">
+                                    <div class="avatar" style="background: var(--bg-body); border: 1px solid var(--border-color); display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user text-muted"></i></div>
+                                    <div>
+                                        <span class="doc-name">Pr. Ali Benmoussa</span>
+                                        <span class="doc-email">pr.benmoussa@chu-constantine.dz</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Pédiatrie<br><span style="font-size: 0.8rem; color: var(--text-muted);">25 - Constantine</span></td>
+                            <td style="font-family: monospace; font-weight: 600;">ORD-2015-1102</td>
+                            <td>Hier, 10:05</td>
+                            <td><span class="status-pill pending"><i class="fa-solid fa-clock"></i> En vérification</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="btn-action btn-approve" title="Valider" onclick="processRow('row-3')"><i class="fa-solid fa-check"></i></button>
+                                    <button class="btn-action btn-reject" title="Refuser" onclick="processRow('row-3')"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TABLE 2: MODERATION -->
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <h2><i class="fa-solid fa-shield-halved" style="color: var(--danger-color);"></i> Modération du contenu</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th>Signalé par</th>
+                            <th>Contenu visé</th>
+                            <th>Motif</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="mod-1">
+                            <td>
+                                <span class="doc-name">Dr. K. Lounes</span><br>
+                                <span class="doc-email">Il y a 2h</span>
+                            </td>
+                            <td>
+                                <div style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.9rem;">
+                                    "Je propose de vendre du matériel médical..."
+                                </div>
+                                <span style="font-size: 0.8rem; color: var(--primary-color);">Auteur: Dr. X. Inconnu</span>
+                            </td>
+                            <td><span style="font-weight: 600; color: var(--text-main);">Publicité / Spam</span></td>
+                            <td><span class="status-pill reported"><i class="fa-solid fa-triangle-exclamation"></i> Signalé</span></td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="btn-action btn-view" title="Voir la publication"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn-action btn-reject" title="Supprimer le post" onclick="processRow('mod-1')"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn-action btn-approve" title="Ignorer" onclick="processRow('mod-1')"><i class="fa-solid fa-check"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // --- Theme & Logo Logic ---
+        const htmlElement = document.documentElement;
+        const themeBtns = [document.getElementById('themeToggle')];
+        const logoImages = document.querySelectorAll('.medcollab-logo');
+        
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('medcollab_theme', theme);
+            const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+            themeBtns.forEach(btn => { if(btn) btn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`; });
+            const logoSrc = theme === 'dark' ? 'logo_light.png' : 'logo_dark.png';
+            logoImages.forEach(img => { img.src = logoSrc; });
+        }
+
+        const savedTheme = localStorage.getItem('medcollab_theme');
+        if (savedTheme) setTheme(savedTheme);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+        else setTheme('light');
+
+        const toggleHandler = () => setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        themeBtns.forEach(btn => { if(btn) btn.addEventListener('click', toggleHandler); });
+
+        // --- Language Logic (RTL) ---
+        const langToggle = document.getElementById('langToggle');
+        if(langToggle) {
+            langToggle.addEventListener('click', function() {
+                if (htmlElement.getAttribute('dir') === 'ltr') {
+                    htmlElement.setAttribute('dir', 'rtl'); htmlElement.setAttribute('lang', 'ar'); this.innerText = 'FR';
+                } else {
+                    htmlElement.setAttribute('dir', 'ltr'); htmlElement.setAttribute('lang', 'fr'); this.innerText = 'AR';
+                }
+            });
+        }
+    });
+
+    // --- Fake Action Processing (Row Removal Animation) ---
+    let pendingCount = 3;
+    function processRow(rowId) {
+        const row = document.getElementById(rowId);
+        if(!row) return;
+
+        // Apply exit animation
+        row.classList.add('row-exit');
+        
+        // Remove from DOM after animation
+        setTimeout(() => {
+            row.remove();
+            
+            // Update counter if it's a validation row
+            if(rowId.startsWith('row-')) {
+                pendingCount--;
+                document.getElementById('statPending').innerText = pendingCount;
+                document.getElementById('pendingCount').innerText = pendingCount;
+                if(pendingCount === 0) {
+                    document.getElementById('pendingCount').style.display = 'none';
+                    document.getElementById('validationTableBody').innerHTML = `
+                        <tr><td colspan="6" style="text-align:center; padding: 3rem; color: var(--text-muted);">
+                            <i class="fa-solid fa-check-circle" style="font-size: 2rem; color: var(--success-color); margin-bottom:10px;"></i><br>
+                            Aucune inscription en attente.
+                        </td></tr>
+                    `;
+                }
+            }
+        }, 400); // 400ms matches CSS transition
+    }
+</script>
+</body>
+</html>

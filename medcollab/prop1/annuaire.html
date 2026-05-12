@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Annuaire - MedCollab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           DESIGN SYSTEM (MedCollab Colors)
+           ========================================================= */
+        :root {
+            --bg-body: #F4F7F9;
+            --bg-surface: #FFFFFF;
+            --bg-surface-hover: #Eef2f5;
+            
+            --text-main: #122238; 
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            
+            --primary-color: #189BA3; 
+            --primary-hover: #137e85;
+            --primary-light: rgba(24, 155, 163, 0.1);
+            
+            --whatsapp-color: #25D366;
+            --danger-color: #EF4444;
+            --danger-light: rgba(239, 68, 68, 0.1);
+            --pending-color: #F59E0B; /* Orange for pending requests */
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-pill: 50px;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+            
+            --font-ui: 'Plus Jakarta Sans', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F1A2A; 
+            --bg-surface: #16263B;
+            --bg-surface-hover: #1C304A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #273A54;
+            --primary-color: #20C2C9;
+            --primary-light: rgba(32, 194, 201, 0.15);
+        }
+
+        html[dir="rtl"] { --font-ui: 'Cairo', sans-serif; }
+
+        body {
+            background-color: var(--bg-body); color: var(--text-main);
+            font-family: var(--font-ui); transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden; -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        .card, .sidebar, .bottom-nav, .modal-content, input, select, button { transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed); }
+
+        .app-layout { max-width: 1300px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: 280px 1fr 320px; gap: 2rem; }
+        @media (max-width: 1024px) { .app-layout { grid-template-columns: 260px 1fr; } .right-sidebar { display: none; } }
+        @media (max-width: 768px) { .app-layout { display: block; padding: 0; } .left-sidebar { display: none; } .main-feed { padding-bottom: 80px; } }
+
+        /* =========================================================
+           SIDEBARS & NAV
+           ========================================================= */
+        .sticky-wrapper { position: sticky; top: 0; height: 100vh; padding: 2rem 0; display: flex; flex-direction: column; overflow-y: auto; }
+        .sticky-wrapper::-webkit-scrollbar { display: none; }
+        .brand-logo-container { display: flex; align-items: center; margin-bottom: 2rem; padding-inline-start: 1rem; }
+
+        .nav-menu { list-style: none; padding: 0; margin: 0; }
+        .nav-link { display: flex; align-items: center; gap: 16px; padding: 0.8rem 1rem; border-radius: var(--radius-md); color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; cursor: pointer; }
+        .nav-link i { font-size: 1.2rem; width: 24px; text-align: center; }
+        .nav-link:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
+        .nav-link.active { background-color: var(--primary-light); color: var(--primary-color); }
+        .notif-badge { background-color: var(--danger-color); color: white; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); margin-inline-start: auto; }
+
+        .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-muted); margin: 1.5rem 0 0.8rem; padding-inline-start: 1rem; }
+        .speciality-item { display: flex; align-items: center; gap: 12px; padding: 0.6rem 1rem; border-radius: var(--radius-md); color: var(--text-muted); font-weight: 600; font-size: 0.95rem; cursor: pointer; margin-bottom: 4px; border-inline-start: 4px solid transparent; }
+        .spec-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background-color: var(--spec-bg); color: var(--spec-color); font-size: 1rem; }
+        .speciality-item:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
+        .badge-spec { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-pill); background-color: var(--spec-bg); color: var(--spec-color); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+
+        .user-controls { margin-top: auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+        .profile-mini { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 44px; height: 44px; border-radius: var(--radius-pill); object-fit: cover; }
+        .avatar-lg { width: 80px; height: 80px; border-radius: var(--radius-pill); object-fit: cover; border: 2px solid var(--bg-surface); }
+        .avatar-xl { width: 120px; height: 120px; border-radius: var(--radius-pill); object-fit: cover; border: 4px solid var(--bg-surface); margin-top: -60px; background: white;}
+        .doctor-info h6 { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+        .system-toggles { display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+        .btn-icon { background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main); width: 36px; height: 36px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; }
+
+        /* =========================================================
+           MAIN CONTENT (ANNUAIRE)
+           ========================================================= */
+        .main-feed { padding: 2rem 0; max-width: 800px; margin: 0 auto; width: 100%; }
+        @media (max-width: 768px) { .main-feed { padding: 1rem; } }
+
+        .page-header { margin-bottom: 2rem; }
+        .page-header h1 { font-weight: 800; font-size: 2rem; color: var(--text-main); margin-bottom: 0.5rem; }
+        .page-header p { color: var(--text-muted); font-size: 1rem; }
+
+        .filter-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem; }
+        .search-input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-main); font-family: var(--font-ui); }
+        .search-input:focus { outline: none; border-color: var(--primary-color); }
+        .filter-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .filter-select { width: 100%; padding: 0.8rem 1rem; background: var(--bg-body); color: var(--text-main); border: 1px solid var(--border-color); border-radius: var(--radius-md); font-family: var(--font-ui); }
+
+        .directory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        @media (max-width: 650px) { .directory-grid { grid-template-columns: 1fr; } }
+
+        /* Doctor Card (Updated for networking) */
+        .doctor-card {
+            background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+            padding: 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; position: relative;
+        }
+        .doc-card-name { font-weight: 700; font-size: 1.1rem; color: var(--text-main); margin: 0.8rem 0 0.3rem; display: flex; align-items: center; justify-content: center; gap: 6px;}
+        .doc-card-location { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+        /* Network Status Badges */
+        .status-badge { position: absolute; top: 15px; right: 15px; font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: var(--radius-pill); }
+        html[dir="rtl"] .status-badge { right: auto; left: 15px; }
+        .status-connected { background: var(--primary-light); color: var(--primary-color); }
+        .status-pending { background: rgba(245, 158, 11, 0.1); color: var(--pending-color); }
+
+        .doc-actions { display: flex; gap: 8px; width: 100%; margin-top: auto; }
+        .btn-action-full {
+            flex: 1; padding: 0.6rem; border-radius: var(--radius-pill); font-weight: 600; font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; transition: all 0.2s;
+        }
+        
+        /* Button States */
+        .btn-connect { background: var(--primary-color); color: white; }
+        .btn-connect:hover { background: var(--primary-hover); }
+        .btn-pending { background: var(--bg-body); color: var(--text-muted); border: 1px solid var(--border-color); cursor: default; }
+        .btn-view { background: var(--primary-light); color: var(--primary-color); border: 1px solid transparent; }
+        .btn-view:hover { border-color: var(--primary-color); }
+
+        /* =========================================================
+           PROFILE MODAL (Anonymized vs Connected)
+           ========================================================= */
+        .modal-content { background-color: var(--bg-surface); color: var(--text-main); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; }
+        .modal-cover { height: 120px; background: linear-gradient(135deg, var(--primary-color), #0F1A2A); position: relative; }
+        .btn-close-custom { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; cursor: pointer; }
+        html[dir="rtl"] .btn-close-custom { right: auto; left: 15px; }
+        
+        .profile-modal-body { padding: 0 2rem 2rem 2rem; text-align: center; }
+        .profile-bio { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; text-align: left; background: var(--bg-body); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; }
+        html[dir="rtl"] .profile-bio { text-align: right; }
+
+        /* Privacy Locked State */
+        .privacy-lock-box {
+            background: var(--bg-body); border: 1px dashed var(--border-color); border-radius: var(--radius-md);
+            padding: 2rem 1rem; text-align: center; margin-bottom: 1.5rem;
+        }
+        .privacy-lock-box i { font-size: 2rem; color: var(--text-muted); margin-bottom: 10px; }
+        .privacy-lock-box h5 { font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 5px; }
+        .privacy-lock-box p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+        
+        /* Mobile Nav */
+        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 0.8rem 1.5rem; justify-content: space-between; align-items: center; z-index: 1000; padding-bottom: calc(0.8rem + env(safe-area-inset-bottom)); }
+        @media (max-width: 768px) { .bottom-nav { display: flex; } }
+        .b-nav-item { color: var(--text-muted); font-size: 1.4rem; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .b-nav-item.active { color: var(--primary-color); }
+        .b-nav-label { font-size: 0.65rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+<div class="app-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar">
+        <div class="sticky-wrapper">
+            <div class="brand-logo-container">
+                <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 40px; object-fit: contain;">
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-link"><i class="fa-solid fa-house"></i> Accueil</li>
+                <li class="nav-link"><i class="fa-solid fa-bell"></i> Notifications <span class="notif-badge">3</span></li>
+                <li class="nav-link active"><i class="fa-solid fa-user-doctor"></i> Annuaire</li>
+                <li class="nav-link"><i class="fa-regular fa-bookmark"></i> Sauvegardés</li>
+            </ul>
+
+            <div class="user-controls mt-auto">
+                <div class="profile-mini mb-2">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Profil" class="avatar">
+                    <div class="doctor-info">
+                        <h6>Dr. R. Amrani</h6>
+                    </div>
+                </div>
+                <div class="system-toggles">
+                    <button class="btn-icon" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+                    <button class="btn-icon" id="langToggle">AR</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CENTER CONTENT (ANNUAIRE) -->
+    <main class="main-feed">
+        
+        <div class="page-header">
+            <h1>Annuaire Médical</h1>
+            <p>Recherchez et développez votre réseau avec des confrères vérifiés.</p>
+        </div>
+
+        <div class="filter-card">
+            <div style="position: relative;">
+                <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                <input type="text" class="search-input" placeholder="Rechercher par nom, clinique...">
+            </div>
+            <div class="filter-selects">
+                <select class="filter-select">
+                    <option value="" selected>Toutes les spécialités</option>
+                    <option>Cardiologie</option>
+                    <option>Dermatologie</option>
+                </select>
+                <select class="filter-select">
+                    <option value="" selected>Toutes les Wilayas</option>
+                    <option>16 - Alger</option>
+                    <option>31 - Oran</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="directory-grid">
+            
+            <!-- Doctor 1: CONNECTED (Can see full profile and contact) -->
+            <div class="doctor-card">
+                <span class="status-badge status-connected"><i class="fa-solid fa-check"></i> Connecté</span>
+                <img src="https://i.pravatar.cc/150?img=47" class="avatar-lg">
+                <h3 class="doc-card-name">Dr. Amina Benali <i class="fa-solid fa-circle-check text-primary" style="font-size:0.9rem;"></i></h3>
+                <div class="badge-spec mb-2" style="--spec-color: #EF4444; --spec-bg: rgba(239, 68, 68, 0.15);">
+                    <i class="fa-solid fa-heart-pulse"></i> Cardiologie
+                </div>
+                <div class="doc-card-location"><i class="fa-solid fa-location-dot me-1"></i> EHU Oran (31)</div>
+                
+                <div class="doc-actions">
+                    <button class="btn-action-full btn-view" data-bs-toggle="modal" data-bs-target="#profileConnectedModal">
+                        Voir le contact
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 2: NOT CONNECTED (Must send invite) -->
+            <div class="doctor-card">
+                <img src="https://i.pravatar.cc/150?img=32" class="avatar-lg">
+                <h3 class="doc-card-name">Dr. Farid Lounes <i class="fa-solid fa-circle-check text-primary" style="font-size:0.9rem;"></i></h3>
+                <div class="badge-spec mb-2" style="--spec-color: #F97316; --spec-bg: rgba(249, 115, 22, 0.15);">
+                    <i class="fa-solid fa-hand-dots"></i> Dermatologie
+                </div>
+                <div class="doc-card-location"><i class="fa-solid fa-location-dot me-1"></i> Clinique El Razi, Alger (16)</div>
+                
+                <div class="doc-actions">
+                    <button class="btn-action-full btn-connect" data-bs-toggle="modal" data-bs-target="#profileRestrictedModal">
+                        <i class="fa-solid fa-user-plus"></i> Se connecter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 3: PENDING INVITE -->
+            <div class="doctor-card">
+                <span class="status-badge status-pending"><i class="fa-solid fa-clock"></i> En attente</span>
+                <img src="https://i.pravatar.cc/150?img=68" class="avatar-lg">
+                <h3 class="doc-card-name">Pr. Salim Boukhalfa <i class="fa-solid fa-circle-check text-primary" style="font-size:0.9rem;"></i></h3>
+                <div class="badge-spec mb-2" style="--spec-color: #06B6D4; --spec-bg: rgba(6, 182, 212, 0.15);">
+                    <i class="fa-solid fa-kit-medical"></i> Chirurgie Générale
+                </div>
+                <div class="doc-card-location"><i class="fa-solid fa-location-dot me-1"></i> CHU Mustapha, Alger (16)</div>
+                
+                <div class="doc-actions">
+                    <button class="btn-action-full btn-pending" disabled>
+                        Invitation envoyée
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR (Hidden on small screens) -->
+    <aside class="right-sidebar">
+        <div class="sticky-wrapper">
+            <div class="widget">
+                <h3 class="widget-title">Mon Réseau</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Vous êtes connecté avec <strong>12</strong> confrères.</p>
+                <button class="btn btn-outline-primary w-100 rounded-pill mt-2 fw-bold" style="font-size: 0.9rem;">Gérer mes invitations</button>
+            </div>
+        </div>
+    </aside>
+
+</div>
+
+<!-- Mobile Bottom Nav -->
+<nav class="bottom-nav">
+    <a href="#" class="b-nav-item"><i class="fa-solid fa-house"></i><span class="b-nav-label">Flux</span></a>
+    <a href="#" class="b-nav-item active"><i class="fa-solid fa-user-doctor"></i><span class="b-nav-label">Annuaire</span></a>
+    <a href="#" class="b-nav-item"><i class="fa-solid fa-bars"></i><span class="b-nav-label">Menu</span></a>
+</nav>
+
+<!-- =========================================================
+     MODALS
+     ========================================================= -->
+
+<!-- MODAL 1: RESTRICTED PROFILE (Not connected yet) -->
+<div class="modal fade" id="profileRestrictedModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-cover">
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="profile-modal-body">
+                <img src="https://i.pravatar.cc/150?img=32" class="avatar-xl">
+                
+                <h3 class="mt-3 mb-1 fw-bold">Dr. Farid Lounes <i class="fa-solid fa-circle-check text-primary" style="font-size:1rem;"></i></h3>
+                <div class="badge-spec mb-3" style="--spec-color: #F97316; --spec-bg: rgba(249, 115, 22, 0.15);">
+                    <i class="fa-solid fa-hand-dots"></i> Dermatologie
+                </div>
+                <div class="text-muted mb-4" style="font-size: 0.9rem;">
+                    <i class="fa-solid fa-location-dot"></i> Clinique El Razi, Alger • Wilaya 16
+                </div>
+
+                <!-- Privacy Box -->
+                <div class="privacy-lock-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <h5>Informations privées</h5>
+                    <p>Connectez-vous avec ce confrère pour accéder à sa biographie complète, son email et son numéro WhatsApp.</p>
+                </div>
+
+                <button class="btn btn-primary w-100 rounded-pill fw-bold py-2" id="sendInviteBtn" onclick="sendInviteAnim()">
+                    <i class="fa-solid fa-user-plus"></i> Envoyer une invitation
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL 2: CONNECTED PROFILE (Full Access) -->
+<div class="modal fade" id="profileConnectedModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-cover">
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="profile-modal-body">
+                <img src="https://i.pravatar.cc/150?img=47" class="avatar-xl">
+                
+                <h3 class="mt-3 mb-1 fw-bold">Dr. Amina Benali <i class="fa-solid fa-circle-check text-primary" style="font-size:1rem;"></i></h3>
+                <div class="badge-spec mb-3" style="--spec-color: #EF4444; --spec-bg: rgba(239, 68, 68, 0.15);">
+                    <i class="fa-solid fa-heart-pulse"></i> Cardiologie
+                </div>
+                <div class="text-muted mb-3" style="font-size: 0.9rem;">
+                    <i class="fa-solid fa-location-dot"></i> EHU Oran • Wilaya 31
+                </div>
+
+                <!-- Full Bio (Unlocked) -->
+                <div class="profile-bio">
+                    <strong>À propos :</strong><br>
+                    Médecin spécialiste en cardiologie interventionnelle avec plus de 10 ans d'expérience. Ancienne Chef de clinique au CHU Mustapha.
+                </div>
+
+                <!-- Contact Info (Unlocked) -->
+                <div class="d-flex flex-column gap-2 mt-2">
+                    <a href="mailto:contact@medcollab.com" class="btn btn-outline-secondary w-100 fw-bold rounded-pill" style="border-color:var(--border-color); color:var(--text-main);">
+                        <i class="fa-regular fa-envelope"></i> dr.benali@medcollab.com
+                    </a>
+                    <a href="#" class="btn w-100 fw-bold rounded-pill text-white" style="background-color: var(--whatsapp-color);">
+                        <i class="fa-brands fa-whatsapp"></i> Contacter sur WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Theme Logic
+        const htmlElement = document.documentElement;
+        const themeBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+        const logoImages = document.querySelectorAll('.medcollab-logo');
+        
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('medcollab_theme', theme);
+            const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+            themeBtns.forEach(btn => { if(btn) btn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`; });
+            const logoSrc = theme === 'dark' ? 'logo_light.png' : 'logo_dark.png';
+            logoImages.forEach(img => { img.src = logoSrc; });
+        }
+
+        const savedTheme = localStorage.getItem('medcollab_theme');
+        if (savedTheme) setTheme(savedTheme); else setTheme('light');
+
+        const toggleHandler = () => setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        themeBtns.forEach(btn => { if(btn) btn.addEventListener('click', toggleHandler); });
+
+        // Lang Logic
+        const langToggle = document.getElementById('langToggle');
+        if(langToggle) {
+            langToggle.addEventListener('click', function() {
+                if (htmlElement.getAttribute('dir') === 'ltr') {
+                    htmlElement.setAttribute('dir', 'rtl'); htmlElement.setAttribute('lang', 'ar'); this.innerText = 'FR';
+                } else {
+                    htmlElement.setAttribute('dir', 'ltr'); htmlElement.setAttribute('lang', 'fr'); this.innerText = 'AR';
+                }
+            });
+        }
+    });
+
+    // Simuler l'envoi d'une invitation
+    function sendInviteAnim() {
+        const btn = document.getElementById('sendInviteBtn');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi en cours...';
+        btn.classList.add('disabled');
+        
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Invitation envoyée';
+            btn.classList.replace('btn-primary', 'btn-success');
+        }, 1500);
+    }
+</script>
+</body>
+</html>

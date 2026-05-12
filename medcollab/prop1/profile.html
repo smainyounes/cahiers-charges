@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mon Profil - MedCollab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           DESIGN SYSTEM (MedCollab Colors)
+           ========================================================= */
+        :root {
+            --bg-body: #F4F7F9;
+            --bg-surface: #FFFFFF;
+            --bg-surface-hover: #Eef2f5;
+            --text-main: #122238; 
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --primary-color: #189BA3; 
+            --primary-hover: #137e85;
+            --primary-light: rgba(24, 155, 163, 0.1);
+            --danger-color: #EF4444;
+            --danger-light: rgba(239, 68, 68, 0.1);
+            
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-pill: 50px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05);
+            
+            --font-ui: 'Plus Jakarta Sans', sans-serif;
+            --font-clinical: 'Lora', serif;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F1A2A; 
+            --bg-surface: #16263B;
+            --bg-surface-hover: #1C304A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #273A54;
+            --primary-color: #20C2C9;
+            --primary-light: rgba(32, 194, 201, 0.15);
+        }
+
+        html[dir="rtl"] { --font-ui: 'Cairo', sans-serif; --font-clinical: 'Cairo', sans-serif; }
+
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-ui); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+        .card, .sidebar, .bottom-nav, input, select, textarea, button { transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed); }
+
+        .app-layout { max-width: 1300px; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: 280px 1fr 320px; gap: 2rem; }
+        @media (max-width: 1024px) { .app-layout { grid-template-columns: 260px 1fr; } .right-sidebar { display: none; } }
+        @media (max-width: 768px) { .app-layout { display: block; padding: 0; } .left-sidebar { display: none; } .main-feed { padding-bottom: 80px; } }
+
+        /* =========================================================
+           SIDEBARS & NAV
+           ========================================================= */
+        .sticky-wrapper { position: sticky; top: 0; height: 100vh; padding: 2rem 0; display: flex; flex-direction: column; overflow-y: auto; }
+        .sticky-wrapper::-webkit-scrollbar { display: none; }
+        .brand-logo-container { display: flex; align-items: center; margin-bottom: 2rem; padding-inline-start: 1rem; }
+
+        .nav-menu { list-style: none; padding: 0; margin: 0; }
+        .nav-link { display: flex; align-items: center; gap: 16px; padding: 0.8rem 1rem; border-radius: var(--radius-md); color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; cursor: pointer; }
+        .nav-link i { font-size: 1.2rem; width: 24px; text-align: center; }
+        .nav-link:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
+        .nav-link.active { background-color: var(--primary-light); color: var(--primary-color); }
+        
+        .user-controls { margin-top: auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+        .profile-mini { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 44px; height: 44px; border-radius: var(--radius-pill); object-fit: cover; }
+        .doctor-info h6 { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+        .system-toggles { display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+        .btn-icon { background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main); width: 36px; height: 36px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; }
+
+        /* =========================================================
+           MAIN CONTENT (PROFILE EDIT)
+           ========================================================= */
+        .main-feed { padding: 2rem 0; max-width: 750px; margin: 0 auto; width: 100%; }
+        @media (max-width: 768px) { .main-feed { padding: 1rem; } }
+
+        .page-header { margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .page-header h1 { font-weight: 800; font-size: 1.8rem; color: var(--text-main); margin-bottom: 0.2rem; }
+        .page-header p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+        .btn-save-main { background: var(--primary-color); color: white; border: none; padding: 0.6rem 1.5rem; border-radius: var(--radius-pill); font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.2s;}
+        .btn-save-main:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+        .ui-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+        .ui-card-body { padding: 2rem; }
+
+        /* Profile Cover & Avatar Upload */
+        .profile-cover { height: 140px; background: linear-gradient(135deg, var(--primary-color), #0F1A2A); position: relative; }
+        .btn-edit-cover { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; padding: 6px 12px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: 600; cursor: pointer; backdrop-filter: blur(4px); }
+        html[dir="rtl"] .btn-edit-cover { right: auto; left: 15px; }
+
+        .avatar-upload-container { position: relative; width: 120px; height: 120px; margin-top: -60px; margin-bottom: 1.5rem; margin-inline-start: 2rem; }
+        .avatar-upload-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-surface); background: var(--bg-surface); }
+        .avatar-edit-btn { position: absolute; bottom: 5px; right: 5px; width: 34px; height: 34px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 3px solid var(--bg-surface); transition: transform 0.2s; }
+        html[dir="rtl"] .avatar-edit-btn { right: auto; left: 5px; }
+        .avatar-edit-btn:hover { transform: scale(1.1); }
+
+        /* Form Elements */
+        .form-section-title { font-weight: 700; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
+        .form-section-title i { color: var(--primary-color); }
+        
+        .form-label-custom { display: block; font-weight: 600; font-size: 0.9rem; color: var(--text-main); margin-bottom: 6px; }
+        .input-custom { width: 100%; padding: 0.8rem 1rem; background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-main); font-family: var(--font-ui); font-size: 0.95rem; margin-bottom: 1.2rem; transition: all 0.2s; }
+        .input-custom:focus { outline: none; border-color: var(--primary-color); background: var(--bg-surface); box-shadow: 0 0 0 3px var(--primary-light); }
+        .input-custom:disabled { background: var(--bg-surface-hover); color: var(--text-muted); cursor: not-allowed; }
+        
+        textarea.input-custom { resize: vertical; min-height: 100px; }
+
+        /* Custom Switches for Privacy Settings */
+        .privacy-setting { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-body); border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 1rem; }
+        .privacy-info h6 { margin: 0 0 4px 0; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+        .privacy-info p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+        
+        .form-switch .form-check-input { width: 2.5em; height: 1.25em; cursor: pointer; }
+        .form-switch .form-check-input:checked { background-color: var(--primary-color); border-color: var(--primary-color); }
+
+        /* =========================================================
+           RIGHT SIDEBAR (WIDGETS)
+           ========================================================= */
+        .widget { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; }
+        .widget-title { font-weight: 800; font-size: 1rem; color: var(--text-main); margin-bottom: 1rem; }
+        
+        .progress-custom { height: 8px; background-color: var(--bg-body); border-radius: var(--radius-pill); overflow: hidden; margin-bottom: 10px; }
+        .progress-bar-custom { height: 100%; background-color: var(--primary-color); border-radius: var(--radius-pill); }
+
+        /* =========================================================
+           MOBILE BOTTOM NAVIGATION
+           ========================================================= */
+        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 0.8rem 1.5rem; justify-content: space-between; align-items: center; z-index: 1000; padding-bottom: calc(0.8rem + env(safe-area-inset-bottom)); }
+        @media (max-width: 768px) { .bottom-nav { display: flex; } }
+        .b-nav-item { color: var(--text-muted); font-size: 1.4rem; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; cursor: pointer;}
+        .b-nav-item.active { color: var(--primary-color); }
+        .b-nav-label { font-size: 0.65rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+<div class="app-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar">
+        <div class="sticky-wrapper">
+            <div class="brand-logo-container">
+                <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 40px; object-fit: contain;">
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-link"><i class="fa-solid fa-house"></i> Accueil</li>
+                <li class="nav-link"><i class="fa-solid fa-bell"></i> Notifications</li>
+                <li class="nav-link"><i class="fa-solid fa-user-doctor"></i> Annuaire</li>
+            </ul>
+
+            <div class="user-controls mt-auto">
+                <div class="profile-mini mb-2" style="background: var(--primary-light); padding: 8px; border-radius: var(--radius-md); cursor: pointer; border: 1px solid var(--primary-color);">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Profil" class="avatar">
+                    <div class="doctor-info">
+                        <h6 style="color: var(--primary-color);">Mon Profil</h6>
+                        <span style="color: var(--primary-color); font-weight: 600;">Éditer les infos</span>
+                    </div>
+                </div>
+                <div class="system-toggles">
+                    <button class="btn-icon" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+                    <button class="btn-icon" id="langToggle">AR</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CENTER CONTENT (PROFILE FORM) -->
+    <main class="main-feed">
+        
+        <div class="d-md-none mb-3 d-flex justify-content-between align-items-center">
+            <div class="logo-area mb-0 p-0"><img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 32px; object-fit: contain;"></div>
+            <button class="btn-icon" id="themeToggleMobile" style="width:32px; height:32px;"><i class="fa-solid fa-moon"></i></button>
+        </div>
+
+        <div class="page-header">
+            <div>
+                <h1>Modifier le profil</h1>
+                <p>Gérez vos informations publiques et vos paramètres de confidentialité.</p>
+            </div>
+            <!-- Bouton de sauvegarde global (Desktop) -->
+            <button class="btn-save-main d-none d-sm-flex" id="btnSaveTop" onclick="saveProfile()">
+                <i class="fa-solid fa-check"></i> Enregistrer
+            </button>
+        </div>
+
+        <form onsubmit="event.preventDefault(); saveProfile();">
+            
+            <!-- SECTION 1 : VISUELS -->
+            <div class="ui-card">
+                <div class="profile-cover">
+                    <button type="button" class="btn-edit-cover"><i class="fa-solid fa-pen"></i> Modifier la couverture</button>
+                </div>
+                
+                <div class="avatar-upload-container">
+                    <img src="https://i.pravatar.cc/150?img=11" class="avatar-upload-img" alt="Avatar">
+                    <label class="avatar-edit-btn" title="Changer de photo">
+                        <i class="fa-solid fa-camera"></i>
+                        <input type="file" class="d-none" accept="image/*">
+                    </label>
+                </div>
+
+                <div class="ui-card-body pt-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Nom</label>
+                            <input type="text" class="input-custom" value="Amrani" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Prénom</label>
+                            <input type="text" class="input-custom" value="Riad" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2 : INFOS PROFESSIONNELLES -->
+            <div class="ui-card">
+                <div class="ui-card-body">
+                    <h3 class="form-section-title"><i class="fa-solid fa-user-doctor"></i> Informations Professionnelles</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Spécialité</label>
+                            <select class="input-custom" required>
+                                <option value="med_int" selected>Médecine Interne</option>
+                                <option value="cardio">Cardiologie</option>
+                                <option value="derma">Dermatologie</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Lieu d'exercice (Wilaya)</label>
+                            <select class="input-custom" required>
+                                <option value="16" selected>16 - Alger</option>
+                                <option value="31">31 - Oran</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="form-label-custom">Description / Biographie</label>
+                    <textarea class="input-custom" placeholder="Décrivez votre parcours, vos diplômes et vos intérêts cliniques...">Spécialiste en médecine interne exerçant au CHU Mustapha Bacha. Intérêt particulier pour les maladies auto-immunes et la recherche clinique.</textarea>
+
+                    <!-- <label class="form-label-custom">Numéro d'Ordre des Médecins <span class="text-success ms-2" style="font-size:0.8rem;"><i class="fa-solid fa-shield-check"></i> Vérifié</span></label>
+                    <input type="text" class="input-custom" value="123456789" disabled title="Ce numéro a été vérifié par l'administration et ne peut être modifié."> -->
+                </div>
+            </div>
+
+            <!-- SECTION 3 : CONTACT & CONFIDENTIALITÉ -->
+            <div class="ui-card">
+                <div class="ui-card-body">
+                    <h3 class="form-section-title"><i class="fa-solid fa-lock"></i> Contact et Confidentialité</h3>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Email de contact</label>
+                            <input type="email" class="input-custom" value="dr.amrani@medcollab.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-custom">Numéro WhatsApp (Optionnel)</label>
+                            <input type="tel" class="input-custom" value="+213 555 12 34 56">
+                        </div>
+                    </div>
+
+                    <!-- Privacy Switches (Bootstrap form-switch tailored) -->
+                    <div class="privacy-setting">
+                        <div class="privacy-info">
+                            <h6>Visibilité du numéro WhatsApp</h6>
+                            <p>Autoriser mes connexions à voir mon numéro pour me contacter.</p>
+                        </div>
+                        <div class="form-check form-switch fs-4">
+                            <input class="form-check-input" type="checkbox" role="switch" checked>
+                        </div>
+                    </div>
+
+                    <div class="privacy-setting">
+                        <div class="privacy-info">
+                            <h6>Visibilité de l'Email</h6>
+                            <p>Afficher mon adresse email sur mon profil public MedCollab.</p>
+                        </div>
+                        <div class="form-check form-switch fs-4">
+                            <input class="form-check-input" type="checkbox" role="switch" checked>
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+
+            <!-- Mobile Save Button -->
+            <div class="d-sm-none pb-4">
+                <button type="submit" class="btn-save-main w-100 justify-content-center" id="btnSaveMobile">
+                    <i class="fa-solid fa-check"></i> Enregistrer les modifications
+                </button>
+            </div>
+
+        </form>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="right-sidebar">
+        <div class="sticky-wrapper">
+            <div class="widget">
+                <h3 class="widget-title">Complétion du profil</h3>
+                
+                <div class="d-flex justify-content-between mb-1" style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color);">
+                    <span>Intermédiaire</span>
+                    <span>70%</span>
+                </div>
+                <div class="progress-custom">
+                    <div class="progress-bar-custom" style="width: 70%;"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+                    Un profil complet attire <strong style="color:var(--text-main);">3x plus de connexions</strong> de la part des confrères.
+                </p>
+
+                <hr style="border-color: var(--border-color); margin: 15px 0;">
+
+                <ul style="padding-left: 1rem; margin: 0; font-size: 0.85rem; color: var(--text-main); line-height: 1.8;">
+                    <li style="color: var(--primary-color);"><i class="fa-solid fa-check me-2"></i>Photo de profil</li>
+                    <li style="color: var(--primary-color);"><i class="fa-solid fa-check me-2"></i>Spécialité & Lieu</li>
+                    <li><i class="fa-regular fa-circle me-2 text-muted"></i>Ajouter une biographie</li>
+                    <li><i class="fa-regular fa-circle me-2 text-muted"></i>Ajouter une couverture</li>
+                </ul>
+            </div>
+            
+            <!-- <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center;">
+                MedCollab © 2024
+            </div> -->
+        </div>
+    </aside>
+
+</div>
+
+<!-- Mobile Bottom Nav -->
+<nav class="bottom-nav">
+    <a href="#" class="b-nav-item"><i class="fa-solid fa-house"></i><span class="b-nav-label">Flux</span></a>
+    <a href="#" class="b-nav-item"><i class="fa-solid fa-user-doctor"></i><span class="b-nav-label">Annuaire</span></a>
+    <a href="#" class="b-nav-item"><i class="fa-solid fa-bell"></i><span class="b-nav-label">Notifs</span></a>
+    <!-- Menu Profile Active -->
+    <a href="#" class="b-nav-item active"><i class="fa-regular fa-user"></i><span class="b-nav-label">Profil</span></a>
+</nav>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // --- ANIMATION DE SAUVEGARDE (Feedback UX) ---
+    function saveProfile() {
+        const btnDesktop = document.getElementById('btnSaveTop');
+        const btnMobile = document.getElementById('btnSaveMobile');
+        
+        const originalTextDesktop = btnDesktop.innerHTML;
+        const originalTextMobile = btnMobile ? btnMobile.innerHTML : '';
+
+        const spinnerHtml = '<i class="fa-solid fa-spinner fa-spin"></i> Enregistrement...';
+        const successHtml = '<i class="fa-solid fa-check-double"></i> Enregistré !';
+
+        btnDesktop.innerHTML = spinnerHtml;
+        if(btnMobile) btnMobile.innerHTML = spinnerHtml;
+
+        // Simulation d'une requête réseau (1.5 sec)
+        setTimeout(() => {
+            btnDesktop.innerHTML = successHtml;
+            btnDesktop.style.backgroundColor = 'var(--whatsapp-color)';
+            
+            if(btnMobile) {
+                btnMobile.innerHTML = successHtml;
+                btnMobile.style.backgroundColor = 'var(--whatsapp-color)';
+            }
+
+            // Retour à l'état normal après 2.5 sec
+            setTimeout(() => {
+                btnDesktop.innerHTML = originalTextDesktop;
+                btnDesktop.style.backgroundColor = '';
+                if(btnMobile) {
+                    btnMobile.innerHTML = originalTextMobile;
+                    btnMobile.style.backgroundColor = '';
+                }
+            }, 2500);
+        }, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Theme & Logo Logic
+        const htmlElement = document.documentElement;
+        const themeBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+        const logoImages = document.querySelectorAll('.medcollab-logo');
+        
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('medcollab_theme', theme);
+            const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+            themeBtns.forEach(btn => { if(btn) btn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`; });
+            const logoSrc = theme === 'dark' ? 'logo_light.png' : 'logo_dark.png';
+            logoImages.forEach(img => { img.src = logoSrc; });
+        }
+
+        const savedTheme = localStorage.getItem('medcollab_theme');
+        if (savedTheme) setTheme(savedTheme);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+        else setTheme('light');
+
+        const toggleHandler = () => setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        themeBtns.forEach(btn => { if(btn) btn.addEventListener('click', toggleHandler); });
+
+        // Lang Toggle (RTL)
+        const langToggle = document.getElementById('langToggle');
+        if(langToggle) {
+            langToggle.addEventListener('click', function() {
+                if (htmlElement.getAttribute('dir') === 'ltr') {
+                    htmlElement.setAttribute('dir', 'rtl'); htmlElement.setAttribute('lang', 'ar'); this.innerText = 'FR';
+                } else {
+                    htmlElement.setAttribute('dir', 'ltr'); htmlElement.setAttribute('lang', 'fr'); this.innerText = 'AR';
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="fr" dir="ltr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MedCollab - Réseau Professionnel</title>
+    <title>Prototype MedCollab - Index des Pages</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,540 +16,224 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Quill.js Rich Text Editor CSS -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-
     <style>
         /* =========================================================
-           DESIGN SYSTEM & THEMING (MedCollab Colors)
+           DESIGN SYSTEM (MedCollab Colors)
            ========================================================= */
         :root {
             --bg-body: #F4F7F9;
             --bg-surface: #FFFFFF;
-            --bg-surface-hover: #Eef2f5;
-            
             --text-main: #122238; 
             --text-muted: #64748B;
             --border-color: #E2E8F0;
-            
             --primary-color: #189BA3; 
             --primary-hover: #137e85;
             --primary-light: rgba(24, 155, 163, 0.1);
             
-            --danger-color: #EF4444;
-            --danger-light: rgba(239, 68, 68, 0.1);
-            
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-pill: 50px;
-            
+            --radius-md: 12px; --radius-lg: 16px; --radius-pill: 50px;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05);
             
             --font-ui: 'Plus Jakarta Sans', sans-serif;
-            --font-clinical: 'Lora', serif;
             --transition-speed: 0.3s;
         }
 
         [data-theme="dark"] {
             --bg-body: #0F1A2A; 
             --bg-surface: #16263B;
-            --bg-surface-hover: #1C304A;
-            
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-color: #273A54;
-            
             --primary-color: #20C2C9;
             --primary-light: rgba(32, 194, 201, 0.15);
         }
 
-        html[dir="rtl"] {
-            --font-ui: 'Cairo', sans-serif;
-            --font-clinical: 'Cairo', sans-serif;
-        }
+        html[dir="rtl"] { --font-ui: 'Cairo', sans-serif; }
 
-        body {
-            background-color: var(--bg-body); color: var(--text-main);
-            font-family: var(--font-ui); transition: background-color var(--transition-speed), color var(--transition-speed);
-            overflow-x: hidden; -webkit-font-smoothing: antialiased;
-        }
-
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-ui); transition: all var(--transition-speed); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
+        .card, input, button { transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed); }
+
+        /* NAVBAR */
+        .navbar-custom { background: var(--bg-surface); border-bottom: 1px solid var(--border-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        .system-toggles { display: flex; gap: 8px; }
+        .btn-icon { background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; font-size: 0.9rem;}
+
+        /* HEADER */
+        .proto-header { padding: 80px 0 60px 0; background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg-body) 100%); text-align: center; border-bottom: 1px solid var(--border-color); }
+        .proto-header h1 { font-weight: 800; font-size: 2.5rem; color: var(--text-main); margin-bottom: 1rem; }
+        .proto-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .badge-status { background: var(--primary-color); color: white; padding: 6px 16px; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 1.5rem; }
+
+        /* CATEGORIES & CARDS */
+        .proto-section { padding: 4rem 0; border-bottom: 1px solid var(--border-color); }
+        .proto-section:last-child { border-bottom: none; }
+        .section-title { font-weight: 800; font-size: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 12px; }
+        .section-title i { color: var(--primary-color); background: var(--primary-light); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+
+        .page-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; height: 100%; transition: all 0.3s; display: flex; flex-direction: column; }
+        .page-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--primary-color); }
         
-        .card, .sidebar, .bottom-nav, .modal-content, input, button {
-            transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
-        }
-
-        .app-layout {
-            max-width: 1300px; margin: 0 auto; padding: 0 1rem;
-            display: grid; grid-template-columns: 280px 1fr 320px; gap: 2rem;
-        }
-
-        @media (max-width: 1024px) { .app-layout { grid-template-columns: 260px 1fr; } .right-sidebar { display: none; } }
-        @media (max-width: 768px) { .app-layout { display: block; padding: 0; } .left-sidebar { display: none; } .main-feed { padding-bottom: 80px; } }
-
-        /* =========================================================
-           SIDEBARS & NAV
-           ========================================================= */
-        .sticky-wrapper { position: sticky; top: 0; height: 100vh; padding: 2rem 0; display: flex; flex-direction: column; overflow-y: auto; }
-        .sticky-wrapper::-webkit-scrollbar { display: none; }
-
-        .brand-logo-container { display: flex; align-items: center; margin-bottom: 2rem; }
-
-        .nav-menu { list-style: none; padding: 0; margin: 0; }
-        .nav-link {
-            display: flex; align-items: center; gap: 16px; padding: 0.8rem 1rem; border-radius: var(--radius-md);
-            color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; cursor: pointer; position: relative;
-        }
-        .nav-link i { font-size: 1.2rem; width: 24px; text-align: center; }
-        .nav-link:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
-        .nav-link.active { background-color: var(--primary-light); color: var(--primary-color); }
+        .page-icon { font-size: 2rem; color: var(--text-muted); margin-bottom: 1.2rem; transition: color 0.3s; }
+        .page-card:hover .page-icon { color: var(--primary-color); }
         
-        .notif-badge { background-color: var(--danger-color); color: white; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); margin-inline-start: auto; }
-
-        .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-muted); margin: 1.5rem 0 0.8rem; padding-inline-start: 1rem; }
-
-        .speciality-item {
-            display: flex; align-items: center; gap: 12px; padding: 0.6rem 1rem; border-radius: var(--radius-md);
-            color: var(--text-muted); font-weight: 600; font-size: 0.95rem; cursor: pointer; margin-bottom: 4px;
-            border-inline-start: 4px solid transparent; transition: all 0.2s ease;
-        }
-        .spec-icon {
-            display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
-            border-radius: 8px; background-color: var(--spec-bg); color: var(--spec-color); font-size: 1rem;
-        }
-        .speciality-item:hover { background-color: var(--bg-surface-hover); color: var(--text-main); }
-        .speciality-item.active { color: var(--text-main); background-color: var(--bg-surface); border-inline-start-color: var(--spec-color); box-shadow: var(--shadow-sm); }
-        .speciality-item.active .spec-icon { background-color: var(--spec-color); color: #FFF; }
-
-        .badge-spec {
-            display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-pill);
-            background-color: var(--spec-bg); color: var(--spec-color); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-
-        .user-controls { margin-top: auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
-        .profile-mini { display: flex; align-items: center; gap: 12px; }
-        .avatar { width: 44px; height: 44px; border-radius: var(--radius-pill); object-fit: cover; }
-        .avatar-sm { width: 36px; height: 36px; border-radius: var(--radius-pill); object-fit: cover; }
-        .doctor-info h6 { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
-        .doctor-info span { font-size: 0.8rem; color: var(--text-muted); }
+        .page-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .page-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; flex-grow: 1; line-height: 1.5; }
         
-        .system-toggles { display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 1rem; }
-        .btn-icon { background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main); width: 36px; height: 36px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9rem; font-weight: 700; }
-        .btn-icon:hover { background: var(--bg-surface-hover); }
-
-        .btn-disconnect {
-            width: 100%; background: transparent; border: 1px solid var(--border-color);
-            color: var(--text-muted); font-weight: 600; padding: 8px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: all 0.2s;
-        }
-        .btn-disconnect:hover { background: var(--danger-light); color: var(--danger-color); border-color: var(--danger-color); }
-
-        /* =========================================================
-           MAIN FEED (CENTER)
-           ========================================================= */
-        .main-feed { padding: 2rem 0; max-width: 680px; margin: 0 auto; width: 100%; }
-        @media (max-width: 768px) { .main-feed { padding: 1rem; } }
-
-        .ui-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
-
-        .composer-fake { display: flex; gap: 1rem; align-items: center; cursor: text; transition: transform 0.2s; }
-        .composer-fake:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .composer-fake-input { flex-grow: 1; background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-muted); padding: 1rem 1.5rem; border-radius: var(--radius-pill); font-size: 1rem; text-align: start; }
-
-        .post-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-        .post-author { display: flex; align-items: center; gap: 12px; }
-        .author-name { font-weight: 700; color: var(--text-main); font-size: 1rem; display: flex; align-items: center; gap: 6px; }
-        .badge-verified { color: var(--primary-color); font-size: 0.85rem; }
-        .author-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; margin-top: 2px;}
-
-        .post-text { font-family: var(--font-clinical); font-size: 1.05rem; line-height: 1.7; color: var(--text-main); margin-bottom: 1rem; }
-        .post-media { border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1rem; border: 1px solid var(--border-color); cursor: pointer; position: relative; }
-        .post-media img { width: 100%; max-height: 450px; object-fit: cover; display: block; filter: contrast(1.05); }
-        
-        .post-actions { display: flex; gap: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem; }
-        .action-btn { background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; padding: 0.5rem; border-radius: var(--radius-md); cursor: pointer; }
-        .action-btn:hover { background: var(--bg-body); color: var(--primary-color); }
-        .action-btn.saved { color: var(--primary-color); }
-
-        /* =========================================================
-           RIGHT SIDEBAR (WIDGETS)
-           ========================================================= */
-        .widget { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem; }
-        .widget-title { font-weight: 800; font-size: 1rem; color: var(--text-main); margin-bottom: 1.2rem; }
-
-        /* =========================================================
-           MOBILE BOTTOM NAVIGATION
-           ========================================================= */
-        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-surface); border-top: 1px solid var(--border-color); padding: 0.8rem 1.5rem; justify-content: space-between; align-items: center; z-index: 1000; padding-bottom: calc(0.8rem + env(safe-area-inset-bottom)); }
-        @media (max-width: 768px) { .bottom-nav { display: flex; } }
-        .b-nav-item { color: var(--text-muted); font-size: 1.4rem; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
-        .b-nav-item.active { color: var(--primary-color); }
-        .b-nav-label { font-size: 0.65rem; font-weight: 700; }
-        .b-notif-dot { position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background-color: var(--danger-color); border-radius: 50%; border: 2px solid var(--bg-surface); }
-
-        /* =========================================================
-           QUILL RICH TEXT EDITOR STYLING
-           ========================================================= */
-        .ql-toolbar.ql-snow {
-            border-color: var(--border-color);
-            background: var(--bg-body);
-            border-radius: var(--radius-md) var(--radius-md) 0 0;
-            font-family: var(--font-ui);
-        }
-        .ql-container.ql-snow {
-            border-color: var(--border-color);
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            color: var(--text-main);
-            background: var(--bg-surface);
-        }
-        .ql-editor.ql-blank::before { color: var(--text-muted); font-style: normal; }
-        
-        [data-theme="dark"] .ql-snow .ql-stroke { stroke: var(--text-main); }
-        [data-theme="dark"] .ql-snow .ql-fill, [data-theme="dark"] .ql-snow .ql-stroke.ql-fill { fill: var(--text-main); }
-        [data-theme="dark"] .ql-snow .ql-picker { color: var(--text-main); }
-        
-        .upload-zone { border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--bg-body); margin-top: 1rem; }
-        .upload-zone:hover { border-color: var(--primary-color); background: var(--primary-light); }
-        .upload-zone i { font-size: 2rem; color: var(--text-muted); margin-bottom: 8px; }
-
-        /* =========================================================
-           THEATER MODE (Facebook Style)
-           ========================================================= */
-        .modal-content { background-color: var(--bg-surface); color: var(--text-main); border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
-        .modal-header { border-bottom: 1px solid var(--border-color); }
-        .modal-footer { border-top: 1px solid var(--border-color); }
-        .btn-close-custom { background: none; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
-
-        #theaterModal .modal-content { border-radius: 0; border: none; height: 100vh; background: var(--bg-surface); }
-        .theater-layout { display: flex; height: 100vh; flex-direction: row; }
-        @media (max-width: 992px) { .theater-layout { flex-direction: column; overflow-y: auto; } }
-        
-        .theater-image-col { flex: 2; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
-        @media (max-width: 992px) { .theater-image-col { flex: none; height: 40vh; } }
-        .theater-img { max-width: 100%; max-height: 100vh; object-fit: contain; }
-        .theater-close { position: absolute; top: 15px; left: 15px; color: white; background: rgba(0,0,0,0.5); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
-        
-        .theater-content-col { flex: 1; min-width: 350px; max-width: 450px; display: flex; flex-direction: column; background: var(--bg-surface); border-inline-start: 1px solid var(--border-color); }
-        @media (max-width: 992px) { .theater-content-col { max-width: 100%; min-height: 60vh; flex: auto; } }
-        
-        .theater-scroll { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
-        .theater-scroll::-webkit-scrollbar { width: 6px; }
-        .theater-scroll::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; }
-        
-        .theater-footer { padding: 1rem; border-top: 1px solid var(--border-color); background: var(--bg-body); }
-        .comment-input-ui { display: flex; gap: 10px; align-items: center; background: var(--bg-surface); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: var(--radius-pill); }
-        .comment-input-ui input { border: none; background: transparent; flex-grow: 1; color: var(--text-main); }
-        .comment-input-ui input:focus { outline: none; }
-        
-        .comment-box { margin-bottom: 1rem; display: flex; gap: 10px; }
-        .comment-bubble { background: var(--bg-body); padding: 10px 14px; border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md); font-size: 0.9rem; }
-        html[dir="rtl"] .comment-bubble { border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md); }
+        .btn-view { background: var(--primary-light); color: var(--primary-color); border: none; padding: 0.6rem 1rem; border-radius: var(--radius-pill); font-weight: 700; width: 100%; text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px; transition: all 0.2s; }
+        .page-card:hover .btn-view { background: var(--primary-color); color: white; }
     </style>
 </head>
 <body>
 
-<div class="app-layout">
-    
-    <!-- ================= LEFT SIDEBAR ================= -->
-    <aside class="left-sidebar">
-        <div class="sticky-wrapper">
-            
-            <!-- Desktop Logo Area -->
-            <div class="brand-logo-container">
-                <!-- L'attribut src sera modifié dynamiquement par JS -->
-                <img src="logo_dark.png" alt="MedCollab Logo" class="medcollab-logo" style="width: 100%; object-fit: contain;">
-            </div>
-
-            <ul class="nav-menu">
-                <li class="nav-link active"><i class="fa-solid fa-house"></i> Accueil</li>
-                <li class="nav-link">
-                    <i class="fa-solid fa-bell"></i> Notifications
-                    <span class="notif-badge">3</span>
-                </li>
-                <li class="nav-link"><i class="fa-solid fa-user-doctor"></i> Annuaire</li>
-                <li class="nav-link"><i class="fa-regular fa-bookmark"></i> Sauvegardés</li>
-            </ul>
-
-            <div class="section-title">Spécialités</div>
-            <div>
-                <div class="speciality-item active" style="--spec-color: #EF4444; --spec-bg: rgba(239, 68, 68, 0.15);">
-                    <div class="spec-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-                    <span>Cardiologie</span>
-                </div>
-                <div class="speciality-item" style="--spec-color: #F97316; --spec-bg: rgba(249, 115, 22, 0.15);">
-                    <div class="spec-icon"><i class="fa-solid fa-hand-dots"></i></div>
-                    <span>Dermatologie</span>
-                </div>
-                <div class="speciality-item" style="--spec-color: #8B5CF6; --spec-bg: rgba(139, 92, 246, 0.15);">
-                    <div class="spec-icon"><i class="fa-solid fa-baby"></i></div>
-                    <span>Pédiatrie</span>
-                </div>
-            </div>
-
-            <div class="user-controls mt-auto">
-                <div class="profile-mini mb-2">
-                    <img src="https://i.pravatar.cc/150?img=11" alt="Profil" class="avatar">
-                    <div class="doctor-info">
-                        <h6>Dr. R. Amrani</h6>
-                        <span style="--spec-color: #189BA3; display:flex; align-items:center; gap:4px; font-weight:600;">
-                            <i class="fa-solid fa-stethoscope"></i> Médecine Interne
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- System Toggles -->
-                <div class="system-toggles mb-3">
-                    <button class="btn-icon" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
-                    <button class="btn-icon" id="langToggle">AR</button>
-                </div>
-
-                <!-- Disconnect Button -->
-                <button class="btn-disconnect">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Se déconnecter
-                </button>
-            </div>
+<!-- NAVBAR -->
+<nav class="navbar-custom">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo" style="height: 35px; object-fit: contain;">
+            <span class="ms-3 fw-bold text-muted border-start border-2 ps-3 d-none d-sm-block">Index UI/UX</span>
         </div>
-    </aside>
-
-    <!-- ================= CENTER FEED ================= -->
-    <main class="main-feed">
-        
-        <!-- Mobile Header -->
-        <div class="d-md-none mb-3 d-flex justify-content-between align-items-center">
-            <div class="logo-area mb-0 p-0">
-                <img src="logo_dark.png" alt="MedCollab Logo" class="medcollab-logo" style="height: 50px; object-fit: contain;">
-            </div>
-            <div class="d-flex gap-3 align-items-center">
-                <div style="position: relative; font-size:1.3rem; color:var(--text-main);">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="b-notif-dot"></span>
-                </div>
-                <button class="btn-icon" id="themeToggleMobile" style="width:32px; height:32px;"><i class="fa-solid fa-moon"></i></button>
-            </div>
+        <div class="system-toggles">
+            <button class="btn-icon" id="themeToggle" title="Mode Clair/Sombre"><i class="fa-solid fa-moon"></i></button>
+            <button class="btn-icon" id="langToggle" title="Changer de langue">AR</button>
         </div>
-
-        <!-- Fake Composer (Opens Rich Text Modal) -->
-        <div class="ui-card composer-fake" data-bs-toggle="modal" data-bs-target="#composerModal">
-            <img src="https://i.pravatar.cc/150?img=11" alt="Vous" class="avatar">
-            <div class="composer-fake-input">Partagez un cas clinique, une étude avec vos confrères...</div>
-            <button class="btn btn-primary rounded-pill d-none d-sm-block px-4" style="background-color: var(--primary-color); border:none;"><i class="fa-solid fa-pen"></i> Publier</button>
-        </div>
-
-        <!-- Post 1 -->
-        <article class="ui-card">
-            <div class="post-header">
-                <div class="post-author">
-                    <img src="https://i.pravatar.cc/150?img=47" alt="Auteur" class="avatar">
-                    <div>
-                        <div class="author-name">Dr. Amina Benali <i class="fa-solid fa-circle-check badge-verified"></i></div>
-                        <div class="author-meta">
-                            <span style="color: #EF4444;"><i class="fa-solid fa-heart-pulse"></i> Cardiologie</span> • Oran
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex flex-column align-items-end gap-1">
-                    <div class="badge-spec" style="--spec-color: #EF4444; --spec-bg: rgba(239, 68, 68, 0.15);">
-                        <i class="fa-solid fa-heart-pulse"></i> Cardiologie
-                    </div>
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">Il y a 2h</span>
-                </div>
-            </div>
-
-            <div class="post-text">
-                Patient de 54 ans, antécédents d'HTA. Douleur thoracique intense. Troponines initiales normales. Ci-joint l'ECG réalisé à l'admission. Avez-vous déjà observé cette morphologie en V4-V6 ?
-            </div>
-
-            <div class="post-media" data-bs-toggle="modal" data-bs-target="#theaterModal">
-                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80" alt="ECG Scan">
-                <div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.6); color:white; padding:4px 10px; border-radius:20px; font-size:0.8rem;">
-                    <i class="fa-solid fa-expand"></i> Agrandir
-                </div>
-            </div>
-
-            <div class="post-actions">
-                <button class="action-btn" data-bs-toggle="modal" data-bs-target="#theaterModal"><i class="fa-regular fa-comment"></i> 3 Réponses</button>
-                <button class="action-btn btn-save ms-auto"><i class="fa-regular fa-bookmark"></i> Sauvegarder</button>
-            </div>
-        </article>
-    </main>
-
-    <!-- ================= RIGHT SIDEBAR ================= -->
-    <aside class="right-sidebar">
-        <div class="sticky-wrapper">
-            <div class="widget">
-                <h3 class="widget-title">Sujets Tendance</h3>
-                <a href="#" style="display:block; margin-bottom:1rem;">
-                    <div style="font-weight:600; font-size:0.9rem;">Prise en charge des endocardites</div>
-                    <div style="font-size:0.8rem; color:var(--text-muted);">22 commentaires</div>
-                </a>
-            </div>
-        </div>
-    </aside>
-
-</div>
-
-<!-- Mobile Nav -->
-<nav class="bottom-nav">
-    <a href="#" class="b-nav-item active"><i class="fa-solid fa-house"></i><span class="b-nav-label">Flux</span></a>
-    <a href="#" class="b-nav-item"><i class="fa-solid fa-layer-group"></i><span class="b-nav-label">Spécialités</span></a>
-    <a href="#" class="b-nav-item" data-bs-toggle="modal" data-bs-target="#composerModal" style="transform: translateY(-10px); background:var(--primary-color); color:white; width:45px; height:45px; border-radius:50%; justify-content:center; box-shadow:var(--shadow-md);">
-        <i class="fa-solid fa-plus" style="font-size:1.2rem;"></i>
-    </a>
-    <a href="#" class="b-nav-item">
-        <i class="fa-solid fa-bell"></i><span class="b-nav-label">Notifs</span>
-        <span class="b-notif-dot"></span>
-    </a>
-    <a href="#" class="b-nav-item"><i class="fa-solid fa-bars"></i><span class="b-nav-label">Menu</span></a>
+    </div>
 </nav>
 
-<!-- =========================================================
-     MODALS
-     ========================================================= -->
-
-<!-- 1. Real Rich Text Composer Modal (Quill.js) -->
-<div class="modal fade" id="composerModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Créer une publication</h5>
-                <button type="button" class="btn-close-custom" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <img src="https://i.pravatar.cc/150?img=11" class="avatar">
-                    <div>
-                        <div class="fw-bold">Dr. R. Amrani</div>
-                        <select class="form-select form-select-sm mt-1" style="background-color: var(--bg-body); border-color: var(--border-color); color: var(--text-main);">
-                            <option>Sélectionner la Spécialité...</option>
-                            <option value="cardio">Cardiologie</option>
-                            <option value="derma">Dermatologie</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- REAL QUILL RICH TEXT EDITOR -->
-                <div>
-                    <div id="quill-editor" style="height: 180px;"><p><br></p></div>
-                </div>
-
-                <!-- Multiple Image Upload Zone -->
-                <div class="upload-zone mt-3">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    <h6 class="fw-bold mb-1">Glissez-déposez vos images ici</h6>
-                    <p class="text-muted" style="font-size:0.85rem;">Scans, ECG, photos cliniques (Max 5 images)</p>
-                    <button class="btn btn-sm btn-outline-secondary mt-2 rounded-pill">Parcourir les fichiers</button>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <span style="font-size:0.8rem; color:var(--text-muted);"><i class="fa-solid fa-lock"></i> Visible par les médecins vérifiés</span>
-                <button type="button" class="btn btn-primary px-4 rounded-pill fw-bold" style="background-color: var(--primary-color); border:none;">Publier</button>
-            </div>
-        </div>
+<!-- HEADER -->
+<header class="proto-header">
+    <div class="container">
+        <div class="badge-status"><i class="fa-solid fa-check me-2"></i>Phase 1 (MVP) Frontend Terminé</div>
+        <h1>Prototype MedCollab</h1>
+        <p>Toutes les vues ont été intégrées en HTML/CSS/JS (Vanilla + Bootstrap 5) avec gestion native du mode Sombre/Clair, de l'orientation RTL (Arabe) et du Responsive Mobile.</p>
     </div>
-</div>
+</header>
 
-<!-- 2. Theater Mode Modal -->
-<div class="modal fade" id="theaterModal" tabindex="-1">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content theater-layout">
-            <div class="theater-image-col">
-                <button class="theater-close" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80" class="theater-img" alt="Medical Scan">
+<!-- MAIN CONTENT -->
+<div class="container">
+
+    <!-- CATEGORY 1 -->
+    <section class="proto-section">
+        <h2 class="section-title"><i class="fa-solid fa-globe"></i> 1. Vitrine & Accès (Public)</h2>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <a href="landing.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-laptop-code page-icon"></i>
+                    <h3 class="page-title">Landing Page</h3>
+                    <p class="page-desc">La page d'accueil publique. Présentation du SaaS, fonctionnalités, preuves de confiance et appels à l'action.</p>
+                    <div class="btn-view">Ouvrir <code>landing.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
             </div>
 
-            <div class="theater-content-col">
-                <div class="theater-scroll">
-                    <div class="post-author mb-3">
-                        <img src="https://i.pravatar.cc/150?img=47" class="avatar">
-                        <div>
-                            <div class="author-name">Dr. Amina Benali <i class="fa-solid fa-circle-check badge-verified"></i></div>
-                            <div class="author-meta">Il y a 2h</div>
-                        </div>
-                    </div>
-                    <div class="post-text" style="font-size:0.95rem;">
-                        Patient de 54 ans, antécédents d'HTA. Douleur thoracique intense. Troponines initiales normales. Ci-joint l'ECG.
-                    </div>
-                    
-                    <hr style="border-color: var(--border-color);">
-
-                    <div class="comment-box">
-                        <img src="https://i.pravatar.cc/150?img=33" class="avatar-sm">
-                        <div>
-                            <div class="comment-bubble">
-                                <span class="fw-bold d-block" style="font-size:0.85rem;">Dr. Karim Mansour</span>
-                                Envisagez une angiographie immédiate.
-                            </div>
-                            <div class="text-muted mt-1" style="font-size:0.75rem; margin-inline-start:10px;">Il y a 1h • <span style="cursor:pointer; font-weight:600;">Répondre</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="theater-footer">
-                    <div class="comment-input-ui">
-                        <img src="https://i.pravatar.cc/150?img=11" class="avatar-sm" style="width:28px; height:28px;">
-                        <input type="text" placeholder="Écrire un commentaire médical...">
-                        <button style="background:none; border:none; color:var(--primary-color); font-weight:700;"><i class="fa-solid fa-paper-plane"></i></button>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                <a href="auth.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-right-to-bracket page-icon"></i>
+                    <h3 class="page-title">Authentification</h3>
+                    <p class="page-desc">Formulaires de Connexion et d'Inscription (Split-screen). Inclut l'écran "En attente de validation".</p>
+                    <div class="btn-view">Ouvrir <code>auth.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
             </div>
+
+            <div class="col-md-4">
+                <a href="cgu.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-scale-balanced page-icon"></i>
+                    <h3 class="page-title">Charte & CGU</h3>
+                    <p class="page-desc">Les 10 règles d'utilisation de la plateforme avec une mise en page documentaire et menu de navigation (ScrollSpy).</p>
+                    <div class="btn-view">Ouvrir <code>cgu.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- CATEGORY 2 -->
+    <section class="proto-section">
+        <h2 class="section-title"><i class="fa-solid fa-user-doctor"></i> 2. Espace Médecin (Privé)</h2>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <a href="feed.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-house-medical page-icon"></i>
+                    <h3 class="page-title">Flux d'Actualité (Feed)</h3>
+                    <p class="page-desc">La page principale avec le flux par spécialité. Inclut le Rich Text Editor (Quill) et le Theater Mode (Images plein écran).</p>
+                    <div class="btn-view">Ouvrir <code>feed.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="annuaire.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-address-book page-icon"></i>
+                    <h3 class="page-title">Annuaire & Réseau</h3>
+                    <p class="page-desc">Moteur de recherche des médecins. Inclut la gestion des connexions réseau, la protection WhatsApp/Email et les Modals de profils.</p>
+                    <div class="btn-view">Ouvrir <code>annuaire.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="activite.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-bell page-icon"></i>
+                    <h3 class="page-title">Notifications & Sauvegardes</h3>
+                    <p class="page-desc">Page 2-en-1 avec switch JS : Historique des alertes (commentaires, réseau) et Bibliothèque des posts sauvegardés.</p>
+                    <div class="btn-view">Ouvrir <code>activite.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="profil.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-user-pen page-icon"></i>
+                    <h3 class="page-title">Mon Profil (Édition)</h3>
+                    <p class="page-desc">Interface de gestion du compte : photo de profil, spécialité, biographie et paramètres de confidentialité.</p>
+                    <div class="btn-view">Ouvrir <code>profil.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CATEGORY 3 -->
+    <section class="proto-section">
+        <h2 class="section-title"><i class="fa-solid fa-shield-halved"></i> 3. Espace Administration</h2>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <a href="admin.html" class="page-card text-decoration-none">
+                    <i class="fa-solid fa-chart-line page-icon"></i>
+                    <h3 class="page-title">Dashboard Admin</h3>
+                    <p class="page-desc">Panneau de contrôle pour approuver/refuser les nouvelles inscriptions et modérer le contenu signalé.</p>
+                    <div class="btn-view">Ouvrir <code>admin.html</code> <i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Init Quill Rich Text Editor
-        var quill = new Quill('#quill-editor', {
-            theme: 'snow',
-            placeholder: 'Détaillez votre cas clinique, posez une question...',
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    ['link']
-                ]
-            }
-        });
-
-        // Theme & Logo Logic
+        // --- Theme & Logo Logic ---
         const htmlElement = document.documentElement;
-        const themeBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+        const themeBtn = document.getElementById('themeToggle');
         const logoImages = document.querySelectorAll('.medcollab-logo');
         
         function setTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
             localStorage.setItem('medcollab_theme', theme);
-            
-            // Switch Icons
             const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
-            themeBtns.forEach(btn => { if(btn) btn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`; });
-            
-            // SWITCH LOGO DYNAMICALLY
-            // 'logo_light.png' for dark mode (text is light to contrast dark bg)
-            // 'logo_dark.png' for light mode (text is dark to contrast light bg)
+            if(themeBtn) themeBtn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
             const logoSrc = theme === 'dark' ? 'logo_light.png' : 'logo_dark.png';
-            logoImages.forEach(img => {
-                img.src = logoSrc;
-            });
+            logoImages.forEach(img => { img.src = logoSrc; });
         }
 
         const savedTheme = localStorage.getItem('medcollab_theme');
         if (savedTheme) setTheme(savedTheme);
         else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
-        else setTheme('light'); // Explicitly run on load for the logo
+        else setTheme('light');
 
-        const toggleHandler = () => setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        themeBtns.forEach(btn => { if(btn) btn.addEventListener('click', toggleHandler); });
+        if(themeBtn) themeBtn.addEventListener('click', () => setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
 
-        // Lang Toggle
+        // --- Language Logic ---
         const langToggle = document.getElementById('langToggle');
         if(langToggle) {
             langToggle.addEventListener('click', function() {
@@ -561,19 +244,8 @@
                 }
             });
         }
-
-        // Bookmark Toggle
-        document.querySelectorAll('.btn-save').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                if(icon.classList.contains('fa-regular')) {
-                    icon.classList.replace('fa-regular', 'fa-solid'); this.classList.add('saved');
-                } else {
-                    icon.classList.replace('fa-solid', 'fa-regular'); this.classList.remove('saved');
-                }
-            });
-        });
     });
 </script>
+
 </body>
 </html>

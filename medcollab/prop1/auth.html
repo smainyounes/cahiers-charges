@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Authentification - MedCollab</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* =========================================================
+           DESIGN SYSTEM (MedCollab Colors)
+           ========================================================= */
+        :root {
+            --bg-body: #F4F7F9;
+            --bg-surface: #FFFFFF;
+            --text-main: #122238; 
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --primary-color: #189BA3; 
+            --primary-hover: #137e85;
+            --primary-light: rgba(24, 155, 163, 0.15);
+            
+            --radius-md: 12px;
+            --radius-pill: 50px;
+            
+            --font-ui: 'Plus Jakarta Sans', sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0F1A2A; 
+            --bg-surface: #16263B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #273A54;
+            --primary-color: #20C2C9;
+            --primary-light: rgba(32, 194, 201, 0.2);
+        }
+
+        html[dir="rtl"] { --font-ui: 'Cairo', sans-serif; }
+
+        body {
+            background-color: var(--bg-body); color: var(--text-main);
+            font-family: var(--font-ui); margin: 0; overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        /* =========================================================
+           SPLIT SCREEN LAYOUT
+           ========================================================= */
+        .auth-wrapper { display: flex; min-height: 100vh; }
+
+        /* Left Side: Branding */
+        .auth-brand {
+            flex: 1; background: linear-gradient(135deg, #0F1A2A 0%, #16263B 100%);
+            color: white; display: flex; flex-direction: column; justify-content: space-between;
+            padding: 4rem; position: relative; overflow: hidden;
+        }
+        
+        .brand-bg-pattern {
+            position: absolute; top: -10%; right: -10%; opacity: 0.05;
+            font-size: 50rem; color: #FFF; pointer-events: none; transform: rotate(-15deg);
+        }
+
+        .auth-brand-content h1 { font-weight: 800; font-size: 2.5rem; margin-top: 2rem; line-height: 1.3; }
+        .auth-brand-content p { font-size: 1.1rem; color: #94A3B8; margin-top: 1rem; max-width: 400px; }
+
+        .auth-features { margin-top: 3rem; list-style: none; padding: 0; }
+        .auth-features li { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; font-size: 1.05rem; font-weight: 500; }
+        .auth-features i { background: rgba(32, 194, 201, 0.2); color: #20C2C9; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+        /* Right Side: Form */
+        .auth-form-container {
+            flex: 1; display: flex; flex-direction: column; justify-content: center;
+            background-color: var(--bg-surface); position: relative; padding: 2rem;
+            transition: background-color var(--transition-speed);
+        }
+
+        .auth-form-wrapper { max-width: 450px; width: 100%; margin: 0 auto; }
+
+        .top-controls { position: absolute; top: 2rem; right: 2rem; display: flex; gap: 10px; }
+        html[dir="rtl"] .top-controls { right: auto; left: 2rem; }
+        
+        .btn-icon {
+            background: var(--bg-body); border: 1px solid var(--border-color); color: var(--text-main);
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-weight: 700; font-size: 0.9rem; transition: all 0.2s;
+        }
+        .btn-icon:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+        .auth-title { font-weight: 800; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main); }
+        .auth-subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
+
+        .input-group-custom { position: relative; margin-bottom: 1.2rem; }
+        .input-group-custom i { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.1rem; }
+        html[dir="rtl"] .input-group-custom i { left: auto; right: 1.2rem; }
+        
+        .input-custom {
+            width: 100%; padding: 0.9rem 1.2rem 0.9rem 3rem; background: var(--bg-body);
+            border: 1px solid var(--border-color); border-radius: var(--radius-md);
+            color: var(--text-main); font-family: var(--font-ui); font-size: 1rem; transition: all 0.3s;
+        }
+        html[dir="rtl"] .input-custom { padding: 0.9rem 3rem 0.9rem 1.2rem; }
+        
+        .input-custom:focus { outline: none; border-color: var(--primary-color); background: var(--bg-surface); box-shadow: 0 0 0 4px var(--primary-light); }
+        .input-custom::placeholder { color: var(--text-muted); }
+        select.input-custom { appearance: none; cursor: pointer; }
+
+        .btn-auth {
+            width: 100%; padding: 0.9rem; background: var(--primary-color); color: white;
+            border: none; border-radius: var(--radius-md); font-weight: 700; font-size: 1rem;
+            cursor: pointer; transition: background 0.3s; margin-top: 0.5rem; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-auth:hover { background: var(--primary-hover); }
+
+        .auth-switch { text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem; }
+        .auth-switch span { color: var(--primary-color); font-weight: 700; cursor: pointer; }
+        .auth-switch span:hover { text-decoration: underline; }
+
+        /* Custom Checkbox */
+        .terms-container { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
+        .terms-container input[type="checkbox"] { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--primary-color); cursor: pointer; }
+        .terms-container a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .terms-container a:hover { text-decoration: underline; }
+
+        @media (max-width: 992px) { .auth-brand { display: none; } }
+    </style>
+</head>
+<body>
+
+<div class="auth-wrapper">
+    
+    <!-- LEFT: BRANDING SIDE (Desktop Only) -->
+    <div class="auth-brand">
+        <i class="fa-solid fa-notes-medical brand-bg-pattern"></i>
+        
+        <div>
+            <img src="logo_light.png" alt="MedCollab" class="medcollab-logo" style="height: 45px; object-fit: contain;">
+        </div>
+
+        <div class="auth-brand-content">
+            <h1>Le premier réseau professionnel des médecins.</h1>
+            <p>By doctors ... for doctors. Rejoignez une communauté médicale vérifiée et sécurisée.</p>
+            
+            <ul class="auth-features">
+                <!-- Texte mis à jour : plus de mention de numéro d'ordre -->
+                <li><i class="fa-solid fa-user-shield"></i> <span>Profils vérifiés par l'administration</span></li>
+                <li><i class="fa-solid fa-comments"></i> <span>Échanges cliniques par spécialité</span></li>
+                <li><i class="fa-solid fa-address-book"></i> <span>Annuaire médical national structuré</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- RIGHT: FORM SIDE -->
+    <div class="auth-form-container">
+        
+        <div class="top-controls">
+            <button class="btn-icon" id="themeToggle" title="Thème clair/sombre"><i class="fa-solid fa-moon"></i></button>
+            <button class="btn-icon" id="langToggle" title="Langue">AR</button>
+        </div>
+
+        <div class="d-lg-none mb-5 text-center">
+            <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo-mobile" style="height: 40px; object-fit: contain;">
+        </div>
+
+        <!-- ================= LOGIN FORM ================= -->
+        <div class="auth-form-wrapper" id="loginForm">
+            <h2 class="auth-title">Bon retour ! 👋</h2>
+            <p class="auth-subtitle">Veuillez vous connecter à votre espace médecin.</p>
+
+            <form onsubmit="event.preventDefault(); window.location.href='index.html';">
+                <div class="input-group-custom">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" class="input-custom" placeholder="Adresse email" required>
+                </div>
+
+                <div class="input-group-custom">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" class="input-custom" placeholder="Mot de passe" required>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4" style="font-size: 0.9rem;">
+                    <label class="d-flex align-items-center gap-2" style="color: var(--text-muted); cursor: pointer;">
+                        <input type="checkbox" style="accent-color: var(--primary-color); width: 16px; height: 16px;"> Se souvenir de moi
+                    </label>
+                    <a href="#" style="color: var(--primary-color); font-weight: 600;">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Se connecter <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-switch">
+                Pas encore de compte ? <span onclick="toggleAuthForms()">Créer un profil professionnel</span>
+            </div>
+        </div>
+
+        <!-- ================= REGISTER FORM ================= -->
+        <div class="auth-form-wrapper d-none" id="registerForm">
+            <h2 class="auth-title">Créer un compte</h2>
+            <p class="auth-subtitle">Remplissez ce formulaire. Votre compte sera vérifié par notre équipe médicale.</p>
+
+            <form onsubmit="event.preventDefault(); showPendingScreen();">
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group-custom">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" class="input-custom" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group-custom">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" class="input-custom" placeholder="Prénom" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group-custom">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" class="input-custom" placeholder="Adresse email professionnelle" required>
+                </div>
+
+                <!-- Nouveau champ WhatsApp -->
+                <div class="input-group-custom">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <input type="tel" class="input-custom" placeholder="Numéro WhatsApp" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="input-group-custom">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            <select class="input-custom" required>
+                                <option value="" disabled selected>Spécialité</option>
+                                <option>Généraliste</option>
+                                <option>Cardiologie</option>
+                                <option>Dermatologie</option>
+                                <option>Pédiatrie</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group-custom">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <select class="input-custom" required>
+                                <option value="" disabled selected>Wilaya</option>
+                                <option>16 - Alger</option>
+                                <option>31 - Oran</option>
+                                <option>25 - Constantine</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group-custom">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" class="input-custom" placeholder="Créer un mot de passe" required>
+                </div>
+
+                <!-- Case à cocher CGU -->
+                <div class="terms-container">
+                    <input type="checkbox" id="termsCheck" required>
+                    <label for="termsCheck">
+                        Je m'engage à respecter le secret médical et j'accepte la <a href="cgu.html" target="_blank">Charte d'utilisation</a> de MedCollab.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-auth">
+                    Soumettre la demande <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div class="auth-switch">
+                Déjà inscrit ? <span onclick="toggleAuthForms()">Se connecter</span>
+            </div>
+        </div>
+
+        <!-- ================= PENDING VALIDATION SCREEN ================= -->
+        <div class="auth-form-wrapper d-none text-center" id="pendingScreen">
+            <div style="width: 80px; height: 80px; background: var(--primary-light); color: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem;">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+            <h2 class="auth-title">Demande envoyée !</h2>
+            <p class="auth-subtitle" style="margin-bottom: 2rem;">Merci pour votre inscription sur MedCollab. <br>Votre profil est en cours de vérification par notre équipe. Vous recevrez un email dès l'activation de votre compte.</p>
+            <button class="btn btn-outline-secondary rounded-pill fw-bold px-4" onclick="toggleAuthForms()">Retour à la connexion</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const pendingScreen = document.getElementById('pendingScreen');
+
+    function toggleAuthForms() {
+        if (!pendingScreen.classList.contains('d-none')) {
+            pendingScreen.classList.add('d-none');
+            loginForm.classList.remove('d-none');
+            return;
+        }
+        loginForm.classList.toggle('d-none');
+        registerForm.classList.toggle('d-none');
+    }
+
+    function showPendingScreen() {
+        registerForm.classList.add('d-none');
+        pendingScreen.classList.remove('d-none');
+    }
+
+    const htmlElement = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const mobileLogo = document.querySelector('.medcollab-logo-mobile');
+
+    function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('medcollab_theme', theme);
+        
+        const iconClass = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+        if(themeBtn) themeBtn.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+        
+        if(mobileLogo) {
+            mobileLogo.src = theme === 'dark' ? 'logo_light.png' : 'logo_dark.png';
+        }
+    }
+
+    const savedTheme = localStorage.getItem('medcollab_theme');
+    if (savedTheme) setTheme(savedTheme);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+    else setTheme('light');
+
+    if(themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            setTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+    }
+
+    const langToggle = document.getElementById('langToggle');
+    if(langToggle) {
+        langToggle.addEventListener('click', function() {
+            if (htmlElement.getAttribute('dir') === 'ltr') {
+                htmlElement.setAttribute('dir', 'rtl'); htmlElement.setAttribute('lang', 'ar'); this.innerText = 'FR';
+            } else {
+                htmlElement.setAttribute('dir', 'ltr'); htmlElement.setAttribute('lang', 'fr'); this.innerText = 'AR';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
