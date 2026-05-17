@@ -3,9 +3,9 @@
 <html lang="fr" dir="ltr" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration - MedCollab</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Administration - 3NDI AVIS</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
+
+        /* =========================================================
+           DESIGN SYSTEM (3NDI AVIS Colors)
+           ========================================================= */
         :root {
             --bg-body: #F4F7F9;
             --bg-surface: #FFFFFF;
@@ -521,7 +525,7 @@
     <aside class="admin-sidebar">
 
         <div class="brand-logo-container">
-            <img src="logo_dark.png" class="medcollab-logo" style="height:38px;">
+            <img src="logo_dark.png" alt="3NDI AVIS" class="medcollab-logo" style="height: 38px; object-fit: contain;">
         </div>
 
         <ul class="nav-menu">
@@ -586,16 +590,11 @@
     <!-- CONTENT -->
 
     <main class="admin-content">
-
-        <!-- MOBILE HEADER -->
-
-        <div class="mobile-header">
-
-            <img src="logo_dark.png" class="medcollab-logo" style="height:32px;">
-
-            <button class="mobile-sidebar-toggle" id="sidebarToggle">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+        
+        <!-- Mobile Header -->
+        <div class="d-lg-none mb-4 d-flex justify-content-between align-items-center">
+            <img src="logo_dark.png" alt="3NDI AVIS" class="medcollab-logo" style="height: 30px; object-fit: contain;">
+            <button class="btn-icon" style="background:transparent; border:none; font-size:1.5rem;"><i class="fa-solid fa-bars"></i></button>
 
         </div>
 

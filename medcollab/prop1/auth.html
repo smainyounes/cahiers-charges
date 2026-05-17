@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Authentification - MedCollab</title>
+    <title>Authentification - 3NDI AVIS</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
     <style>
         /* =========================================================
-           DESIGN SYSTEM (MedCollab Colors)
+           DESIGN SYSTEM (3NDI AVIS Colors)
            ========================================================= */
         :root {
             --bg-body: #F4F7F9;
@@ -134,6 +134,8 @@
         .terms-container a:hover { text-decoration: underline; }
 
         @media (max-width: 992px) { .auth-brand { display: none; } }
+        .algerian-flag-img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; border: 1px solid #eee; }
+
     </style>
 </head>
 <body>
@@ -142,14 +144,16 @@
     
     <!-- LEFT: BRANDING SIDE (Desktop Only) -->
     <div class="auth-brand">
-        <i class="fa-solid fa-notes-medical brand-bg-pattern"></i>
+        <!-- <i class="fa-solid fa-notes-medical brand-bg-pattern"></i> -->
         
         <div>
-            <img src="logo_light.png" alt="MedCollab" class="medcollab-logo" style="height: 45px; object-fit: contain;">
+            <img src="logo_light.png" alt="3NDI AVIS" class="medcollab-logo" style="height: 45px; object-fit: contain;">
         </div>
 
         <div class="auth-brand-content">
-            <h1>Le premier réseau professionnel des médecins.</h1>
+            <h1>Le premier réseau professionnel des médecins. 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="Drapeau Algérie" class="algerian-flag-img">
+            </h1>
             <p>By doctors ... for doctors. Rejoignez une communauté médicale vérifiée et sécurisée.</p>
             
             <ul class="auth-features">
@@ -170,7 +174,7 @@
         </div>
 
         <div class="d-lg-none mb-5 text-center">
-            <img src="logo_dark.png" alt="MedCollab" class="medcollab-logo-mobile" style="height: 40px; object-fit: contain;">
+            <img src="logo_dark.png" alt="3NDI AVIS" class="medcollab-logo-mobile" style="height: 40px; object-fit: contain;">
         </div>
 
         <!-- ================= LOGIN FORM ================= -->
@@ -239,16 +243,49 @@
                     <input type="tel" class="input-custom" placeholder="Numéro WhatsApp" required>
                 </div>
 
+                <div class="input-group-custom">
+                    <i class="fa-brands fa-telegram"></i>
+                    <input type="tel" class="input-custom" placeholder="Numéro Télégram" >
+                </div>
+
                 <div class="row">
                     <div class="col-6">
                         <div class="input-group-custom">
                             <i class="fa-solid fa-stethoscope"></i>
                             <select class="input-custom" required>
                                 <option value="" disabled selected>Spécialité</option>
-                                <option>Généraliste</option>
-                                <option>Cardiologie</option>
-                                <option>Dermatologie</option>
-                                <option>Pédiatrie</option>
+                                <option value="Externe">Externe</option>
+                                <option value="Interne">Interne</option>
+                                <option value="Médecine générale">Médecine générale</option>
+                                <option value="Médecine interne">Médecine interne</option>
+                                <option value="Cardiologie">Cardiologie</option>
+                                <option value="Gastrologie">Gastrologie</option>
+                                <option value="Radiologie">Radiologie</option>
+                                <option value="O.R.L">O.R.L</option>
+                                <option value="Gynécologie">Gynécologie</option>
+                                <option value="Neurologie">Neurologie</option>
+                                <option value="Rhumatologie">Rhumatologie</option>
+                                <option value="Dermatologie">Dermatologie</option>
+                                <option value="Ophtalmologie">Ophtalmologie</option>
+                                <option value="Hématologie">Hématologie</option>
+                                <option value="Orthologie">Orthologie</option>
+                                <option value="Pneumologie">Pneumologie</option>
+                                <option value="Urologie">Urologie</option>
+                                <option value="Chirurgie infantile">Chirurgie infantile</option>
+                                <option value="Chirurgie générale">Chirurgie générale</option>
+                                <option value="Réanimation">Réanimation</option>
+                                <option value="Endocrinologie">Endocrinologie</option>
+                                <option value="Néphrologie">Néphrologie</option>
+                                <option value="Psychiatrie">Psychiatrie</option>
+                                <option value="Maladie infectieuse">Maladie infectieuse</option>
+                                <option value="Pédiatrie">Pédiatrie</option>
+                                <option value="Clinique privée">Clinique privée</option>
+                                <option value="Laboratoire d'analyses médicales">Laboratoire d'analyses médicales</option>
+                                <option value="Pharmacie">Pharmacie</option>
+                                <option value="Généraliste">Généraliste</option>
+                                <option value="Cardiologie">Cardiologie</option>
+                                <option value="Dermatologie">Dermatologie</option>
+                                <option value="Pédiatrie">Pédiatrie</option>
                             </select>
                         </div>
                     </div>
@@ -274,7 +311,7 @@
                 <div class="terms-container">
                     <input type="checkbox" id="termsCheck" required>
                     <label for="termsCheck">
-                        Je m'engage à respecter le secret médical et j'accepte la <a href="cgu.html" target="_blank">Charte d'utilisation</a> de MedCollab.
+                        Je m'engage à respecter le secret médical et j'accepte la <a href="cgu.html" target="_blank">Charte d'utilisation</a> de 3NDI AVIS.
                     </label>
                 </div>
 
@@ -294,7 +331,7 @@
                 <i class="fa-solid fa-hourglass-half"></i>
             </div>
             <h2 class="auth-title">Demande envoyée !</h2>
-            <p class="auth-subtitle" style="margin-bottom: 2rem;">Merci pour votre inscription sur MedCollab. <br>Votre profil est en cours de vérification par notre équipe. Vous recevrez un email dès l'activation de votre compte.</p>
+            <p class="auth-subtitle" style="margin-bottom: 2rem;">Merci pour votre inscription sur 3NDI AVIS. <br>Votre profil est en cours de vérification par notre équipe. Vous recevrez un email dès l'activation de votre compte.</p>
             <button class="btn btn-outline-secondary rounded-pill fw-bold px-4" onclick="toggleAuthForms()">Retour à la connexion</button>
         </div>
 
