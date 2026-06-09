@@ -1,0 +1,1040 @@
+
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite | Premier Digital Agency</title>
+
+    <!-- Google Fonts: Inter and Syncopate for a high-end, modern contrast -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM VARIABLES --- */
+        :root {
+            /* Elite Dark Theme Colors */
+            --bg-body: #050505;
+            --bg-surface: #0a0a0a;
+            --bg-surface-hover: #121212;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --accent: #ffffff;
+            
+            /* Typography */
+            --font-heading: 'Manrope', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Transitions */
+            --transition-base: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Ambient Background Noise for Premium Texture */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        /* --- PRELOADER --- */
+        .loader-wrapper {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-body);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .loader-text {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+        .loader-text span {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+        .loader-progress {
+            width: 200px;
+            height: 1px;
+            background: var(--border-light);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-bar {
+            position: absolute;
+            top: 0; left: 0; height: 100%;
+            background: var(--accent);
+            width: 0%;
+        }
+
+        /* --- SMOOTH SCROLLING --- */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        /* Prevents FOUC */
+        .gs-reveal, .gs-hero, .gs-nav { opacity: 0; visibility: hidden; }
+
+        /* --- BUTTONS --- */
+        .btn-elite {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 100px;
+            transition: var(--transition-base);
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-elite-primary {
+            background-color: var(--accent);
+            color: var(--bg-body);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-elite-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+            color: var(--bg-body);
+        }
+
+        .btn-elite-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-elite-outline::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--text-primary); z-index: -1;
+            transform: scaleY(0); transform-origin: bottom;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-elite-outline:hover {
+            color: var(--bg-body);
+            border-color: var(--text-primary);
+        }
+
+        .btn-elite-outline:hover::before {
+            transform: scaleY(1); transform-origin: top;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.2rem 0;
+        }
+
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--text-secondary) !important;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.5rem !important;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-base);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary) !important;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            padding: 220px 0 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Glowing Ambient Orbs */
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+        .glow-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #ffffff; }
+        .glow-2 { bottom: 10%; right: -5%; width: 40vw; height: 40vw; background: #444444; animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 10%); }
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #555555 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* --- TRUST BANNER --- */
+        .trust-banner {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            padding: 4rem 0;
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        .trust-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            opacity: 0.5;
+            transition: var(--transition-base);
+        }
+
+        .logo-grid:hover {
+            opacity: 1;
+        }
+
+        .logo-item {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        /* --- GENERAL SECTIONS --- */
+        section {
+            padding: 140px 0;
+            position: relative;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        /* --- SERVICES (BENTO GRID STYLE) --- */
+        .pro-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 3rem;
+            height: 100%;
+            transition: var(--transition-base);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Inner Glow Hover Effect */
+        .pro-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .pro-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-5px);
+        }
+
+        .pro-card:hover::before {
+            opacity: 1;
+        }
+
+        .pro-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            transition: var(--transition-base);
+        }
+
+        .pro-card:hover .card-icon {
+            background: var(--text-primary);
+            color: var(--bg-body);
+            transform: scale(1.05) rotate(-5deg);
+        }
+
+        .pro-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pro-card p {
+            margin-bottom: 0;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        /* --- METHODOLOGY / STATS --- */
+        .stats-wrapper {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, transparent 100%);
+        }
+
+        .stat-item {
+            padding: 4rem 2rem;
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .stat-item:last-child { border-right: none; }
+
+        @media (max-width: 991px) {
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+            }
+            .stat-item:last-child { border-bottom: none; }
+        }
+
+        .stat-num {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+        }
+
+        /* --- CASE STUDIES --- */
+        .work-card {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-surface);
+            transition: var(--transition-slow);
+            display: block;
+            border: 1px solid transparent;
+        }
+
+        .work-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .work-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .work-img {
+            width: 100%;
+            height: 120%; /* Extra height for parallax */
+            object-fit: cover;
+            transform: translateY(-10%); /* Starting position for parallax */
+            transition: var(--transition-slow);
+            filter: brightness(0.8) grayscale(20%);
+        }
+
+        .work-card:hover .work-img {
+            filter: brightness(1) grayscale(0%);
+            transform: scale(1.05) translateY(-10%); /* Combine hover scale with parallax base */
+        }
+
+        .work-content {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            transform: translateY(20px);
+            transition: var(--transition-slow);
+        }
+
+        .work-card:hover .work-content {
+            transform: translateY(0);
+        }
+
+        .work-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: inline-block;
+            border: 1px solid var(--border-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .work-content h3 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            padding: 120px 20px;
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: 50%;
+            transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .cta-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-body);
+            padding: 100px 0 40px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .footer-col h5 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            opacity: 0.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Ultra Premium Preloader -->
+    <div class="loader-wrapper">
+        <div class="loader-text"><span id="loader-word">Elite.</span></div>
+        <div class="loader-progress">
+            <div class="loader-bar" id="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top gs-nav navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Elite.</a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-2 text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#expertise">Expertise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#work">Selected Work</a></li>
+                </ul>
+                <div class="d-flex mt-3 mt-lg-0">
+                    <a href="#contact" class="btn-elite btn-elite-outline">Start a project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="ambient-glow glow-1"></div>
+        <div class="ambient-glow glow-2"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="section-label gs-hero mb-4">Enterprise Grade Agency</div>
+                    <h1 class="hero-title gs-hero">
+                        We architect<br>
+                        <span class="text-gradient">digital futures.</span>
+                    </h1>
+                    <p class="hero-subtitle gs-hero">
+                        Elite partners with industry leaders to engineer scalable software, precise brand architectures, and unmatched user experiences.
+                    </p>
+                    <div class="d-flex flex-wrap gap-4 gs-hero">
+                        <a href="#work" class="btn-elite btn-elite-primary">View selected work <i class="bi bi-arrow-right"></i></a>
+                        <a href="#expertise" class="btn-elite btn-elite-outline">Explore expertise</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Banner -->
+    <div class="trust-banner gs-reveal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="trust-label mb-lg-0">Global Partners</div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="logo-grid">
+                        <div class="logo-item">AcmeCorp</div>
+                        <div class="logo-item">Lumina</div>
+                        <div class="logo-item">Quantum</div>
+                        <div class="logo-item">Vertex</div>
+                        <div class="logo-item">Pinnacle</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <div class="container">
+            <div class="row mb-5 pb-4 gs-reveal align-items-end">
+                <div class="col-lg-7">
+                    <span class="section-label">Core Capabilities</span>
+                    <h2 class="section-title mb-0">Uncompromising solutions for complex scaling.</h2>
+                </div>
+                <div class="col-lg-4 offset-lg-1 mt-4 mt-lg-0">
+                    <p class="mb-0">Bridging the gap between deep technical engineering and aesthetic superiority to drive measurable business value.</p>
+                </div>
+            </div>
+
+            <div class="row g-4 cards-wrapper">
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-code-square"></i></div>
+                        <h3>Software Engineering</h3>
+                        <p>Custom enterprise web applications built on modern, secure, and scalable architectures.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-layers"></i></div>
+                        <h3>System Architecture</h3>
+                        <p>Robust backend ecosystems, API integrations, and cloud deployments optimized for global reach.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-bezier2"></i></div>
+                        <h3>Product Design</h3>
+                        <p>Intuitive, accessible, and stunning interfaces rooted deeply in behavioral psychology and UX research.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h3>Conversion Strategy</h3>
+                        <p>Data-driven methodologies and A/B frameworks to systematically multiply platform ROI.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-globe2"></i></div>
+                        <h3>Digital Flagships</h3>
+                        <p>High-performance marketing platforms engineered for speed, SEO, and premium market positioning.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gs-reveal">
+                    <div class="pro-card hover-glow">
+                        <div class="card-icon"><i class="bi bi-shield-lock"></i></div>
+                        <h3>Cyber & Operations</h3>
+                        <p>Proactive audits, vulnerability patching, and SLA-backed ongoing infrastructural support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology / Split Stats -->
+    <section id="methodology" class="p-0 stats-wrapper">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-6 p-5 p-lg-5 gs-reveal d-flex flex-column justify-content-center">
+                    <div class="p-lg-5" style="max-width: 600px; margin: auto;">
+                        <span class="section-label">The Methodology</span>
+                        <h2 class="section-title mb-4">A culture of absolute precision.</h2>
+                        <p class="mb-4">We do not rely on assumptions. Elite’s frameworks are highly structured and transparent, designed exclusively to mitigate risk while accelerating aggressive go-to-market strategies.</p>
+                        <p>From initial architecture discovery to final deployment, you collaborate directly with senior engineers—zero bloated management layers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 row g-0">
+                    <div class="col-md-6 stat-item gs-reveal">
+                        <div class="stat-num counter" data-target="200">0</div>
+                        <h4 class="h5 mb-2 text-white">Global Deployments</h4>
+                        <p class="mb-0 text-sm">Products successfully shipped at scale.</p>
+                    </div>
+                    <div class="col-md-6 stat-item gs-reveal">
+                        <div class="stat-num"><span class="counter" data-target="99">0</span>.9%</div>
+                        <h4 class="h5 mb-2 text-white">System Uptime</h4>
+                        <p class="mb-0 text-sm">Reliability standard across operations.</p>
+                    </div>
+                    <div class="col-md-6 stat-item gs-reveal">
+                        <div class="stat-num counter" data-target="15">0</div>
+                        <h4 class="h5 mb-2 text-white">Years Active</h4>
+                        <p class="mb-0 text-sm">A decade and a half of excellence.</p>
+                    </div>
+                    <div class="col-md-6 stat-item gs-reveal border-right-0">
+                        <div class="stat-num"><span class="counter" data-target="40">0</span>%</div>
+                        <h4 class="h5 mb-2 text-white">Latency Reduction</h4>
+                        <p class="mb-0 text-sm">Average speed optimization achieved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Work -->
+    <section id="work">
+        <div class="container">
+            <div class="row mb-5 pb-4 gs-reveal align-items-end">
+                <div class="col-lg-8">
+                    <span class="section-label">Selected Work</span>
+                    <h2 class="section-title mb-0">Case studies in digital superiority.</h2>
+                </div>
+            </div>
+            
+            <div class="row g-5">
+                <!-- Project 1 -->
+                <div class="col-lg-6 gs-reveal">
+                    <a href="#" class="work-card">
+                        <div class="work-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Financial Dashboard" class="work-img parallax-img">
+                        </div>
+                        <div class="work-content">
+                            <span class="work-tag">Fintech Architecture</span>
+                            <h3>Nexus Terminal</h3>
+                            <p class="mb-0 text-light opacity-75">Complete institutional trading dashboard rebuild, slashing query latency by 40%.</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-lg-6 gs-reveal" style="margin-top: 50px;">
+                    <a href="#" class="work-card">
+                        <div class="work-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Analytics App" class="work-img parallax-img">
+                        </div>
+                        <div class="work-content">
+                            <span class="work-tag">SaaS / Web App</span>
+                            <h3>Omni Intelligence</h3>
+                            <p class="mb-0 text-light opacity-75">UX redesign and frontend engineering resulting in a 2.5x increase in retention.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="container gs-reveal mb-5" id="contact">
+        <div class="cta-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Ready to scale your infrastructure?</h2>
+                    <p>Partner with an elite engineering and design team that deeply understands high-level enterprise requirements.</p>
+                    <a href="mailto:hello@eliteagency.com" class="btn-elite btn-elite-primary btn-lg mt-2">Schedule a consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-5 mb-4">
+                <div class="col-lg-4 pe-lg-5">
+                    <a href="#" class="footer-brand">Elite.</a>
+                    <p>Delivering premier digital products through rigorous engineering and uncompromising design.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Journal</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h5>Capabilities</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Engineering</a></li>
+                        <li><a href="#">Product Design</a></li>
+                        <li><a href="#">Strategy</a></li>
+                        <li><a href="#">Cyber Security</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col">
+                    <h5>Headquarters</h5>
+                    <ul class="footer-links">
+                        <li class="text-secondary">One World Trade Center<br>Suite 4500, New York, NY</li>
+                        <li class="mt-3"><a href="mailto:hello@eliteagency.com" class="text-white">hello@eliteagency.com</a></li>
+                        <li><a href="tel:+18005550199" class="text-white">+1 (800) 555-0199</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Elite Agency Inc. All rights reserved.</div>
+                <div class="d-flex gap-4">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+
+    <script>
+        // 1. Lenis Smooth Scroll Setup
+        const lenis = new Lenis({
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            smoothTouch: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect Lenis to GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 2. High-End Preloader Animation
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline({
+                onComplete: initAnimations
+            });
+
+            // Animate progress bar
+            tl.to('#loader-bar', { width: '100%', duration: 1.2, ease: 'expo.inOut' })
+              // Reveal word
+              .to('#loader-word', { y: '0%', duration: 0.8, ease: 'power4.out' }, "-=0.4")
+              // Hold slightly
+              .to({}, { duration: 0.3 })
+              // Sweep preloader up
+              .to('.loader-wrapper', { yPercent: -100, duration: 1, ease: 'expo.inOut' });
+        });
+
+        // 3. GSAP Main Animations
+        function initAnimations() {
+            // Navbar Drop In
+            gsap.fromTo('.gs-nav', 
+                { y: -100, opacity: 0, visibility: 'hidden' }, 
+                { y: 0, opacity: 1, visibility: 'visible', duration: 1.5, ease: 'expo.out' }
+            );
+
+            // Hero Elements Reveal
+            gsap.fromTo('.gs-hero', 
+                { y: 50, opacity: 0, visibility: 'hidden' }, 
+                { y: 0, opacity: 1, visibility: 'visible', duration: 1.2, stagger: 0.15, ease: 'power4.out', delay: 0.1 }
+            );
+
+            // Universal Scroll Reveals
+            const revealElements = document.querySelectorAll('.gs-reveal');
+            revealElements.forEach((el) => {
+                gsap.fromTo(el, 
+                    { y: 60, opacity: 0, visibility: 'hidden' },
+                    {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                        },
+                        y: 0,
+                        opacity: 1,
+                        visibility: 'visible',
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    }
+                );
+            });
+
+            // Parallax Images in Case Studies
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            parallaxImages.forEach(img => {
+                gsap.to(img, {
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    },
+                    y: '10%', // Moves image slightly down as user scrolls past
+                    ease: 'none'
+                });
+            });
+
+            // Number Counters
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                gsap.fromTo(counter, 
+                    { innerText: 0 },
+                    {
+                        scrollTrigger: {
+                            trigger: counter,
+                            start: 'top 90%',
+                        },
+                        innerText: target,
+                        duration: 2.5,
+                        snap: { innerText: 1 },
+                        ease: 'power3.out'
+                    }
+                );
+            });
+        }
+
+        // 4. Smooth Anchor Scrolling via Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    lenis.scrollTo(targetElement, {
+                        offset: -100, 
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                }
+            });
+        });
+
+        // 5. CSS-Only Glowing Card Hover Effect (Mouse Tracking)
+        document.querySelectorAll('.hover-glow').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1743 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Agency | Premium Digital Products</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        /* PREMIUM OBSIDIAN & GLASS DESIGN SYSTEM */
+        :root {
+            --bg-obsidian: #08090d;
+            --bg-card: rgba(15, 17, 26, 0.7);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glass-active: rgba(228, 30, 38, 0.35);
+            --primary-red: #E41E26;
+            --primary-red-glow: rgba(228, 30, 38, 0.3);
+            --tech-blue: #0055FF;
+            --text-light: #f3f4f6;
+            --text-muted: #a1a8b5; /* Slightly brightened for better contrast */
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-obsidian);
+            color: var(--text-light);
+            font-family: var(--font-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- CONTRAST FIX --- */
+        /* Overriding Bootstrap's default dark-grey utility classes to fit the dark theme */
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-light);
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* LENIS SMOOTH SCROLLING */
+        html.lenis {
+            height: auto;
+        }
+        .lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2231;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-red);
+        }
+
+        /* PRELOADER */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-obsidian);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .preloader-progress {
+            width: 180px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .preloader-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        /* MAGNETIC INTERACTIVE CURSOR */
+        #custom-cursor {
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-red);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border 0.2s;
+            mix-blend-mode: screen;
+            display: none;
+        }
+
+        @media (pointer: fine) {
+            #custom-cursor {
+                display: block;
+            }
+        }
+
+        #custom-cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+        }
+
+        /* GLOW BACKGROUND ORBS */
+        .glow-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+        }
+
+        .orb-red {
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, var(--primary-red) 0%, rgba(0,0,0,0) 70%);
+            top: -10%;
+            right: -5%;
+        }
+
+        .orb-blue {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--tech-blue) 0%, rgba(0,0,0,0) 70%);
+            bottom: -10%;
+            left: -10%;
+            opacity: 0.1;
+        }
+
+        /* STICKY GLASS NAVBAR */
+        .navbar {
+            backdrop-filter: blur(16px);
+            background-color: rgba(8, 9, 13, 0.8);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition-premium);
+            z-index: 1000;
+        }
+
+        .navbar-brand svg {
+            height: 32px;
+        }
+
+        .nav-link {
+            font-family: var(--font-display);
+            font-weight: 500;
+            color: var(--text-light) !important;
+            opacity: 0.8;
+            transition: var(--transition-premium);
+            padding: 0.5rem 1.2rem !important;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--primary-red) !important;
+        }
+
+        /* PREMIUM BUTTONS */
+        .btn-premium {
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1.1rem 2.4rem;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            transition: var(--transition-premium);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-premium-primary {
+            background-color: var(--primary-red);
+            color: #ffffff !important;
+            box-shadow: 0 4px 20px var(--primary-red-glow);
+        }
+
+        .btn-premium-primary:hover {
+            background-color: #cb121a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(228, 30, 38, 0.45);
+        }
+
+        .btn-premium-secondary {
+            background-color: transparent;
+            color: var(--text-light) !important;
+            border-color: var(--border-glass);
+        }
+
+        .btn-premium-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* --- ANIMATION FLASH FIX --- */
+        /* Set initial opacity to 0 to prevent FOUC (elements flashing before animation) */
+        .reveal-text, .reveal-fade, .hero-grid-img, .reveal-card {
+            opacity: 0;
+        }
+
+        /* HERO STAGGERED IMAGE GRID */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 140px;
+            padding-bottom: 80px;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 5.5vw, 5rem);
+            line-height: 1.05;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .hero-title span.accent {
+            color: var(--primary-red);
+        }
+
+        .hero-subhead-wrapper {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 2vw, 2rem);
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-subhead-text {
+            color: var(--text-light);
+            border-right: 2px solid var(--primary-red);
+            padding-right: 5px;
+            white-space: nowrap;
+        }
+
+        /* STAGGERED COLUMNS */
+        .hero-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .hero-grid-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .hero-grid-col:nth-child(even) {
+            transform: translateY(40px);
+        }
+
+        .hero-grid-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-glass);
+            transition: var(--transition-premium);
+        }
+
+        .hero-grid-img:hover {
+            border-color: var(--primary-red);
+            transform: scale(1.03);
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 140px 0;
+            position: relative;
+        }
+
+        .section-tag {
+            color: var(--primary-red);
+            font-family: var(--font-display);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        /* SPLIT PORTRAIT ABOUT BLOCK */
+        .about-image-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+        }
+
+        .about-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            transition: var(--transition-premium);
+        }
+
+        .about-image-wrap:hover .about-image {
+            transform: scale(1.03);
+        }
+
+        .large-narrative {
+            font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+            line-height: 1.45;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* CAPABILITIES VISUAL CARDS */
+        .capability-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            transition: var(--transition-premium);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .capability-card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .capability-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-premium);
+        }
+
+        .capability-card:hover .capability-card-img {
+            transform: scale(1.06);
+        }
+
+        .capability-card-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glass-active);
+            box-shadow: 0 15px 35px var(--primary-red-glow);
+        }
+
+        /* TIMELINE HOW WE WORK */
+        .timeline-wrapper {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-progress-bar {
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            width: 2px;
+            background: var(--primary-red);
+            height: 0%;
+            transition: height 0.1s linear;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -50px;
+            top: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--bg-obsidian);
+            border: 2px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-premium);
+            z-index: 2;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+            transition: var(--transition-premium);
+        }
+
+        .timeline-item.active .timeline-dot {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 15px var(--primary-red-glow);
+        }
+
+        .timeline-item.active .timeline-dot::after {
+            background-color: var(--primary-red);
+        }
+
+        .timeline-content {
+            padding-left: 10px;
+        }
+
+        .timeline-step {
+            font-family: var(--font-display);
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* HORIZONTAL SCROLL PROCESS */
+        .horizontal-scroll-container {
+            position: relative;
+            overflow: hidden;
+            background-color: #050609;
+        }
+
+        .horizontal-scroll-wrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            width: 500vw; /* 5 panels */
+            height: 100vh;
+            align-items: center;
+        }
+
+        .horizontal-panel {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10vw;
+            position: relative;
+        }
+
+        .panel-num {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 15vw, 15rem);
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            user-select: none;
+        }
+
+        /* CASE STUDY BLOCK-OUT MOCKUPS */
+        .case-study-showcase-wrap {
+            margin-bottom: 100px;
+        }
+
+        .case-study-showcase-wrap:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-img-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            height: 500px;
+        }
+
+        .case-study-img {
+            width: 100%;
+            height: 120%;
+            object-fit: cover;
+            position: absolute;
+            top: -10%;
+            transition: var(--transition-premium);
+        }
+
+        .case-study-img-wrap:hover .case-study-img {
+            transform: scale(1.05);
+        }
+
+        .case-study-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(8, 9, 13, 0.95) 0%, rgba(8, 9, 13, 0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 3rem;
+        }
+
+        .case-metrics-grid {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            color: var(--primary-red);
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* STATS */
+        .stat-box {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            backdrop-filter: blur(16px);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .stat-suffix {
+            color: var(--primary-red);
+        }
+
+        /* CLIENT CAROUSEL SLIDER */
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 15px;
+        }
+
+        .testimonial-quote {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: var(--text-light);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary-red);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+
+        .slider-controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 3rem;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-premium);
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary-red);
+            background: var(--primary-red);
+        }
+
+        /* FAQ ACCORDION */
+        .elite-accordion-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            transition: var(--transition-premium);
+        }
+
+        .elite-accordion-header {
+            width: 100%;
+            padding: 1.8rem 2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .elite-accordion-icon {
+            font-size: 1.5rem;
+            transition: var(--transition-premium);
+            color: var(--primary-red);
+        }
+
+        .elite-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .elite-accordion-content-inner {
+            padding: 0 2rem 2.2rem 2rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .elite-accordion-item.active {
+            border-color: var(--border-glass-active);
+        }
+
+        .elite-accordion-item.active .elite-accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            background-color: #040507;
+            padding: 80px 0 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition-premium);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+            padding-left: 5px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-glass);
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            transition: var(--transition-premium);
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .social-link:hover {
+            border-color: var(--primary-red);
+            background-color: var(--primary-red);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE LAYOUTS */
+        @media (max-width: 991px) {
+            .horizontal-scroll-container {
+                overflow: visible;
+                background-color: transparent;
+            }
+            .horizontal-scroll-wrapper {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .horizontal-panel {
+                width: 100%;
+                height: auto;
+                padding: 80px 0;
+            }
+            .panel-num {
+                top: 0;
+                left: 5%;
+            }
+            #custom-cursor {
+                display: none !important;
+            }
+            .case-study-overlay {
+                padding: 2rem;
+            }
+            .hero-grid-container {
+                transform: none;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 20H80V35H40V45H75V60H40V70H80V85H20V20Z" fill="#0055FF"/>
+            <path d="M80 20L20 85H40L80 35V20Z" fill="#E41E26"/>
+        </svg>
+        <div class="preloader-progress">
+            <div class="preloader-bar" id="preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="custom-cursor"></div>
+
+    <!-- GLOW AMBIENT BACKGROUNDS -->
+    <div class="glow-background">
+        <div class="glow-orb orb-red"></div>
+        <div class="glow-orb orb-blue"></div>
+    </div>
+
+    <!-- STICKY GLASS NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 20H80V35H40V45H75V60H40V70H80V85H20V20Z" fill="#ffffff"/>
+                    <path d="M80 20L20 85H40L80 35V20Z" fill="#E41E26"/>
+                </svg>
+                <span style="font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; font-size: 1.4rem;">ELITE</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#capabilities">Capabilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="#contact" class="btn-premium btn-premium-primary py-2 px-4 magnetic-btn">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION WITH ASYMMETRIC IMAGE STAGGER GRID -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title reveal-text">
+                        We Design, <br>Build & Scale <br>Digital <span class="accent">Products.</span>
+                    </h1>
+                    <div class="hero-subhead-wrapper">
+                        <span class="hero-subhead-text" id="typed-text"></span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-4 reveal-fade">
+                        <a href="#contact" class="btn-premium btn-premium-primary magnetic-btn">Start Your Project</a>
+                        <a href="#work" class="btn-premium btn-premium-secondary magnetic-btn">See Our Work</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <!-- Asymmetric Stagger Grid of Premium Visuals -->
+                    <div class="hero-grid-container">
+                        <div class="hero-grid-col">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Tech Structure" class="hero-grid-img">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract Lines" class="hero-grid-img">
+                        </div>
+                        <div class="hero-grid-col">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="UI Dashboard" class="hero-grid-img">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Creative Space" class="hero-grid-img">
+                        </div>
+                        <div class="hero-grid-col">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="Modern Mockup" class="hero-grid-img">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Digital Glass" class="hero-grid-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: NARRATIVE & PORTRAIT COLLATERAL -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="about-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80" alt="Studio Collaboration" class="about-image">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <span class="section-tag">Who We Are</span>
+                    <h2 class="section-title">We bridge beautiful layouts with resilient structures.</h2>
+                    <p class="large-narrative mb-4 text-light">
+                        We are a specialized digital studio matching world-class strategy with cutting-edge engineering. We help industry leaders and fast-growing organizations craft clean digital products, transform brand identities, and scale operations securely.
+                    </p>
+                    <p class="text-muted">
+                        Our methods avoid unnecessary layers of management. You work directly with senior designers and engineers, ensuring your platform is built on modern code patterns, semantic standards, and optimal scalability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CAPABILITIES GRID WITH BACKGROUND IMAGES -->
+    <section id="capabilities">
+        <div class="container">
+            <div class="section-header">
+                <div class="row align-items-end">
+                    <div class="col-lg-6">
+                        <span class="section-tag">What We Build</span>
+                        <h2 class="section-title">Platform Offerings</h2>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <p class="text-muted mb-0">Engineered with high performance and fluid responsiveness at their core.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-6 reveal-card">
+                    <div class="capability-card">
+                        <div class="capability-card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Web Architecture" class="capability-card-img">
+                        </div>
+                        <div class="capability-card-content">
+                            <h3>Bespoke Web Platforms</h3>
+                            <p class="text-muted mt-3">High-performance platforms designed with responsive layout rules and modern kinetic layouts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal-card">
+                    <div class="capability-card">
+                        <div class="capability-card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=800&q=80" alt="Brand Identity" class="capability-card-img">
+                        </div>
+                        <div class="capability-card-content">
+                            <h3>Brand Systems</h3>
+                            <p class="text-muted mt-3">Visual architectures, design languages, and structured identity assets to position your system premium.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 reveal-card">
+                    <div class="capability-card">
+                        <div class="capability-card-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Conversion Engine" class="capability-card-img">
+                        </div>
+                        <div class="capability-card-content">
+                            <h3>Conversion Pipelines</h3>
+                            <p class="text-muted mt-3">Streamlined, data-aligned conversion paths and structures mapped explicitly to capture growth.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: HOW WE WORK (TIMELINE) -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sticky-lg-top" style="top: 120px;">
+                        <span class="section-tag">Workflow</span>
+                        <h2 class="section-title">How We Work</h2>
+                        <p class="text-muted mt-3">A transparent, structured approach to execution that preserves clarity at every phase.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="timeline-wrapper">
+                        <div class="timeline-progress-bar" id="timeline-progress"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">01. Discover</span>
+                                <h3>Alignment Workshop</h3>
+                                <p class="text-muted">We begin by deep-diving into your target audience, current product performance, brand ethos, and immediate opportunities for differentiation.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">02. Strategize</span>
+                                <h3>Blueprinting</h3>
+                                <p class="text-muted">We define structural requirements, UX paths, technical design specifications, and performance targets into a unified project map.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">03. Design</span>
+                                <h3>High-Fidelity Visuals</h3>
+                                <p class="text-muted">Creating a cohesive visual language with modern custom graphics, intuitive interfaces, and premium kinetic styling.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">04. Build</span>
+                                <h3>Engineering</h3>
+                                <p class="text-muted">Developing pixel-perfect, clean production code. High emphasis on semantic tags, core web vitals, and lightning-fast speeds.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">05. Launch</span>
+                                <h3>System Deployment</h3>
+                                <p class="text-muted">We configure optimized server pipelines, handle security protocols, run strict visual QA checks, and push your system live.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-step">06. Scale</span>
+                                <h3>Active Growth</h3>
+                                <p class="text-muted">Monitoring metrics, continuous testing, search updates, and regular structural iterations to scale conversions continuously.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: OUR PROCESS (HORIZONTAL SCROLL) -->
+    <div id="process" class="horizontal-scroll-container d-none d-lg-block">
+        <div class="horizontal-scroll-wrapper" id="horizontal-wrapper">
+            <div class="horizontal-panel">
+                <span class="panel-num">01</span>
+                <div class="container text-center text-lg-start">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="section-tag">Philosophy</span>
+                            <h2 class="display-3 fw-bold mb-4">We believe in deliberate iteration.</h2>
+                            <p class="lead text-muted">A premium visual language is born from refining the minor elements. We examine every corner to deliver seamless, fast-loading user experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-panel">
+                <span class="panel-num">02</span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="section-tag">Engineering</span>
+                            <h2 class="display-3 fw-bold mb-4">Performance-First Approach</h2>
+                            <p class="lead text-muted">We optimize for high performance, maintaining low footprint assets and custom scripting to secure fast page loads globally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-panel">
+                <span class="panel-num">03</span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="section-tag">Brand Direction</span>
+                            <h2 class="display-3 fw-bold mb-4">Storytelling Through Motion</h2>
+                            <p class="lead text-muted">Interactivity should feel organic. We craft scroll and cursor behaviors that make platforms engaging, encouraging deeper session times.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-panel">
+                <span class="panel-num">04</span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="section-tag">Data Integration</span>
+                            <h2 class="display-3 fw-bold mb-4">Aligned Conversion Strategy</h2>
+                            <p class="lead text-muted">We map visual elements directly to critical user action flows, guiding prospective buyers gracefully toward engagement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="horizontal-panel">
+                <span class="panel-num">05</span>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <span class="section-tag">Evolution</span>
+                            <h2 class="display-3 fw-bold mb-4">Continuous Maintenance</h2>
+                            <p class="lead text-muted">Web standards shift quickly. We offer secure, ongoing code updates and visual maintenance so your system retains its competitive edge.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: SELECTED PROJECTS (IMAGE DRIVEN) -->
+    <section id="work">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Selected Works</span>
+                <h2 class="section-title">Case Studies</h2>
+            </div>
+
+            <!-- Case Study 1 -->
+            <div class="case-study-showcase-wrap">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-7">
+                        <div class="case-study-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Fintech Mockup" class="case-study-img">
+                            <div class="case-study-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <span class="section-tag">Finance Transformation</span>
+                        <h3 class="display-6 mb-3">Vanguard Platform</h3>
+                        <p class="text-muted mb-4">Complete custom platform and strategy engineered to lower conversion friction for investment institutions.</p>
+                        <div class="row case-metrics-grid">
+                            <div class="col-6">
+                                <div class="metric-value">+400%</div>
+                                <div class="metric-label">ROAS Increase</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-value">+250%</div>
+                                <div class="metric-label">Leads Generated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="case-study-showcase-wrap">
+                <div class="row g-5 align-items-center flex-row-reverse">
+                    <div class="col-lg-7">
+                        <div class="case-study-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80" alt="Tech Dashboard Mockup" class="case-study-img">
+                            <div class="case-study-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <span class="section-tag">Product Scaling</span>
+                        <h3 class="display-6 mb-3">Aero Analytics</h3>
+                        <p class="text-muted mb-4">Bespoke performance analytics design built for capturing high-volume enterprise software conversion pipelines.</p>
+                        <div class="row case-metrics-grid">
+                            <div class="col-6">
+                                <div class="metric-value">+180%</div>
+                                <div class="metric-label">Platform Sales</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-value">+5M</div>
+                                <div class="metric-label">Campaign Reach</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 6: WHY ELITE COUNTERS -->
+    <section class="position-relative">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Proven Value</span>
+                <h2 class="section-title">System Milestones</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="100">0</span><span class="stat-suffix">+</span>
+                        <div class="text-muted">Successful Projects</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
+                        <div class="text-muted">Partner Brands</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="95">0</span><span class="stat-suffix">%</span>
+                        <div class="text-muted">Client Retention</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
+                        <div class="text-muted">Industries Scaled</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CLIENT CAROUSEL -->
+    <section class="position-relative">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <span class="section-tag">Client Feedback</span>
+                    <h2 class="section-title mb-4">Direct Feedback From Our Long-Term Partners</h2>
+                    <p class="text-muted">Our focus remains on delivering structured reliability and growth. Here is what leading operations say about our custom development pipeline.</p>
+                    <div class="slider-controls">
+                        <button class="control-btn" id="prev-test" aria-label="Previous Testimonial"><i class="bi bi-arrow-left"></i></button>
+                        <button class="control-btn" id="next-test" aria-label="Next Testimonial"><i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="testimonial-slider">
+                        <div class="testimonial-track" id="testimonial-track">
+                            
+                            <div class="testimonial-slide">
+                                <div class="stat-box text-start">
+                                    <p class="testimonial-quote">"The team at Elite overhauled our platform. Session times increased significantly, and we saw a major improvement in visual consistency across all our customer touchpoints."</p>
+                                    <div class="testimonial-author">
+                                        <div class="testimonial-avatar">JD</div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">Johnathan Davis</h5>
+                                            <small class="text-muted">Chief Technology Officer, Vanguard Asset</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="testimonial-slide">
+                                <div class="stat-box text-start">
+                                    <p class="testimonial-quote">"Our development velocity improved dramatically. The code was exceptionally well-structured, allowing our in-house engineering group to scale features easily."</p>
+                                    <div class="testimonial-author">
+                                        <div class="testimonial-avatar">MS</div>
+                                        <div>
+                                            <h5 class="mb-0 text-white">Marcus Sterling</h5>
+                                            <small class="text-muted">Head of Product, Aero Analytics</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FAQ ACCORDION -->
+    <section>
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Common Inquiries</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="elite-accordion">
+                        
+                        <div class="elite-accordion-item">
+                            <button class="elite-accordion-header">
+                                How long do custom design and dev integrations typically require?
+                                <span class="elite-accordion-icon">+</span>
+                            </button>
+                            <div class="elite-accordion-content">
+                                <div class="elite-accordion-content-inner">
+                                    Most bespoke projects are scoped to finalize deployment within 6 to 10 weeks, depending on structural details and complex integration pipelines.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="elite-accordion-item">
+                            <button class="elite-accordion-header">
+                                Do you integrate directly with pre-existing technology stacks?
+                                <span class="elite-accordion-icon">+</span>
+                            </button>
+                            <div class="elite-accordion-content">
+                                <div class="elite-accordion-content-inner">
+                                    Yes. We regularly build custom extensions to interface with systems like Salesforce, Hubspot, custom databases, and modern headless CMS environments.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="elite-accordion-item">
+                            <button class="elite-accordion-header">
+                                How is post-launch platform security and maintenance structured?
+                                <span class="elite-accordion-icon">+</span>
+                            </button>
+                            <div class="elite-accordion-content">
+                                <div class="elite-accordion-content-inner">
+                                    We offer ongoing support packages to address security patches, performance evaluations, search engine adjustments, and system scaling requirements.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: FINAL CTA -->
+    <section id="contact" style="background: radial-gradient(circle at bottom, var(--primary-red-glow) 0%, rgba(8,9,13,0) 70%);">
+        <div class="container text-center py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <span class="section-tag">Your Next Phase</span>
+                    <h2 class="display-3 fw-bold mb-4 text-light">Your competitors are already investing in digital excellence.</h2>
+                    <p class="lead text-muted mb-5 col-lg-8 mx-auto">Will you secure your position, or watch from the sidelines? Let's connect and build a premium foundation designed to convert.</p>
+                    <a href="mailto:contact@eliteagency.com" class="btn-premium btn-premium-primary btn-lg magnetic-btn">Book a Strategy Call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2 footer-logo" href="#">
+                        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 20H80V35H40V45H75V60H40V70H80V85H20V20Z" fill="#ffffff"/>
+                            <path d="M80 20L20 85H40L80 35V20Z" fill="#E41E26"/>
+                        </svg>
+                        <span style="font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; font-size: 1.4rem; color: #fff;">ELITE</span>
+                    </a>
+                    <p class="text-muted">Elite Agency. Building digital experiences that perform flawlessly.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-link" aria-label="X Profile"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn Profile"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram Profile"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#capabilities">Capabilities</a></li>
+                        <li><a href="#process">Process</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="text-white mb-3">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security Protocols</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-3">Get in Touch</h5>
+                    <p class="text-muted mb-1">Office: Los Angeles, CA</p>
+                    <p class="text-muted mb-1">Email: info@eliteagency.com</p>
+                    <p class="text-muted">Tel: +1 (800) 555-0199</p>
+                </div>
+            </div>
+            <div class="border-top border-secondary pt-4 text-center">
+                <p class="text-muted small mb-0">&copy; 2026 Elite Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+
+    <script>
+        // 1. LENIS SMOOTH SCROLLING
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect Lenis with ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // 2. PRELOADER & INITIAL ANIMS
+        window.addEventListener('load', () => {
+            const bar = document.getElementById('preloader-bar');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    gsap.to('#preloader', {
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        onComplete: () => {
+                            document.getElementById('preloader').style.display = 'none';
+                            triggerHeroAnims();
+                        }
+                    });
+                } else {
+                    width += 10;
+                    bar.style.width = width + '%';
+                }
+            }, 50);
+        });
+
+        // 3. CURSOR MOVEMENT
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: 'power2.out'
+            });
+        });
+
+        document.querySelectorAll('a, button, .capability-card, .elite-accordion-header, .stat-box').forEach(elem => {
+            elem.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            elem.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // 4. MAGNETIC BUTTONS
+        const magnets = document.querySelectorAll('.magnetic-btn');
+        magnets.forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+                const bound = btn.getBoundingClientRect();
+                const x = e.clientX - bound.left - (bound.width / 2);
+                const y = e.clientY - bound.top - (bound.height / 2);
+                gsap.to(btn, {
+                    x: x * 0.35,
+                    y: y * 0.35,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+
+        // 5. TYPED SUBHEAD ANIMATION
+        const typedStrings = ["Websites.", "Brands.", "Ads.", "Growth."];
+        let stringIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedContainer = document.getElementById('typed-text');
+
+        function type() {
+            const currentString = typedStrings[stringIndex];
+            if (isDeleting) {
+                typedContainer.textContent = currentString.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedContainer.textContent = currentString.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let delay = 100;
+            if (!isDeleting && charIndex === currentString.length) {
+                delay = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                stringIndex = (stringIndex + 1) % typedStrings.length;
+                delay = 500;
+            }
+
+            setTimeout(type, delay);
+        }
+        setTimeout(type, 1500);
+
+        // 6. HERO ENTRANCE TIMELINE
+        function triggerHeroAnims() {
+            const tl = gsap.timeline();
+            tl.fromTo('.navbar', 
+                { y: -50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+            );
+            tl.fromTo('.reveal-text', 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', stagger: 0.15 }, 
+                '-=0.6'
+            );
+            tl.fromTo('.reveal-fade', 
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, 
+                '-=0.8'
+            );
+            tl.fromTo('.hero-grid-img', 
+                { scale: 0.8, y: 50, opacity: 0 },
+                { scale: 1, y: 0, opacity: 1, stagger: 0.1, duration: 1.2, ease: 'power4.out' }, 
+                '-=1'
+            );
+        }
+
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 8. WHAT WE BUILD CARDS STAGGER
+        gsap.fromTo('.reveal-card', 
+            { y: 60, opacity: 0 },
+            {
+                scrollTrigger: {
+                    trigger: '#capabilities',
+                    start: 'top 75%',
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }
+        );
+
+        // 9. HOW WE WORK TIMELINE
+        const timelineProgress = document.getElementById('timeline-progress');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        gsap.to(timelineProgress, {
+            scrollTrigger: {
+                trigger: '.timeline-wrapper',
+                start: 'top 30%',
+                end: 'bottom 40%',
+                scrub: true,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    timelineProgress.style.height = (progress * 100) + '%';
+                    
+                    const activeCount = Math.floor(progress * timelineItems.length);
+                    timelineItems.forEach((item, index) => {
+                        if (index <= activeCount) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            }
+        });
+
+        // 10. HORIZONTAL PROCESS SCROLL
+        if (window.innerWidth > 991) {
+            const sections = gsap.utils.toArray('.horizontal-panel');
+            gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#process",
+                    pin: true,
+                    scrub: 1,
+                    snap: 1 / (sections.length - 1),
+                    end: () => "+=" + document.getElementById('horizontal-wrapper').offsetWidth
+                }
+            });
+        }
+
+        // 11. CASE STUDY PARALLAX
+        const caseImages = gsap.utils.toArray('.case-study-img');
+        caseImages.forEach((img) => {
+            gsap.to(img, {
+                yPercent: 15,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        });
+
+        // 12. STATS COUNTERS
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach((stat) => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            gsap.to(stat, {
+                scrollTrigger: {
+                    trigger: stat,
+                    start: 'top 85%',
+                },
+                innerText: target,
+                duration: 2.5,
+                snap: { innerText: 1 },
+                ease: 'power2.out'
+            });
+        });
+
+        // 13. CLIENT TESTIMONIALS SLIDER
+        let currentSlide = 0;
+        const track = document.getElementById('testimonial-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const totalSlides = slides.length;
+
+        function updateSlider() {
+            gsap.to(track, {
+                xPercent: -currentSlide * 100,
+                duration: 0.6,
+                ease: 'power3.out'
+            });
+        }
+
+        document.getElementById('next-test').addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+            } else {
+                currentSlide = 0;
+            }
+            updateSlider();
+        });
+
+        document.getElementById('prev-test').addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+            } else {
+                currentSlide = totalSlides - 1;
+            }
+            updateSlider();
+        });
+
+        // 14. FAQ ACCORDION
+        const accordionItems = document.querySelectorAll('.elite-accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.elite-accordion-header');
+            const content = item.querySelector('.elite-accordion-content');
+            
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                accordionItems.forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.elite-accordion-content').style.maxHeight = '0';
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+                setTimeout(() => { ScrollTrigger.refresh(); }, 400);
+            });
+        });
+
+        // 15. SMOOTH INTER-PAGE SCROLLING FOR NAV LINKS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    lenis.scrollTo(targetElement, {
+                        offset: -80,
+                        duration: 1.5,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
