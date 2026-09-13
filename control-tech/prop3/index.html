@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Atelier Auto | Contrôle & Vérification Automobile</title>
+    <meta name="description" content="Atelier d'inspection et de vérification automobile. Service professionnel, sérieux et sur rendez-vous en Algérie.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#171717', // Neutral Gray 900 (Deep Charcoal/Black)
+                        accent: '#ea580c', // Orange 600 (Vibrant Automotive Accent)
+                        accentHover: '#c2410c', // Orange 700
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS Styles -->
+    <style>
+        /* Base settings for Mobile App feel */
+        :root {
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .pb-safe {
+            padding-bottom: var(--safe-bottom);
+        }
+
+        /* Ensure body has space at bottom so fixed mobile nav doesn't hide content */
+        @media (max-width: 767px) {
+            .mobile-nav-padding {
+                padding-bottom: calc(4rem + var(--safe-bottom)); 
+            }
+        }
+
+        /* Typography depending on language direction */
+        [dir="rtl"] {
+            font-family: 'Cairo', sans-serif;
+        }
+        [dir="ltr"] {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Header transition on scroll */
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(8px);
+            color: #171717 !important;
+            border-bottom-color: #e5e5e5 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        header.scrolled [data-lucide="shield-check"] {
+            color: #ffffff; /* keep icon white inside colored box */
+        }
+
+        /* FAQ Accordion */
+        .faq-content {
+            display: none;
+        }
+        .faq-content.open {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .faq-btn.active i {
+            transform: rotate(45deg);
+        }
+        .faq-item:has(.faq-btn.active) {
+            border-color: #ea580c;
+            box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Active Nav state (Mobile) */
+        .active-nav {
+            color: #ea580c !important;
+        }
+
+        /* Reduce motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#fafafa] text-gray-800 font-sans antialiased overflow-x-hidden mobile-nav-padding transition-colors duration-300">
+
+    <!-- Desktop Header -->
+    <header id="main-header" class="fixed w-full top-0 z-40 transition-all duration-300 bg-transparent text-white border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Placeholder -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center shadow-lg shadow-accent/20">
+                        <i data-lucide="shield-check" class="text-white"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight" data-i18n="atelier_name">[Nom de l'Atelier]</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 rtl:space-x-reverse">
+                    <a href="#services" class="hover:text-accent transition-colors font-medium text-sm" data-i18n="nav_services">Services</a>
+                    <a href="#trust" class="hover:text-accent transition-colors font-medium text-sm" data-i18n="nav_atelier">L'atelier</a>
+                    <a href="#process" class="hover:text-accent transition-colors font-medium text-sm" data-i18n="nav_process">Processus</a>
+                    <a href="#faq" class="hover:text-accent transition-colors font-medium text-sm" data-i18n="nav_faq">FAQ</a>
+                    <a href="#contact" class="hover:text-accent transition-colors font-medium text-sm" data-i18n="nav_contact">Contact</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button id="lang-toggle-desktop" class="text-sm font-semibold hover:text-accent transition-colors">العربية</button>
+                    <a href="#booking" class="bg-accent hover:bg-accentHover text-white px-6 py-2.5 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg shadow-accent/30 flex items-center gap-2">
+                        <i data-lucide="calendar-clock" class="w-4 h-4"></i>
+                        <span data-i18n="cta_book">Prendre rendez-vous</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] min-h-[600px] flex items-center pt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0 bg-primary">
+            <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Inspection automobile" class="w-full h-full object-cover mix-blend-overlay opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div data-aos="fade-up" data-aos-duration="800">
+                    <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-semibold tracking-wider mb-6 backdrop-blur-sm" data-i18n="hero_label">CONTRÔLE & VÉRIFICATION AUTOMOBILE</span>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" data-i18n="hero_title">
+                        Votre véhicule mérite un contrôle professionnel.
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 mb-8 max-w-xl" data-i18n="hero_subtitle">
+                        Une prise en charge sérieuse, un service organisé et un rendez-vous simple à réserver.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <a href="#booking" class="bg-accent hover:bg-accentHover text-white px-8 py-4 rounded-xl font-semibold text-center transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2">
+                            <span data-i18n="cta_book">Prendre rendez-vous</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 rtl:-scale-x-100"></i>
+                        </a>
+                        <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium text-center backdrop-blur-sm transition-all border border-white/10" data-i18n="cta_contact">
+                            Nous contacter
+                        </a>
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-6 text-sm text-gray-300 font-medium">
+                        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i> <span data-i18n="trust_1">Service professionnel</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i> <span data-i18n="trust_2">Rendez-vous organisé</span></div>
+                        <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-accent"></i> <span data-i18n="trust_3">Atelier local</span></div>
+                    </div>
+                </div>
+
+                <!-- Floating Trust Card -->
+                <div class="hidden lg:block relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-accent to-orange-400 rounded-2xl blur opacity-30 animate-pulse"></div>
+                    <div class="relative bg-white rounded-2xl p-8 shadow-2xl border border-gray-100">
+                        <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-4">
+                            <h3 class="font-bold text-xl text-primary" data-i18n="card_title">Rendez-vous</h3>
+                            <i data-lucide="calendar" class="text-accent"></i>
+                        </div>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-gray-600"><i data-lucide="zap" class="w-5 h-5 text-yellow-500"></i> <span class="font-medium" data-i18n="card_point1">Simple</span></li>
+                            <li class="flex items-center gap-3 text-gray-600"><i data-lucide="timer" class="w-5 h-5 text-green-500"></i> <span class="font-medium" data-i18n="card_point2">Rapide</span></li>
+                            <li class="flex items-center gap-3 text-gray-600"><i data-lucide="clipboard-list" class="w-5 h-5 text-blue-500"></i> <span class="font-medium" data-i18n="card_point3">Organisé</span></li>
+                        </ul>
+                        <button class="w-full bg-gray-100 hover:bg-gray-200 text-primary font-semibold py-3 rounded-xl transition-colors" data-i18n="card_btn">Commencer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immediate Booking CTA -->
+    <section class="bg-primary py-12 relative overflow-hidden" id="booking">
+        <!-- Subtle pattern/glow -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-accent rounded-full blur-[100px] opacity-20 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm" data-aos="zoom-in" data-aos-duration="500">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n="imm_title">Besoin de faire vérifier votre véhicule ?</h2>
+                    <p class="text-gray-400" data-i18n="imm_desc">Choisissez votre prestation et votre créneau en quelques étapes simples.</p>
+                </div>
+                <a href="#" class="bg-accent text-white hover:bg-accentHover px-8 py-4 rounded-xl font-bold shadow-lg shadow-accent/20 flex items-center gap-2 whitespace-nowrap transition-transform hover:scale-105">
+                    <span data-i18n="imm_btn">Réserver maintenant</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 rtl:-scale-x-100"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-24 bg-white" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-accent font-semibold tracking-wider text-sm uppercase mb-2 block" data-i18n="srv_label">NOS SERVICES</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-primary" data-i18n="srv_title">Des services conçus autour de votre véhicule.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="group bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.03] font-bold text-6xl text-primary rtl:left-0 rtl:right-auto transition-opacity group-hover:opacity-10">01</div>
+                    <div class="w-14 h-14 bg-white shadow-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-primary border border-gray-100 group-hover:border-accent">
+                        <i data-lucide="car" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3" data-i18n="srv_1_title">Contrôle du véhicule</h3>
+                    <p class="text-gray-600 text-sm mb-6" data-i18n="srv_1_desc">Vérification des principaux éléments du véhicule selon la prestation demandée.</p>
+                    <div class="flex items-center text-accent font-medium text-sm group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform">
+                        <span data-i18n="srv_more">En savoir plus</span> <i data-lucide="chevron-right" class="w-4 h-4 ms-1 rtl:-scale-x-100"></i>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.03] font-bold text-6xl text-primary rtl:left-0 rtl:right-auto transition-opacity group-hover:opacity-10">02</div>
+                    <div class="w-14 h-14 bg-white shadow-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-primary border border-gray-100 group-hover:border-accent">
+                        <i data-lucide="wrench" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3" data-i18n="srv_2_title">Vérification technique</h3>
+                    <p class="text-gray-600 text-sm mb-6" data-i18n="srv_2_desc">Un contrôle méthodique des différents éléments nécessaires.</p>
+                    <div class="flex items-center text-accent font-medium text-sm group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform">
+                        <span data-i18n="srv_more">En savoir plus</span> <i data-lucide="chevron-right" class="w-4 h-4 ms-1 rtl:-scale-x-100"></i>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.03] font-bold text-6xl text-primary rtl:left-0 rtl:right-auto transition-opacity group-hover:opacity-10">03</div>
+                    <div class="w-14 h-14 bg-white shadow-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-primary border border-gray-100 group-hover:border-accent">
+                        <i data-lucide="search" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3" data-i18n="srv_3_title">Inspection automobile</h3>
+                    <p class="text-gray-600 text-sm mb-6" data-i18n="srv_3_desc">Une inspection permettant de mieux évaluer l'état général du véhicule.</p>
+                    <div class="flex items-center text-accent font-medium text-sm group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform">
+                        <span data-i18n="srv_more">En savoir plus</span> <i data-lucide="chevron-right" class="w-4 h-4 ms-1 rtl:-scale-x-100"></i>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-xl hover:border-accent/30 transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 p-4 opacity-[0.03] font-bold text-6xl text-primary rtl:left-0 rtl:right-auto transition-opacity group-hover:opacity-10">04</div>
+                    <div class="w-14 h-14 bg-white shadow-sm rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-primary border border-gray-100 group-hover:border-accent">
+                        <i data-lucide="activity" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3" data-i18n="srv_4_title">Diagnostic ciblé</h3>
+                    <p class="text-gray-600 text-sm mb-6" data-i18n="srv_4_desc">Une vérification spécifique et ciblée selon vos besoins ponctuels.</p>
+                    <div class="flex items-center text-accent font-medium text-sm group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform">
+                        <span data-i18n="srv_more">En savoir plus</span> <i data-lucide="chevron-right" class="w-4 h-4 ms-1 rtl:-scale-x-100"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="py-24 bg-gray-100" id="trust">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative" data-aos="fade-right">
+                    <div class="aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden shadow-2xl relative z-10 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1613251749622-c328e1d5eb85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Technicien" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Decorative element -->
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-3xl -z-10 rtl:-left-6 rtl:right-auto hidden md:block"></div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-10 leading-tight" data-i18n="trust_sec_title">
+                        Un contrôle sérieux commence par une prise en charge professionnelle.
+                    </h2>
+
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-accent">
+                                <i data-lucide="shield-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2" data-i18n="trust_pt1_title">Professionnalisme</h4>
+                                <p class="text-gray-600" data-i18n="trust_pt1_desc">Une organisation pensée pour offrir un service clair et sérieux.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-accent">
+                                <i data-lucide="eye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2" data-i18n="trust_pt2_title">Transparence</h4>
+                                <p class="text-gray-600" data-i18n="trust_pt2_desc">Des informations compréhensibles sur les vérifications effectuées.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-accent">
+                                <i data-lucide="clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2" data-i18n="trust_pt3_title">Organisation</h4>
+                                <p class="text-gray-600" data-i18n="trust_pt3_desc">Des rendez-vous planifiés pour mieux gérer votre temps.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-accent">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-2" data-i18n="trust_pt4_title">Proximité</h4>
+                                <p class="text-gray-600" data-i18n="trust_pt4_desc">Un atelier accessible et à l'écoute de ses clients.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Gallery -->
+    <section class="py-24 bg-primary text-white overflow-hidden relative">
+        <!-- Accent Glow -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="gallery_title">Découvrez notre atelier.</h2>
+                    <p class="text-gray-400 max-w-xl" data-i18n="gallery_desc">Des installations adaptées pour prendre en charge votre véhicule dans les meilleures conditions.</p>
+                </div>
+                <button class="flex items-center gap-2 text-accent font-semibold hover:text-white transition-colors">
+                    <span data-i18n="gallery_btn">Voir l'atelier</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 rtl:-scale-x-100"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Working Verified Unsplash Images -->
+                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden bg-gray-800 border border-gray-800" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Atelier" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="rounded-2xl overflow-hidden h-48 bg-gray-800 border border-gray-800" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1486262715619-670840a044e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Equipement" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="rounded-2xl overflow-hidden h-48 bg-gray-800 border border-gray-800" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1635787680789-535fc06ccf2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Inspection" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="col-span-2 rounded-2xl overflow-hidden h-48 bg-gray-800 border border-gray-800" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1503375894026-6734139ce6f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Véhicule" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works (Process) -->
+    <section class="py-24 bg-white" id="process">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="process_title">Votre rendez-vous en 4 étapes.</h2>
+                <p class="text-gray-500" data-i18n="process_desc">Un processus simple et transparent pour vous faire gagner du temps.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="relative bg-white pt-8 md:pt-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-accent text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20 mb-6 mx-auto md:mx-0">01</div>
+                        <h4 class="text-xl font-bold text-primary mb-2 text-center md:text-start" data-i18n="step_1_title">Réservez</h4>
+                        <p class="text-gray-600 text-center md:text-start text-sm" data-i18n="step_1_desc">Choisissez la prestation et votre créneau.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative bg-white pt-8 md:pt-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-white border-2 border-gray-200 text-primary rounded-2xl flex items-center justify-center text-2xl font-bold shadow-sm mb-6 mx-auto md:mx-0">02</div>
+                        <h4 class="text-xl font-bold text-primary mb-2 text-center md:text-start" data-i18n="step_2_title">Confirmez</h4>
+                        <p class="text-gray-600 text-center md:text-start text-sm" data-i18n="step_2_desc">Indiquez vos coordonnées et les informations du véhicule.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative bg-white pt-8 md:pt-0" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-16 h-16 bg-white border-2 border-gray-200 text-primary rounded-2xl flex items-center justify-center text-2xl font-bold shadow-sm mb-6 mx-auto md:mx-0">03</div>
+                        <h4 class="text-xl font-bold text-primary mb-2 text-center md:text-start" data-i18n="step_3_title">Présentez-vous</h4>
+                        <p class="text-gray-600 text-center md:text-start text-sm" data-i18n="step_3_desc">Rendez-vous à l'atelier à l'heure prévue.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative bg-white pt-8 md:pt-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="w-16 h-16 bg-white border-2 border-gray-200 text-primary rounded-2xl flex items-center justify-center text-2xl font-bold shadow-sm mb-6 mx-auto md:mx-0">04</div>
+                        <h4 class="text-xl font-bold text-primary mb-2 text-center md:text-start" data-i18n="step_4_title">Contrôle</h4>
+                        <p class="text-gray-600 text-center md:text-start text-sm" data-i18n="step_4_desc">Votre véhicule est pris en charge selon la prestation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Preview (Visual only) -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-primary mb-4" data-i18n="preview_title">Réservez sans perdre de temps.</h2>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200" data-aos="zoom-in">
+                <!-- Fake Booking Header -->
+                <div class="bg-primary px-6 py-4 flex justify-between items-center text-white text-sm">
+                    <span class="font-medium text-accent">1. Service</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-gray-500 rtl:-scale-x-100"></i>
+                    <span class="text-gray-400">2. Créneau</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-gray-500 rtl:-scale-x-100"></i>
+                    <span class="text-gray-400">3. Infos</span>
+                </div>
+                <!-- Fake Booking Body -->
+                <div class="p-8">
+                    <h3 class="font-bold text-xl mb-6 text-primary">Choisissez votre prestation</h3>
+                    <div class="space-y-4 mb-8">
+                        <label class="flex items-center p-4 border-2 border-accent rounded-xl bg-orange-50 cursor-pointer">
+                            <div class="w-6 h-6 rounded-full border-4 border-accent bg-white me-4"></div>
+                            <span class="font-semibold text-primary">Contrôle du véhicule</span>
+                        </label>
+                        <label class="flex items-center p-4 border border-gray-200 rounded-xl hover:bg-gray-50 cursor-pointer opacity-70 pointer-events-none">
+                            <div class="w-6 h-6 rounded-full border border-gray-300 me-4"></div>
+                            <span class="text-gray-600">Vérification technique</span>
+                        </label>
+                    </div>
+                    <button class="w-full bg-accent hover:bg-accentHover text-white py-4 rounded-xl font-bold transition-colors">Continuer vers les créneaux</button>
+                    <p class="text-center text-xs text-gray-400 mt-4">* Ceci est un aperçu. Utilisez le bouton principal pour réserver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-white" id="faq">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-12 text-center" data-i18n="faq_title">Questions fréquentes</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item -->
+                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden transition-all" data-aos="fade-up">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50 text-left transition-colors">
+                        <span class="font-bold text-primary" data-i18n="faq_q1">Comment prendre rendez-vous ?</span>
+                        <i data-lucide="plus" class="w-5 h-5 text-accent transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 text-sm border-t border-gray-100 pt-4" data-i18n="faq_a1">
+                        Vous pouvez prendre rendez-vous directement via notre site web en cliquant sur "Prendre rendez-vous", ou en nous contactant par téléphone ou WhatsApp.
+                    </div>
+                </div>
+
+                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50 text-left transition-colors">
+                        <span class="font-bold text-primary" data-i18n="faq_q2">Quels documents dois-je apporter ?</span>
+                        <i data-lucide="plus" class="w-5 h-5 text-accent transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 text-sm border-t border-gray-100 pt-4" data-i18n="faq_a2">
+                        [À compléter par l'atelier : Carte grise, pièce d'identité, etc.]
+                    </div>
+                </div>
+
+                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <button class="faq-btn w-full px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50 text-left transition-colors">
+                        <span class="font-bold text-primary" data-i18n="faq_q3">Combien de temps dure le contrôle ?</span>
+                        <i data-lucide="plus" class="w-5 h-5 text-accent transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-600 text-sm border-t border-gray-100 pt-4" data-i18n="faq_a3">
+                        [À compléter par l'atelier : ex: En général, une vérification standard dure entre 30 et 45 minutes.]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section class="py-24 bg-gray-50" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100" data-aos="fade-up">
+                
+                <div class="p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-primary mb-8" data-i18n="contact_title">Retrouvez-nous facilement.</h2>
+                    
+                    <ul class="space-y-6 mb-10">
+                        <li class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-accent mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-primary" data-i18n="contact_addr_label">Adresse</h4>
+                                <p class="text-gray-600">[Adresse de l'atelier, Ville, Algérie]</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i data-lucide="phone" class="w-6 h-6 text-accent mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-primary" data-i18n="contact_phone_label">Téléphone</h4>
+                                <p class="text-gray-600 text-lg font-medium">[+213 XX XX XX XX]</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i data-lucide="clock" class="w-6 h-6 text-accent mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-primary" data-i18n="contact_hours_label">Horaires</h4>
+                                <p class="text-gray-600">[Sam - Jeu : 08:00 - 17:00]</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="tel:00000000" class="flex-1 bg-primary hover:bg-gray-800 text-white py-3 px-6 rounded-xl font-medium text-center flex items-center justify-center gap-2 transition-colors">
+                            <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            <span data-i18n="btn_call">Appeler</span>
+                        </a>
+                        <a href="#" class="flex-1 bg-gray-100 hover:bg-gray-200 text-primary py-3 px-6 rounded-xl font-medium text-center flex items-center justify-center gap-2 transition-colors border border-gray-200">
+                            <i data-lucide="navigation" class="w-5 h-5"></i>
+                            <span data-i18n="btn_directions">Itinéraire</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="bg-gray-200 relative min-h-[300px] lg:min-h-full">
+                    <!-- Replace with iframe Google Maps -->
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-500">
+                        <div class="text-center">
+                            <i data-lucide="map" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+                            <p>[Emplacement Google Maps]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="relative py-32 flex items-center justify-center text-center">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Atelier Background" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-primary/95 backdrop-blur-sm"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-3xl mx-auto px-4" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" data-i18n="final_title">Prêt à prendre rendez-vous ?</h2>
+            <p class="text-lg text-gray-300 mb-10" data-i18n="final_desc">Choisissez votre créneau et venez nous rendre visite à l'atelier.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#booking" class="bg-accent hover:bg-accentHover text-white px-8 py-4 rounded-xl font-bold text-lg transition-transform hover:scale-105 shadow-xl shadow-accent/30 flex justify-center items-center gap-2">
+                    <span data-i18n="cta_book">Prendre rendez-vous</span>
+                </a>
+                <a href="https://wa.me/21300000000?text=Bonjour,%20je%20souhaite%20avoir%20des%20informations%20concernant%20vos%20services." target="_blank" class="bg-[#25D366] hover:bg-[#20b858] text-white px-8 py-4 rounded-xl font-bold text-lg transition-transform hover:scale-105 shadow-xl shadow-green-500/30 flex justify-center items-center gap-2">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] text-gray-400 py-12 border-t border-gray-800 pb-28 md:pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 border-b border-gray-800 pb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4 text-white">
+                        <i data-lucide="shield-check" class="text-accent"></i>
+                        <span class="font-bold text-xl" data-i18n="atelier_name">[Nom de l'Atelier]</span>
+                    </div>
+                    <p class="text-sm max-w-sm mb-6" data-i18n="footer_desc">Votre partenaire de confiance pour l'inspection et la vérification automobile professionnelle en Algérie.</p>
+                    <button id="lang-toggle-footer" class="text-white hover:text-accent font-medium text-sm border border-gray-700 px-3 py-1 rounded-lg transition-colors">العربية</button>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer_links">Liens rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="hover:text-accent transition-colors">Services</a></li>
+                        <li><a href="#trust" class="hover:text-accent transition-colors">L'atelier</a></li>
+                        <li><a href="#process" class="hover:text-accent transition-colors">Processus</a></li>
+                        <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer_contact">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>[+213 XX XX XX XX]</li>
+                        <li>[contact@atelier.dz]</li>
+                        <li>[Ville, Algérie]</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-gray-500">
+                &copy; <span id="year"></span> [Nom de l'Atelier]. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Desktop/Mobile -->
+    <a href="https://wa.me/21300000000?text=Bonjour,%20je%20souhaite%20avoir%20des%20informations%20concernant%20vos%20services." target="_blank" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 group flex items-center">
+        <div class="hidden md:flex overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-500 ease-in-out items-center bg-white rounded-l-full shadow-lg h-14 border border-r-0 border-gray-100">
+            <span class="px-4 text-sm font-semibold text-gray-700 whitespace-nowrap" data-i18n="wa_tooltip">Nous contacter sur WhatsApp</span>
+        </div>
+        <div class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:bg-[#20b858] transition-colors relative">
+            <div class="absolute inset-0 rounded-full border-2 border-[#25D366] animate-ping opacity-20"></div>
+            <i data-lucide="message-circle" class="w-7 h-7"></i>
+        </div>
+    </a>
+
+    <!-- Mobile Bottom Navigation (App-like) -->
+    <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 z-40 pb-safe shadow-[0_-4px_10px_rgba(0,0,0,0.05)] text-xs font-medium">
+        <div class="flex justify-around items-center h-16 px-2">
+            <a href="#" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-accent active-nav">
+                <i data-lucide="home" class="w-5 h-5 mb-1"></i>
+                <span data-i18n="nav_home">Accueil</span>
+            </a>
+            <a href="#services" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-accent">
+                <i data-lucide="settings-2" class="w-5 h-5 mb-1"></i>
+                <span data-i18n="nav_services_short">Services</span>
+            </a>
+            
+            <!-- Prominent Appointment Button -->
+            <div class="relative w-full flex justify-center -mt-6">
+                <a href="#booking" class="flex flex-col items-center justify-center bg-accent text-white w-14 h-14 rounded-full shadow-lg shadow-accent/40 border-4 border-[#fafafa]">
+                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                </a>
+            </div>
+
+            <a href="#contact" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-accent">
+                <i data-lucide="map-pin" class="w-5 h-5 mb-1"></i>
+                <span data-i18n="nav_loc">Accès</span>
+            </a>
+            <button id="lang-toggle-mobile" class="flex flex-col items-center justify-center w-full text-gray-500 hover:text-accent">
+                <i data-lucide="languages" class="w-5 h-5 mb-1"></i>
+                <span>عربي</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Initialize AOS
+            AOS.init({
+                once: true,
+                offset: 50,
+                duration: 600,
+                easing: 'ease-out-cubic',
+            });
+
+            // Set Copyright Year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ----------------------------------------------------
+            // Header Scroll Effect
+            // ----------------------------------------------------
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ----------------------------------------------------
+            // FAQ Accordion Logic
+            // ----------------------------------------------------
+            const faqBtns = document.querySelectorAll('.faq-btn');
+            faqBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const isOpen = content.classList.contains('open');
+
+                    // Close all others
+                    document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('open'));
+                    document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('active'));
+
+                    if (!isOpen) {
+                        content.classList.add('open');
+                        btn.classList.add('active');
+                    }
+                });
+            });
+
+            // ----------------------------------------------------
+            // Translation System (Bilingual FR / AR)
+            // ----------------------------------------------------
+            const translations = {
+                fr: {
+                    atelier_name: "[Nom de l'Atelier]",
+                    nav_home: "Accueil",
+                    nav_services: "Services",
+                    nav_services_short: "Services",
+                    nav_atelier: "L'atelier",
+                    nav_process: "Processus",
+                    nav_faq: "FAQ",
+                    nav_contact: "Contact",
+                    nav_loc: "Accès",
+                    cta_book: "Prendre rendez-vous",
+                    cta_contact: "Nous contacter",
+                    hero_label: "CONTRÔLE & VÉRIFICATION AUTOMOBILE",
+                    hero_title: "Votre véhicule mérite un contrôle professionnel.",
+                    hero_subtitle: "Une prise en charge sérieuse, un service organisé et un rendez-vous simple à réserver.",
+                    trust_1: "Service professionnel",
+                    trust_2: "Rendez-vous organisé",
+                    trust_3: "Atelier local",
+                    card_title: "Rendez-vous",
+                    card_point1: "Simple",
+                    card_point2: "Rapide",
+                    card_point3: "Organisé",
+                    card_btn: "Commencer",
+                    imm_title: "Besoin de faire vérifier votre véhicule ?",
+                    imm_desc: "Choisissez votre prestation et votre créneau en quelques étapes simples.",
+                    imm_btn: "Réserver maintenant",
+                    srv_label: "NOS SERVICES",
+                    srv_title: "Des services conçus autour de votre véhicule.",
+                    srv_1_title: "Contrôle du véhicule",
+                    srv_1_desc: "Vérification des principaux éléments du véhicule selon la prestation demandée.",
+                    srv_2_title: "Vérification technique",
+                    srv_2_desc: "Un contrôle méthodique des différents éléments nécessaires.",
+                    srv_3_title: "Inspection automobile",
+                    srv_3_desc: "Une inspection permettant de mieux évaluer l'état général du véhicule.",
+                    srv_4_title: "Diagnostic ciblé",
+                    srv_4_desc: "Une vérification spécifique et ciblée selon vos besoins ponctuels.",
+                    srv_more: "En savoir plus",
+                    trust_sec_title: "Un contrôle sérieux commence par une prise en charge professionnelle.",
+                    trust_pt1_title: "Professionnalisme",
+                    trust_pt1_desc: "Une organisation pensée pour offrir un service clair et sérieux.",
+                    trust_pt2_title: "Transparence",
+                    trust_pt2_desc: "Des informations compréhensibles sur les vérifications effectuées.",
+                    trust_pt3_title: "Organisation",
+                    trust_pt3_desc: "Des rendez-vous planifiés pour mieux gérer votre temps.",
+                    trust_pt4_title: "Proximité",
+                    trust_pt4_desc: "Un atelier accessible et à l'écoute de ses clients.",
+                    gallery_title: "Découvrez notre atelier.",
+                    gallery_desc: "Des installations adaptées pour prendre en charge votre véhicule dans les meilleures conditions.",
+                    gallery_btn: "Voir l'atelier",
+                    process_title: "Votre rendez-vous en 4 étapes.",
+                    process_desc: "Un processus simple et transparent pour vous faire gagner du temps.",
+                    step_1_title: "Réservez",
+                    step_1_desc: "Choisissez la prestation et votre créneau.",
+                    step_2_title: "Confirmez",
+                    step_2_desc: "Indiquez vos coordonnées et les informations du véhicule.",
+                    step_3_title: "Présentez-vous",
+                    step_3_desc: "Rendez-vous à l'atelier à l'heure prévue.",
+                    step_4_title: "Contrôle",
+                    step_4_desc: "Votre véhicule est pris en charge selon la prestation.",
+                    preview_title: "Réservez sans perdre de temps.",
+                    faq_title: "Questions fréquentes",
+                    faq_q1: "Comment prendre rendez-vous ?",
+                    faq_a1: "Vous pouvez prendre rendez-vous directement via notre site web en cliquant sur 'Prendre rendez-vous', ou en nous contactant par téléphone ou WhatsApp.",
+                    faq_q2: "Quels documents dois-je apporter ?",
+                    faq_a2: "[À compléter par l'atelier : Carte grise, pièce d'identité, etc.]",
+                    faq_q3: "Combien de temps dure le contrôle ?",
+                    faq_a3: "[À compléter par l'atelier : ex: En général, une vérification standard dure entre 30 et 45 minutes.]",
+                    contact_title: "Retrouvez-nous facilement.",
+                    contact_addr_label: "Adresse",
+                    contact_phone_label: "Téléphone",
+                    contact_hours_label: "Horaires",
+                    btn_call: "Appeler",
+                    btn_directions: "Itinéraire",
+                    final_title: "Prêt à prendre rendez-vous ?",
+                    final_desc: "Choisissez votre créneau et venez nous rendre visite à l'atelier.",
+                    footer_desc: "Votre partenaire de confiance pour l'inspection et la vérification automobile professionnelle en Algérie.",
+                    footer_links: "Liens rapides",
+                    footer_contact: "Contact",
+                    wa_tooltip: "Nous contacter sur WhatsApp"
+                },
+                ar: {
+                    atelier_name: "[اسم الورشة]",
+                    nav_home: "الرئيسية",
+                    nav_services: "خدماتنا",
+                    nav_services_short: "خدمات",
+                    nav_atelier: "الورشة",
+                    nav_process: "مراحلنا",
+                    nav_faq: "أسئلة شائعة",
+                    nav_contact: "اتصل بنا",
+                    nav_loc: "الموقع",
+                    cta_book: "احجز موعدك",
+                    cta_contact: "اتصل بنا",
+                    hero_label: "فحص ومراقبة السيارات",
+                    hero_title: "سيارتك تستحق فحصًا احترافيًا.",
+                    hero_subtitle: "خدمة احترافية، تنظيم واضح، وحجز موعد بكل سهولة.",
+                    trust_1: "خدمة احترافية",
+                    trust_2: "مواعيد منظمة",
+                    trust_3: "ورشة قريبة",
+                    card_title: "الموعد",
+                    card_point1: "بسيط",
+                    card_point2: "سريع",
+                    card_point3: "منظم",
+                    card_btn: "ابدأ الآن",
+                    imm_title: "هل تحتاج إلى فحص سيارتك؟",
+                    imm_desc: "اختر الخدمة والوقت المناسب لك في خطوات بسيطة.",
+                    imm_btn: "احجز الآن",
+                    srv_label: "خدماتنا",
+                    srv_title: "خدمات مصممة خصيصاً لسيارتك.",
+                    srv_1_title: "فحص السيارة",
+                    srv_1_desc: "التحقق من العناصر الرئيسية للسيارة حسب الخدمة المطلوبة.",
+                    srv_2_title: "مراقبة تقنية",
+                    srv_2_desc: "فحص منهجي لمختلف العناصر الضرورية للسيارة.",
+                    srv_3_title: "معاينة السيارات",
+                    srv_3_desc: "معاينة تسمح بتقييم الحالة العامة للسيارة بشكل أفضل.",
+                    srv_4_title: "تشخيص محدد",
+                    srv_4_desc: "فحص دقيق ومحدد حسب احتياجاتك المؤقتة.",
+                    srv_more: "اكتشف المزيد",
+                    trust_sec_title: "الفحص الجاد يبدأ باستقبال احترافي.",
+                    trust_pt1_title: "احترافية",
+                    trust_pt1_desc: "تنظيم مصمم لتقديم خدمة واضحة وجادة.",
+                    trust_pt2_title: "شفافية",
+                    trust_pt2_desc: "معلومات مفهومة حول الفحوصات التي يتم إجراؤها.",
+                    trust_pt3_title: "تنظيم",
+                    trust_pt3_desc: "مواعيد مجدولة لإدارة وقتك بشكل أفضل.",
+                    trust_pt4_title: "قرب",
+                    trust_pt4_desc: "ورشة يسهل الوصول إليها وتستمع لعملائها.",
+                    gallery_title: "اكتشف ورشتنا.",
+                    gallery_desc: "مرافق مجهزة للعناية بسيارتك في أفضل الظروف الممكنة.",
+                    gallery_btn: "شاهد الورشة",
+                    process_title: "موعدك في 4 خطوات.",
+                    process_desc: "عملية بسيطة وشفافة لتوفير وقتك.",
+                    step_1_title: "احجز",
+                    step_1_desc: "اختر الخدمة والوقت المناسب لك.",
+                    step_2_title: "قم بالتأكيد",
+                    step_2_desc: "أدخل معلومات الاتصال الخاصة بك وتفاصيل السيارة.",
+                    step_3_title: "تفضل بالحضور",
+                    step_3_desc: "القدوم إلى الورشة في الوقت المحدد.",
+                    step_4_title: "الفحص",
+                    step_4_desc: "يتم التكفل بسيارتك وفقا للخدمة المطلوبة.",
+                    preview_title: "احجز موعدك دون إضاعة الوقت.",
+                    faq_title: "أسئلة شائعة",
+                    faq_q1: "كيف يمكنني حجز موعد؟",
+                    faq_a1: "يمكنك حجز موعد مباشرة عبر موقعنا الإلكتروني بالضغط على 'احجز موعدك'، أو عن طريق الاتصال بنا عبر الهاتف أو واتساب.",
+                    faq_q2: "ما هي الوثائق التي يجب إحضارها؟",
+                    faq_a2: "[يكمل من طرف الورشة: البطاقة الرمادية، بطاقة الهوية، إلخ]",
+                    faq_q3: "كم يستغرق الفحص؟",
+                    faq_a3: "[يكمل من طرف الورشة: مثلا: بشكل عام، يستغرق الفحص القياسي بين 30 و 45 دقيقة.]",
+                    contact_title: "اعثر علينا بسهولة.",
+                    contact_addr_label: "العنوان",
+                    contact_phone_label: "الهاتف",
+                    contact_hours_label: "أوقات العمل",
+                    btn_call: "اتصل بنا",
+                    btn_directions: "المسار",
+                    final_title: "هل أنت مستعد لحجز موعد؟",
+                    final_desc: "اختر الوقت المناسب لك وتفضل بزيارتنا في الورشة.",
+                    footer_desc: "شريكك الموثوق لفحص ومراقبة السيارات باحترافية في الجزائر.",
+                    footer_links: "روابط سريعة",
+                    footer_contact: "تواصل معنا",
+                    wa_tooltip: "تواصل معنا عبر واتساب"
+                }
+            };
+
+            let currentLang = localStorage.getItem('atelier_lang') || 'fr';
+            const htmlTag = document.documentElement;
+            const langToggles = [document.getElementById('lang-toggle-desktop'), document.getElementById('lang-toggle-mobile'), document.getElementById('lang-toggle-footer')];
+
+            function setLanguage(lang) {
+                currentLang = lang;
+                localStorage.setItem('atelier_lang', lang);
+                
+                // Update DOM direction and lang attr
+                htmlTag.setAttribute('lang', lang);
+                htmlTag.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+                // Update Toggle Buttons Text
+                langToggles.forEach(toggle => {
+                    if(toggle) {
+                        // Keep the icon for mobile toggle
+                        if(toggle.id === 'lang-toggle-mobile') {
+                            toggle.innerHTML = `<i data-lucide="languages" class="w-5 h-5 mb-1"></i><span>${lang === 'fr' ? 'عربي' : 'FR'}</span>`;
+                        } else {
+                            toggle.textContent = lang === 'fr' ? 'العربية' : 'Français';
+                        }
+                    }
+                });
+
+                // Translate Elements
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+
+                // Re-init icons to catch the newly created mobile toggle icon
+                lucide.createIcons();
+            }
+
+            // Attach click events to all language toggles
+            langToggles.forEach(toggle => {
+                if(toggle) {
+                    toggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        setLanguage(currentLang === 'fr' ? 'ar' : 'fr');
+                    });
+                }
+            });
+
+            // Initialize Language on load
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
