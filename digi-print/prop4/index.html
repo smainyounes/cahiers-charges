@@ -1,0 +1,953 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGI Print | Impression & Maintenance Pro</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts (Plus Jakarta Sans for a premium tech look) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper Slider CSS (mobile product carousel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <style>
+        /* =========================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================= */
+        :root {
+            --primary: #0F172A;      /* Deep Navy */
+            --primary-light: #1E293B;
+            --accent: #0EA5E9;       /* Bright Cyan/Blue */
+            --accent-hover: #0284C7;
+            --surface: #FFFFFF;
+            --bg-body: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border-soft: #E2E8F0;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 99px;
+            --shadow-soft: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+            --shadow-hover: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Space for mobile nav */
+        }
+
+        @media (min-width: 992px) {
+            body { padding-bottom: 0; padding-top: 100px; /* Space for floating nav */ }
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-weight: 800; letter-spacing: -0.03em; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; padding: 0; margin: 0; }
+
+        /* CMYK Dots Accent */
+        .cmyk-dots { display: inline-flex; gap: 4px; }
+        .cmyk-dots span { width: 6px; height: 6px; border-radius: 50%; }
+        .cmyk-dots span:nth-child(1) { background-color: #00FFFF; } /* Cyan */
+        .cmyk-dots span:nth-child(2) { background-color: #FF00FF; } /* Magenta */
+        .cmyk-dots span:nth-child(3) { background-color: #FFFF00; } /* Yellow */
+        .cmyk-dots span:nth-child(4) { background-color: #000000; } /* Black */
+
+        /* =========================================
+           BUTTONS
+           ========================================= */
+        .btn-pill-primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            border-radius: var(--radius-pill);
+            display: inline-flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px -10px var(--accent);
+            transition: var(--transition);
+        }
+        .btn-pill-primary:hover {
+            background-color: var(--accent-hover); color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -10px var(--accent);
+        }
+        .btn-pill-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--border-soft);
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            border-radius: var(--radius-pill);
+            transition: var(--transition);
+        }
+        .btn-pill-outline:hover {
+            border-color: var(--primary); background-color: var(--primary); color: white;
+        }
+
+        /* =========================================
+           FLOATING NAVBAR (DESKTOP)
+           ========================================= */
+        .navbar-floating {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            z-index: 1030;
+        }
+
+        @media (min-width: 992px) {
+            .navbar-floating {
+                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                width: 95%; max-width: 1400px;
+                border-radius: var(--radius-pill);
+                padding: 0.5rem 1.5rem;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .navbar-floating {
+                position: fixed; top: 0; left: 0; width: 100%;
+                border-radius: 0; padding: 1rem; border-bottom: 1px solid var(--border-soft);
+            }
+        }
+
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 8px;}
+        .nav-link { font-weight: 600; color: var(--text-muted); padding: 0.5rem 1rem !important; border-radius: var(--radius-pill); }
+        .nav-link:hover, .nav-link.active { color: var(--primary); background: var(--bg-body); }
+
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+        .icon-btn {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-body); color: var(--primary);
+            font-size: 1.2rem; position: relative; transition: var(--transition); border: none;
+        }
+        .icon-btn:hover { background: var(--primary); color: white; }
+        .cart-dot {
+            position: absolute; top: 5px; right: 5px;
+            background: var(--accent); color: white;
+            font-size: 0.65rem; font-weight: 800;
+            width: 18px; height: 18px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid white;
+        }
+        .currency-btn { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+
+        /* =========================================
+           HERO SECTION (CLEAN & AIRY)
+           ========================================= */
+        .hero { padding: 4rem 0 6rem; position: relative; overflow: hidden; }
+        .hero-blob {
+            position: absolute; right: -10%; top: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%; z-index: 0; pointer-events: none;
+        }
+        .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 90%; }
+        
+        .hero-img-container {
+            position: relative; z-index: 1;
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            border-radius: 40px; padding: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+        .hero-img-container img { width: 100%; transform: scale(1.1) translateY(-20px); filter: drop-shadow(0 30px 40px rgba(0,0,0,0.15)); }
+
+        .trust-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; padding: 8px 16px; border-radius: var(--radius-pill);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); font-size: 0.85rem; font-weight: 700; color: var(--text-muted);
+        }
+
+        /* =========================================
+           MARQUEE (MINIMALIST PILLS)
+           ========================================= */
+        .marquee-section { padding: 2rem 0; overflow: hidden; background: white; }
+        .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: scrollMarquee 35s linear infinite; }
+        .marquee-track.reverse { animation: scrollMarqueeRev 35s linear infinite; }
+        .brand-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 3rem; background: var(--bg-body); border-radius: var(--radius-pill);
+            font-size: 1.25rem; font-weight: 800; color: var(--text-muted); letter-spacing: -0.5px;
+            transition: var(--transition);
+        }
+        .brand-pill:hover { background: var(--primary); color: white; }
+
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scrollMarqueeRev { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+        /* =========================================
+           CATEGORIES (HORIZONTAL SCROLL ON MOBILE)
+           ========================================= */
+        .category-wrapper {
+            display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1rem;
+            scrollbar-width: none; /* Firefox */
+        }
+        .category-wrapper::-webkit-scrollbar { display: none; } /* Chrome */
+        
+        .cat-card {
+            min-width: 280px; flex: 1 0 280px;
+            background: white; border-radius: var(--radius-lg);
+            padding: 1rem 1.25rem; position: relative; overflow: hidden;
+            box-shadow: var(--shadow-soft); transition: var(--transition);
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .cat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .cat-card h3 { font-size: 1.25rem; z-index: 2; margin-bottom: 0.25rem; }
+        .cat-card span { font-size: 0.85rem; font-weight: 700; color: var(--accent); z-index: 2; }
+        .cat-card > div { flex: 1; }
+        .cat-img {
+            width: 120px; height: 120px; object-fit: cover; border-radius: 12px;
+            margin-left: auto; transition: transform 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.06);
+        }
+        .cat-card:hover .cat-img { transform: scale(1.04); box-shadow: var(--shadow-hover); }
+
+        /* Ensure good stacking on very small screens: stack text above image */
+        @media (max-width: 480px) {
+            .cat-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .cat-img { width: 100%; height: 140px; margin-left: 0; border-radius: 10px; }
+        }
+
+        /* =========================================
+           PRODUCT CARDS (APPLE-LIKE UX)
+           ========================================= */
+        .product-card {
+            background: white; border-radius: var(--radius-lg); padding: 1.5rem;
+            box-shadow: var(--shadow-soft); transition: var(--transition);
+            height: 100%; display: flex; flex-direction: column; position: relative;
+        }
+        .product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+        
+        .p-top { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
+        .p-badge { background: #FEF08A; color: #854D0E; font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-pill); text-transform: uppercase;}
+        .p-badge.promo { background: #FECACA; color: #991B1B; }
+        .btn-wishlist { background: var(--bg-body); border: none; width: 36px; height: 36px; border-radius: 50%; color: var(--text-muted); transition: var(--transition); }
+        .btn-wishlist:hover { background: #FEE2E2; color: #EF4444; }
+
+        .p-img-wrapper {
+            height: 220px; display: flex; align-items: center; justify-content: center;
+            margin: 1rem 0; border-radius: var(--radius-md); background: linear-gradient(180deg, #ffffff, #f7fbfc);
+            padding: 1.25rem; border: 1px solid var(--border-soft);
+        }
+        .p-img-wrapper img { max-height: 100%; max-width: 100%; object-fit: contain; transition: transform 0.35s ease, filter 0.25s ease; }
+        .product-card:hover .p-img-wrapper img { transform: scale(1.06); filter: drop-shadow(0 20px 30px rgba(14,165,233,0.06)); }
+
+        .p-brand { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.25rem; }
+        .p-title { font-size: 1.15rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; flex-grow: 1; }
+        .p-specs { font-size: 0.85rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 1rem; }
+        
+        .p-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+        .p-price-block { display: flex; flex-direction: column; }
+        .p-stock { font-size: 0.7rem; font-weight: 700; color: #10B981; margin-bottom: 2px; }
+        .p-price { font-size: 1.35rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        
+        .btn-add {
+            background: var(--primary); color: white; border: none;
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            transition: transform 0.18s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+        }
+        .btn-add span { display: none; }
+        .btn-add i { transition: transform 0.18s ease; }
+        .btn-add:hover, .product-card:hover .btn-add {
+            transform: translateY(-4px) scale(1.06);
+            background: var(--accent); box-shadow: 0 18px 40px rgba(14,165,233,0.12);
+        }
+
+        /* =========================================
+           MAINTENANCE SECTION (DEEP NAVY)
+           ========================================= */
+        .maintenance-section {
+            background-color: var(--primary);
+            color: white; border-radius: 40px; padding: 5rem 3rem; margin: 5rem 0;
+            position: relative; overflow: hidden;
+        }
+        /* Geometric accent */
+        .maintenance-section::before {
+            content: ''; position: absolute; right: -5%; bottom: -10%;
+            width: 400px; height: 400px; border: 40px solid var(--primary-light);
+            border-radius: 50%; opacity: 0.5; pointer-events: none;
+        }
+        .service-pill {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem; border-radius: var(--radius-lg);
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.05); transition: var(--transition);
+        }
+        .service-pill:hover { background: rgba(255,255,255,0.15); border-color: var(--accent); }
+        .service-pill i { font-size: 1.5rem; color: var(--accent); }
+        .service-pill h4 { margin: 0; font-size: 1.1rem; }
+        .service-pill p { margin: 0; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        .site-footer {
+            background: white; border-top: 1px solid var(--border-soft); padding: 5rem 0 3rem; margin-top: 4rem;
+        }
+        .footer-logo { font-weight: 800; font-size: 1.75rem; color: var(--primary); display: flex; align-items: center; gap: 8px;}
+        .footer-heading { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+        .footer-links a:hover { color: var(--accent); }
+        .social-pill {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%; background: var(--bg-body);
+            color: var(--text-dark); transition: var(--transition);
+        }
+        .social-pill:hover { background: var(--accent); color: white; }
+
+        /* =========================================
+           MOBILE GLASS BOTTOM NAV
+           ========================================= */
+        .mobile-nav {
+            position: fixed; bottom: 15px; left: 15px; right: 15px;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius-pill); box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; padding: 0.75rem 0; z-index: 1040;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .m-nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.65rem; font-weight: 700; color: var(--text-muted); gap: 4px;}
+        .m-nav-item i { font-size: 1.25rem; transition: var(--transition); }
+        .m-nav-item.active { color: var(--primary); }
+        .m-nav-item.active i { color: var(--accent); transform: translateY(-2px); }
+
+    </style>
+</head>
+<body>
+
+    <!-- =========================================
+         FLOATING NAVBAR
+         ========================================= -->
+    <nav class="navbar navbar-expand-lg navbar-floating">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">
+                DIGI<span style="font-weight:400">Print</span>
+                <div class="cmyk-dots ms-1"><span></span><span></span><span></span><span></span></div>
+            </a>
+
+            <!-- Mobile Cart Button (Top Right) -->
+            <div class="d-flex align-items-center gap-3 d-lg-none">
+                <button class="icon-btn" aria-label="Panier">
+                    <i class="bi bi-bag"></i>
+                    <span class="cart-dot">2</span>
+                </button>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="collapse navbar-collapse justify-content-center d-none d-lg-block">
+                <ul class="navbar-nav gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="#">Boutique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#categories">Catégories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#maintenance">Maintenance Technique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Desktop Actions -->
+            <div class="nav-actions d-none d-lg-flex">
+                <div class="currency-btn me-2">DZD <i class="bi bi-chevron-down small"></i></div>
+                <button class="icon-btn"><i class="bi bi-search"></i></button>
+                <button class="icon-btn"><i class="bi bi-person"></i></button>
+                <button class="icon-btn">
+                    <i class="bi bi-bag"></i>
+                    <span class="cart-dot">2</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================
+         HERO SECTION
+         ========================================= -->
+    <section class="hero">
+        <div class="hero-blob"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-up">
+                    <div class="trust-badge mb-4">
+                        <span class="text-accent"><i class="bi bi-star-fill"></i></span> Expert en solutions d'impression
+                    </div>
+                    <h1 class="hero-title">Le matériel pro <br>pour des résultats <span class="text-accent">parfaits.</span></h1>
+                    <p class="hero-subtitle">
+                        Découvrez notre catalogue d'imprimantes grand format, encres, pièces détachées et profitez de l'expertise <strong>DIGI-Maintenance</strong> pour l'entretien de votre parc.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#produits" class="btn-pill-primary">Acheter du matériel</a>
+                        <a href="#maintenance" class="btn-pill-outline d-none d-sm-inline-flex">Nos services techniques</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 offset-lg-1" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="hero-img-container">
+                        <!-- Placeholder for High-End Printer Image -->
+                        <img src="https://images.unsplash.com/photo-1693031630146-568e2f72db0e?auto=format&fit=crop&q=80&w=800" alt="Imprimante professionnelle" class="rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         MARQUEE BRANDS
+         ========================================= -->
+    <div class="marquee-section">
+        <div class="marquee-track mb-3">
+            <!-- Items are duplicated to ensure infinite scroll -->
+            <span class="brand-pill">HP</span>
+            <span class="brand-pill">Epson</span>
+            <span class="brand-pill">Canon</span>
+            <span class="brand-pill">Roland</span>
+            <span class="brand-pill">Mimaki</span>
+            <span class="brand-pill">Mutoh</span>
+            <span class="brand-pill">Brother</span>
+            <span class="brand-pill">HP</span>
+            <span class="brand-pill">Epson</span>
+            <span class="brand-pill">Canon</span>
+            <span class="brand-pill">Roland</span>
+            <span class="brand-pill">Mimaki</span>
+        </div>
+        <div class="marquee-track reverse">
+            <span class="brand-pill">Konica Minolta</span>
+            <span class="brand-pill">Agfa</span>
+            <span class="brand-pill">Ricoh</span>
+            <span class="brand-pill">Fiery</span>
+            <span class="brand-pill">Caldera</span>
+            <span class="brand-pill">Summa</span>
+            <span class="brand-pill">Konica Minolta</span>
+            <span class="brand-pill">Agfa</span>
+            <span class="brand-pill">Ricoh</span>
+            <span class="brand-pill">Fiery</span>
+            <span class="brand-pill">Caldera</span>
+        </div>
+    </div>
+
+    <!-- =========================================
+         CATEGORIES
+         ========================================= -->
+    <section id="categories" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="mb-4">Trouvez votre équipement</h2>
+            
+            <div class="category-wrapper" data-aos="fade-up">
+                <a href="#" class="cat-card">
+                    <div>
+                        <h3>Imprimantes</h3>
+                        <span>Voir les modèles <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=400" alt="Imprimantes" class="cat-img">
+                </a>
+                
+                <a href="#" class="cat-card">
+                    <div>
+                        <h3>Encres & Toners</h3>
+                        <span>Voir les cartouches <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be021a?auto=format&fit=crop&q=80&w=400" alt="Encres" class="cat-img">
+                </a>
+                
+                <a href="#" class="cat-card">
+                    <div>
+                        <h3>Pièces Détachées</h3>
+                        <span>Voir les pièces <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400" alt="Pièces" class="cat-img">
+                </a>
+                
+                <a href="#" class="cat-card">
+                    <div>
+                        <h3>Accessoires</h3>
+                        <span>Voir le matériel <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=400" alt="Accessoires" class="cat-img">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         FEATURED PRODUCTS
+         ========================================= -->
+    <section id="produits" class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5">
+                <div>
+                    <h2>Produits Populaires</h2>
+                    <p class="text-muted mb-0">En stock et prêts à être expédiés.</p>
+                </div>
+                <a href="#" class="btn-pill-outline d-none d-md-block">Tout le catalogue</a>
+            </div>
+
+            <!-- Laravel Ready Loop -->
+            <!-- Mobile product slider (visible on small screens) -->
+            <div class="d-md-none mb-3">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="p-top">
+                                    <span class="p-badge">Nouveau</span>
+                                    <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                                </div>
+                                <div class="p-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1598425237654-4c053602f92f?auto=format&fit=crop&q=80&w=400" alt="Epson SureColor">
+                                </div>
+                                <span class="p-brand">Epson</span>
+                                <h3 class="p-title">SureColor SC-P900</h3>
+                                <p class="p-specs">Imprimante photo grand format professionnelle.</p>
+
+                                <div class="p-bottom">
+                                    <div class="p-price-block">
+                                        <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                        <span class="p-price">245 000 DA</span>
+                                    </div>
+                                    <button class="btn-add">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="p-top">
+                                    <span class="p-badge promo">Promotion</span>
+                                    <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                                </div>
+                                <div class="p-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=400" alt="HP DesignJet">
+                                </div>
+                                <span class="p-brand">HP</span>
+                                <h3 class="p-title">DesignJet T850</h3>
+                                <p class="p-specs">Traceur A0 idéal pour impressions CAO et SIG.</p>
+
+                                <div class="p-bottom">
+                                    <div class="p-price-block">
+                                        <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                        <span class="p-price">385 000 DA</span>
+                                    </div>
+                                    <button class="btn-add">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="p-top">
+                                    <div></div>
+                                    <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                                </div>
+                                <div class="p-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be021a?auto=format&fit=crop&q=80&w=400" alt="Canon PRO">
+                                </div>
+                                <span class="p-brand">Canon</span>
+                                <h3 class="p-title">imagePROGRAF PRO</h3>
+                                <p class="p-specs">Qualité supérieure pour la production graphique.</p>
+
+                                <div class="p-bottom">
+                                    <div class="p-price-block">
+                                        <span class="p-stock text-warning"><i class="bi bi-exclamation-circle-fill"></i> Stock limité</span>
+                                        <span class="p-price">420 000 DA</span>
+                                    </div>
+                                    <button class="btn-add">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide">
+                            <div class="product-card">
+                                <div class="p-top">
+                                    <div></div>
+                                    <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                                </div>
+                                <div class="p-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400" alt="Mimaki Ink">
+                                </div>
+                                <span class="p-brand">Mimaki</span>
+                                <h3 class="p-title">Kit Encres SS21</h3>
+                                <p class="p-specs">Cartouches éco-solvant originales 440ml.</p>
+
+                                <div class="p-bottom">
+                                    <div class="p-price-block">
+                                        <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                        <span class="p-price">18 500 DA</span>
+                                    </div>
+                                    <button class="btn-add">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <!-- Desktop / tablet grid (hidden on small screens) -->
+            <div class="row g-4 d-none d-md-flex">
+                
+                <!-- Product 1 -->
+                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="product-card">
+                        <div class="p-top">
+                            <span class="p-badge">Nouveau</span>
+                            <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                        </div>
+                        <div class="p-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1598425237654-4c053602f92f?auto=format&fit=crop&q=80&w=400" alt="Epson SureColor">
+                        </div>
+                        <span class="p-brand">Epson</span>
+                        <h3 class="p-title">SureColor SC-P900</h3>
+                        <p class="p-specs">Imprimante photo grand format professionnelle.</p>
+                        
+                        <div class="p-bottom">
+                            <div class="p-price-block">
+                                <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                <span class="p-price">245 000 DA</span>
+                            </div>
+                            <button class="btn-add">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="p-top">
+                            <span class="p-badge promo">Promotion</span>
+                            <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                        </div>
+                        <div class="p-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=400" alt="HP DesignJet">
+                        </div>
+                        <span class="p-brand">HP</span>
+                        <h3 class="p-title">DesignJet T850</h3>
+                        <p class="p-specs">Traceur A0 idéal pour impressions CAO et SIG.</p>
+                        
+                        <div class="p-bottom">
+                            <div class="p-price-block">
+                                <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                <span class="p-price">385 000 DA</span>
+                            </div>
+                            <button class="btn-add">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-12 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="p-top">
+                            <div></div><!-- Empty space for flex -->
+                            <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                        </div>
+                        <div class="p-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1563241527-3004b7be021a?auto=format&fit=crop&q=80&w=400" alt="Canon PRO">
+                        </div>
+                        <span class="p-brand">Canon</span>
+                        <h3 class="p-title">imagePROGRAF PRO</h3>
+                        <p class="p-specs">Qualité supérieure pour la production graphique.</p>
+                        
+                        <div class="p-bottom">
+                            <div class="p-price-block">
+                                <span class="p-stock text-warning"><i class="bi bi-exclamation-circle-fill"></i> Stock limité</span>
+                                <span class="p-price">420 000 DA</span>
+                            </div>
+                            <button class="btn-add">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-12 col-md-6 col-lg-3 d-none d-md-block" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="p-top">
+                            <div></div>
+                            <button class="btn-wishlist"><i class="bi bi-heart"></i></button>
+                        </div>
+                        <div class="p-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=400" alt="Mimaki Ink">
+                        </div>
+                        <span class="p-brand">Mimaki</span>
+                        <h3 class="p-title">Kit Encres SS21</h3>
+                        <p class="p-specs">Cartouches éco-solvant originales 440ml.</p>
+                        
+                        <div class="p-bottom">
+                            <div class="p-price-block">
+                                <span class="p-stock"><i class="bi bi-check-circle-fill"></i> En stock</span>
+                                <span class="p-price">18 500 DA</span>
+                            </div>
+                            <button class="btn-add">
+                                <i class="bi bi-plus-lg"></i>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-4 d-md-none">
+                <button class="btn-pill-outline w-100">Voir tout le catalogue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         WHY CHOOSE US (CLEAN ICONS)
+         ========================================= -->
+    <section class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="mb-5">Pourquoi choisir DIGI Print ?</h2>
+            
+            <div class="row g-4">
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="icon-btn mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--bg-body);"><i class="bi bi-box-seam"></i></div>
+                    <h5 class="fw-bold fs-6">Matériel Pro</h5>
+                    <p class="text-muted small">Équipements certifiés constructeurs.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-btn mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--bg-body);"><i class="bi bi-shield-check"></i></div>
+                    <h5 class="fw-bold fs-6">Garantie & SAV</h5>
+                    <p class="text-muted small">Suivi complet après votre achat.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon-btn mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--bg-body);"><i class="bi bi-wrench-adjustable"></i></div>
+                    <h5 class="fw-bold fs-6">Atelier Technique</h5>
+                    <p class="text-muted small">Des experts pour la réparation.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-btn mx-auto mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; background: var(--bg-body);"><i class="bi bi-headset"></i></div>
+                    <h5 class="fw-bold fs-6">Assistance</h5>
+                    <p class="text-muted small">Support technique réactif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         MAINTENANCE SECTION (DEEP NAVY)
+         ========================================= -->
+    <section id="maintenance">
+        <div class="container">
+            <div class="maintenance-section" data-aos="fade-up">
+                <div class="row align-items-center position-relative z-1">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-2 mb-3">DIGI-Maintenance</span>
+                        <h2 class="display-6 fw-bold mb-4">Votre imprimante mérite plus qu’un simple vendeur.</h2>
+                        <p class="fs-5 text-white-50 mb-5">
+                            Nous ne sommes pas qu'un site e-commerce. Notre équipe d'ingénieurs assure la maintenance, le diagnostic et la réparation de vos traceurs et machines de production.
+                        </p>
+                        <a href="#contact" class="btn-pill-primary bg-white text-primary">Prendre rendez-vous technique</a>
+                    </div>
+                    
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="service-pill">
+                            <i class="bi bi-clipboard2-pulse"></i>
+                            <div>
+                                <h4>Diagnostic sur site</h4>
+                                <p>Identification rapide des pannes.</p>
+                            </div>
+                        </div>
+                        <div class="service-pill">
+                            <i class="bi bi-tools"></i>
+                            <div>
+                                <h4>Entretien Préventif</h4>
+                                <p>Nettoyage et calibration de vos têtes.</p>
+                            </div>
+                        </div>
+                        <div class="service-pill">
+                            <i class="bi bi-gear-wide-connected"></i>
+                            <div>
+                                <h4>Pièces d'origine</h4>
+                                <p>Remplacement garanti constructeur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 pe-lg-5">
+                    <div class="footer-logo mb-3">
+                        DIGI<span style="font-weight:400">Print</span>
+                        <div class="cmyk-dots ms-1"><span></span><span></span><span></span><span></span></div>
+                    </div>
+                    <p class="text-muted mb-4">
+                        DIGI Print est la plateforme de vente en ligne spécialisée de <strong>DIGI-Maintenance</strong>.<br>
+                        L'alliance parfaite entre l'achat d'équipement professionnel et l'expertise technique.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="social-pill"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-pill"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-pill"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h5 class="footer-heading">Boutique</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Toutes les imprimantes</a></li>
+                        <li><a href="#">Encres et Cartouches</a></li>
+                        <li><a href="#">Pièces Techniques</a></li>
+                        <li><a href="#">Finitions</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Demander une réparation</a></li>
+                        <li><a href="#">Contrat de maintenance</a></li>
+                        <li><a href="#">Installation sur site</a></li>
+                        <li><a href="#">Support logiciel (RIP)</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <h5 class="footer-heading">Assistance & Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="bi bi-telephone me-2 text-accent"></i> 0555 00 00 00</a></li>
+                        <li><a href="#"><i class="bi bi-envelope me-2 text-accent"></i> contact@digiprint.com</a></li>
+                        <li><a href="#"><i class="bi bi-geo-alt me-2 text-accent"></i> Alger, Algérie</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-top pt-4 d-flex flex-column flex-md-row justify-content-between align-items-center text-muted small">
+                <p class="mb-2 mb-md-0">© 2024 DIGI-Maintenance. Tous droits réservés.</p>
+                <div class="d-flex gap-3">
+                    <a href="#">CGV</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         MOBILE APP-STYLE BOTTOM NAV (GLASS)
+         ========================================= -->
+    <div class="mobile-nav d-lg-none">
+        <a href="#" class="m-nav-item active">
+            <i class="bi bi-house-door-fill"></i>
+            Boutique
+        </a>
+        <a href="#categories" class="m-nav-item">
+            <i class="bi bi-ui-radios-grid"></i>
+            Catégories
+        </a>
+        <a href="#" class="m-nav-item position-relative">
+            <i class="bi bi-bag-fill"></i>
+            Panier
+            <span class="position-absolute top-0 start-50 translate-middle p-1 bg-accent border border-light rounded-circle">
+                <span class="visually-hidden">New alerts</span>
+            </span>
+        </a>
+        <a href="#maintenance" class="m-nav-item">
+            <i class="bi bi-tools"></i>
+            Services
+        </a>
+    </div>
+
+    <!-- =========================================
+         SCRIPTS
+         ========================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <script>
+        // Init animations
+        AOS.init({
+            once: true,
+            offset: 40,
+            duration: 700,
+            easing: 'ease-out-cubic',
+        });
+
+        // Mobile products slider init (Swiper)
+        const initMobileProductsSwiper = () => {
+            if (typeof Swiper === 'undefined') return;
+            new Swiper('.mySwiper', {
+                slidesPerView: 1.05,
+                spaceBetween: 14,
+                freeMode: true,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                breakpoints: {
+                    480: { slidesPerView: 1.2 },
+                    640: { slidesPerView: 1.4 }
+                }
+            });
+        };
+        // initialize when DOM ready
+        document.addEventListener('DOMContentLoaded', initMobileProductsSwiper);
+
+        // Navbar floating behavior logic (add shadow on scroll)
+        const navbar = document.querySelector('.navbar-floating');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.style.boxShadow = '0 15px 40px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

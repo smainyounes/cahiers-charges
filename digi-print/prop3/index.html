@@ -1,0 +1,1301 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGI Print | Équipements d'impression professionnels & Maintenance</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary: #0f172a;      /* Dark Navy / Slate 900 */
+            --accent: #2563eb;       /* Tech Blue */
+            --accent-hover: #1d4ed8;
+            --surface: #ffffff;
+            --bg-light: #f8fafc;     /* Slate 50 */
+            --text-main: #334155;    /* Slate 700 */
+            --text-muted: #64748b;   /* Slate 500 */
+            --border-color: #e2e8f0;
+            --price-color: #0f172a;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+            padding-bottom: 60px; /* Space for mobile nav */
+        }
+
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        .text-accent { color: var(--accent) !important; }
+        .bg-primary-dark { background-color: var(--primary); }
+        .bg-accent { background-color: var(--accent); }
+
+        /* =========================================
+           BUTTONS
+           ========================================= */
+        .btn-custom-primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .btn-custom-primary:hover {
+            background-color: var(--accent-hover);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+        .btn-custom-outline {
+            border: 2px solid var(--border-color);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .btn-custom-outline:hover {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* =========================================
+           NAVBAR
+           ========================================= */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+        .navbar-brand span { color: var(--accent); }
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-main);
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+        .nav-link:hover { color: var(--accent); }
+        
+        .icon-actions .btn {
+            position: relative;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        .cart-counter {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.15rem 0.4rem;
+            border-radius: 50px;
+            transform: translate(25%, -25%);
+        }
+
+        /* Currency Selector */
+        .currency-selector {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero-img-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-img {
+            max-width: 100%;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .trust-line {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================
+           MARQUEE ANIMATION
+           ========================================= */
+        .marquee-section {
+            background-color: var(--surface);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        .marquee-title {
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        .marquee-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        /* Fading edges */
+        .marquee-container::before, .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--surface) 0%, transparent 100%);
+        }
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--surface) 0%, transparent 100%);
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            padding-right: 4rem;
+            animation: scroll-left 30s linear infinite;
+        }
+        .marquee-content.reverse {
+            animation: scroll-right 30s linear infinite;
+        }
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        .brand-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.6;
+            transition: var(--transition);
+            cursor: default;
+        }
+        .brand-logo-text:hover { opacity: 1; color: var(--accent); }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Requires duplicated content inside */
+        }
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* =========================================
+           CATEGORY CARDS
+           ========================================= */
+        .category-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: block;
+        }
+        .category-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .category-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .category-card:hover .category-img { transform: scale(1.05); }
+        .category-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2rem 1.5rem 1.5rem;
+            background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, transparent 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .category-overlay h3 { color: white; margin-bottom: 0.25rem; font-size: 1.25rem; }
+        .category-link { font-size: 0.85rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 0.5rem;}
+        .category-card:hover .category-link { color: white; }
+
+        /* =========================================
+           PRODUCT CARDS (E-COMMERCE)
+           ========================================= */
+        .product-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transform: translateY(-4px);
+        }
+        .product-badge {
+            position: absolute;
+            top: 1rem; left: 1rem;
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+        .product-badge.promo { background: #ea580c; }
+        .wishlist-btn {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+            z-index: 2;
+            transition: var(--transition);
+        }
+        .wishlist-btn:hover { color: #ef4444; border-color: #ef4444; }
+        
+        .product-img-wrapper {
+            aspect-ratio: 1/1;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            background: var(--bg-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .product-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-img { transform: scale(1.08); }
+        
+        .product-brand {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            flex-grow: 1; /* Pushes price to bottom */
+        }
+        .product-specs {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-price-wrapper {
+            margin-bottom: 1rem;
+        }
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--price-color);
+        }
+        .product-price-old {
+            font-size: 0.85rem;
+            text-decoration: line-through;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+        }
+        .stock-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #16a34a; /* Green */
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+        .stock-status i { font-size: 0.5rem; }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .btn-add-cart {
+            flex: 1;
+            background: var(--surface);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .product-card:hover .btn-add-cart {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* =========================================
+           PROMO BANNER
+           ========================================= */
+        .promo-banner {
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .promo-banner h2 { color: white; }
+        .promo-bg-pattern {
+            position: absolute;
+            right: 0; top: 0; height: 100%; width: 50%;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        /* =========================================
+           SHOP BY BRAND
+           ========================================= */
+        .brand-card {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .brand-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .brand-card h4 { margin: 0; font-size: 1.5rem; color: var(--primary); }
+        .brand-card p { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+        /* =========================================
+           BENEFITS & STEPS
+           ========================================= */
+        .icon-box {
+            background: var(--bg-light);
+            width: 60px; height: 60px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .step-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--border-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* =========================================
+           MAINTENANCE SECTION (DARK)
+           ========================================= */
+        .maintenance-section {
+            background-color: var(--primary);
+            color: var(--bg-light);
+            padding: 5rem 0;
+        }
+        .maintenance-section h2 { color: white; }
+        .service-block {
+            border-left: 2px solid rgba(255,255,255,0.1);
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+        .service-block:hover { border-color: var(--accent); }
+        .service-block h4 { color: white; margin-bottom: 0.5rem; }
+        .service-img {
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* =========================================
+           FOOTER & FLOATING CTA
+           ========================================= */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            font-size: 0.9rem;
+        }
+        .footer-heading {
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-muted); transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        
+        .floating-wa {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        .floating-wa:hover { transform: scale(1.1); color: white; }
+
+        /* =========================================
+           MOBILE BOTTOM NAV (APP FEEL)
+           ========================================= */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            z-index: 999;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .mobile-nav-item i { font-size: 1.25rem; margin-bottom: 2px; }
+        .mobile-nav-item.active { color: var(--accent); }
+        .mobile-nav-item .cart-badge-mobile {
+            position: absolute;
+            top: 2px; right: 50%;
+            margin-right: -15px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.6rem;
+            padding: 0 4px;
+            border-radius: 10px;
+        }
+
+        /* Utilities */
+        .section-padding { padding: 5rem 0; }
+        .section-title { font-size: 2rem; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 3rem; }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================
+         HEADER / NAVBAR
+         ========================================= -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <!-- Brand / Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <!-- Optionnel: Insérer balise <img> pour le logo officiel -->
+                <i class="bi bi-printer-fill text-accent me-2"></i>
+                DIGI<span>Print</span>
+            </a>
+
+            <!-- Mobile actions (visible only on mobile next to toggler) -->
+            <div class="d-flex align-items-center d-lg-none gap-3">
+                <div class="currency-selector">DZD ▾</div>
+                <button class="navbar-toggler border-0 shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <i class="bi bi-list fs-1 text-primary"></i>
+                </button>
+            </div>
+
+            <!-- Nav Links -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produits">Produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#categories">Catégories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#marques">Marques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                </ul>
+
+                <!-- Desktop Actions -->
+                <div class="d-none d-lg-flex align-items-center gap-4 icon-actions">
+                    <div class="currency-selector">DZD <i class="bi bi-chevron-down small"></i></div>
+                    
+                    <a href="#" class="btn btn-link p-0"><i class="bi bi-search"></i></a>
+                    <a href="#" class="btn btn-link p-0"><i class="bi bi-person"></i></a>
+                    <a href="#" class="btn btn-link p-0 position-relative">
+                        <i class="bi bi-bag"></i>
+                        <span class="cart-counter">2</span>
+                    </a>
+                    <a href="#" class="btn-custom-primary ms-2 d-none d-xl-block">Nous contacter</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================
+         HERO SECTION
+         ========================================= -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="row align-items-center min-vh-75">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <span class="trust-line d-inline-block mb-3">
+                        <i class="bi bi-shield-check text-accent me-1"></i> Équipement professionnel • Livraison • Assistance
+                    </span>
+                    <h1 class="hero-title">Votre spécialiste en <span class="text-accent">impression professionnelle</span></h1>
+                    <p class="lead text-muted mb-4 fs-5 pe-lg-5">
+                        Imprimantes grand format, encres, consommables, pièces détachées et solutions d’impression pour les professionnels.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#produits" class="btn-custom-primary btn-lg">
+                            <i class="bi bi-shop me-2"></i> Voir les produits
+                        </a>
+                        <a href="#services" class="btn-custom-outline btn-lg">Découvrir nos services</a>
+                    </div>
+                    
+                    <!-- Trust indicators -->
+                    <div class="d-flex align-items-center gap-4 mt-5">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-tools fs-4 text-primary"></i>
+                            <span class="small fw-semibold text-muted lh-sm">Maintenance<br>Agréée</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-patch-check fs-4 text-primary"></i>
+                            <span class="small fw-semibold text-muted lh-sm">Garantie<br>Constructeur</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-img-wrapper">
+                        <!-- Abstract/Placeholder professional printer image -->
+                        <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=800&h=600" alt="Imprimante professionnelle grand format" class="hero-img rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         ANIMATED BRANDS MARQUEE
+         ========================================= -->
+    <div class="marquee-section">
+        <div class="container">
+            <h6 class="marquee-title">Nos principales marques partenaires</h6>
+        </div>
+        
+        <!-- Row 1 (Left) -->
+        <div class="marquee-container mb-3">
+            <div class="marquee-content">
+                <!-- Double the content for seamless infinite scroll -->
+                <span class="brand-logo-text">HP</span>
+                <span class="brand-logo-text">EPSON</span>
+                <span class="brand-logo-text">CANON</span>
+                <span class="brand-logo-text">ROLAND</span>
+                <span class="brand-logo-text">MIMAKI</span>
+                <span class="brand-logo-text">MUTOH</span>
+                <span class="brand-logo-text">BROTHER</span>
+                <span class="brand-logo-text">RICOH</span>
+                <!-- Duplicate -->
+                <span class="brand-logo-text">HP</span>
+                <span class="brand-logo-text">EPSON</span>
+                <span class="brand-logo-text">CANON</span>
+                <span class="brand-logo-text">ROLAND</span>
+                <span class="brand-logo-text">MIMAKI</span>
+                <span class="brand-logo-text">MUTOH</span>
+                <span class="brand-logo-text">BROTHER</span>
+                <span class="brand-logo-text">RICOH</span>
+            </div>
+        </div>
+        
+        <!-- Row 2 (Right) -->
+        <div class="marquee-container">
+            <div class="marquee-content reverse">
+                <span class="brand-logo-text">KONICA MINOLTA</span>
+                <span class="brand-logo-text">AGFA</span>
+                <span class="brand-logo-text">FIERY</span>
+                <span class="brand-logo-text">SAI</span>
+                <span class="brand-logo-text">ONYX</span>
+                <span class="brand-logo-text">CALDERA</span>
+                <span class="brand-logo-text">SUMMA</span>
+                <span class="brand-logo-text">GRAPHTEC</span>
+                <!-- Duplicate -->
+                <span class="brand-logo-text">KONICA MINOLTA</span>
+                <span class="brand-logo-text">AGFA</span>
+                <span class="brand-logo-text">FIERY</span>
+                <span class="brand-logo-text">SAI</span>
+                <span class="brand-logo-text">ONYX</span>
+                <span class="brand-logo-text">CALDERA</span>
+                <span class="brand-logo-text">SUMMA</span>
+                <span class="brand-logo-text">GRAPHTEC</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         CATEGORIES SECTION
+         ========================================= -->
+    <section id="categories" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Trouvez l’équipement adapté à votre activité</h2>
+                <p class="section-subtitle">Explorez notre catalogue par catégorie d'équipement.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Large Category -->
+                <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1598425237654-4c053602f92f?auto=format&fit=crop&q=80&w=800" alt="Imprimantes grand format" class="category-img">
+                        <div class="category-overlay">
+                            <h3>Imprimantes grand format</h3>
+                            <span class="category-link">Voir les produits <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Small Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1563241527-3004b7be021a?auto=format&fit=crop&q=80&w=600" alt="Encres & consommables" class="category-img">
+                        <div class="category-overlay">
+                            <h3>Encres & consommables</h3>
+                            <span class="category-link">Voir les produits <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Small Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600" alt="Pièces détachées" class="category-img">
+                        <div class="category-overlay">
+                            <h3>Pièces détachées</h3>
+                            <span class="category-link">Voir les produits <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Small Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1581092921461-7031e4bf0e5f?auto=format&fit=crop&q=80&w=600" alt="Accessoires" class="category-img">
+                        <div class="category-overlay">
+                            <h3>Accessoires</h3>
+                            <span class="category-link">Voir les produits <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Small Category -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#" class="category-card">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600" alt="Machines de finition" class="category-img">
+                        <div class="category-overlay">
+                            <h3>Machines de finition</h3>
+                            <span class="category-link">Voir les produits <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         FEATURED PRODUCTS (E-COMMERCE CORE)
+         ========================================= -->
+    <section id="produits" class="section-padding bg-white border-top border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+                <div>
+                    <h2 class="section-title">Produits populaires</h2>
+                    <p class="section-subtitle mb-0">Découvrez une sélection de nos équipements disponibles.</p>
+                </div>
+                <a href="#" class="btn btn-link text-accent fw-semibold d-none d-md-inline-block">Voir tout le catalogue <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <!-- Future Laravel/Livewire Loop Starts Here -->
+            <div class="row g-4">
+                
+                <!-- Product 1 -->
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-badge">Nouveau</div>
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                        
+                        <div class="product-img-wrapper">
+                            <!-- Placeholder product image -->
+                            <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=300" alt="Epson SureColor" class="product-img">
+                        </div>
+                        
+                        <div class="product-brand">Epson</div>
+                        <h3 class="product-title">SureColor SC-P900</h3>
+                        <p class="product-specs">Imprimante photo professionnelle, haute précision.</p>
+                        
+                        <div class="stock-status"><i class="bi bi-circle-fill"></i> En stock</div>
+                        
+                        <div class="product-price-wrapper">
+                            <span class="product-price">245 000 DA</span>
+                        </div>
+                        
+                        <div class="product-actions mt-auto">
+                            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> <span class="d-none d-xl-inline">Ajouter</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                        
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1598425237654-4c053602f92f?auto=format&fit=crop&q=80&w=300" alt="HP DesignJet" class="product-img">
+                        </div>
+                        
+                        <div class="product-brand">HP</div>
+                        <h3 class="product-title">DesignJet T850</h3>
+                        <p class="product-specs">Traceur grand format pour CAO/SIG.</p>
+                        
+                        <div class="stock-status"><i class="bi bi-circle-fill"></i> En stock</div>
+                        
+                        <div class="product-price-wrapper">
+                            <span class="product-price">385 000 DA</span>
+                            <span class="product-price-old">400 000 DA</span>
+                        </div>
+                        
+                        <div class="product-actions mt-auto">
+                            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> <span class="d-none d-xl-inline">Ajouter</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-badge promo">Promo</div>
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                        
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1563241527-3004b7be021a?auto=format&fit=crop&q=80&w=300" alt="Canon imagePROGRAF" class="product-img">
+                        </div>
+                        
+                        <div class="product-brand">Canon</div>
+                        <h3 class="product-title">imagePROGRAF PRO</h3>
+                        <p class="product-specs">Production de haute qualité 44 pouces.</p>
+                        
+                        <div class="stock-status text-warning"><i class="bi bi-circle-fill text-warning"></i> Stock limité</div>
+                        
+                        <div class="product-price-wrapper">
+                            <span class="product-price">420 000 DA</span>
+                        </div>
+                        
+                        <div class="product-actions mt-auto">
+                            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> <span class="d-none d-xl-inline">Ajouter</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-6 col-md-4 col-lg-3 d-none d-md-block" data-aos="fade-up" data-aos-delay="400">
+                    <div class="product-card">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                        
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=300" alt="Encre Mimaki" class="product-img">
+                        </div>
+                        
+                        <div class="product-brand">Mimaki</div>
+                        <h3 class="product-title">Kit Encres SS21</h3>
+                        <p class="product-specs">Cartouches d'encre solvant originale 440ml.</p>
+                        
+                        <div class="stock-status"><i class="bi bi-circle-fill"></i> En stock</div>
+                        
+                        <div class="product-price-wrapper">
+                            <span class="product-price">18 500 DA</span>
+                        </div>
+                        
+                        <div class="product-actions mt-auto">
+                            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> <span class="d-none d-xl-inline">Ajouter</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Future Laravel/Livewire Loop Ends Here -->
+            
+            <div class="text-center mt-5 d-md-none">
+                <a href="#" class="btn-custom-outline w-100">Voir tout le catalogue</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         PROMO BANNER
+         ========================================= -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="promo-banner p-5" data-aos="zoom-in">
+                <div class="promo-bg-pattern"></div>
+                <div class="row align-items-center position-relative" style="z-index: 2;">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <h2 class="display-6 fw-bold mb-3">Besoin d’une solution complète d’impression ?</h2>
+                        <p class="fs-5 text-white-50 mb-4">
+                            Découvrez nos équipements professionnels et bénéficiez de l’accompagnement technique et du savoir-faire DIGI Print pour l'installation et la maintenance.
+                        </p>
+                        <a href="#" class="btn-custom-primary">Voir nos offres packs <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         SHOP BY BRAND GRID
+         ========================================= -->
+    <section id="marques" class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Explorez par marque</h2>
+            </div>
+            
+            <div class="row g-3 g-md-4">
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#" class="brand-card">
+                        <h4>HP</h4>
+                        <p>124 produits</p>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#" class="brand-card">
+                        <h4>EPSON</h4>
+                        <p>86 produits</p>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#" class="brand-card">
+                        <h4>CANON</h4>
+                        <p>42 produits</p>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#" class="brand-card">
+                        <h4>ROLAND</h4>
+                        <p>38 produits</p>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#" class="brand-card">
+                        <h4>MIMAKI</h4>
+                        <p>25 produits</p>
+                    </a>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2" data-aos="fade-up" data-aos-delay="600">
+                    <a href="#" class="brand-card">
+                        <h4>MUTOH</h4>
+                        <p>18 produits</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         WHY BUY FROM US
+         ========================================= -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Pourquoi choisir DIGI Print ?</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box"><i class="bi bi-printer"></i></div>
+                    <h4 class="h5">Produits professionnels</h4>
+                    <p class="text-muted small">Des équipements conçus pour répondre aux exigences intensives des professionnels de l'impression.</p>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box"><i class="bi bi-cpu"></i></div>
+                    <h4 class="h5">Expertise technique</h4>
+                    <p class="text-muted small">Une équipe spécialisée qui connaît parfaitement les architectures des équipements grand format.</p>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box"><i class="bi bi-tools"></i></div>
+                    <h4 class="h5">Maintenance & Réparation</h4>
+                    <p class="text-muted small">Nous ne sommes pas que des vendeurs. Nous assurons le SAV et la réparation de vos machines.</p>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon-box"><i class="bi bi-headset"></i></div>
+                    <h4 class="h5">Assistance dédiée</h4>
+                    <p class="text-muted small">Un interlocuteur unique pour vous conseiller avant, pendant et après votre investissement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         MAINTENANCE SECTION (Technical edge)
+         ========================================= -->
+    <section id="services" class="maintenance-section position-relative">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-bold mb-4">Votre imprimante mérite plus qu’un simple vendeur.</h2>
+                    <p class="lead mb-5 text-white-50">
+                        <strong class="text-white">DIGI-Maintenance</strong> vous accompagne techniquement pour la maintenance, le diagnostic et la réparation de l'ensemble de vos équipements d’impression.
+                    </p>
+                    
+                    <div class="service-block">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-shield-check text-accent fs-4 me-3"></i>
+                            <h4 class="mb-0 h5">Maintenance préventive</h4>
+                        </div>
+                        <p class="text-white-50 small mb-0">Entretien régulier pour éviter les arrêts de production.</p>
+                    </div>
+                    
+                    <div class="service-block">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-wrench-adjustable text-accent fs-4 me-3"></i>
+                            <h4 class="mb-0 h5">Réparation & Pièces</h4>
+                        </div>
+                        <p class="text-white-50 small mb-0">Diagnostic rapide et remplacement par des pièces d'origine.</p>
+                    </div>
+                    
+                    <div class="service-block">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-inbound text-accent fs-4 me-3"></i>
+                            <h4 class="mb-0 h5">Assistance technique</h4>
+                        </div>
+                        <p class="text-white-50 small mb-0">Support téléphonique et intervention sur site.</p>
+                    </div>
+
+                    <a href="#" class="btn-custom-primary mt-4">Découvrir nos services techniques</a>
+                </div>
+                
+                <div class="col-lg-6 offset-lg-1" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1581092921461-7031e4bf0e5f?auto=format&fit=crop&q=80&w=800" alt="Technicien réparant une imprimante" class="img-fluid service-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         HOW TO ORDER
+         ========================================= -->
+    <section class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Commander en quelques étapes</h2>
+            </div>
+            
+            <div class="row g-4 text-center text-md-start">
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">01</div>
+                    <h5 class="fw-bold">Choisissez</h5>
+                    <p class="text-muted small">Explorez notre catalogue et trouvez l'équipement adapté.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <h5 class="fw-bold">Ajoutez au panier</h5>
+                    <p class="text-muted small">Sélectionnez vos produits, pièces et quantités.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <h5 class="fw-bold">Commandez</h5>
+                    <p class="text-muted small">Renseignez vos informations de livraison en toute sécurité.</p>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">04</div>
+                    <h5 class="fw-bold">Recevez</h5>
+                    <p class="text-muted small">Nous traitons votre commande et organisons l'expédition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         TRUST & CTA SECTION
+         ========================================= -->
+    <section class="section-padding text-center">
+        <div class="container">
+            <!-- Trust Icons -->
+            <div class="d-flex flex-wrap justify-content-center gap-4 gap-md-5 mb-5 pb-4 border-bottom" data-aos="fade-up">
+                <div class="d-flex align-items-center text-muted fw-semibold small">
+                    <i class="bi bi-box-seam fs-4 me-2 text-primary"></i> Produits certifiés
+                </div>
+                <div class="d-flex align-items-center text-muted fw-semibold small">
+                    <i class="bi bi-truck fs-4 me-2 text-primary"></i> Livraison nationale
+                </div>
+                <div class="d-flex align-items-center text-muted fw-semibold small">
+                    <i class="bi bi-shield-lock fs-4 me-2 text-primary"></i> Paiement sécurisé
+                </div>
+                <div class="d-flex align-items-center text-muted fw-semibold small">
+                    <i class="bi bi-wrench fs-4 me-2 text-primary"></i> SAV & Maintenance
+                </div>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="max-w-75 mx-auto" data-aos="fade-up">
+                <h2 class="display-6 fw-bold mb-3">Prêt à équiper votre activité ?</h2>
+                <p class="lead text-muted mb-4">
+                    Découvrez notre catalogue de produits et trouvez la solution d’impression adaptée à vos besoins.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#produits" class="btn-custom-primary btn-lg"><i class="bi bi-shop me-2"></i> Voir tous les produits</a>
+                    <a href="#" class="btn-custom-outline btn-lg d-none d-sm-inline-block">Demander un conseil</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 pe-lg-5">
+                    <a class="navbar-brand d-inline-block mb-3 fs-3" href="#">
+                        <i class="bi bi-printer-fill text-accent me-2"></i>DIGI<span>Print</span>
+                    </a>
+                    <p class="text-muted mb-4">
+                        Une marque de <strong>DIGI-Maintenance</strong>.<br>
+                        Vente d’équipements d’impression professionnels, encres, pièces détachées et services de maintenance technique.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted fs-5 hover-accent"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-muted fs-5 hover-accent"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-muted fs-5 hover-accent"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5 class="footer-heading">Boutique</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Tous les produits</a></li>
+                        <li><a href="#">Imprimantes</a></li>
+                        <li><a href="#">Encres</a></li>
+                        <li><a href="#">Pièces détachées</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5 class="footer-heading">Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Réparation</a></li>
+                        <li><a href="#">Assistance technique</a></li>
+                        <li><a href="#">Demande de devis</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5 class="footer-heading">Informations</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Conditions générales</a></li>
+                        <li><a href="#">Confidentialité</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2 mt-4 mt-lg-0">
+                    <h5 class="footer-heading">Contact</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="bi bi-telephone me-2"></i> 0555 00 00 00</a></li>
+                        <li><a href="#"><i class="bi bi-whatsapp me-2"></i> WhatsApp</a></li>
+                        <li><a href="#"><i class="bi bi-envelope me-2"></i> contact@digiprint.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-top pt-4 text-center text-muted small">
+                <p class="mb-0">© 2024 DIGI-Maintenance — DIGI Print. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         FLOATING WHATSAPP & MOBILE NAV
+         ========================================= -->
+    <!-- Floating WA -->
+    <a href="#" class="floating-wa" aria-label="Contact WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Bottom Navigation (App-like feel) -->
+    <div class="mobile-bottom-nav d-md-none">
+        <a href="#" class="mobile-nav-item active">
+            <i class="bi bi-house-door"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#produits" class="mobile-nav-item">
+            <i class="bi bi-grid"></i>
+            <span>Produits</span>
+        </a>
+        <a href="#" class="mobile-nav-item position-relative">
+            <i class="bi bi-bag"></i>
+            <span>Panier</span>
+            <span class="cart-badge-mobile">2</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <i class="bi bi-person"></i>
+            <span>Compte</span>
+        </a>
+    </div>
+
+    <!-- =========================================
+         SCRIPTS
+         ========================================= -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true, // Animation occurs only once
+            offset: 50, // Offset (in px) from the original trigger point
+            duration: 800, // Values from 0 to 3000, with step 50ms
+            easing: 'ease-in-out',
+        });
+
+        // Navbar shrink on scroll
+        const navbar = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Simple smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    const bsCollapse = new bootstrap.Collapse(document.getElementById('navbarContent'), {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

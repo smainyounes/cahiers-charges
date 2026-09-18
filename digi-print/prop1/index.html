@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGI-Maintenance | Solutions d'impression professionnelle</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0A1128; /* Deep Navy */
+            --secondary-dark: #162244;
+            --accent-color: #00D2FF; /* Cyan technique */
+            --accent-hover: #00A6CC;
+            --text-light: #F8F9FA;
+            --text-gray: #A0AABF;
+            --bg-light: #F4F7F6;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: #333;
+            overflow-x: hidden;
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        /* UI Elements */
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-dark-navy { background-color: var(--primary-dark) !important; }
+        .bg-light-gray { background-color: var(--bg-light) !important; }
+
+        .btn-primary-tech {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            font-weight: 600;
+            border: none;
+            border-radius: 2px;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary-tech:hover {
+            background-color: var(--accent-hover);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-outline-tech {
+            background-color: transparent;
+            color: white;
+            border: 1px solid var(--accent-color);
+            border-radius: 2px;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .btn-outline-tech:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 17, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+        .navbar-brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: white !important;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        .navbar-brand span { color: var(--accent-color); }
+        .nav-link {
+            color: var(--text-light) !important;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover { color: var(--accent-color) !important; }
+
+        /* Country Switcher */
+        .country-switcher select {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2px;
+            padding: 5px 10px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+        .country-switcher select option { background: var(--primary-dark); color: white; }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-dark);
+            position: relative;
+            padding: 160px 0 100px 0;
+            color: white;
+            overflow: hidden;
+        }
+        .tech-grid {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+        .hero .container { position: relative; z-index: 2; }
+        .hero-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero-img-container {
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.2));
+        }
+        .hero-img-container img { max-width: 100%; height: auto; }
+        .tech-label {
+            position: absolute;
+            background: rgba(10, 17, 40, 0.8);
+            border: 1px solid var(--accent-color);
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            border-radius: 2px;
+            backdrop-filter: blur(5px);
+        }
+        .tl-1 { top: 10%; right: 10%; }
+        .tl-2 { bottom: 20%; left: 0%; }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--secondary-dark);
+            color: white;
+            padding: 30px 0;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        .trust-item i { font-size: 2rem; color: var(--accent-color); margin-bottom: 10px; }
+        .trust-item h6 { font-size: 1rem; margin-bottom: 5px; }
+        .trust-item p { font-size: 0.8rem; color: var(--text-gray); margin: 0; }
+
+        /* Product Cards (E-commerce Prep) */
+        .product-card {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent-color); transform: scaleX(0); transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .product-card:hover::before { transform: scaleX(1); }
+        .product-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .dynamic-price { font-family: var(--font-heading); font-weight: 700; color: var(--primary-dark); font-size: 1.2rem; }
+
+        /* Services Section */
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 4px;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .service-card:hover { background: white; border-color: var(--accent-color); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .service-icon { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 20px; transition: color 0.3s; }
+        .service-card:hover .service-icon { color: var(--accent-color); }
+
+        /* Maintenance CTA */
+        .maintenance-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+        }
+        .maintenance-cta::after {
+            content: ''; position: absolute; right: 0; bottom: 0; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%);
+        }
+
+        /* How it works */
+        .step-number {
+            font-family: var(--font-heading); font-size: 3rem; font-weight: 800;
+            color: rgba(0, 210, 255, 0.2); line-height: 1; margin-bottom: 10px;
+        }
+
+        /* Market Cards */
+        .market-card { border: 1px solid #eaeaea; border-radius: 8px; padding: 30px; height: 100%; }
+        .market-card h3 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .market-list li { margin-bottom: 10px; list-style: none; display: flex; align-items: center; gap: 10px; }
+        .market-list li i { color: var(--accent-color); }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed; bottom: 40px; right: 40px; background-color: #25d366; color: white;
+            border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center;
+            justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(37,211,102,0.3);
+            z-index: 100; transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); color: white; }
+
+        /* Mobile Bottom Nav */
+        .mobile-bottom-nav {
+            display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 99;
+        }
+        .nav-item-mobile {
+            flex: 1; text-align: center; padding: 10px 0; color: var(--secondary-dark); font-size: 0.75rem; text-decoration: none;
+        }
+        .nav-item-mobile i { display: block; font-size: 1.2rem; margin-bottom: 4px; }
+        .nav-item-mobile.active { color: var(--accent-color); }
+
+        @media (max-width: 991px) {
+            .hero { padding: 120px 0 60px 0; text-align: center; }
+            .hero-title { font-size: 2.2rem; }
+            .tl-1, .tl-2 { display: none; }
+            .mobile-bottom-nav { display: flex; }
+            .whatsapp-float { bottom: 80px; right: 20px; width: 50px; height: 50px; font-size: 24px; }
+            body { padding-bottom: 60px; } /* Space for mobile nav */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">DIGI<span> Print</span></a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produits">Nos produits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Nos services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="country-switcher">
+                        <select id="marketSelector" onchange="switchCountry(this.value)">
+                            <option value="DZ">🇩🇿 Algérie</option>
+                            <option value="FR">🇫🇷 France</option>
+                        </select>
+                    </div>
+                    <a href="#contact" class="btn btn-primary-tech d-none d-lg-block">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="tech-grid"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p class="text-accent fw-bold text-uppercase tracking-wide mb-2"><i class="fas fa-microchip me-2"></i>Équipement • Maintenance • Assistance technique</p>
+                    <h1 class="hero-title">Solutions professionnelles d’impression & maintenance</h1>
+                    <p class="lead mb-4 text-gray" style="color: var(--text-gray);">Vente, maintenance et réparation d’équipements d’impression professionnels pour les entreprises en Algérie et en France.</p>
+                    <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start">
+                        <a href="#produits" class="btn btn-primary-tech">Découvrir nos produits</a>
+                        <a href="#contact" class="btn btn-outline-tech">Parler à un expert</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-img-container">
+                        <!-- Technical Labels -->
+                        <div class="tech-label tl-1">Technologie Jet d'encre</div>
+                        <div class="tech-label tl-2">Haute Précision CMJN</div>
+                        <!-- Printer Image Placeholder (Using a professional Unsplash image of machinery/printing) -->
+                        <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Imprimante professionnelle grand format" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="row text-center text-lg-start g-4">
+                <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fas fa-print"></i>
+                    <h6>Équipements pro</h6>
+                    <p>Solutions grand format.</p>
+                </div>
+                <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-tools"></i>
+                    <h6>Maintenance & réparation</h6>
+                    <p>Intervention technique rapide.</p>
+                </div>
+                <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-cogs"></i>
+                    <h6>Solutions adaptées</h6>
+                    <p>Selon les besoins de l'entreprise.</p>
+                </div>
+                <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-globe"></i>
+                    <h6>Algérie & France</h6>
+                    <p>Présence sur les deux marchés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technicien maintenance" class="img-fluid rounded shadow-lg">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h6 class="text-accent text-uppercase fw-bold mb-2">Qui sommes-nous ?</h6>
+                    <h2 class="mb-4">Votre partenaire en impression professionnelle</h2>
+                    <p class="mb-4">DIGI-Maintenance ne se contente pas de vendre des imprimantes. Nous combinons la vente d'équipements industriels avec une expertise technique pointue pour garantir la continuité de votre production.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check text-accent me-2"></i> Vente de matériel grand format et industriel</li>
+                        <li class="mb-2"><i class="fas fa-check text-accent me-2"></i> Fourniture de pièces et consommables</li>
+                        <li class="mb-2"><i class="fas fa-check text-accent me-2"></i> Maintenance préventive et curative</li>
+                        <li class="mb-2"><i class="fas fa-check text-accent me-2"></i> Support technique dédié</li>
+                    </ul>
+                    <a href="#services" class="btn btn-primary-tech" style="background-color: var(--primary-dark); color: white;">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section (E-commerce ready) -->
+    <section id="produits" class="py-5 bg-light-gray">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="text-accent text-uppercase fw-bold mb-2">Catalogue</h6>
+                <h2>Nos solutions d’impression</h2>
+                <p class="text-muted">Des équipements professionnels adaptés aux exigences de votre activité.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Product Card 1 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="product-card">
+                        <!-- Placeholder printer image -->
+                        <img src="https://images.unsplash.com/photo-1622384793617-6950269f83c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Traceur grand format" class="product-img">
+                        <span class="badge bg-dark mb-2">Traceurs</span>
+                        <h5 class="mb-2">DIGI-Plotter Pro X1</h5>
+                        <p class="text-muted small">Imprimante grand format pour signalétique et plans techniques.</p>
+                        <div class="dynamic-price mb-3" data-price-dz="1 450 000 DA" data-price-fr="9 500 €">1 450 000 DA</div>
+                        <a href="#" class="btn btn-outline-dark w-100 btn-sm">Découvrir</a>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Presse numérique" class="product-img">
+                        <span class="badge bg-dark mb-2">Presse Numérique</span>
+                        <h5 class="mb-2">DIGI-Press C800</h5>
+                        <p class="text-muted small">Haute capacité de production pour imprimeries commerciales.</p>
+                        <div class="dynamic-price mb-3" data-price-dz="3 200 000 DA" data-price-fr="21 000 €">3 200 000 DA</div>
+                        <a href="#" class="btn btn-outline-dark w-100 btn-sm">Découvrir</a>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1563810168322-9dfabdb1a03f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Consommables" class="product-img">
+                        <span class="badge bg-secondary mb-2">Consommables</span>
+                        <h5 class="mb-2">Encres UV Premium</h5>
+                        <p class="text-muted small">Set complet CMJN pour impression haute durabilité.</p>
+                        <div class="dynamic-price mb-3" data-price-dz="45 000 DA" data-price-fr="290 €">45 000 DA</div>
+                        <a href="#" class="btn btn-outline-dark w-100 btn-sm">Découvrir</a>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pièces détachées" class="product-img">
+                        <span class="badge bg-secondary mb-2">Pièces détachées</span>
+                        <h5 class="mb-2">Tête d'impression DX5</h5>
+                        <p class="text-muted small">Pièce de rechange certifiée pour traceurs professionnels.</p>
+                        <div class="dynamic-price mb-3" data-price-dz="180 000 DA" data-price-fr="1 150 €">180 000 DA</div>
+                        <a href="#" class="btn btn-outline-dark w-100 btn-sm">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary-tech">Voir tout le catalogue</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h6 class="text-accent text-uppercase fw-bold mb-2">Expertise</h6>
+                <h2>Bien plus qu’un fournisseur</h2>
+                <p class="text-muted">Nous vous accompagnons avant, pendant et après votre achat.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-card text-center">
+                        <i class="fas fa-shopping-cart service-icon"></i>
+                        <h5 class="mb-3">Vente d’équipements</h5>
+                        <p class="text-muted small">Solutions d'impression professionnelles adaptées aux contraintes de votre activité.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card text-center">
+                        <i class="fas fa-clipboard-check service-icon"></i>
+                        <h5 class="mb-3">Maintenance</h5>
+                        <p class="text-muted small">Entretien préventif et maintenance périodique pour éviter les arrêts de production.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card text-center">
+                        <i class="fas fa-wrench service-icon"></i>
+                        <h5 class="mb-3">Réparation</h5>
+                        <p class="text-muted small">Diagnostic précis et intervention rapide sur vos équipements en panne.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card text-center">
+                        <i class="fas fa-headset service-icon"></i>
+                        <h5 class="mb-3">Assistance technique</h5>
+                        <p class="text-muted small">Accompagnement, formation et conseils pour optimiser votre parc d'imprimantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Maintenance CTA -->
+    <section class="maintenance-cta">
+        <div class="container text-center" data-aos="zoom-in">
+            <h2 class="mb-3">Votre imprimante rencontre un problème ?</h2>
+            <p class="lead mb-5 mx-auto" style="max-width: 700px;">Notre équipe de techniciens spécialisés vous accompagne pour le diagnostic, la maintenance et la réparation rapide de vos équipements d’impression professionnels.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="#contact" class="btn btn-primary-tech">Demander une intervention</a>
+                <a href="tel:+2130000000" class="btn btn-outline-tech"><i class="fas fa-phone-alt me-2"></i>Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2>Un accompagnement simple et professionnel</h2>
+            </div>
+            <div class="row text-center position-relative">
+                <!-- Desktop connecting line -->
+                <div class="d-none d-lg-block position-absolute top-50 start-50 translate-middle w-75" style="height: 2px; background: #eaeaea; z-index: 0; margin-top: -30px;"></div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                    <div class="bg-white position-relative z-1 p-3">
+                        <div class="step-number">01</div>
+                        <h5>Identifiez votre besoin</h5>
+                        <p class="text-muted small">Équipement, consommables, maintenance ou réparation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-white position-relative z-1 p-3">
+                        <div class="step-number">02</div>
+                        <h5>Échangez avec l'équipe</h5>
+                        <p class="text-muted small">Nous analysons techniquement votre besoin et proposons une solution.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-white position-relative z-1 p-3">
+                        <div class="step-number">03</div>
+                        <h5>Passez à l’action</h5>
+                        <p class="text-muted small">Achat, livraison, intervention technique ou assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="py-5 bg-light-gray">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2>Des solutions pour l’Algérie et la France</h2>
+                <p class="text-muted">Une logistique et des services adaptés à chaque territoire.</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-5" data-aos="fade-right">
+                    <div class="market-card bg-white shadow-sm">
+                        <h3>🇩🇿 Algérie</h3>
+                        <hr>
+                        <ul class="market-list p-0">
+                            <li><i class="fas fa-tags"></i> Tarification en Dinar (DZD)</li>
+                            <li><i class="fas fa-truck"></i> Livraison dans toutes les wilayas</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Paiement à la livraison</li>
+                            <li><i class="fas fa-tools"></i> Assistance technique et maintenance sur site</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5" data-aos="fade-left">
+                    <div class="market-card bg-white shadow-sm">
+                        <h3>🇫🇷 France</h3>
+                        <hr>
+                        <ul class="market-list p-0">
+                            <li><i class="fas fa-tags"></i> Tarification en Euro (EUR)</li>
+                            <li><i class="fas fa-truck"></i> Livraison rapide partout en France</li>
+                            <li><i class="fas fa-credit-card"></i> Paiement électronique sécurisé</li>
+                            <li><i class="fas fa-tools"></i> SAV et maintenance dédiée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 my-5">
+        <div class="container">
+            <div class="row bg-white shadow-lg rounded overflow-hidden">
+                <div class="col-lg-5 bg-dark-navy text-white p-5">
+                    <h3 class="mb-4">Vous avez un projet ?</h3>
+                    <p class="mb-5 text-gray" style="color: var(--text-gray);">Que vous recherchiez une nouvelle machine, des consommables ou une intervention technique, notre équipe est à votre disposition.</p>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-accent fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0">Adresses</h6>
+                            <small style="color: var(--text-gray);">Alger, Algérie | Paris, France</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="fas fa-phone-alt text-accent fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0">Téléphone / WhatsApp</h6>
+                            <small style="color: var(--text-gray);">+213 XX XX XX XX / +33 X XX XX XX XX</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope text-accent fs-4 me-3"></i>
+                        <div>
+                            <h6 class="mb-0">Email</h6>
+                            <small style="color: var(--text-gray);">contact@digi-maintenance.com</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 p-5">
+                    <h3 class="mb-4">Demander un devis ou une intervention</h3>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Nom complet</label>
+                                <input type="text" class="form-control" placeholder="Jean Dupont">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Entreprise</label>
+                                <input type="text" class="form-control" placeholder="Nom de votre société">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Email</label>
+                                <input type="email" class="form-control" placeholder="email@entreprise.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Téléphone</label>
+                                <input type="tel" class="form-control" placeholder="Votre numéro">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small text-muted">Sujet</label>
+                                <select class="form-select">
+                                    <option>Demande de devis (Achat d'équipement)</option>
+                                    <option>Demande d'intervention (Maintenance/Panne)</option>
+                                    <option>Achat de consommables/pièces</option>
+                                    <option>Autre demande</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small text-muted">Message</label>
+                                <textarea class="form-control" rows="4" placeholder="Détaillez votre besoin ou la panne rencontrée..."></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary-tech w-100">Envoyer ma demande</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-navy text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <h4 class="font-heading fw-bold mb-3">DIGI<span> Print</span></h4>
+                    <p class="small text-gray mb-4" style="color: var(--text-gray);">DIGI-Maintenance propose des solutions professionnelles d’impression, vente, maintenance et réparation d'équipements industriels.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-facebook fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h6 class="text-uppercase mb-3">Navigation</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#accueil" class="text-white text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="#produits" class="text-white text-decoration-none">Produits</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#apropos" class="text-white text-decoration-none">À propos</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <h6 class="text-uppercase mb-3">Client</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Demander un devis</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Assistance technique</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Conditions de livraison</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-uppercase mb-3">Marchés desservis</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt text-accent me-2"></i> Algérie (Livraison nationale)</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt text-accent me-2"></i> France (Métropole)</li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center small text-gray" style="color: var(--text-gray);">
+                © 2026 DIGI-Maintenance. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/21300000000" class="whatsapp-float" target="_blank" aria-label="Contact WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="#accueil" class="nav-item-mobile active">
+            <i class="fas fa-home"></i> Accueil
+        </a>
+        <a href="#produits" class="nav-item-mobile">
+            <i class="fas fa-print"></i> Produits
+        </a>
+        <a href="#services" class="nav-item-mobile">
+            <i class="fas fa-tools"></i> Services
+        </a>
+        <a href="#contact" class="nav-item-mobile">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Market/Country Switcher Logic
+        function switchCountry(countryCode) {
+            const priceElements = document.querySelectorAll('.dynamic-price');
+            
+            priceElements.forEach(el => {
+                // Add a subtle fade effect when changing prices
+                el.style.opacity = 0;
+                
+                setTimeout(() => {
+                    if(countryCode === 'DZ') {
+                        el.innerText = el.getAttribute('data-price-dz');
+                    } else if (countryCode === 'FR') {
+                        el.innerText = el.getAttribute('data-price-fr');
+                    }
+                    el.style.opacity = 1;
+                }, 200);
+            });
+            
+            // Sync the select dropdown if it's changed programmatically elsewhere
+            document.getElementById('marketSelector').value = countryCode;
+        }
+
+        // Initialize default country (Algeria)
+        document.addEventListener('DOMContentLoaded', () => {
+            switchCountry('DZ');
+        });
+
+        // Mobile Bottom Nav Active State logic
+        const mobileNavLinks = document.querySelectorAll('.nav-item-mobile');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNavLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
