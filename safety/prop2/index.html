@@ -1,0 +1,1583 @@
+
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta_title">Entrümpelung & Umzüge Hannover | SAFTY Dienstleistungen</title>
+    <meta name="description" data-i18n="meta_desc" content="SAFTY Dienstleistungen in Hannover: Entrümpelung, Wohnungsauflösung, Haushaltsauflösung, Hausauflösung, Firmenauflösung, Umzüge & Transporte. Jetzt kostenlos anfragen.">
+    
+    <!-- SEO & Hreflang -->
+    <link rel="canonical" href="https://safty-dienstleistungen.de/">
+    <link rel="alternate" hreflang="de-DE" href="https://safty-dienstleistungen.de/">
+    <link rel="alternate" hreflang="en" href="https://safty-dienstleistungen.de/en/">
+    <link rel="alternate" hreflang="x-default" href="https://safty-dienstleistungen.de/">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safty-dienstleistungen.de/">
+    <meta property="og:title" data-i18n="meta_title" content="Entrümpelung & Umzüge Hannover | SAFTY Dienstleistungen">
+    <meta property="og:description" data-i18n="meta_desc" content="SAFTY Dienstleistungen in Hannover: Entrümpelung, Wohnungsauflösung, Haushaltsauflösung, Hausauflösung, Firmenauflösung, Umzüge & Transporte. Jetzt kostenlos anfragen.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:locale" id="og-locale" content="de_DE">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6F9F2A',
+                        darkGreen: '#4A573E',
+                        charcoal: '#1C1F1F',
+                        black: '#0B0D0E',
+                        lightBg: '#EEEEED',
+                        white: '#FFFFFF',
+                        muted: '#A6ACA9',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific behaviors & animations -->
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+        .process-line::after {
+            content: '';
+            position: absolute;
+            background-color: #A6ACA9;
+            z-index: 0;
+        }
+
+        @media (min-width: 768px) {
+            .process-line::after {
+                top: 24px;
+                left: 50%;
+                right: -50%;
+                height: 2px;
+            }
+
+            .process-last::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .process-line::after {
+                left: 24px;
+                top: 50px;
+                bottom: -50px;
+                width: 2px;
+            }
+
+            .process-last::after {
+                display: none;
+            }
+        }
+        .pulse-btn { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(111, 159, 42, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(111, 159, 42, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(111, 159, 42, 0); }
+        }
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+            [data-aos] { opacity: 1 !important; transform: none !important; }
+        }
+        .faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease-out; }
+        .faq-content.active { grid-template-rows: 1fr; }
+        .faq-inner { overflow: hidden; }
+        .nav-scrolled { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    </style>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "SAFTY Dienstleistungen",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Friedrich-Ebert-Straße 19",
+        "addressLocality": "Hannover",
+        "postalCode": "30459",
+        "addressCountry": "DE"
+      },
+      "areaServed": ["Hannover", "Niedersachsen"],
+      "telephone": "+49 000 0000000",
+      "email": "info@safty-dienstleistungen.de",
+      "url": "https://safty-dienstleistungen.de/",
+      "priceRange": "Auf Anfrage",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    }
+    </script>
+</head>
+<body class="bg-lightBg text-black pt-[116px] lg:pt-[132px]">
+
+    <!-- Top Bar -->
+    <div class="bg-black text-muted text-xs md:text-sm py-2 px-4 fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 hidden md:flex">
+                <a href="tel:0000000" class="hover:text-primary transition-colors"><i class="fa-solid fa-phone mr-1"></i> <span data-i18n="top_phone">Telefon</span></a>
+                <a href="#" class="hover:text-primary transition-colors"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
+                <a href="mailto:info@safty-dienstleistungen.de" class="hover:text-primary transition-colors"><i class="fa-solid fa-envelope mr-1"></i> E-Mail</a>
+                <span class="text-charcoal">|</span>
+                <span><i class="fa-solid fa-location-dot mr-1 text-primary"></i> Hannover & Niedersachsen</span>
+            </div>
+            <div class="font-medium tracking-wide text-white" data-i18n="top_badge">FÜR PRIVAT & GEWERBE</div>
+            <div class="flex items-center md:hidden gap-4">
+                <a href="tel:0000000" class="text-white hover:text-primary"><i class="fa-solid fa-phone"></i></a>
+                <a href="#" class="text-white hover:text-primary"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:info@safty-dienstleistungen.de" class="text-white hover:text-primary"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header id="main-header" class="bg-charcoal text-white fixed top-[36px] md:top-[36px] w-full z-40 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="#" class="text-xl md:text-2xl font-extrabold tracking-tight flex items-center gap-2">
+                <span class="text-primary">SAFTY</span>
+                <span class="text-white font-medium text-lg hidden sm:block">Dienstleistungen</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium">
+                <a href="#home" class="hover:text-primary transition-colors" data-i18n="nav_home">Startseite</a>
+                <a href="#leistungen" class="hover:text-primary transition-colors" data-i18n="nav_services">Leistungen</a>
+                <a href="#uber-uns" class="hover:text-primary transition-colors" data-i18n="nav_about">Über uns</a>
+                <a href="#bewertungen" class="hover:text-primary transition-colors" data-i18n="nav_reviews">Bewertungen</a>
+                <a href="#faq" class="hover:text-primary transition-colors" data-i18n="nav_faq">FAQ</a>
+                <a href="#kontakt" class="hover:text-primary transition-colors" data-i18n="nav_contact">Kontakt</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="tel:0000000" class="flex items-center gap-2 hover:text-primary transition-colors group">
+                    <div class="bg-primary/20 p-2 rounded-full group-hover:bg-primary transition-colors"><i class="fa-solid fa-phone text-primary group-hover:text-white"></i></div>
+                    <span class="font-bold whitespace-nowrap">0511 0000 000</span>
+                </a>
+                <a href="#kontakt" class="bg-primary text-white px-5 py-2.5 rounded hover:bg-darkGreen transition-colors font-semibold" data-i18n="nav_btn">Angebot anfordern</a>
+                
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-2 border-l border-muted/30 pl-6 text-sm font-bold">
+                    <button id="lang-de" class="text-primary hover:text-white transition-colors">DE</button>
+                    <span class="text-muted/50">|</span>
+                    <button id="lang-en" class="text-muted hover:text-white transition-colors">EN</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-white hover:text-primary">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[60] hidden flex-col justify-center items-center text-center">
+
+        <button id="close-menu-btn"
+            class="absolute top-6 right-6 text-3xl text-white hover:text-primary">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Centered navigation group -->
+        <div class="flex flex-col items-center justify-center">
+
+            <nav class="flex flex-col gap-6 text-xl font-bold text-white">
+                <a href="#home" class="mobile-link hover:text-primary" data-i18n="nav_home">
+                    Startseite
+                </a>
+
+                <a href="#leistungen" class="mobile-link hover:text-primary" data-i18n="nav_services">
+                    Leistungen
+                </a>
+
+                <a href="#uber-uns" class="mobile-link hover:text-primary" data-i18n="nav_about">
+                    Über uns
+                </a>
+
+                <a href="#bewertungen" class="mobile-link hover:text-primary" data-i18n="nav_reviews">
+                    Bewertungen
+                </a>
+
+                <a href="#faq" class="mobile-link hover:text-primary" data-i18n="nav_faq">
+                    FAQ
+                </a>
+
+                <a href="#kontakt" class="mobile-link hover:text-primary" data-i18n="nav_contact">
+                    Kontakt
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4 text-lg font-bold text-muted mt-8">
+                <button class="lang-switch-mobile text-primary" data-lang="de">DE</button>
+                <span>|</span>
+                <button class="lang-switch-mobile" data-lang="en">EN</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative bg-white pt-10 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Content -->
+            <div class="relative z-10">
+                <div class="inline-block bg-lightBg text-darkGreen font-bold text-xs tracking-wider py-1.5 px-3 rounded mb-6 border border-primary/20" data-aos="fade-up" data-i18n="hero_badge">
+                    FÜR PRIVAT & GEWERBE
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black leading-[1.1] mb-6" data-aos="fade-up" data-aos-delay="100" data-i18n="hero_h1">
+                    Entrümpelung & Umzüge in Hannover
+                </h1>
+                <p class="text-lg text-charcoal/80 mb-8 max-w-lg" data-aos="fade-up" data-aos-delay="200" data-i18n="hero_p">
+                    Zuverlässig, schnell und sauber – SAFTY Dienstleistungen übernimmt Entrümpelungen, Haushaltsauflösungen, Umzüge und Transporte in Hannover und ganz Niedersachsen.
+                </p>
+                
+                <ul class="space-y-3 mb-10" data-aos="fade-up" data-aos-delay="300">
+                    <li class="flex items-center gap-3 text-black font-medium">
+                        <i class="fa-solid fa-check text-primary bg-primary/10 p-1.5 rounded-full text-xs"></i> 
+                        <span data-i18n="hero_check1">Kostenlose Besichtigung & Angebot</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-black font-medium">
+                        <i class="fa-solid fa-check text-primary bg-primary/10 p-1.5 rounded-full text-xs"></i> 
+                        <span data-i18n="hero_check2">Flexible Terminvereinbarung</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-black font-medium">
+                        <i class="fa-solid fa-check text-primary bg-primary/10 p-1.5 rounded-full text-xs"></i> 
+                        <span data-i18n="hero_check3">Besenreine Übergabe</span>
+                    </li>
+                </ul>
+
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#kontakt" class="bg-primary text-white font-bold py-4 px-8 rounded hover:bg-darkGreen transition-colors shadow-lg shadow-primary/30 w-full sm:w-auto text-center" data-i18n="hero_btn_primary">
+                        Kostenloses Angebot anfordern
+                    </a>
+                    <a href="tel:0000000" class="bg-charcoal text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto text-center" data-i18n="hero_btn_secondary">
+                        Jetzt anrufen
+                    </a>
+                </div>
+                <div class="mt-4 flex items-center gap-2 text-sm text-muted" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fa-brands fa-whatsapp text-primary"></i> <span data-i18n="hero_whatsapp_sub">Auch per WhatsApp erreichbar</span>
+                </div>
+            </div>
+
+            <!-- Right Image -->
+            <div class="relative" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[3/4] shadow-2xl">
+                    <div class="absolute inset-0 bg-charcoal/20 z-10"></div>
+                    <!-- Placeholder realistic moving team image -->
+                    <img src="https://images.unsplash.com/photo-1614359835514-92f8ba196357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professionelles Umzugsteam in Hannover" class="w-full h-full object-cover" id="hero-img">
+                </div>
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-xl z-20 flex items-center gap-4 border-l-4 border-primary">
+                    <div class="bg-primary/10 w-12 h-12 flex items-center justify-center rounded-full">
+                        <i class="fa-solid fa-shield-halved text-primary text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="font-extrabold text-black" data-i18n="hero_float_title">Zuverlässig • Schnell • Sauber</div>
+                        <div class="text-sm text-muted" data-i18n="hero_float_sub">Ihr lokaler Partner</div>
+                    </div>
+                </div>
+                <!-- Decorative element -->
+                <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl -z-10"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <div class="bg-charcoal border-b-4 border-primary py-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center text-white">
+                <div class="flex flex-col items-center gap-3 group" data-aos="fade-up" data-aos-delay="50">
+                    <i class="fa-solid fa-shield-halved text-2xl text-primary group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-sm font-medium" data-i18n="trust_1">Zuverlässig & pünktlich</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 group" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-euro-sign text-2xl text-primary group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-sm font-medium" data-i18n="trust_2">Faire Preise</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 group" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fa-solid fa-recycle text-2xl text-primary group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-sm font-medium" data-i18n="trust_3">Fachgerechte Entsorgung</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 group" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-users text-2xl text-primary group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-sm font-medium" data-i18n="trust_4">Erfahrenes Team</span>
+                </div>
+                <div class="flex flex-col items-center gap-3 group col-span-2 md:col-span-1" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fa-solid fa-broom text-2xl text-primary group-hover:-translate-y-1 transition-transform"></i>
+                    <span class="text-sm font-medium" data-i18n="trust_5">Besenreine Übergabe</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION -->
+    <section id="leistungen" class="py-20 lg:py-28 bg-lightBg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-6" data-aos="fade-up" data-i18n="srv_h2">Unsere Leistungen</h2>
+                <p class="text-lg text-charcoal/70" data-aos="fade-up" data-aos-delay="100" data-i18n="srv_sub">
+                    Von der kleinen Kellerauflösung bis zur kompletten Haus- oder Firmenauflösung – wir übernehmen die Arbeit zuverlässig und professionell.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service Cards -->
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="50">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">01</div>
+                    <i class="fa-solid fa-boxes-stacked text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_1_title">Entrümpelung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_1_desc">Wir räumen Wohnungen, Häuser, Keller, Dachböden und weitere Räume schnell und zuverlässig.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">02</div>
+                    <i class="fa-solid fa-house text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_2_title">Wohnungsauflösung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_2_desc">Komplette Räumung von Wohnungen – diskret, organisiert und auf Wunsch besenrein.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="150">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">03</div>
+                    <i class="fa-solid fa-house-chimney text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_3_title">Haushaltsauflösung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_3_desc">Wir übernehmen die vollständige Räumung und Auflösung von Haushalten.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">04</div>
+                    <i class="fa-solid fa-house text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_4_title">Hausauflösung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_4_desc">Professionelle Räumung kompletter Häuser inklusive Nebenräumen.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="250">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">05</div>
+                    <i class="fa-solid fa-building text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_5_title">Firmenauflösung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_5_desc">Räumung von Büros, Geschäftsräumen, Lagern und gewerblichen Objekten.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">06</div>
+                    <i class="fa-solid fa-warehouse text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_6_title">Keller- & Dachboden</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_6_desc">Wir schaffen Ordnung und Platz in Kellern, Dachböden und Abstellräumen.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="350">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">07</div>
+                    <i class="fa-solid fa-truck text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_7_title">Umzüge & Transporte</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_7_desc">Private und gewerbliche Umzüge sowie sichere Transporte.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">08</div>
+                    <i class="fa-solid fa-broom text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
+                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_8_title">Gebäudereinigung</h3>
+                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_8_desc">Zusätzliche Reinigungsleistungen für Gebäude und Räumlichkeiten.</p>
+                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="py-20 bg-white">
+
+        <div class="max-w-7xl mx-auto px-4">
+
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+
+                <span
+                    class="text-primary font-bold tracking-widest text-sm uppercase mb-2 block"
+                    data-i18n="proc_label"
+                >
+                    Einfach & Transparent
+                </span>
+
+                <h2
+                    class="text-3xl md:text-4xl font-extrabold text-black"
+                    data-aos="fade-up"
+                    data-i18n="proc_h2"
+                >
+                    SO FUNKTIONIERT IHR AUFTRAG
+                </h2>
+
+            </div>
+
+
+            <!-- Process Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 relative z-10">
+
+                <!-- Step 1 -->
+                <div
+                    class="relative process-line grid grid-cols-[3rem_1fr] md:flex md:flex-col md:items-center md:text-center"
+                    data-aos="fade-up"
+                    data-aos-delay="50"
+                >
+
+                    <!-- Number -->
+                    <div class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10 shadow-lg shadow-primary/40">
+                        01
+                    </div>
+
+                    <!-- Content -->
+                    <div class="ps-4 md:ps-0 pt-1 md:pt-0 md:mt-6">
+
+                        <i class="fa-regular fa-envelope text-2xl text-darkGreen mb-3 block"></i>
+
+                        <h4
+                            class="font-bold text-black text-lg mb-2"
+                            data-i18n="proc_1_title"
+                        >
+                            Anfrage senden
+                        </h4>
+
+                        <p
+                            class="text-charcoal/70 text-sm leading-relaxed max-w-xs md:mx-auto"
+                            data-i18n="proc_1_desc"
+                        >
+                            Beschreiben Sie kurz, was Sie benötigen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Step 2 -->
+                <div
+                    class="relative process-line grid grid-cols-[3rem_1fr] md:flex md:flex-col md:items-center md:text-center"
+                    data-aos="fade-up"
+                    data-aos-delay="150"
+                >
+
+                    <!-- Number -->
+                    <div class="bg-charcoal text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10 border-2 border-white">
+                        02
+                    </div>
+
+                    <!-- Content -->
+                    <div class="ps-4 md:ps-0 pt-1 md:pt-0 md:mt-6">
+
+                        <i class="fa-solid fa-people-arrows text-2xl text-darkGreen mb-3 block"></i>
+
+                        <h4
+                            class="font-bold text-black text-lg mb-2"
+                            data-i18n="proc_2_title"
+                        >
+                            Besichtigung & Beratung
+                        </h4>
+
+                        <p
+                            class="text-charcoal/70 text-sm leading-relaxed max-w-xs md:mx-auto"
+                            data-i18n="proc_2_desc"
+                        >
+                            Wir besprechen Ihren Auftrag und verschaffen uns bei Bedarf vor Ort einen Überblick.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Step 3 -->
+                <div
+                    class="relative process-line grid grid-cols-[3rem_1fr] md:flex md:flex-col md:items-center md:text-center"
+                    data-aos="fade-up"
+                    data-aos-delay="250"
+                >
+
+                    <!-- Number -->
+                    <div class="bg-charcoal text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10 border-2 border-white">
+                        03
+                    </div>
+
+                    <!-- Content -->
+                    <div class="ps-4 md:ps-0 pt-1 md:pt-0 md:mt-6">
+
+                        <i class="fa-solid fa-file-invoice-dollar text-2xl text-darkGreen mb-3 block"></i>
+
+                        <h4
+                            class="font-bold text-black text-lg mb-2"
+                            data-i18n="proc_3_title"
+                        >
+                            Individuelles Angebot
+                        </h4>
+
+                        <p
+                            class="text-charcoal/70 text-sm leading-relaxed max-w-xs md:mx-auto"
+                            data-i18n="proc_3_desc"
+                        >
+                            Sie erhalten ein transparentes Angebot passend zu Ihrem Auftrag.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Step 4 -->
+                <div
+                    class="relative process-line process-last grid grid-cols-[3rem_1fr] md:flex md:flex-col md:items-center md:text-center"
+                    data-aos="fade-up"
+                    data-aos-delay="350"
+                >
+
+                    <!-- Check -->
+                    <div class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl relative z-10 shadow-lg shadow-primary/40 border-2 border-white">
+                        <i class="fa-solid fa-check text-base"></i>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="ps-4 md:ps-0pt-1 md:pt-0 md:mt-6">
+
+                        <i class="fa-solid fa-truck-fast text-2xl text-darkGreen mb-3 block"></i>
+
+                        <h4
+                            class="font-bold text-black text-lg mb-2"
+                            data-i18n="proc_4_title"
+                        >
+                            Auftrag erledigt
+                        </h4>
+
+                        <p
+                            class="text-charcoal/70 text-sm leading-relaxed max-w-xs md:mx-auto"
+                            data-i18n="proc_4_desc"
+                        >
+                            Wir übernehmen die vereinbarten Arbeiten zuverlässig und sauber.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="uber-uns" class="py-20 bg-lightBg">
+        <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 lg:order-1 relative rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1614359835514-92f8ba196357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SAFTY Dienstleistungen Umzugsteam" class="w-full h-full object-cover rounded-2xl" id="about-img">
+                <div class="absolute inset-0 border-4 border-primary/20 rounded-2xl m-4 pointer-events-none"></div>
+            </div>
+
+            <div class="order-1 lg:order-2" data-aos="fade-in">
+                <span class="bg-primary/10 text-primary font-bold text-xs tracking-wider py-1.5 px-3 rounded inline-block mb-4" data-i18n="abt_label">ÜBER SAFTY</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-6" data-i18n="abt_h2">Persönlicher Service. Zuverlässige Arbeit.</h2>
+                <div class="text-charcoal/80 space-y-4 mb-8">
+                    <p data-i18n="abt_p1">SAFTY Dienstleistungen steht für zuverlässige Unterstützung bei Entrümpelungen, Auflösungen, Umzügen und Transporten in Hannover und Niedersachsen.</p>
+                    <p data-i18n="abt_p2">Ob Privathaushalt, Wohnung, Haus oder Gewerbeobjekt – wir legen Wert auf klare Absprachen, eine saubere Durchführung und einen persönlichen Ansprechpartner.</p>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm border border-muted/10">
+                        <i class="fa-solid fa-location-dot text-primary text-xl"></i>
+                        <span class="font-bold text-sm text-black" data-i18n="abt_feat1">Hannover & Niedersachsen</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm border border-muted/10">
+                        <i class="fa-solid fa-user text-primary text-xl"></i>
+                        <span class="font-bold text-sm text-black" data-i18n="abt_feat2">Persönlicher Ansprechpartner</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white p-4 rounded-lg shadow-sm border border-muted/10 sm:col-span-2">
+                        <i class="fa-solid fa-people-group text-primary text-xl"></i>
+                        <span class="font-bold text-sm text-black" data-i18n="abt_feat3">Privat & Gewerbe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUSTAINABILITY -->
+    <section class="py-24 bg-black text-white relative overflow-hidden">
+        <!-- Abstract bg shapes -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-darkGreen/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <i class="fa-solid fa-leaf text-4xl text-primary mb-6"></i>
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-6" data-aos="fade-up" data-i18n="sust_h2">Nicht alles muss auf den Müll.</h2>
+                <p class="text-muted/90 text-lg" data-aos="fade-up" data-aos-delay="100" data-i18n="sust_p">
+                    Bei Räumungen prüfen wir, welche Gegenstände noch sinnvoll weiterverwendet oder verwertet werden können. Nicht mehr benötigte Gegenstände werden fachgerecht entsorgt.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-charcoal/50 p-8 rounded-xl border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-recycle text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="sust_f1_title">Prüfen & sortieren</h4>
+                </div>
+                <div class="bg-charcoal/50 p-8 rounded-xl border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-hand-holding-heart text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="sust_f2_title">Verwertbares weitergeben</h4>
+                </div>
+                <div class="bg-charcoal/50 p-8 rounded-xl border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-trash-can text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2" data-i18n="sust_f3_title">Fachgerecht entsorgen</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANSPORT SECTION -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-black text-center mb-16" data-aos="fade-up" data-i18n="trans_h2">Transportlösungen für Ihren Auftrag</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Vehicle 1 -->
+                <div class="bg-lightBg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-64 bg-charcoal relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=800&auto=format&fit=crop" alt="Transporter 3,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-1">
+                        <div class="absolute bottom-0 left-0 bg-primary text-white font-extrabold text-2xl px-6 py-2 rounded-tr-xl">3,5 t</div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-bold text-black mb-3" data-i18n="trans_1_title">Kleinere Umzüge & Transporte</h4>
+                        <p class="text-charcoal/70" data-i18n="trans_1_desc">Ideal für Wohnungsauflösungen, Entrümpelungen einzelner Räume und klassische Stadtumzüge.</p>
+                    </div>
+                </div>
+
+                <!-- Vehicle 2 -->
+                <div class="bg-lightBg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 bg-charcoal relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop" alt="LKW 7,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-2">
+                        <div class="absolute bottom-0 left-0 bg-charcoal text-white font-extrabold text-2xl px-6 py-2 rounded-tr-xl">7,5 t</div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <h4 class="text-2xl font-bold text-black mb-3" data-i18n="trans_2_title">Für größere Umzüge und Räumungen</h4>
+                        <p class="text-charcoal/70" data-i18n="trans_2_desc">Das richtige Fahrzeug für umfangreiche Hausauflösungen, Firmenräumungen und große Umzüge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY SAFTY -->
+    <section class="py-20 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4" data-aos="fade-up" data-i18n="why_h2">Warum SAFTY?</h2>
+                <p class="text-muted text-lg" data-aos="fade-up" data-aos-delay="100" data-i18n="why_sub">Ihre Vorteile auf einen Blick</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-charcoal p-8 rounded-xl border border-white/5" data-aos="fade-up" data-aos-delay="50">
+                    <i class="fa-solid fa-clock text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3" data-i18n="why_1_title">Zuverlässige Termine</h4>
+                    <p class="text-muted/80 text-sm" data-i18n="why_1_desc">Klare Absprachen und zuverlässige Planung.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-xl border border-white/5" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fa-solid fa-user-check text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3" data-i18n="why_2_title">Persönlicher Ansprechpartner</h4>
+                    <p class="text-muted/80 text-sm" data-i18n="why_2_desc">Direkter Kontakt und individuelle Betreuung.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-xl border border-white/5" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fa-solid fa-handshake text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3" data-i18n="why_3_title">Faire Kommunikation</h4>
+                    <p class="text-muted/80 text-sm" data-i18n="why_3_desc">Transparente Informationen von der Anfrage bis zum Abschluss.</p>
+                </div>
+                <div class="bg-charcoal p-8 rounded-xl border border-white/5" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fa-solid fa-broom text-3xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-3" data-i18n="why_4_title">Saubere Übergabe</h4>
+                    <p class="text-muted/80 text-sm" data-i18n="why_4_desc">Ordentliche und zuverlässige Durchführung Ihres Auftrags.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS (Placeholder) -->
+    <section id="bewertungen" class="py-20 bg-lightBg">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-6" data-aos="fade-up" data-i18n="rev_h2">Was unsere Kunden sagen</h2>
+            
+            <div class="bg-white p-10 rounded-2xl shadow-sm border border-muted/20 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-star text-muted/30 text-4xl mb-4"></i>
+                <p class="text-lg text-charcoal font-medium italic mb-4" data-i18n="rev_p1">"Bewertungen werden hier veröffentlicht."</p>
+                <p class="text-charcoal/70 text-sm" data-i18n="rev_p2">Wir freuen uns nach jedem Auftrag über Ihre Rückmeldung.</p>
+            </div>
+
+            <a href="#" target="_blank" class="inline-flex items-center gap-3 bg-white border border-muted/30 text-black font-bold py-3 px-6 rounded-full hover:bg-lightBg transition-colors" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="w-5 h-5">
+                <span data-i18n="rev_btn">Google Bewertungen</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- MAIN CTA -->
+    <section class="relative py-28 bg-charcoal overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600&auto=format&fit=crop" alt="Umzugswagen SAFTY" class="w-full h-full object-cover opacity-20 grayscale" id="cta-img">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-charcoal/80 to-transparent"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight" data-aos="zoom-in" data-i18n="cta_h2">Sie möchten Platz schaffen?</h2>
+            <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100" data-i18n="cta_p">
+                Ob Entrümpelung, Wohnungsauflösung, Firmenauflösung oder Umzug – sprechen Sie mit SAFTY.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="#kontakt" class="bg-primary text-white font-bold py-4 px-8 rounded hover:bg-darkGreen transition-colors shadow-[0_0_20px_rgba(111,159,42,0.4)] w-full sm:w-auto" data-i18n="cta_btn1">Kostenloses Angebot anfordern</a>
+                <a href="tel:0000000" class="bg-white text-black font-bold py-4 px-8 rounded hover:bg-lightBg transition-colors w-full sm:w-auto" data-i18n="cta_btn2"><i class="fa-solid fa-phone mr-2 text-primary"></i> Jetzt anrufen</a>
+                <a href="#" class="bg-black/50 backdrop-blur border border-white/20 text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto" data-i18n="cta_btn3"><i class="fa-brands fa-whatsapp mr-2 text-primary"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-black text-center mb-12" data-aos="fade-up" data-i18n="faq_h2">Häufig gestellte Fragen</h2>
+            
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- FAQ 1 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_1_q">Was kostet eine Entrümpelung?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_1_a">
+                            Die Kosten hängen vom Volumen, dem Aufwand und der Art der zu entsorgenden Gegenstände ab. Nach einer kostenlosen Besichtigung oder genauen Beschreibung erstellen wir Ihnen ein faires, transparentes Angebot.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_2_q">Wie kurzfristig kann ich einen Termin bekommen?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_2_a">
+                            Wir bemühen uns, Ihre Anfrage schnellstmöglich zu bearbeiten. Oft können wir kurzfristige Termine innerhalb weniger Tage realisieren. Sprechen Sie uns einfach an!
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_3_q">Muss ich bei der Entrümpelung anwesend sein?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_3_a">
+                            Nein, das ist nicht zwingend erforderlich. Sobald wir den genauen Umfang geklärt haben, können wir den Auftrag auch selbstständig und zuverlässig durchführen.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_4_q">Was passiert mit den Gegenständen?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_4_a">
+                            Verwertbare Gegenstände können wir nach Absprache weitergeben oder anrechnen. Nicht mehr nutzbare Dinge werden fachgerecht und umweltfreundlich nach den geltenden Vorschriften entsorgt.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_5_q">Welche Gebiete bedient SAFTY?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_5_a">
+                            Wir sind in ganz Hannover sowie in gesamt Niedersachsen für Sie im Einsatz.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 6 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_6_q">Wie läuft ein Auftrag ab?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_6_a">
+                            Nach Ihrer Anfrage und einer eventuellen Besichtigung erhalten Sie ein Angebot. Stimmen Sie zu, vereinbaren wir einen Termin und führen die Arbeiten aus – bis zur besenreinen Übergabe.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 7 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_7_q">Gibt es versteckte Kosten?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_7_a">
+                            Nein. Wir legen großen Wert auf Transparenz. Sie erhalten im Vorfeld ein klares Angebot auf Basis unserer Absprachen.
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQ 8 -->
+                <div class="faq-item border border-muted/20 rounded-lg bg-lightBg/50 overflow-hidden">
+                    <button class="faq-btn w-full text-left px-6 py-5 font-bold text-black flex justify-between items-center focus:outline-none">
+                        <span data-i18n="faq_8_q">Ist SAFTY versichert?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner px-6 pb-5 text-charcoal/80 text-sm" data-i18n="faq_8_a">
+                            Bitte sprechen Sie uns direkt an, um Details zu Haftungs- und Versicherungsfragen für Ihren speziellen Auftrag (z.B. Umzug) zu klären.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & FORM -->
+    <section id="kontakt" class="py-20 bg-lightBg relative">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <div class="grid lg:grid-cols-5 gap-12">
+                <!-- Form Side -->
+                <div class="lg:col-span-3 bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-muted/10 relative z-10">
+                    <h2 class="text-3xl font-extrabold text-black mb-2" data-i18n="form_h2">Kostenloses Angebot anfordern</h2>
+                    <p class="text-charcoal/70 mb-8" data-i18n="form_sub">Beschreiben Sie uns kurz Ihr Vorhaben. Wir melden uns schnellstmöglich bei Ihnen.</p>
+                    
+                    <form id="quote-form" class="space-y-5">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_service">Leistung</label>
+                            <div class="relative border-b-2 border-muted/30 focus-within:border-primary transition-colors">
+                                <select class="w-full bg-transparent py-3 outline-none text-charcoal font-medium appearance-none cursor-pointer" required id="form-service">
+                                    <option value="" disabled selected data-i18n="form_opt_default">Bitte wählen...</option>
+                                    <option value="entrumpelung" data-i18n="form_opt_1">Entrümpelung</option>
+                                    <option value="wohnungsauflosung" data-i18n="form_opt_2">Wohnungsauflösung</option>
+                                    <option value="haushaltsauflosung" data-i18n="form_opt_3">Haushaltsauflösung</option>
+                                    <option value="hausauflosung" data-i18n="form_opt_4">Hausauflösung</option>
+                                    <option value="firmenauflosung" data-i18n="form_opt_5">Firmenauflösung</option>
+                                    <option value="keller" data-i18n="form_opt_6">Keller-/Dachbodenauflösung</option>
+                                    <option value="umzug" data-i18n="form_opt_7">Umzug / Transport</option>
+                                    <option value="reinigung" data-i18n="form_opt_8">Gebäudereinigung</option>
+                                    <option value="sonstiges" data-i18n="form_opt_9">Sonstiges</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-2 top-4 text-muted/80 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_name">Vor- und Nachname</label>
+                                <input type="text" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_phone">Telefon</label>
+                                <input type="tel" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium" required>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_email">E-Mail</label>
+                                <input type="email" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium" required>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="block text-sm font-bold text-black mb-1">PLZ</label>
+                                    <input type="text" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_city">Ort</label>
+                                    <input type="text" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_street">Straße & Hausnummer</label>
+                            <input type="text" class="w-full border-b-2 border-muted/30 bg-transparent py-2 outline-none focus:border-primary transition-colors text-charcoal font-medium">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-black mb-1" data-i18n="form_lbl_msg">Beschreiben Sie Ihre Anfrage</label>
+                            <textarea rows="4" class="w-full border-2 border-muted/30 rounded bg-transparent p-3 outline-none focus:border-primary transition-colors text-charcoal font-medium resize-none mt-1"></textarea>
+                        </div>
+
+                        <!-- Optional Upload -->
+                        <div class="border-2 border-dashed border-muted/40 p-4 rounded text-center hover:bg-lightBg/50 transition-colors cursor-pointer">
+                            <i class="fa-solid fa-cloud-arrow-up text-primary text-xl mb-2"></i>
+                            <div class="text-sm font-bold text-black" data-i18n="form_upload">Fotos hochladen (Optional)</div>
+                            <input type="file" multiple class="hidden">
+                        </div>
+
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" required class="mt-1 w-4 h-4 text-primary bg-lightBg border-muted rounded focus:ring-primary accent-primary">
+                            <span class="text-xs text-charcoal/70 leading-tight" data-i18n="form_gdpr">Ich akzeptiere die Datenschutzerklärung und stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden.</span>
+                        </label>
+
+                        <button type="submit" class="w-full bg-black text-white font-bold py-4 rounded hover:bg-primary transition-colors flex items-center justify-center gap-2 mt-4 group">
+                            <span data-i18n="form_submit">Anfrage kostenlos senden</span> <i class="fa-solid fa-paper-plane group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </form>
+
+                    <!-- Success State -->
+                    <div id="form-success" class="hidden absolute inset-0 bg-white rounded-2xl flex-col items-center justify-center text-center p-8 z-20">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-check text-4xl text-primary"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-black mb-2" data-i18n="form_succ_h3">Vielen Dank für Ihre Anfrage.</h3>
+                        <p class="text-charcoal/80" data-i18n="form_succ_p">Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.</p>
+                        <button onclick="document.getElementById('form-success').classList.add('hidden'); document.getElementById('quote-form').reset();" class="mt-8 text-primary font-bold hover:underline" data-i18n="form_succ_btn">Neue Anfrage stellen</button>
+                    </div>
+
+                </div>
+
+                <!-- Info Side -->
+                <div class="lg:col-span-2 space-y-8" data-aos="fade-in">
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-muted/10">
+                        <h3 class="text-xl font-bold text-black mb-6">SAFTY Dienstleistungen</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-location-dot text-primary mt-1 text-lg w-5 text-center"></i>
+                                <div>
+                                    <div class="font-bold text-black" data-i18n="info_address">Adresse</div>
+                                    <div class="text-charcoal/80 text-sm">Friedrich-Ebert-Straße 19<br>30459 Hannover<br>Deutschland</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-phone text-primary mt-1 text-lg w-5 text-center"></i>
+                                <div>
+                                    <div class="font-bold text-black">Telefon</div>
+                                    <a href="tel:0000000" class="text-charcoal/80 text-sm hover:text-primary">[0511 0000 000]</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-brands fa-whatsapp text-primary mt-1 text-lg w-5 text-center"></i>
+                                <div>
+                                    <div class="font-bold text-black">WhatsApp</div>
+                                    <a href="#" class="text-charcoal/80 text-sm hover:text-primary">[0151 0000 000]</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-envelope text-primary mt-1 text-lg w-5 text-center"></i>
+                                <div>
+                                    <div class="font-bold text-black">E-Mail</div>
+                                    <a href="mailto:info@safty.de" class="text-charcoal/80 text-sm hover:text-primary">[info@safty-dienstleistungen.de]</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-clock text-primary mt-1 text-lg w-5 text-center"></i>
+                                <div>
+                                    <div class="font-bold text-black" data-i18n="info_hours">Erreichbarkeit</div>
+                                    <div class="text-charcoal/80 text-sm" data-i18n="info_hours_val">Mo - Sa: 08:00 - 18:00 Uhr</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-muted/10 h-64 relative group flex items-center justify-center">
+                        <div class="absolute inset-0 bg-lightBg flex items-center justify-center text-muted">
+                            <i class="fa-solid fa-map-location-dot text-6xl opacity-20"></i>
+                        </div>
+                        <div class="relative z-10 bg-white/90 backdrop-blur px-4 py-2 rounded font-bold text-sm text-charcoal border border-muted/20" data-i18n="info_map">Google Maps Platzhalter</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white/70 pt-20 pb-10 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="text-2xl font-extrabold tracking-tight flex items-center gap-2 mb-4 text-white">
+                        <span class="text-primary">SAFTY</span>
+                    </div>
+                    <p class="text-sm mb-6" data-i18n="foot_desc">Entrümpelung, Auflösungen, Umzüge & Transporte in Hannover und Niedersachsen.</p>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="foot_h_srv">Leistungen</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_1">Entrümpelung</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_2">Wohnungsauflösung</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_3">Hausauflösung</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_4">Firmenauflösung</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_5">Kellerauflösung</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_srv_6">Umzüge & Transporte</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="foot_h_comp">Unternehmen</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-primary transition-colors" data-i18n="nav_home">Startseite</a></li>
+                        <li><a href="#uber-uns" class="hover:text-primary transition-colors" data-i18n="nav_about">Über uns</a></li>
+                        <li><a href="#bewertungen" class="hover:text-primary transition-colors" data-i18n="nav_reviews">Bewertungen</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition-colors" data-i18n="nav_faq">FAQ</a></li>
+                        <li><a href="#kontakt" class="hover:text-primary transition-colors" data-i18n="nav_contact">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 3 -->
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-i18n="foot_h_legal">Rechtliches</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_leg_1">Impressum</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_leg_2">Datenschutz</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="foot_leg_3">Cookie-Richtlinie</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <div data-i18n="foot_copy">&copy; 2026 SAFTY Dienstleistungen. Alle Rechte vorbehalten.</div>
+                <div class="flex gap-4">
+                    <!-- Social placeholders -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <a
+        href="#"
+        class="hidden md:flex fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full items-center justify-center text-3xl shadow-lg z-50 pulse-btn hover:scale-110 transition-transform"
+        title="Per WhatsApp kontaktieren"
+    >
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- MOBILE BOTTOM BAR -->
+    <div class="md:hidden fixed bottom-0 w-full bg-black text-white flex z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.2)]">
+        <a href="tel:0000000" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
+            <i class="fa-solid fa-phone text-lg mb-1 text-primary"></i>
+            <span class="text-[10px] font-bold uppercase" data-i18n="mob_call">Anrufen</span>
+        </a>
+        <a href="#" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
+            <i class="fa-brands fa-whatsapp text-lg mb-1 text-primary"></i>
+            <span class="text-[10px] font-bold uppercase">WhatsApp</span>
+        </a>
+        <a href="#kontakt" class="flex-1 flex flex-col items-center justify-center py-3 bg-primary text-white hover:bg-darkGreen transition-colors">
+            <i class="fa-solid fa-file-signature text-lg mb-1"></i>
+            <span class="text-[10px] font-bold uppercase" data-i18n="mob_offer">Angebot</span>
+        </a>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init AOS Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 600,
+            easing: 'ease-out-cubic'
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('nav-scrolled', 'bg-black/95', 'backdrop-blur');
+                header.classList.remove('bg-charcoal', 'py-4');
+            } else {
+                header.classList.remove('nav-scrolled', 'bg-black/95', 'backdrop-blur');
+                header.classList.add('bg-charcoal', 'py-4');
+            }
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // FAQ Accordion
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                const isOpen = content.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('active'));
+                document.querySelectorAll('.faq-btn i').forEach(i => {
+                    i.classList.remove('fa-minus', 'rotate-180');
+                    i.classList.add('fa-plus');
+                });
+
+                // Open clicked if it wasn't open
+                if (!isOpen) {
+                    content.classList.add('active');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus', 'rotate-180');
+                }
+            });
+        });
+
+        // Form Submit Sim
+        const form = document.getElementById('quote-form');
+        const successMsg = document.getElementById('form-success');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successMsg.classList.remove('hidden');
+        });
+
+        // --- TRANSLATION LOGIC ---
+        const dictionary = {
+            de: {
+                meta_title: "Entrümpelung & Umzüge Hannover | SAFTY Dienstleistungen",
+                meta_desc: "SAFTY Dienstleistungen in Hannover: Entrümpelung, Wohnungsauflösung, Haushaltsauflösung, Hausauflösung, Firmenauflösung, Umzüge & Transporte. Jetzt kostenlos anfragen.",
+                top_badge: "FÜR PRIVAT & GEWERBE",
+                top_phone: "Telefon",
+                nav_home: "Startseite",
+                nav_services: "Leistungen",
+                nav_about: "Über uns",
+                nav_reviews: "Bewertungen",
+                nav_faq: "FAQ",
+                nav_contact: "Kontakt",
+                nav_btn: "Angebot anfordern",
+                hero_badge: "FÜR PRIVAT & GEWERBE",
+                hero_h1: "Entrümpelung & Umzüge in Hannover",
+                hero_p: "Zuverlässig, schnell und sauber – SAFTY Dienstleistungen übernimmt Entrümpelungen, Haushaltsauflösungen, Umzüge und Transporte in Hannover und ganz Niedersachsen.",
+                hero_check1: "Kostenlose Besichtigung & Angebot",
+                hero_check2: "Flexible Terminvereinbarung",
+                hero_check3: "Besenreine Übergabe",
+                hero_btn_primary: "Kostenloses Angebot anfordern",
+                hero_btn_secondary: "Jetzt anrufen",
+                hero_whatsapp_sub: "Auch per WhatsApp erreichbar",
+                hero_float_title: "Zuverlässig • Schnell • Sauber",
+                hero_float_sub: "Ihr lokaler Partner",
+                trust_1: "Zuverlässig & pünktlich",
+                trust_2: "Faire Preise",
+                trust_3: "Fachgerechte Entsorgung",
+                trust_4: "Erfahrenes Team",
+                trust_5: "Besenreine Übergabe",
+                srv_h2: "Unsere Leistungen",
+                srv_sub: "Von der kleinen Kellerauflösung bis zur kompletten Haus- oder Firmenauflösung – wir übernehmen die Arbeit zuverlässig und professionell.",
+                srv_1_title: "Entrümpelung",
+                srv_1_desc: "Wir räumen Wohnungen, Häuser, Keller, Dachböden und weitere Räume schnell und zuverlässig.",
+                srv_2_title: "Wohnungsauflösung",
+                srv_2_desc: "Komplette Räumung von Wohnungen – diskret, organisiert und auf Wunsch besenrein.",
+                srv_3_title: "Haushaltsauflösung",
+                srv_3_desc: "Wir übernehmen die vollständige Räumung und Auflösung von Haushalten.",
+                srv_4_title: "Hausauflösung",
+                srv_4_desc: "Professionelle Räumung kompletter Häuser inklusive Nebenräumen.",
+                srv_5_title: "Firmenauflösung",
+                srv_5_desc: "Räumung von Büros, Geschäftsräumen, Lagern und gewerblichen Objekten.",
+                srv_6_title: "Keller- & Dachbodenauflösung",
+                srv_6_desc: "Wir schaffen Ordnung und Platz in Kellern, Dachböden und Abstellräumen.",
+                srv_7_title: "Umzüge & Transporte",
+                srv_7_desc: "Private und gewerbliche Umzüge sowie sichere Transporte.",
+                srv_8_title: "Gebäudereinigung",
+                srv_8_desc: "Zusätzliche Reinigungsleistungen für Gebäude und Räumlichkeiten.",
+                srv_btn: "Mehr erfahren <i class='fa-solid fa-arrow-right'></i>",
+                proc_label: "Einfach & Transparent",
+                proc_h2: "SO FUNKTIONIERT IHR AUFTRAG",
+                proc_1_title: "Anfrage senden",
+                proc_1_desc: "Beschreiben Sie kurz, was Sie benötigen.",
+                proc_2_title: "Besichtigung & Beratung",
+                proc_2_desc: "Wir besprechen Ihren Auftrag und verschaffen uns bei Bedarf vor Ort einen Überblick.",
+                proc_3_title: "Individuelles Angebot",
+                proc_3_desc: "Sie erhalten ein transparentes Angebot passend zu Ihrem Auftrag.",
+                proc_4_title: "Auftrag erledigt",
+                proc_4_desc: "Wir übernehmen die vereinbarten Arbeiten zuverlässig und sauber.",
+                abt_label: "ÜBER SAFTY",
+                abt_h2: "Persönlicher Service. Zuverlässige Arbeit.",
+                abt_p1: "SAFTY Dienstleistungen steht für zuverlässige Unterstützung bei Entrümpelungen, Auflösungen, Umzügen und Transporten in Hannover und Niedersachsen.",
+                abt_p2: "Ob Privathaushalt, Wohnung, Haus oder Gewerbeobjekt – wir legen Wert auf klare Absprachen, eine saubere Durchführung und einen persönlichen Ansprechpartner.",
+                abt_feat1: "Hannover & Niedersachsen",
+                abt_feat2: "Persönlicher Ansprechpartner",
+                abt_feat3: "Privat & Gewerbe",
+                sust_h2: "Nicht alles muss auf den Müll.",
+                sust_p: "Bei Räumungen prüfen wir, welche Gegenstände noch sinnvoll weiterverwendet oder verwertet werden können. Nicht mehr benötigte Gegenstände werden fachgerecht entsorgt.",
+                sust_f1_title: "Prüfen & sortieren",
+                sust_f2_title: "Verwertbares weitergeben",
+                sust_f3_title: "Fachgerecht entsorgen",
+                trans_h2: "Transportlösungen für Ihren Auftrag",
+                trans_1_title: "Kleinere Umzüge & Transporte",
+                trans_1_desc: "Ideal für Wohnungsauflösungen, Entrümpelungen einzelner Räume und klassische Stadtumzüge.",
+                trans_2_title: "Für größere Umzüge und Räumungen",
+                trans_2_desc: "Das richtige Fahrzeug für umfangreiche Hausauflösungen, Firmenräumungen und große Umzüge.",
+                why_h2: "Warum SAFTY?",
+                why_sub: "Ihre Vorteile auf einen Blick",
+                why_1_title: "Zuverlässige Termine",
+                why_1_desc: "Klare Absprachen und zuverlässige Planung.",
+                why_2_title: "Persönlicher Ansprechpartner",
+                why_2_desc: "Direkter Kontakt und individuelle Betreuung.",
+                why_3_title: "Faire Kommunikation",
+                why_3_desc: "Transparente Informationen von der Anfrage bis zum Abschluss.",
+                why_4_title: "Saubere Übergabe",
+                why_4_desc: "Ordentliche und zuverlässige Durchführung Ihres Auftrags.",
+                rev_h2: "Was unsere Kunden sagen",
+                rev_p1: "\"Bewertungen werden hier veröffentlicht.\"",
+                rev_p2: "Wir freuen uns nach jedem Auftrag über Ihre Rückmeldung.",
+                rev_btn: "Google Bewertungen",
+                cta_h2: "Sie möchten Platz schaffen?",
+                cta_p: "Ob Entrümpelung, Wohnungsauflösung, Firmenauflösung oder Umzug – sprechen Sie mit SAFTY.",
+                cta_btn1: "Kostenloses Angebot anfordern",
+                cta_btn2: "<i class='fa-solid fa-phone mr-2 text-primary'></i> Jetzt anrufen",
+                cta_btn3: "<i class='fa-brands fa-whatsapp mr-2 text-primary'></i> WhatsApp",
+                faq_h2: "Häufig gestellte Fragen",
+                faq_1_q: "Was kostet eine Entrümpelung?",
+                faq_1_a: "Die Kosten hängen vom Volumen, dem Aufwand und der Art der zu entsorgenden Gegenstände ab. Nach einer kostenlosen Besichtigung oder genauen Beschreibung erstellen wir Ihnen ein faires, transparentes Angebot.",
+                faq_2_q: "Wie kurzfristig kann ich einen Termin bekommen?",
+                faq_2_a: "Wir bemühen uns, Ihre Anfrage schnellstmöglich zu bearbeiten. Oft können wir kurzfristige Termine innerhalb weniger Tage realisieren. Sprechen Sie uns einfach an!",
+                faq_3_q: "Muss ich bei der Entrümpelung anwesend sein?",
+                faq_3_a: "Nein, das ist nicht zwingend erforderlich. Sobald wir den genauen Umfang geklärt haben, können wir den Auftrag auch selbstständig und zuverlässig durchführen.",
+                faq_4_q: "Was passiert mit den Gegenständen?",
+                faq_4_a: "Verwertbare Gegenstände können wir nach Absprache weitergeben oder anrechnen. Nicht mehr nutzbare Dinge werden fachgerecht und umweltfreundlich nach den geltenden Vorschriften entsorgt.",
+                faq_5_q: "Welche Gebiete bedient SAFTY?",
+                faq_5_a: "Wir sind in ganz Hannover sowie in gesamt Niedersachsen für Sie im Einsatz.",
+                faq_6_q: "Wie läuft ein Auftrag ab?",
+                faq_6_a: "Nach Ihrer Anfrage und einer eventuellen Besichtigung erhalten Sie ein Angebot. Stimmen Sie zu, vereinbaren wir einen Termin und führen die Arbeiten aus – bis zur besenreinen Übergabe.",
+                faq_7_q: "Gibt es versteckte Kosten?",
+                faq_7_a: "Nein. Wir legen großen Wert auf Transparenz. Sie erhalten im Vorfeld ein klares Angebot auf Basis unserer Absprachen.",
+                faq_8_q: "Ist SAFTY versichert?",
+                faq_8_a: "Bitte sprechen Sie uns direkt an, um Details zu Haftungs- und Versicherungsfragen für Ihren speziellen Auftrag (z.B. Umzug) zu klären.",
+                form_h2: "Kostenloses Angebot anfordern",
+                form_sub: "Beschreiben Sie uns kurz Ihr Vorhaben. Wir melden uns schnellstmöglich bei Ihnen.",
+                form_lbl_service: "Leistung",
+                form_opt_default: "Bitte wählen...",
+                form_opt_1: "Entrümpelung",
+                form_opt_2: "Wohnungsauflösung",
+                form_opt_3: "Haushaltsauflösung",
+                form_opt_4: "Hausauflösung",
+                form_opt_5: "Firmenauflösung",
+                form_opt_6: "Keller-/Dachbodenauflösung",
+                form_opt_7: "Umzug / Transport",
+                form_opt_8: "Gebäudereinigung",
+                form_opt_9: "Sonstiges",
+                form_lbl_name: "Vor- und Nachname",
+                form_lbl_phone: "Telefon",
+                form_lbl_email: "E-Mail",
+                form_lbl_city: "Ort",
+                form_lbl_street: "Straße & Hausnummer",
+                form_lbl_msg: "Beschreiben Sie Ihre Anfrage",
+                form_upload: "Fotos hochladen (Optional)",
+                form_gdpr: "Ich akzeptiere die Datenschutzerklärung und stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden.",
+                form_submit: "Anfrage kostenlos senden",
+                form_succ_h3: "Vielen Dank für Ihre Anfrage.",
+                form_succ_p: "Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich bei Ihnen.",
+                form_succ_btn: "Neue Anfrage stellen",
+                info_address: "Adresse",
+                info_hours: "Erreichbarkeit",
+                info_hours_val: "Mo - Sa: 08:00 - 18:00 Uhr",
+                info_map: "Google Maps Platzhalter",
+                foot_desc: "Entrümpelung, Auflösungen, Umzüge & Transporte in Hannover und Niedersachsen.",
+                foot_h_srv: "Leistungen",
+                foot_srv_1: "Entrümpelung",
+                foot_srv_2: "Wohnungsauflösung",
+                foot_srv_3: "Hausauflösung",
+                foot_srv_4: "Firmenauflösung",
+                foot_srv_5: "Kellerauflösung",
+                foot_srv_6: "Umzüge & Transporte",
+                foot_h_comp: "Unternehmen",
+                foot_h_legal: "Rechtliches",
+                foot_leg_1: "Impressum",
+                foot_leg_2: "Datenschutz",
+                foot_leg_3: "Cookie-Richtlinie",
+                foot_copy: "&copy; 2026 SAFTY Dienstleistungen. Alle Rechte vorbehalten.",
+                mob_call: "Anrufen",
+                mob_offer: "Angebot",
+                alt_hero: "Professionelles Umzugsteam in Hannover",
+                alt_about: "SAFTY Dienstleistungen Umzugsteam",
+                alt_trans1: "SAFTY Dienstleistungen Transporter 3,5t",
+                alt_trans2: "SAFTY Dienstleistungen LKW 7,5t",
+                alt_cta: "SAFTY Umzugswagen in Hannover"
+            },
+            en: {
+                meta_title: "Clearance & Moving Services Hannover | SAFTY Dienstleistungen",
+                meta_desc: "SAFTY Dienstleistungen provides property clearance, apartment clearance, house clearance, office clearance, moving and transport services in Hannover and Lower Saxony.",
+                top_badge: "FOR PRIVATE & COMMERCIAL",
+                top_phone: "Phone",
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_about: "About Us",
+                nav_reviews: "Reviews",
+                nav_faq: "FAQ",
+                nav_contact: "Contact",
+                nav_btn: "Request Quote",
+                hero_badge: "FOR PRIVATE & COMMERCIAL",
+                hero_h1: "Clearance & Moving Services in Hannover",
+                hero_p: "Reliable, fast, and clean – SAFTY Dienstleistungen handles property clearances, estate liquidations, moves, and transports in Hannover and Lower Saxony.",
+                hero_check1: "Free Inspection & Quote",
+                hero_check2: "Flexible Scheduling",
+                hero_check3: "Broom-clean Handover",
+                hero_btn_primary: "Request Free Quote",
+                hero_btn_secondary: "Call Now",
+                hero_whatsapp_sub: "Also available via WhatsApp",
+                hero_float_title: "Reliable • Fast • Clean",
+                hero_float_sub: "Your Local Partner",
+                trust_1: "Reliable & Punctual",
+                trust_2: "Fair Prices",
+                trust_3: "Professional Disposal",
+                trust_4: "Experienced Team",
+                trust_5: "Broom-clean Handover",
+                srv_h2: "Our Services",
+                srv_sub: "From a small basement clearance to complete house or office liquidations – we handle the work reliably and professionally.",
+                srv_1_title: "Property Clearance",
+                srv_1_desc: "We clear apartments, houses, basements, attics, and other spaces quickly and reliably.",
+                srv_2_title: "Apartment Clearance",
+                srv_2_desc: "Complete clearing of apartments – discreet, organized, and broom-clean upon request.",
+                srv_3_title: "Household Liquidation",
+                srv_3_desc: "We manage the full clearing and liquidation of households.",
+                srv_4_title: "House Clearance",
+                srv_4_desc: "Professional clearing of entire houses including adjoining rooms.",
+                srv_5_title: "Office Clearance",
+                srv_5_desc: "Clearing of offices, commercial spaces, warehouses, and business properties.",
+                srv_6_title: "Basement & Attic",
+                srv_6_desc: "We create order and space in basements, attics, and storage rooms.",
+                srv_7_title: "Moves & Transport",
+                srv_7_desc: "Private and commercial moving services as well as secure transports.",
+                srv_8_title: "Building Cleaning",
+                srv_8_desc: "Additional cleaning services for buildings and premises.",
+                srv_btn: "Learn more <i class='fa-solid fa-arrow-right'></i>",
+                proc_label: "Simple & Transparent",
+                proc_h2: "HOW IT WORKS",
+                proc_1_title: "Send Request",
+                proc_1_desc: "Briefly describe what you need.",
+                proc_2_title: "Inspection & Consulting",
+                proc_2_desc: "We discuss your project and, if necessary, get an overview on-site.",
+                proc_3_title: "Custom Quote",
+                proc_3_desc: "You will receive a transparent quote tailored to your job.",
+                proc_4_title: "Job Done",
+                proc_4_desc: "We carry out the agreed work reliably and cleanly.",
+                abt_label: "ABOUT SAFTY",
+                abt_h2: "Personal Service. Reliable Work.",
+                abt_p1: "SAFTY Dienstleistungen stands for reliable support with clearances, liquidations, moves, and transports in Hannover and Lower Saxony.",
+                abt_p2: "Whether for a private household, apartment, house, or commercial property – we value clear communication, clean execution, and providing a personal contact person.",
+                abt_feat1: "Hannover & Lower Saxony",
+                abt_feat2: "Personal Contact",
+                abt_feat3: "Private & Commercial",
+                sust_h2: "Not everything belongs in the trash.",
+                sust_p: "During clearances, we check which items can still be meaningfully reused or recycled. Items that are no longer needed are disposed of professionally.",
+                sust_f1_title: "Check & Sort",
+                sust_f2_title: "Pass on Reusables",
+                sust_f3_title: "Professional Disposal",
+                trans_h2: "Transport Solutions for Your Job",
+                trans_1_title: "Smaller Moves & Transports",
+                trans_1_desc: "Ideal for apartment clearances, single room cleanouts, and classic city moves.",
+                trans_2_title: "For Larger Moves & Clearances",
+                trans_2_desc: "The right vehicle for extensive house clearances, office liquidations, and large moves.",
+                why_h2: "Why SAFTY?",
+                why_sub: "Your benefits at a glance",
+                why_1_title: "Reliable Scheduling",
+                why_1_desc: "Clear agreements and dependable planning.",
+                why_2_title: "Personal Contact",
+                why_2_desc: "Direct communication and individual support.",
+                why_3_title: "Fair Communication",
+                why_3_desc: "Transparent information from request to completion.",
+                why_4_title: "Clean Handover",
+                why_4_desc: "Neat and reliable execution of your order.",
+                rev_h2: "What Our Customers Say",
+                rev_p1: "\"Reviews will be published here.\"",
+                rev_p2: "We appreciate your feedback after every completed job.",
+                rev_btn: "Google Reviews",
+                cta_h2: "Want to create space?",
+                cta_p: "Whether it's property clearance, apartment liquidation, office clearance, or a move – talk to SAFTY.",
+                cta_btn1: "Request Free Quote",
+                cta_btn2: "<i class='fa-solid fa-phone mr-2 text-primary'></i> Call Now",
+                cta_btn3: "<i class='fa-brands fa-whatsapp mr-2 text-primary'></i> WhatsApp",
+                faq_h2: "Frequently Asked Questions",
+                faq_1_q: "How much does a clearance cost?",
+                faq_1_a: "Costs depend on volume, effort, and the type of items to be disposed of. After a free inspection or exact description, we will provide you with a fair, transparent quote.",
+                faq_2_q: "How fast can I get an appointment?",
+                faq_2_a: "We strive to process your request as quickly as possible. We can often arrange short-notice appointments within a few days. Just talk to us!",
+                faq_3_q: "Do I have to be present during the clearance?",
+                faq_3_a: "No, it is not mandatory. Once we have clarified the exact scope, we can carry out the work independently and reliably.",
+                faq_4_q: "What happens to the items?",
+                faq_4_a: "Reusable items can be passed on or credited by arrangement. Unusable items are disposed of professionally and environmentally friendly according to applicable regulations.",
+                faq_5_q: "Which areas does SAFTY serve?",
+                faq_5_a: "We operate throughout Hannover and all of Lower Saxony for you.",
+                faq_6_q: "How does the process work?",
+                faq_6_a: "After your request and a possible inspection, you receive a quote. If you agree, we schedule an appointment and complete the work – up to a broom-clean handover.",
+                faq_7_q: "Are there any hidden costs?",
+                faq_7_a: "No. We attach great importance to transparency. You will receive a clear quote in advance based on our agreements.",
+                faq_8_q: "Is SAFTY insured?",
+                faq_8_a: "Please contact us directly to clarify liability and insurance details for your specific job (e.g., a move).",
+                form_h2: "Request Free Quote",
+                form_sub: "Briefly describe your project. We will get back to you as soon as possible.",
+                form_lbl_service: "Service",
+                form_opt_default: "Please select...",
+                form_opt_1: "Property Clearance",
+                form_opt_2: "Apartment Clearance",
+                form_opt_3: "Household Liquidation",
+                form_opt_4: "House Clearance",
+                form_opt_5: "Office Clearance",
+                form_opt_6: "Basement/Attic Clearance",
+                form_opt_7: "Move / Transport",
+                form_opt_8: "Building Cleaning",
+                form_opt_9: "Other",
+                form_lbl_name: "First & Last Name",
+                form_lbl_phone: "Phone",
+                form_lbl_email: "Email",
+                form_lbl_city: "City",
+                form_lbl_street: "Street & House Number",
+                form_lbl_msg: "Describe your request",
+                form_upload: "Upload photos (Optional)",
+                form_gdpr: "I accept the privacy policy and agree that my data will be stored to process my request.",
+                form_submit: "Send Request Free of Charge",
+                form_succ_h3: "Thank you for your request.",
+                form_succ_p: "We have received your message and will contact you as soon as possible.",
+                form_succ_btn: "Submit another request",
+                info_address: "Address",
+                info_hours: "Business Hours",
+                info_hours_val: "Mon - Sat: 08:00 - 18:00",
+                info_map: "Google Maps Placeholder",
+                foot_desc: "Clearance, liquidations, moves & transport in Hannover and Lower Saxony.",
+                foot_h_srv: "Services",
+                foot_srv_1: "Property Clearance",
+                foot_srv_2: "Apartment Clearance",
+                foot_srv_3: "House Clearance",
+                foot_srv_4: "Office Clearance",
+                foot_srv_5: "Basement Clearance",
+                foot_srv_6: "Moves & Transport",
+                foot_h_comp: "Company",
+                foot_h_legal: "Legal",
+                foot_leg_1: "Imprint",
+                foot_leg_2: "Privacy Policy",
+                foot_leg_3: "Cookie Policy",
+                foot_copy: "&copy; 2026 SAFTY Dienstleistungen. All rights reserved.",
+                mob_call: "Call",
+                mob_offer: "Quote",
+                alt_hero: "Professional moving team in Hannover",
+                alt_about: "SAFTY Dienstleistungen moving team",
+                alt_trans1: "SAFTY Dienstleistungen Transport vehicle 3.5t",
+                alt_trans2: "SAFTY Dienstleistungen Truck 7.5t",
+                alt_cta: "SAFTY moving truck in Hannover"
+            }
+        };
+
+        const setLanguage = (lang) => {
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+            
+            // Update Meta & Titles (Assuming standard title tag structure)
+            document.title = dictionary[lang]['meta_title'];
+            document.querySelector('meta[name="description"]').content = dictionary[lang]['meta_desc'];
+            document.querySelector('meta[property="og:title"]').content = dictionary[lang]['meta_title'];
+            document.querySelector('meta[property="og:description"]').content = dictionary[lang]['meta_desc'];
+            document.getElementById('og-locale').content = lang === 'de' ? 'de_DE' : 'en_GB';
+
+            // Update Image Alts
+            document.getElementById('hero-img').alt = dictionary[lang]['alt_hero'];
+            document.getElementById('about-img').alt = dictionary[lang]['alt_about'];
+            document.getElementById('trans-img-1').alt = dictionary[lang]['alt_trans1'];
+            document.getElementById('trans-img-2').alt = dictionary[lang]['alt_trans2'];
+            document.getElementById('cta-img').alt = dictionary[lang]['alt_cta'];
+
+            // Replace text content based on data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dictionary[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dictionary[lang][key]; // If using placeholders
+                    } else {
+                        el.innerHTML = dictionary[lang][key]; // Using innerHTML to allow icons inside buttons
+                    }
+                }
+            });
+
+            // Update active states on switchers
+            const deBtns = [document.getElementById('lang-de'), ...document.querySelectorAll('.lang-switch-mobile[data-lang="de"]')];
+            const enBtns = [document.getElementById('lang-en'), ...document.querySelectorAll('.lang-switch-mobile[data-lang="en"]')];
+
+            if (lang === 'de') {
+                deBtns.forEach(b => { b.classList.add('text-primary'); b.classList.remove('text-muted'); });
+                enBtns.forEach(b => { b.classList.add('text-muted'); b.classList.remove('text-primary'); });
+            } else {
+                enBtns.forEach(b => { b.classList.add('text-primary'); b.classList.remove('text-muted'); });
+                deBtns.forEach(b => { b.classList.add('text-muted'); b.classList.remove('text-primary'); });
+            }
+        };
+
+        // Desktop lang switch
+        document.getElementById('lang-de').addEventListener('click', () => setLanguage('de'));
+        document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+        
+        // Mobile lang switch
+        document.querySelectorAll('.lang-switch-mobile').forEach(btn => {
+            btn.addEventListener('click', (e) => setLanguage(e.target.getAttribute('data-lang')));
+        });
+
+    </script>
+</body>
+</html>
