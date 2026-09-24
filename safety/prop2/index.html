@@ -164,8 +164,9 @@
             
             <!-- Logo -->
             <a href="#" class="text-xl md:text-2xl font-extrabold tracking-tight flex items-center gap-2">
-                <span class="text-primary">SAFTY</span>
-                <span class="text-white font-medium text-lg hidden sm:block">Dienstleistungen</span>
+                <!-- <span class="text-primary">SAFTY</span>
+                <span class="text-white font-medium text-lg hidden sm:block">Dienstleistungen</span> -->
+                <img src="images/safty_logo_white.svg" alt="SAFTY Logo" class="h-10 w-auto">
             </a>
 
             <!-- Desktop Nav -->
@@ -345,83 +346,382 @@
     </div>
 
     <!-- SERVICES SECTION -->
-    <section id="leistungen" class="py-20 lg:py-28 bg-lightBg">
-        <div class="max-w-7xl mx-auto px-4">
+    <section id="leistungen" class="py-20 lg:py-28 bg-white">
+
+        <div class="container mx-auto px-4 max-w-7xl">
+
+            <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-black mb-6" data-aos="fade-up" data-i18n="srv_h2">Unsere Leistungen</h2>
-                <p class="text-lg text-charcoal/70" data-aos="fade-up" data-aos-delay="100" data-i18n="srv_sub">
-                    Von der kleinen Kellerauflösung bis zur kompletten Haus- oder Firmenauflösung – wir übernehmen die Arbeit zuverlässig und professionell.
+
+                <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block"
+                    data-i18n="services_label">
+                    Dienstleistungen
+                </span>
+
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-black uppercase mb-6"
+                    data-i18n="services_title">
+                    Unsere Leistungen
+                </h2>
+
+                <p class="text-charcoal/70 text-lg"
+                data-i18n="services_subtitle">
+                    Von der kleinen Kellerauflösung bis zur kompletten Haushalts- oder Firmenauflösung – wir übernehmen die Arbeit zuverlässig und professionell.
                 </p>
+
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Service Cards -->
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="50">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">01</div>
-                    <i class="fa-solid fa-boxes-stacked text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_1_title">Entrümpelung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_1_desc">Wir räumen Wohnungen, Häuser, Keller, Dachböden und weitere Räume schnell und zuverlässig.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+                <!-- 01 Entrümpelung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+                            alt="Entrümpelung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_1_title">
+                            Entrümpelung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_1_desc">
+                            Wir räumen Wohnungen, Häuser, Keller, Dachböden und weitere Räume schnell und zuverlässig.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">02</div>
-                    <i class="fa-solid fa-house text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_2_title">Wohnungsauflösung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_2_desc">Komplette Räumung von Wohnungen – diskret, organisiert und auf Wunsch besenrein.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 02 Wohnungsauflösung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"
+                            alt="Wohnungsauflösung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_2_title">
+                            Wohnungsauflösung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_2_desc">
+                            Komplette Räumung von Wohnungen – diskret, organisiert und auf Wunsch besenrein.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="150">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">03</div>
-                    <i class="fa-solid fa-house-chimney text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_3_title">Haushaltsauflösung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_3_desc">Wir übernehmen die vollständige Räumung und Auflösung von Haushalten.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 03 Haushaltsauflösung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+                            alt="Haushaltsauflösung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_3_title">
+                            Haushaltsauflösung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_3_desc">
+                            Wir übernehmen die vollständige Räumung und Auflösung von Haushalten.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">04</div>
-                    <i class="fa-solid fa-house text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_4_title">Hausauflösung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_4_desc">Professionelle Räumung kompletter Häuser inklusive Nebenräumen.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 04 Hausauflösung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=800&q=80"
+                            alt="Hausauflösung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_4_title">
+                            Hausauflösung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_4_desc">
+                            Professionelle Räumung kompletter Häuser inklusive Nebenräumen.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="250">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">05</div>
-                    <i class="fa-solid fa-building text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_5_title">Firmenauflösung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_5_desc">Räumung von Büros, Geschäftsräumen, Lagern und gewerblichen Objekten.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 05 Firmenauflösung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
+                            alt="Firmenauflösung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_5_title">
+                            Firmenauflösung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_5_desc">
+                            Räumung von Büros, Geschäftsräumen, Lagern und gewerblichen Objekten.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">06</div>
-                    <i class="fa-solid fa-warehouse text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_6_title">Keller- & Dachboden</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_6_desc">Wir schaffen Ordnung und Platz in Kellern, Dachböden und Abstellräumen.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 06 Keller & Dachboden -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80"
+                            alt="Keller und Dachboden"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_6_title">
+                            Keller- & Dachboden
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_6_desc">
+                            Wir schaffen Ordnung und Platz in Kellern, Dachböden und Abstellräumen.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="350">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">07</div>
-                    <i class="fa-solid fa-truck text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_7_title">Umzüge & Transporte</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_7_desc">Private und gewerbliche Umzüge sowie sichere Transporte.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 07 Umzüge & Transporte -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=800&q=80"
+                            alt="Umzüge und Transporte"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_7_title">
+                            Umzüge & Transporte
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_7_desc">
+                            Private und gewerbliche Umzüge sowie sichere Transporte.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div class="service-card bg-white p-8 rounded-xl border border-muted/20 transition-all duration-300 group relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <div class="absolute top-0 right-0 bg-lightBg text-muted/50 font-extrabold text-4xl p-4 rounded-bl-xl group-hover:text-primary/10 transition-colors">08</div>
-                    <i class="fa-solid fa-broom text-3xl text-primary mb-6 bg-primary/10 w-14 h-14 flex justify-center items-center rounded-lg group-hover:bg-primary group-hover:text-white transition-colors"></i>
-                    <h3 class="text-xl font-bold text-black mb-3" data-i18n="srv_8_title">Gebäudereinigung</h3>
-                    <p class="text-charcoal/70 mb-6 text-sm" data-i18n="srv_8_desc">Zusätzliche Reinigungsleistungen für Gebäude und Räumlichkeiten.</p>
-                    <a href="#kontakt" class="text-primary font-bold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all" data-i18n="srv_btn">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+
+                <!-- 08 Gebäudereinigung -->
+                <div class="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col cursor-pointer">
+
+                    <div class="relative h-48 overflow-visible">
+
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+                            alt="Gebäudereinigung"
+                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy"
+                        >
+
+                        <div class="absolute -bottom-5 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center border-4 border-white z-20 shadow-md transform group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-check text-white"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="p-6 pt-8 flex-grow flex flex-col">
+
+                        <h3 class="font-display font-bold text-xl uppercase text-black mb-3 group-hover:text-primary transition-colors"
+                            data-i18n="srv_8_title">
+                            Gebäudereinigung
+                        </h3>
+
+                        <p class="text-charcoal/70 text-sm mb-6 flex-grow leading-relaxed"
+                        data-i18n="srv_8_desc">
+                            Zusätzliche Reinigungsleistungen für Gebäude und Räumlichkeiten.
+                        </p>
+
+                        <a href="#kontakt"
+                        class="text-primary font-bold text-sm flex items-center uppercase tracking-wide">
+                            <span data-i18n="srv_btn">Mehr erfahren</span>
+                            <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
 
     <!-- PROCESS SECTION -->
     <section class="py-20 bg-white">
