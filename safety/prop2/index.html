@@ -107,6 +107,23 @@
         .faq-content.active { grid-template-rows: 1fr; }
         .faq-inner { overflow: hidden; }
         .nav-scrolled { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .hero-slide-wrap { position: relative; width: 100%; height: 100%; }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity 1.2s ease-in-out, transform 1.8s ease-in-out;
+            pointer-events: none;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
     </style>
 
     <!-- Schema.org JSON-LD -->
@@ -124,7 +141,7 @@
         "addressCountry": "DE"
       },
       "areaServed": ["Hannover", "Niedersachsen"],
-      "telephone": "+49 000 0000000",
+      "telephone": "+49 1521 3272192",
       "email": "info@safty-dienstleistungen.de",
       "url": "https://safty-dienstleistungen.de/",
       "priceRange": "Auf Anfrage",
@@ -143,16 +160,16 @@
     <div class="bg-black text-muted text-xs md:text-sm py-2 px-4 fixed top-0 w-full z-50">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
             <div class="flex items-center gap-4 hidden md:flex">
-                <a href="tel:0000000" class="hover:text-primary transition-colors"><i class="fa-solid fa-phone mr-1"></i> <span data-i18n="top_phone">Telefon</span></a>
-                <a href="#" class="hover:text-primary transition-colors"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
+                <a href="tel:+4915213272192" class="hover:text-primary transition-colors"><i class="fa-solid fa-phone mr-1"></i> <span data-i18n="top_phone">Telefon</span></a>
+                <a href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen." class="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
                 <a href="mailto:info@safty-dienstleistungen.de" class="hover:text-primary transition-colors"><i class="fa-solid fa-envelope mr-1"></i> E-Mail</a>
                 <span class="text-charcoal">|</span>
                 <span><i class="fa-solid fa-location-dot mr-1 text-primary"></i> Hannover & Niedersachsen</span>
             </div>
             <div class="font-medium tracking-wide text-white" data-i18n="top_badge">FÜR PRIVAT & GEWERBE</div>
             <div class="flex items-center md:hidden gap-4">
-                <a href="tel:0000000" class="text-white hover:text-primary"><i class="fa-solid fa-phone"></i></a>
-                <a href="#" class="text-white hover:text-primary"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="tel:+4915213272192" class="text-white hover:text-primary"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen." class="text-white hover:text-primary" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="mailto:info@safty-dienstleistungen.de" class="text-white hover:text-primary"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
@@ -181,9 +198,9 @@
 
             <!-- Right Actions -->
             <div class="hidden lg:flex items-center gap-6">
-                <a href="tel:0000000" class="flex items-center gap-2 hover:text-primary transition-colors group">
+                <a href="tel:+4915213272192" class="flex items-center gap-2 hover:text-primary transition-colors group">
                     <div class="bg-primary/20 p-2 rounded-full group-hover:bg-primary transition-colors"><i class="fa-solid fa-phone text-primary group-hover:text-white"></i></div>
-                    <span class="font-bold whitespace-nowrap">0511 0000 000</span>
+                    <span class="font-bold whitespace-nowrap">+49 1521 3272192</span>
                 </a>
                 <a href="#kontakt" class="bg-primary text-white px-5 py-2.5 rounded hover:bg-darkGreen transition-colors font-semibold" data-i18n="nav_btn">Angebot anfordern</a>
                 
@@ -284,7 +301,7 @@
                     <a href="#kontakt" class="bg-primary text-white font-bold py-4 px-8 rounded hover:bg-darkGreen transition-colors shadow-lg shadow-primary/30 w-full sm:w-auto text-center" data-i18n="hero_btn_primary">
                         Kostenloses Angebot anfordern
                     </a>
-                    <a href="tel:0000000" class="bg-charcoal text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto text-center" data-i18n="hero_btn_secondary">
+                    <a href="tel:+4915213272192" class="bg-charcoal text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto text-center" data-i18n="hero_btn_secondary">
                         Jetzt anrufen
                     </a>
                 </div>
@@ -297,8 +314,12 @@
             <div class="relative" data-aos="zoom-in" data-aos-duration="1000">
                 <div class="relative rounded-2xl overflow-hidden aspect-[4/3] lg:aspect-[3/4] shadow-2xl">
                     <div class="absolute inset-0 bg-charcoal/20 z-10"></div>
-                    <!-- Placeholder realistic moving team image -->
-                    <img src="https://images.unsplash.com/photo-1614359835514-92f8ba196357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professionelles Umzugsteam in Hannover" class="w-full h-full object-cover" id="hero-img">
+                    <div class="hero-slide-wrap">
+                        <img src="images/hero.webp" alt="Professionelles Umzugsteam in Hannover" class="hero-slide active" id="hero-img">
+                        <img src="images/trust.webp" alt="SAFTY Dienstleistungen Team" class="hero-slide">
+                        <img src="images/service1.webp" alt="Entrümpelung und Räumung" class="hero-slide">
+                        <img src="images/service2.webp" alt="Wohnungsauflösung und Umzug" class="hero-slide">
+                    </div>
                 </div>
                 <!-- Floating Badge -->
                 <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-xl z-20 flex items-center gap-4 border-l-4 border-primary">
@@ -381,7 +402,7 @@
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
 
                         <img
-                            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
+                            src="images/service1.webp"
                             alt="Entrümpelung"
                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                             loading="lazy"
@@ -424,7 +445,7 @@
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
 
                         <img
-                            src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"
+                            src="images/service2.webp"
                             alt="Wohnungsauflösung"
                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                             loading="lazy"
@@ -467,7 +488,7 @@
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
 
                         <img
-                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+                            src="images/service3.webp"
                             alt="Haushaltsauflösung"
                             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                             loading="lazy"
@@ -906,7 +927,7 @@
         <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
             
             <div class="order-2 lg:order-1 relative rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1614359835514-92f8ba196357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="SAFTY Dienstleistungen Umzugsteam" class="w-full h-full object-cover rounded-2xl" id="about-img">
+                <img src="images/trust.webp" alt="SAFTY Dienstleistungen Umzugsteam" class="w-full h-full object-cover rounded-2xl" id="about-img">
                 <div class="absolute inset-0 border-4 border-primary/20 rounded-2xl m-4 pointer-events-none"></div>
             </div>
 
@@ -977,7 +998,7 @@
                 <!-- Vehicle 1 -->
                 <div class="bg-lightBg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-64 bg-charcoal relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=800&auto=format&fit=crop" alt="Transporter 3,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-1">
+                        <img src="images/3.5t.webp" alt="Transporter 3,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-1">
                         <div class="absolute bottom-0 left-0 bg-primary text-white font-extrabold text-2xl px-6 py-2 rounded-tr-xl">3,5 t</div>
                     </div>
                     <div class="p-8 text-center">
@@ -989,7 +1010,7 @@
                 <!-- Vehicle 2 -->
                 <div class="bg-lightBg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-64 bg-charcoal relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop" alt="LKW 7,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-2">
+                        <img src="images/7.5t.webp" alt="LKW 7,5t" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" id="trans-img-2">
                         <div class="absolute bottom-0 left-0 bg-charcoal text-white font-extrabold text-2xl px-6 py-2 rounded-tr-xl">7,5 t</div>
                     </div>
                     <div class="p-8 text-center">
@@ -1055,7 +1076,7 @@
     <!-- MAIN CTA -->
     <section class="relative py-28 bg-charcoal overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600&auto=format&fit=crop" alt="Umzugswagen SAFTY" class="w-full h-full object-cover opacity-20 grayscale" id="cta-img">
+            <img src="images/hero.webp" alt="Umzugswagen SAFTY" class="w-full h-full object-cover opacity-20 grayscale" id="cta-img">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-charcoal/80 to-transparent"></div>
         </div>
         
@@ -1067,8 +1088,8 @@
             
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="200">
                 <a href="#kontakt" class="bg-primary text-white font-bold py-4 px-8 rounded hover:bg-darkGreen transition-colors shadow-[0_0_20px_rgba(111,159,42,0.4)] w-full sm:w-auto" data-i18n="cta_btn1">Kostenloses Angebot anfordern</a>
-                <a href="tel:0000000" class="bg-white text-black font-bold py-4 px-8 rounded hover:bg-lightBg transition-colors w-full sm:w-auto" data-i18n="cta_btn2"><i class="fa-solid fa-phone mr-2 text-primary"></i> Jetzt anrufen</a>
-                <a href="#" class="bg-black/50 backdrop-blur border border-white/20 text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto" data-i18n="cta_btn3"><i class="fa-brands fa-whatsapp mr-2 text-primary"></i> WhatsApp</a>
+                <a href="tel:+4915213272192" class="bg-white text-black font-bold py-4 px-8 rounded hover:bg-lightBg transition-colors w-full sm:w-auto" data-i18n="cta_btn2"><i class="fa-solid fa-phone mr-2 text-primary"></i> Jetzt anrufen</a>
+                <a href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen." class="bg-black/50 backdrop-blur border border-white/20 text-white font-bold py-4 px-8 rounded hover:bg-black transition-colors w-full sm:w-auto" data-i18n="cta_btn3" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp mr-2 text-primary"></i> WhatsApp</a>
             </div>
         </div>
     </section>
@@ -1296,7 +1317,7 @@
                                 <i class="fa-solid fa-phone text-primary mt-1 text-lg w-5 text-center"></i>
                                 <div>
                                     <div class="font-bold text-black">Telefon</div>
-                                    <a href="tel:0000000" class="text-charcoal/80 text-sm hover:text-primary">[0511 0000 000]</a>
+                                    <a href="tel:+4915213272192" class="text-charcoal/80 text-sm hover:text-primary">+49 1521 3272192</a>
                                 </div>
                             </div>
 
@@ -1304,7 +1325,7 @@
                                 <i class="fa-brands fa-whatsapp text-primary mt-1 text-lg w-5 text-center"></i>
                                 <div>
                                     <div class="font-bold text-black">WhatsApp</div>
-                                    <a href="#" class="text-charcoal/80 text-sm hover:text-primary">[0151 0000 000]</a>
+                                    <a href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen." class="text-charcoal/80 text-sm hover:text-primary" target="_blank" rel="noopener noreferrer">+49 1521 3272192</a>
                                 </div>
                             </div>
 
@@ -1347,7 +1368,8 @@
                 <!-- Brand -->
                 <div class="lg:col-span-1">
                     <div class="text-2xl font-extrabold tracking-tight flex items-center gap-2 mb-4 text-white">
-                        <span class="text-primary">SAFTY</span>
+                        <!-- <span class="text-primary">SAFTY</span> -->
+                         <img src="images/safty_logo_white.svg" alt="SAFTY Dienstleistungen Logo" class="w-32">
                     </div>
                     <p class="text-sm mb-6" data-i18n="foot_desc">Entrümpelung, Auflösungen, Umzüge & Transporte in Hannover und Niedersachsen.</p>
                 </div>
@@ -1399,20 +1421,21 @@
 
     <!-- FLOATING WHATSAPP -->
     <a
-        href="#"
+        href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen."
         class="hidden md:flex fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full items-center justify-center text-3xl shadow-lg z-50 pulse-btn hover:scale-110 transition-transform"
         title="Per WhatsApp kontaktieren"
+        target="_blank" rel="noopener noreferrer"
     >
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <!-- MOBILE BOTTOM BAR -->
     <div class="md:hidden fixed bottom-0 w-full bg-black text-white flex z-50 shadow-[0_-5px_20px_rgba(0,0,0,0.2)]">
-        <a href="tel:0000000" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
+        <a href="tel:+4915213272192" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
             <i class="fa-solid fa-phone text-lg mb-1 text-primary"></i>
             <span class="text-[10px] font-bold uppercase" data-i18n="mob_call">Anrufen</span>
         </a>
-        <a href="#" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
+        <a href="https://wa.me/4915213272192?text=Hallo%20SAFTY%2C%20ich%20m%C3%B6chte%20ein%20Angebot%20anfragen." target="_blank" rel="noopener noreferrer" class="flex-1 flex flex-col items-center justify-center py-3 hover:bg-white/10 transition-colors border-r border-white/10">
             <i class="fa-brands fa-whatsapp text-lg mb-1 text-primary"></i>
             <span class="text-[10px] font-bold uppercase">WhatsApp</span>
         </a>
@@ -1467,6 +1490,18 @@
                 mobileMenu.classList.remove('flex');
             });
         });
+
+        // Hero image slideshow
+        const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+        let heroSlideIndex = 0;
+
+        if (heroSlides.length > 1) {
+            setInterval(() => {
+                heroSlides[heroSlideIndex].classList.remove('active');
+                heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+                heroSlides[heroSlideIndex].classList.add('active');
+            }, 3500);
+        }
 
         // FAQ Accordion
         const faqBtns = document.querySelectorAll('.faq-btn');
